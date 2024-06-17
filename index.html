@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Japanese Text Analyzer</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/tiny-segmenter@0.2.0/lib/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>Japanese Text Frequency Analyzer and Translator</h1>
+    <textarea id="inputText" rows="10" cols="50">
+        今見た笑顔が 最後の笑顔かもしれない
+        例えば別の人と 会話をする横顔も尊い一秒
+        羽よりも命が 軽くなる世界で
+        君は私の生きる意味 だから 出逢えた
+        切なさは この胸のAXIA
+        片道だけの 微熱で翔ける空
+        すぐ消える 無慈悲な虹になる
+        悠遠の君が
+        ダイスキでダイキライ
+        一人で産まれて 誰もが一人で死にゆく
+        それでも私達は 独りきりじゃ生きられない
+        慕い合う周波数
+        疼く傷口へと 愛しさがしみる
+        言えないままの一言が 瞳溢れた
+        涙さえ 明日照らすAXIA
+        儚い粒子で 繋げてゆく鼓動
+        陽炎に 浮かぶ夢のように
+        永遠のフリをした薄情な情熱
+        時の舟に乗って 眠る日が来ても
+        たった一人思う光 ずっと絶やさない
+        もう君を思い出したりしない
+        だって一度も忘れることないから
+        切なさは この胸のAXIA
+        片道だけの 微熱で駆ける空
+        私から愛を盗む君が 絶望するくらい
+        報われなくても（遙か遠くても）
+        ダイスキでダイキライ
+        ダイスキでダイキライ</textarea>
+    <button id="countFrequencyButton">Analyze</button>
+    <button id="saveWordTranslationsButton">Save Words, Counts and Translations as File</button>
+    <button id="openFileButton">Open File</button>
+    <pre id="output"></pre>
+
+    <script>
+        //todo: make a grid for the words, counts, and input fields
+        //todo: add a button to save the words and counts and entered inputs as a file
+        //todo: add a button to open a file and display the words and counts
+        //todo: add onhover to display the translation of the word
+        //todo: add onhover to highlight the word in the text
+        
+
+        const apiKey = 'YOUR_DEEPL_API_KEY'; // Replace with your actual API key
+        let wordsFrequency = {};
+        let outputPre = document.getElementById('output');
+
+        document.getElementById('countFrequencyButton').addEventListener('click', async () => {
+            wordsFrequency = await analyzeText();
+
+            for (const word in wordsFrequency) {
+                const count = wordsFrequency[word];
+                outputPre.append(`${word} : ${count}  `, createInputField(word));
+                outputPre.append(document.createElement('br'));
+            }
+        });
+
+        function createInputField(word) {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.id = word;
+            return input;
+        }
+
+        document.getElementById('saveWordsButton').addEventListener('click', () => {
+            const words = Object.keys(wordsFrequency);
+            const blob = new Blob([words.join('\n')], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'words.txt';
+            a.click();
+        });
+
+        document.getElementById('openFileButton').addEventListener('click', () => {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = 'text/plain';
+            input.addEventListener('change', async () => {
+                const file = input.files[0];
+                const text = await file.text();
+                const words = text.split('\n');
+                wordsFrequency = {};
+
+                words.forEach(word => {
+                    if (wordsFrequency[word]) {
+                        wordsFrequency[word]++;
+                    } else {
+                        wordsFrequency[word] = 1;
+                    }
+                });
+
+                let output = '';
+                for (const word in wordsFrequency) {
+                    const count = wordsFrequency[word];
+                    output += `${word}: ${count}\n`;
+                }
+
+                document.getElementById('output').textContent = output;
+            });
+            input.click();
+        });
+
+        async function translateText(text, targetLang) {
+            const url = 'https://api-free.deepl.com/v2/translate';
+
+            try {
+                const response = await axios.post(url, null, {
+                    params: {
+                        auth_key: apiKey,
+                        text: text,
+                        target_lang: targetLang,
+                        source_lang: 'JA'
+                    }
+                });
+                
+                return response.data.translations[0].text;
+            } catch (error) {
+                console.error('Error translating text:', error);
+                document.getElementById('output').innerText = 'Translation error';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('translateButton').addEventListener('click', () => {
+                const text = document.getElementById('textInput').value;
+                const targetLang = document.getElementById('languageSelect').value;
+                translateText(text, targetLang);
+            });
+        });
+
+        async function analyzeText() {
+            const text = document.getElementById('inputText').value;
+            const segmenter = new TinySegmenter();
+            const words = segmenter.segment(text);
+
+            //regex to remove english words, numbers, newlines, spaces, and parentheses
+            const regex = /^[a-zA-Z0-9\n\r\s]+$/;
+            //regex to remove single hiragana
+            const hiraganaRegex = /^[\u3040-\u309F]+$/;
+            //regex to remove single katakana
+            const katakanaRegex = /^[\u30A0-\u30FF]+$/;
+            //regex to remove symbols and non japanese characters
+            const symbolRegex = /^[^\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF\uFF00-\uFFEF\u3000-\u303F]+$/;
+            //regex to remove full width parentheses
+            const parenthesesRegex = /[\uFF08\uFF09]/;
+
+            const filteredWords = words.filter(word => !regex.test(word) && !hiraganaRegex.test(word) && !katakanaRegex.test(word) && !symbolRegex.test(word) && !parenthesesRegex.test(word));
+
+            const frequency = {};
+
+            filteredWords.forEach(word => {
+                if (frequency[word]) {
+                    frequency[word]++;
+                } else {
+                    frequency[word] = 1;
+                }
+            });
+
+            return frequency;
+
+/*             let output = '';
+            for (const word in frequency) {
+                const count = frequency[word];
+                const translatedWord = await translateText(word, 'en');
+                output += `${word} (${translatedWord}): ${count}\n`;
+            } 
+
+            for (const word in frequency) {
+                const count = frequency[word];
+                output += `${word}: ${count}`;
+                //add an input field for each word
+                output += `<input type="text" id="${word}" value="${word}">`;
+                //add newline
+                output += '\n';
+            }
+
+            document.getElementById('output').textContent = output;
+            */
+        }
+    </script>
+</body>
+</html>
