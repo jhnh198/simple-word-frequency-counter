@@ -5,43 +5,60 @@
     <title>Japanese Text Analyzer</title>
     <script defer src="https://cdn.jsdelivr.net/npm/tiny-segmenter@0.2.0/lib/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    
 </head>
 <body>
     <h1>Japanese Text Frequency Analyzer and Translator</h1>
-    <textarea id="inputText" rows="10" cols="50">
-        今見た笑顔が 最後の笑顔かもしれない
-        例えば別の人と 会話をする横顔も尊い一秒
-        羽よりも命が 軽くなる世界で
-        君は私の生きる意味 だから 出逢えた
-        切なさは この胸のAXIA
-        片道だけの 微熱で翔ける空
-        すぐ消える 無慈悲な虹になる
-        悠遠の君が
-        ダイスキでダイキライ
-        一人で産まれて 誰もが一人で死にゆく
-        それでも私達は 独りきりじゃ生きられない
-        慕い合う周波数
-        疼く傷口へと 愛しさがしみる
-        言えないままの一言が 瞳溢れた
-        涙さえ 明日照らすAXIA
-        儚い粒子で 繋げてゆく鼓動
-        陽炎に 浮かぶ夢のように
-        永遠のフリをした薄情な情熱
-        時の舟に乗って 眠る日が来ても
-        たった一人思う光 ずっと絶やさない
-        もう君を思い出したりしない
-        だって一度も忘れることないから
-        切なさは この胸のAXIA
-        片道だけの 微熱で駆ける空
-        私から愛を盗む君が 絶望するくらい
-        報われなくても（遙か遠くても）
-        ダイスキでダイキライ
-        ダイスキでダイキライ</textarea>
-    <button id="countFrequencyButton">Analyze</button>
-    <button id="saveWordTranslationsButton">Save Words, Counts and Translations as File</button>
-    <button id="openFileButton">Open File</button>
-    <pre id="output"></pre>
+    <div id="container"> 
+        
+        <div id="input">
+            
+            <textarea id="inputText" rows="35" cols="50">
+                青い空が雲に隠れ
+                蕾たちが枯れ落ちても
+                ちいさな泉があるなら
+                何度でも 始められるわ
+                
+                怖がらずに呼び続けて
+                私たちを信じていて
+                冷たいビルの谷間に
+                聞こえてる あなたの声が
+                
+                悲しむだけの涙には
+                未来を変える力さえないの
+                けれど あなたの傷ついた心を
+                軽くしてあげられるなら
+                For you
+                
+                遠くから呼び続けて
+                苦しくても叫んでいて
+                あなたの声を頼りに
+                迷わずに そこへ行くから
+                
+                あきらめずに教えに来て
+                私たちを信じていて
+                争うことのすべてが
+            </textarea>
+            <textarea id="free-translation-text-area" rows="35" cols="50"></textarea>
 
+
+
+
+            <div id="output">
+
+            </div>
+            <div id="controls-div">
+                <button id="countFrequencyButton">Analyze</button>
+                <button id="saveWordTranslationsButton">Save Words, Counts and Translations as File</button>
+                <button id="openFileButton">Open File</button>
+            </div>
+        </div>
+    
+
+
+
+    </div>
     <script>
         //todo: make a grid for the words, counts, and input fields
         //todo: add a button to save the words and counts and entered inputs as a file
@@ -67,17 +84,25 @@
         function createInputField(word) {
             const input = document.createElement('input');
             input.type = 'text';
+            input.class = 'translation';
             input.id = word;
             return input;
         }
 
         document.getElementById('saveWordsButton').addEventListener('click', () => {
+            const translations = document.getElementsByClassName('translation');
             const words = Object.keys(wordsFrequency);
+
+            for (let i = 0; i < translations.length; i++) {
+                const translation = translations[i].value;
+                words[i] = `${words[i]} (${translation})`;
+            }
+
             const blob = new Blob([words.join('\n')], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'words.txt';
+            a.download = 'translation_with_word_frequency.txt';
             a.click();
         });
 
@@ -143,12 +168,16 @@
             const segmenter = new TinySegmenter();
             const words = segmenter.segment(text);
 
-            //regex to remove english words, numbers, newlines, spaces, and parentheses
+            //regex to remove english letters, numbers, newlines, spaces, and parentheses
             const regex = /^[a-zA-Z0-9\n\r\s]+$/;
-            //regex to remove single hiragana
-            const hiraganaRegex = /^[\u3040-\u309F]+$/;
+
+            //hiragana regex removes only single hiragana, which are generally particles
+            //this allows multi-hiragana words to be included and depending on the tokenizer, will separate hiragana modifiers from kanji
+            //which is ideal since generally hiragana modifiers do the same thing for all root kanji
+            const hiraganaRegex = /^[\u3040-\u309F]$/;
+
             //regex to remove single katakana
-            const katakanaRegex = /^[\u30A0-\u30FF]+$/;
+            const katakanaRegex = /^[\u30A0-\u30FF]$/;
             //regex to remove symbols and non japanese characters
             const symbolRegex = /^[^\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF\uFF00-\uFFEF\u3000-\u303F]+$/;
             //regex to remove full width parentheses
@@ -167,25 +196,6 @@
             });
 
             return frequency;
-
-/*             let output = '';
-            for (const word in frequency) {
-                const count = frequency[word];
-                const translatedWord = await translateText(word, 'en');
-                output += `${word} (${translatedWord}): ${count}\n`;
-            } 
-
-            for (const word in frequency) {
-                const count = frequency[word];
-                output += `${word}: ${count}`;
-                //add an input field for each word
-                output += `<input type="text" id="${word}" value="${word}">`;
-                //add newline
-                output += '\n';
-            }
-
-            document.getElementById('output').textContent = output;
-            */
         }
     </script>
 </body>
