@@ -6,14 +6,13 @@
     <script defer src="https://cdn.jsdelivr.net/npm/tiny-segmenter@0.2.0/lib/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="styles.css">
+    <script defer src="frequency_translation_dictionary.js"></script>
+    <script defer type="module" src="script.js"></script>
     
 </head>
 <body>
-    <h1>Japanese Text Frequency Analyzer and Translator</h1>
-    <div id="container"> 
-        
+    <div id="container">    
         <div id="input">
-            
             <textarea id="inputText" rows="35" cols="50">
                 青い空が雲に隠れ
                 蕾たちが枯れ落ちても
@@ -41,162 +40,14 @@
                 争うことのすべてが
             </textarea>
             <textarea id="free-translation-text-area" rows="35" cols="50"></textarea>
-
-
-
-
-            <div id="output">
-
-            </div>
             <div id="controls-div">
                 <button id="countFrequencyButton">Analyze</button>
                 <button id="saveWordTranslationsButton">Save Words, Counts and Translations as File</button>
                 <button id="openFileButton">Open File</button>
             </div>
+            <div id="output">
+            </div>
         </div>
-    
-
-
-
     </div>
-    <script>
-        //todo: make a grid for the words, counts, and input fields
-        //todo: add a button to save the words and counts and entered inputs as a file
-        //todo: add a button to open a file and display the words and counts
-        //todo: add onhover to display the translation of the word
-        //todo: add onhover to highlight the word in the text
-        
-
-        const apiKey = 'YOUR_DEEPL_API_KEY'; // Replace with your actual API key
-        let wordsFrequency = {};
-        let outputPre = document.getElementById('output');
-
-        document.getElementById('countFrequencyButton').addEventListener('click', async () => {
-            wordsFrequency = await analyzeText();
-
-            for (const word in wordsFrequency) {
-                const count = wordsFrequency[word];
-                outputPre.append(`${word} : ${count}  `, createInputField(word));
-                outputPre.append(document.createElement('br'));
-            }
-        });
-
-        function createInputField(word) {
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.class = 'translation';
-            input.id = word;
-            return input;
-        }
-
-        document.getElementById('saveWordsButton').addEventListener('click', () => {
-            const translations = document.getElementsByClassName('translation');
-            const words = Object.keys(wordsFrequency);
-
-            for (let i = 0; i < translations.length; i++) {
-                const translation = translations[i].value;
-                words[i] = `${words[i]} (${translation})`;
-            }
-
-            const blob = new Blob([words.join('\n')], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'translation_with_word_frequency.txt';
-            a.click();
-        });
-
-        document.getElementById('openFileButton').addEventListener('click', () => {
-            const input = document.createElement('input');
-            input.type = 'file';
-            input.accept = 'text/plain';
-            input.addEventListener('change', async () => {
-                const file = input.files[0];
-                const text = await file.text();
-                const words = text.split('\n');
-                wordsFrequency = {};
-
-                words.forEach(word => {
-                    if (wordsFrequency[word]) {
-                        wordsFrequency[word]++;
-                    } else {
-                        wordsFrequency[word] = 1;
-                    }
-                });
-
-                let output = '';
-                for (const word in wordsFrequency) {
-                    const count = wordsFrequency[word];
-                    output += `${word}: ${count}\n`;
-                }
-
-                document.getElementById('output').textContent = output;
-            });
-            input.click();
-        });
-
-        async function translateText(text, targetLang) {
-            const url = 'https://api-free.deepl.com/v2/translate';
-
-            try {
-                const response = await axios.post(url, null, {
-                    params: {
-                        auth_key: apiKey,
-                        text: text,
-                        target_lang: targetLang,
-                        source_lang: 'JA'
-                    }
-                });
-                
-                return response.data.translations[0].text;
-            } catch (error) {
-                console.error('Error translating text:', error);
-                document.getElementById('output').innerText = 'Translation error';
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('translateButton').addEventListener('click', () => {
-                const text = document.getElementById('textInput').value;
-                const targetLang = document.getElementById('languageSelect').value;
-                translateText(text, targetLang);
-            });
-        });
-
-        async function analyzeText() {
-            const text = document.getElementById('inputText').value;
-            const segmenter = new TinySegmenter();
-            const words = segmenter.segment(text);
-
-            //regex to remove english letters, numbers, newlines, spaces, and parentheses
-            const regex = /^[a-zA-Z0-9\n\r\s]+$/;
-
-            //hiragana regex removes only single hiragana, which are generally particles
-            //this allows multi-hiragana words to be included and depending on the tokenizer, will separate hiragana modifiers from kanji
-            //which is ideal since generally hiragana modifiers do the same thing for all root kanji
-            const hiraganaRegex = /^[\u3040-\u309F]$/;
-
-            //regex to remove single katakana
-            const katakanaRegex = /^[\u30A0-\u30FF]$/;
-            //regex to remove symbols and non japanese characters
-            const symbolRegex = /^[^\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF\uFF00-\uFFEF\u3000-\u303F]+$/;
-            //regex to remove full width parentheses
-            const parenthesesRegex = /[\uFF08\uFF09]/;
-
-            const filteredWords = words.filter(word => !regex.test(word) && !hiraganaRegex.test(word) && !katakanaRegex.test(word) && !symbolRegex.test(word) && !parenthesesRegex.test(word));
-
-            const frequency = {};
-
-            filteredWords.forEach(word => {
-                if (frequency[word]) {
-                    frequency[word]++;
-                } else {
-                    frequency[word] = 1;
-                }
-            });
-
-            return frequency;
-        }
-    </script>
 </body>
 </html>
