@@ -12,7 +12,6 @@ document.getElementById('countFrequencyButton').addEventListener('click', async 
     for (const word in wordsFrequency) {
         const count = wordsFrequency[word];
         outputPre.append(createInputFieldContainer(word, count, frequency_translation_dictionary[word]?.translation));
-        //outputPre.append(document.createElement('br'));
     }
 });
 
@@ -20,7 +19,15 @@ function createInputFieldContainer(word, count, translation) {
     const div = document.createElement('div');
     div.classList.add('inputFieldContainer');
     const label = document.createElement('label');
-    label.textContent = `${word} : ${count}  `;
+    label.addEventListener('mouseover', () => {
+        console.log('mouseover');
+        addHighlight(word);
+    });
+    label.addEventListener('mouseout', () => {
+        console.log('mouseout');
+        removeHighlight(word);
+    });
+    label.textContent = `${word} : ${count} `;
     div.appendChild(label);
     const input = document.createElement('input');
     input.type = 'text';
@@ -31,6 +38,23 @@ function createInputFieldContainer(word, count, translation) {
     return div;
 }
 
+//todo: add highlight and remove highlight does not work as intended
+function addHighlight(word) {
+    const text = document.getElementById('inputText').value;
+    const regex = new RegExp(`\\b${word}\\b`, 'g');
+    const newText = text.replace(regex, `<span class="highlight">${word}</span>`);
+    document.getElementById('inputText').value = newText;
+}
+
+function removeHighlight(word) {
+    const text = document.getElementById('inputText').value;
+    const regex = new RegExp(`\\b${word}\\b`, 'g');
+    const newText = text.replace(regex, word);
+    document.getElementById('inputText').value = newText;
+}
+
+//todo: add original text and translated text to the saved file
+//todo: use save as prompt to put the file in the desired location
 document.getElementById('saveWordTranslationsButton').addEventListener('click', () => { 
     Object.entries(wordsFrequency).forEach(([word, count]) => {
         const input = document.getElementById(word);
@@ -40,19 +64,18 @@ document.getElementById('saveWordTranslationsButton').addEventListener('click', 
     });
 
     Object.entries(wordsFrequency).forEach(([word, translation]) => {
-        if (!frequency_translation_dictionary.containsKey(word)) {
+        if (!frequency_translation_dictionary[word]) {
             frequency_translation_dictionary[word] = { count: 0, translation };
         } else {
-            frequency_translation_dictionary.count += wordsFrequency[word].count;
-            frequency_translation_dictionary.translation = wordsFrequency[word].translation;
+            frequency_translation_dictionary[word].count += wordsFrequency[word].count;
+            frequency_translation_dictionary[word].translation = wordsFrequency[word].translation;
         }
     });
 
     console.log(frequency_translation_dictionary);
 
     const blob = new Blob([JSON.stringify(wordsFrequency, null, 2)], { type: 'text/plain' });
-    
-    FileSystem.writeToFile(blob, 'frequency_translation_dictionary.js');
+
 
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');

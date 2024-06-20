@@ -47,3 +47,7 @@ button{
   border-radius: 5px;
   cursor: pointer;
 }
+
+.highlight{
+  background-color: #da904b;
+}
