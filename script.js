@@ -15,18 +15,11 @@ document.getElementById('countFrequencyButton').addEventListener('click', async 
     }
 });
 
+//todo: add dropdown to select the category of the word
 function createInputFieldContainer(word, count, translation) {
     const div = document.createElement('div');
     div.classList.add('inputFieldContainer');
     const label = document.createElement('label');
-    label.addEventListener('mouseover', () => {
-        console.log('mouseover');
-        addHighlight(word);
-    });
-    label.addEventListener('mouseout', () => {
-        console.log('mouseout');
-        removeHighlight(word);
-    });
     label.textContent = `${word} : ${count} `;
     div.appendChild(label);
     const input = document.createElement('input');
@@ -35,7 +28,23 @@ function createInputFieldContainer(word, count, translation) {
     input.id = word;
     input.value = translation || '';
     div.appendChild(input);
+    div.appendChild(createDropdown(word));
     return div;
+}
+
+function createDropdown(word) {
+    const select = document.createElement('select');
+    select.id = `${word}-category`;
+
+    //todo: edit categories based on japanese language
+    const categories = ['Noun', 'Verb', 'Adjective', 'Adverb', 'Particle', 'Conjunction', 'Interjection', 'Pronoun', 'Preposition', 'Counter', 'Prefix', 'Suffix', 'Auxiliary Verb', 'Auxiliary Adjective', 'Other'];
+    categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category;
+        option.textContent = category;
+        select.appendChild(option);
+    });
+    return select;
 }
 
 //todo: add highlight and remove highlight does not work as intended
@@ -54,21 +63,25 @@ function removeHighlight(word) {
 }
 
 //todo: add original text and translated text to the saved file
+//todo: add title to the saved file for the file name, or use default text
 //todo: use save as prompt to put the file in the desired location
+//todo: save category of the word in the saved file
 document.getElementById('saveWordTranslationsButton').addEventListener('click', () => { 
     Object.entries(wordsFrequency).forEach(([word, count]) => {
         const input = document.getElementById(word);
+        const category = document.getElementById(`${word}-category`);
         if (input) {
-            wordsFrequency[word] = { count, translation: input.value };
+            wordsFrequency[word] = { count, translation: input.value, category: category.value};
         }
     });
 
-    Object.entries(wordsFrequency).forEach(([word, translation]) => {
+    Object.entries(wordsFrequency).forEach(([word, translation, category]) => {
         if (!frequency_translation_dictionary[word]) {
-            frequency_translation_dictionary[word] = { count: 0, translation };
+            frequency_translation_dictionary[word] = { count: 0, translation, category};
         } else {
             frequency_translation_dictionary[word].count += wordsFrequency[word].count;
             frequency_translation_dictionary[word].translation = wordsFrequency[word].translation;
+            frequency_translation_dictionary[word].category = wordsFrequency[word].category;
         }
     });
 
