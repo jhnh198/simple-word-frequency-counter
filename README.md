@@ -1,4 +1,5 @@
-Word counter that uses tiny segmenter to tokenize japanese script
+Word counter that uses tiny segmenter to tokenize japanese script. 
+
 DeepL is also implemented but does not do a good job of translating words due to context
 - Save words, frequency and translation to text file
 - Enter translation manually for practice
