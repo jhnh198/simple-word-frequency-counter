@@ -19,3 +19,7 @@ var segmenter = new TinySegmenter(); // インスタンス生成
 var segs = segmenter.segment("私の名前は中野です"); // 単語の配列が返る
 console.log(segs.join(" | ")); // 表示
 ```
+
+## For Translation Tools
+Added to avoid calls to the site
+Use allowed from author take under MIT license in folder - JH 6/21/2024
