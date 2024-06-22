@@ -66,6 +66,7 @@ function removeHighlight(word) {
 //todo: add title to the saved file for the file name, or use default text
 //todo: use save as prompt to put the file in the desired location
 //todo: save category of the word in the saved file
+
 document.getElementById('saveWordTranslationsButton').addEventListener('click', () => { 
     Object.entries(wordsFrequency).forEach(([word, count]) => {
         const input = document.getElementById(word);
@@ -87,15 +88,19 @@ document.getElementById('saveWordTranslationsButton').addEventListener('click', 
 
     console.log(frequency_translation_dictionary);
 
-    const blob = new Blob([JSON.stringify(wordsFrequency, null, 2)], { type: 'text/plain' });
-
-
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'translation_with_word_frequency.txt';
-    a.click();
+    localStorage.setItem('dictionary_data', JSON.stringify(frequency_translation_dictionary)); // Save to local storage
+    console.log('Data saved to local storage');
 });
+
+function retrieveFromLocalStorage() {
+    const jsonData = localStorage.getItem('dictionary_data'); // Retrieve from local storage
+    if (jsonData) {
+      const data = JSON.parse(jsonData); // Convert to original format
+      console.log('Retrieved data:', data);
+    } else {
+      console.log('No data found in local storage');
+    }
+}
 
 document.getElementById('openFileButton').addEventListener('click', () => {
     const input = document.createElement('input');
@@ -125,6 +130,19 @@ document.getElementById('openFileButton').addEventListener('click', () => {
     });
     input.click();
 });
+
+function download(filename, text) {
+    //todo: write blob to downloadable file
+    //todo: can be separate function
+    const blob = new Blob([JSON.stringify(frequency_translation_dictionary)], { type: 'text/plain' });
+
+    const url = URL.createObjectURL(blob);
+    const title = document.getElementById('title').value || 'translation_with_word_frequency';
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${title}.txt`;
+    a.click();
+}
 
 async function analyzeText() {
     const text = document.getElementById('inputText').value;
