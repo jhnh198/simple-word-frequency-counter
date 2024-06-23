@@ -76,15 +76,24 @@ function removeHighlight(word) {
 }
 
 //todo: save category of the word in the saved file
+//formatting is not working as intended
 document.getElementById(`downloadCurrentTranslationButton`).addEventListener('click', () => {
-    wordsFrequency.originalText = document.getElementById('inputText').value;
-    wordsFrequency.translatedText = document.getElementById('free-translation-text-area').value || '';
-    wordsFrequency.title = document.getElementById('title').value || '';
-    const blob = new Blob([JSON.stringify(wordsFrequency), null, "\t"], { type: 'text/plain' });
+    let title = document.getElementById('title').value || 'translation.txt';
+    let originalText = document.getElementById('inputText').value;
+    
+    let translatedText = document.getElementById('free-translation-text-area').value || '';
+
+    let output = {
+        title: title,
+        originalText: originalText,
+        translatedText: translatedText,
+        words: wordsFrequency
+    };
+    
+    const blob = new Blob([JSON.stringify(output, null, "\t")], { type: 'text/plain' });
 
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    const title = document.getElementById('title').value ? `${document.getElementById('title').value}` : `translation.txt`;
     a.href = url;
     a.download = title;
     a.click();
@@ -159,3 +168,7 @@ async function analyzeText() {
 
     return frequency;
 }
+
+document.getElementById('openFileButton').addEventListener('click', () => {
+    document.getElementById('fileInput').click();
+});
