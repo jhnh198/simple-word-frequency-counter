@@ -1,1 +1,0 @@
-export let frequency_translation_dictionary = {};

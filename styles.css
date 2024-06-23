@@ -52,6 +52,7 @@ button{
   background-color: #da904b;
 }
 
+/* offset border behind the text */
 #sidebar {
   display: flex;
   flex-direction: column;

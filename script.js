@@ -1,16 +1,29 @@
  //todo: add a button to open a file and display the words and counts
 //todo: add onhover to display the translation of the word
 //todo: add onhover to highlight the word in the text
-import {frequency_translation_dictionary} from './frequency_translation_dictionary.js';
+//todo: use save as prompt to put the file in the desired location
 
 let wordsFrequency = {};
 let outputPre = document.getElementById('output');
+
+let frequency_translation_dictionary = {};
+loadLocalStorage();
+
+function loadLocalStorage() {
+    const jsonData = localStorage.getItem('dictionary_data');
+    if (jsonData) {
+        frequency_translation_dictionary = JSON.parse(jsonData);
+    }
+
+    console.log(frequency_translation_dictionary);
+}
 
 document.getElementById('countFrequencyButton').addEventListener('click', async () => {
     wordsFrequency = await analyzeText();
 
     for (const word in wordsFrequency) {
         const count = wordsFrequency[word];
+        console.log(frequency_translation_dictionary[word]);
         outputPre.append(createInputFieldContainer(word, count, frequency_translation_dictionary[word]?.translation));
     }
 });
@@ -62,85 +75,53 @@ function removeHighlight(word) {
     document.getElementById('inputText').value = newText;
 }
 
-//todo: add original text and translated text to the saved file
-//todo: add title to the saved file for the file name, or use default text
-//todo: use save as prompt to put the file in the desired location
 //todo: save category of the word in the saved file
+document.getElementById(`downloadCurrentTranslationButton`).addEventListener('click', () => {
+    wordsFrequency.originalText = document.getElementById('inputText').value;
+    wordsFrequency.translatedText = document.getElementById('free-translation-text-area').value || '';
+    wordsFrequency.title = document.getElementById('title').value || '';
+    const blob = new Blob([JSON.stringify(wordsFrequency), null, "\t"], { type: 'text/plain' });
 
-document.getElementById('saveWordTranslationsButton').addEventListener('click', () => { 
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const title = document.getElementById('title').value ? `${document.getElementById('title').value}` : `translation.txt`;
+    a.href = url;
+    a.download = title;
+    a.click();
+});
+
+//this saves current entries to local storage for the frequency translation dictionary
+document.getElementById('saveTranslationLocalButton').addEventListener('click', () => { 
     Object.entries(wordsFrequency).forEach(([word, count]) => {
         const input = document.getElementById(word);
         const category = document.getElementById(`${word}-category`);
-        if (input) {
-            wordsFrequency[word] = { count, translation: input.value, category: category.value};
-        }
+        wordsFrequency[word] = { count: count, translation: input.value, category: category.value};
     });
 
     Object.entries(wordsFrequency).forEach(([word, translation, category]) => {
         if (!frequency_translation_dictionary[word]) {
-            frequency_translation_dictionary[word] = { count: 0, translation, category};
+            frequency_translation_dictionary[word] = { count: wordsFrequency[word].count, translation, category};
         } else {
-            frequency_translation_dictionary[word].count += wordsFrequency[word].count;
+            frequency_translation_dictionary[word].count = parseInt(wordsFrequency[word].count || 0) + parseInt(frequency_translation_dictionary[word].count || 0) ;
             frequency_translation_dictionary[word].translation = wordsFrequency[word].translation;
             frequency_translation_dictionary[word].category = wordsFrequency[word].category;
         }
     });
-
-    console.log(frequency_translation_dictionary);
-
     localStorage.setItem('dictionary_data', JSON.stringify(frequency_translation_dictionary)); // Save to local storage
     console.log('Data saved to local storage');
 });
 
-function retrieveFromLocalStorage() {
-    const jsonData = localStorage.getItem('dictionary_data'); // Retrieve from local storage
-    if (jsonData) {
-      const data = JSON.parse(jsonData); // Convert to original format
-      console.log('Retrieved data:', data);
-    } else {
-      console.log('No data found in local storage');
-    }
-}
-
-document.getElementById('openFileButton').addEventListener('click', () => {
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = 'text/plain';
-    input.addEventListener('change', async () => {
-        const file = input.files[0];
-        const text = await file.text();
-        const words = text.split('\n');
-        wordsFrequency = {};
-
-        words.forEach(word => {
-            if (wordsFrequency[word]) {
-                wordsFrequency[word]++;
-            } else {
-                wordsFrequency[word] = 1;
-            }
-        });
-
-        let output = '';
-        for (const word in wordsFrequency) {
-            const count = wordsFrequency[word];
-            output += `${word}: ${count}\n`;
-        }
-
-        document.getElementById('output').textContent = output;
-    });
-    input.click();
+document.getElementById('downloadFullTranslationFrequencyDictionaryButton').addEventListener('click', () => {
+    downloadFullDictionary();
 });
 
-function download(filename, text) {
-    //todo: write blob to downloadable file
-    //todo: can be separate function
-    const blob = new Blob([JSON.stringify(frequency_translation_dictionary)], { type: 'text/plain' });
+function downloadFullDictionary() {
+    const blob = new Blob([JSON.stringify(frequency_translation_dictionary, null, "\t")], { type: 'text/plain' });
 
     const url = URL.createObjectURL(blob);
-    const title = document.getElementById('title').value || 'translation_with_word_frequency';
     const a = document.createElement('a');
     a.href = url;
-    a.download = `${title}.txt`;
+    a.download = `frequency_translation_dictionary.txt`;
     a.click();
 }
 
