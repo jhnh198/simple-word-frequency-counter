@@ -33,7 +33,7 @@ body{
 
 #controls-div{
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
@@ -50,4 +50,15 @@ button{
 
 .highlight{
   background-color: #da904b;
+}
+
+#sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 100vh;
+  background-color: #f1f1f1;
+  border-right: 1px solid black;
 }

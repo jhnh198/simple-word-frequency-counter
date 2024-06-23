@@ -11,10 +11,45 @@
     
 </head>
 <body>
-    <div id="container">    
-        
+   
+    <div id="container"> 
+        <div id="sidebar">
+            <div id="sidebar-content">
+                <div id="sidebar-tabs">
+                    <button id="frequency-tab">Frequency</button>
+                    <button id="translation-tab">Translation</button>
+                </div>
+                <div id="frequency-tab-content">
+                    <div id="frequency-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Word</th>
+                                    <th>Count</th>
+                                </tr>
+                            </thead>
+                            <tbody id="frequency-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="translation-tab-content">
+                    <div id="translation-table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Word</th>
+                                    <th>Translation</th>
+                                </tr>
+                            </thead>
+                            <tbody id="translation-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div> 
+        </div>   
         <div id="input">
-            
             <textarea id="inputText" rows="35" cols="50">
                 青い空が雲に隠れ
                 蕾たちが枯れ落ちても
@@ -42,52 +77,20 @@
                 争うことのすべてが
             </textarea>
             <textarea id="free-translation-text-area" rows="35" cols="50"></textarea>
-            <div id="controls-div">
-                <input type="text" id="title" placeholder="Enter a Title">
-                <button id="countFrequencyButton">Analyze</button>
-                <button id="saveWordTranslationsButton">Save Words, Counts and Translations as File</button>
-                <button id="openFileButton">Open File</button>
-            </div>
-            <div id="output">
-            </div>
         </div>
+        <div id="controls-div">
+            <input type="text" id="title" placeholder="Enter a Title">
+            <button id="countFrequencyButton">Return Words and Frequency</button>
+            <button id="saveWordTranslationsButton">Save Words, Counts and Translations as File</button>
+            <button id="saveTranslationLocalButton">Save Translation to Local Storage</button>
+            <button id="loadTranslationLocalButton">Load Translation from Local Storage</button>
+            <button id="downloadTranslationButton">Download Translation</button>
+            <button id="downloadFullTranslationFrequencyButton">Download Full Translation Frequency</button>
+        </div>
+    </div>      
+    <div id="output">
     </div>
 
-    <!-- todo: put a sidebar with tabs -->
-    <div id="sidebar">
-        <div id="sidebar-content">
-            <div id="sidebar-tabs">
-                <button id="frequency-tab">Frequency</button>
-                <button id="translation-tab">Translation</button>
-            </div>
-            <div id="frequency-tab-content">
-                <div id="frequency-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Word</th>
-                                <th>Count</th>
-                            </tr>
-                        </thead>
-                        <tbody id="frequency-table-body">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div id="translation-tab-content">
-                <div id="translation-table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Word</th>
-                                <th>Translation</th>
-                            </tr>
-                        </thead>
-                        <tbody id="translation-table-body">
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+    
 </body>
 </html>
