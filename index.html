@@ -16,8 +16,9 @@
         <div id="sidebar">
             <div id="sidebar-content">
                 <div id="sidebar-tabs">
-                    <button id="frequency-tab">Frequency</button>
-                    <button id="translation-tab">Translation</button>
+                    <button id="frequency-tab">Frequency Dictionary</button>
+                    <button id="grammar-guide-tab">Grammar Guide</button>
+                    <button id="translation-tab"> DeepL Translation</button>
                 </div>
                 <div id="frequency-tab-content">
                     <div id="frequency-table">
@@ -26,6 +27,8 @@
                                 <tr>
                                     <th>Word</th>
                                     <th>Count</th>
+                                    <th>Translation</th>
+                                    <th>Category</th>
                                 </tr>
                             </thead>
                             <tbody id="frequency-table-body">
@@ -34,17 +37,13 @@
                     </div>
                 </div>
                 <div id="translation-tab-content">
-                    <div id="translation-table">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Word</th>
-                                    <th>Translation</th>
-                                </tr>
-                            </thead>
-                            <tbody id="translation-table-body">
-                            </tbody>
-                        </table>
+                    <div id="translation-content">
+                        <button id="translate-button">Translate</button>
+                        <div id="translation-output">
+                            <div id="translation-output-text">
+                                
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div> 
@@ -80,12 +79,14 @@
         </div>
         <div id="controls-div">
             <input type="text" id="title" placeholder="Enter a Title">
-            <checkbox id="hidePreviousTranslationsCheckbox">Clear all translation inputs</checkbox>
+            <div>
+                <input type="checkbox" id="hidePreviousTranslationsCheckbox">
+                <label for="hidePreviousTranslationsCheckbox" id="hidePreviousTranslationsLabel">Clear/Show Previous Translations</label>
+            </div>
             <button id="countFrequencyButton">Return Words and Frequency</button>
             <button id="saveTranslationLocalButton">Save Translation to Local Storage</button>
             <button id="downloadCurrentTranslationButton">Download Translation</button>
             <button id="downloadFullTranslationFrequencyDictionaryButton">Download Full Translation Frequency</button>
-            <input type="file" id="fileinput">
         </div>
     </div>      
     <div id="output">

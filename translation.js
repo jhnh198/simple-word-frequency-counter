@@ -1,4 +1,4 @@
-const apiKey = 'YOUR_DEEPL_API_KEY'; // Replace with your actual API key
+const apiKey = ''; // Replace with your actual API key
 
 async function translateText(text, targetLang) {
   const url = 'https://api-free.deepl.com/v2/translate';

@@ -14,16 +14,29 @@ function loadLocalStorage() {
     if (jsonData) {
         frequency_translation_dictionary = JSON.parse(jsonData);
     }
-
-    console.log(frequency_translation_dictionary);
 }
+
+document.getElementById('hidePreviousTranslationsCheckbox').addEventListener('change', () => {
+    if (document.getElementById('hidePreviousTranslationsCheckbox').checked) {
+        document.querySelectorAll('input').forEach(container => {
+            container.value = '';
+            console.log(wordsFrequency)
+        })
+        console.log(wordsFrequency)
+    } else {
+        Object.entries(wordsFrequency).forEach(([word]) => {
+            const input = document.getElementById(word);
+            input.value = frequency_translation_dictionary[word]?.translation || '';
+        });
+        console.log(wordsFrequency)
+    }
+});
 
 document.getElementById('countFrequencyButton').addEventListener('click', async () => {
     wordsFrequency = await analyzeText();
 
     for (const word in wordsFrequency) {
         const count = wordsFrequency[word];
-        console.log(frequency_translation_dictionary[word]);
         outputPre.append(createInputFieldContainer(word, count, frequency_translation_dictionary[word]?.translation));
     }
 });
@@ -107,12 +120,12 @@ document.getElementById('saveTranslationLocalButton').addEventListener('click', 
         wordsFrequency[word] = { count: count, translation: input.value, category: category.value};
     });
 
-    Object.entries(wordsFrequency).forEach(([word, translation, category]) => {
+    Object.entries(wordsFrequency).forEach(([word]) => {
         if (!frequency_translation_dictionary[word]) {
-            frequency_translation_dictionary[word] = { count: wordsFrequency[word].count, translation, category};
+            frequency_translation_dictionary[word] = { count: wordsFrequency[word].count, translation: wordsFrequency[word]?.translation, category: wordsFrequency[word].category};
         } else {
             frequency_translation_dictionary[word].count = parseInt(wordsFrequency[word].count || 0) + parseInt(frequency_translation_dictionary[word].count || 0) ;
-            frequency_translation_dictionary[word].translation = wordsFrequency[word].translation;
+            frequency_translation_dictionary[word].translation = wordsFrequency[word]?.translation;
             frequency_translation_dictionary[word].category = wordsFrequency[word].category;
         }
     });
@@ -169,6 +182,32 @@ async function analyzeText() {
     return frequency;
 }
 
-document.getElementById('openFileButton').addEventListener('click', () => {
-    document.getElementById('fileInput').click();
+const apiKey = 'ENTER YOUR DEEPL API KEY'; // Replace with your actual API key
+
+async function translateText(text, targetLang) {
+  const url = 'https://api-free.deepl.com/v2/translate';
+
+  try {
+      const response = await axios.post(url, null, {
+          params: {
+              auth_key: apiKey,
+              text: text,
+              target_lang: targetLang,
+              source_lang: 'JA'
+          }
+      });
+      
+      document.getElementById('free-translation-text-area').value = response.data.translations[0].text;
+  } catch (error) {
+      console.error('Error translating text:', error);
+      document.getElementById('free-translation-text-area').value = 'Translation error';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.getElementById('translate-button').addEventListener('click', () => {
+      const text = document.getElementById('inputText').value;
+      translateText(text, "EN");
+  });
 });
+
