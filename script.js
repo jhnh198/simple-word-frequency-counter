@@ -1,7 +1,5 @@
- //todo: add a button to open a file and display the words and counts
 //todo: add onhover to display the translation of the word
 //todo: add onhover to highlight the word in the text
-//todo: use save as prompt to put the file in the desired location
 
 let wordsFrequency = {};
 let outputPre = document.getElementById('output');
@@ -41,7 +39,6 @@ document.getElementById('countFrequencyButton').addEventListener('click', async 
     }
 });
 
-//todo: add dropdown to select the category of the word
 function createInputFieldContainer(word, count, translation) {
     const div = document.createElement('div');
     div.classList.add('inputFieldContainer');
@@ -88,8 +85,6 @@ function removeHighlight(word) {
     document.getElementById('inputText').value = newText;
 }
 
-//todo: save category of the word in the saved file
-//formatting is not working as intended
 document.getElementById(`downloadCurrentTranslationButton`).addEventListener('click', () => {
     let title = document.getElementById('title').value || 'translation.txt';
     let originalText = document.getElementById('inputText').value;
