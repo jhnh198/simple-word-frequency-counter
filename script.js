@@ -93,12 +93,16 @@ function removeHighlight(word) {
 document.getElementById(`downloadCurrentTranslationButton`).addEventListener('click', () => {
     let title = document.getElementById('title').value || 'translation.txt';
     let originalText = document.getElementById('inputText').value;
+    let originalTextArray = originalText.split('\n');
+    originalTextArray = originalTextArray.map(line => line.trim());
     
     let translatedText = document.getElementById('free-translation-text-area').value || '';
+    let translatedTextArray = translatedText.split('\n');
+    translatedTextArray = translatedTextArray.map(line => line.trim());
 
     let output = {
         title: title,
-        originalText: originalText,
+        originalText: originalTextArray,
         translatedText: translatedText,
         words: wordsFrequency
     };
@@ -131,6 +135,7 @@ document.getElementById('saveTranslationLocalButton').addEventListener('click', 
     });
     localStorage.setItem('dictionary_data', JSON.stringify(frequency_translation_dictionary)); // Save to local storage
     console.log('Data saved to local storage');
+    loadFullDictionary();
 });
 
 document.getElementById('downloadFullTranslationFrequencyDictionaryButton').addEventListener('click', () => {
@@ -211,3 +216,23 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
+function loadFullDictionary(){
+    let frequencyTableBody = document.getElementById('frequency-table-body');
+    frequencyTableBody.innerHTML = '';
+    Object.entries(frequency_translation_dictionary).forEach(([word, data]) => {
+        console.log(word, data);
+        let row = frequencyTableBody.insertRow();
+        let wordCell = row.insertCell(0);
+        let countCell = row.insertCell(1);
+        let translationCell = row.insertCell(2);
+        let categoryCell = row.insertCell(3);
+        wordCell.innerText = word;
+        countCell.innerText = data.count;
+        translationCell.innerText = data.translation;
+        categoryCell.innerText = data.category;
+
+        frequencyTableBody.appendChild(row);
+    });
+}
+
+loadFullDictionary();
