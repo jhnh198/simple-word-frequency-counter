@@ -1,9 +1,5 @@
 *{
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
-  align-items: center;
-  justify-content: center;
 }
 
 body{
@@ -13,11 +9,54 @@ body{
 }
 
 #container{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  display:flex;
+  flex-wrap:wrap;
+}
+
+/* columns mobile */
+#container > *{
+  width: 100%;
+  padding: 1rem;
+}
+
+/* background colors */
+#container > .header {background:#f97171}
+#container > .main-content {background:#fff}
+#container > .left-sidebar {background:#f5d55f}
+#container > .right-sidebar {background:#c5ed77}
+#container> .footer {background:#72c2f1}
+
+/* tablet breakpoint */
+@media (min-width:768px) {
+  #container > .left-sidebar,
+  #container > .right-sidebar {
+      width:50%;
+  }
+}
+
+/* desktop breakpoint */
+@media (min-width:1024px) {
+  #container > .header {
+      order:-2; /* header first */
+  }
+  #container > .left-sidebar {
+      /* left sidebar second (first in second row) */
+      order:-1; 
+  }
+  #container > .main-content {
+      width:50%;
+  }
+  #container > .left-sidebar,
+  #container > .right-sidebar {
+      width:25%;
+  }
+}
+
+.content-header-controls{
+  display: grid;
+  grid-template-columns: auto auto;
+  margin-bottom: 20px;
+  justify-content: space-between;
 }
 
 #output{
@@ -32,11 +71,8 @@ body{
 }
 
 #controls-div{
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
+  display: grid;
+  grid-template-columns: auto auto;
 }
 
 button{
@@ -55,16 +91,3 @@ button{
 /* offset border behind the text
   insert blurred border / opaque border behind the text
 */
-#sidebar {
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  align-self: start;
-  height: 100vh;
-  background-color: #f1f1f1;
-  border-right: 1px solid black;
-}
-
-#sidebar h2{
-  margin: 10px;
-}

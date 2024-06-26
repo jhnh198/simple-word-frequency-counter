@@ -147,6 +147,36 @@ function downloadFullDictionary() {
     a.click();
 }
 
+document.getElementById('downloadFullTranslationFrequencyDictionaryCSVButton').addEventListener('click', () => {
+    saveToCSV();
+});
+
+function saveToCSV() {
+    const header = 'Word,Count,Translation,Category\n';
+    const csv = Object.entries(frequency_translation_dictionary).map(([word, data]) => {
+        return `${word},${data.count},${data.translation},${data.category}`;
+    }).join('\n');
+
+    const blob = new Blob([header, csv], { type: 'text/csv' });
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `frequency_translation_dictionary.csv`;
+    a.click();
+}
+
+function categoryDictionary() {
+    let categoryDictionary = {};
+    Object.entries(frequency_translation_dictionary).forEach(([word, data]) => {
+        if (!categoryDictionary[data.category]) {
+            categoryDictionary[data.category] = {};
+        }
+        categoryDictionary[data.category][word] = data;
+    });
+    return categoryDictionary;
+}
+
 async function analyzeText() {
     const text = document.getElementById('inputText').value;
     const segmenter = new TinySegmenter();

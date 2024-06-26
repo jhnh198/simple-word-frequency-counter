@@ -13,9 +13,61 @@
 <body>
    
     <div id="container"> 
-        <div id="sidebar">
-            <div id="sidebar-content">
-                <div id="sidebar-tabs">
+        <header class="header">
+            <h1>Japanese Text Analyzer</h1>
+        </header>
+        <main class="main-content">
+            <div id="input">
+                <div class="content-header-controls">
+                    <input type="text" id="title" placeholder="Enter a Title">
+                    <div>
+                        <input type="checkbox" id="hidePreviousTranslationsCheckbox">
+                        <label for="hidePreviousTranslationsCheckbox" id="hidePreviousTranslationsLabel">Clear/Show Previous Translations</label>
+                    </div>
+                </div>
+
+                <textarea id="inputText" rows="35" cols="50">
+                    青い空が雲に隠れ
+                    蕾たちが枯れ落ちても
+                    ちいさな泉があるなら
+                    何度でも 始められるわ
+                    
+                    怖がらずに呼び続けて
+                    私たちを信じていて
+                    冷たいビルの谷間に
+                    聞こえてる あなたの声が
+                    
+                    悲しむだけの涙には
+                    未来を変える力さえないの
+                    けれど あなたの傷ついた心を
+                    軽くしてあげられるなら
+                    For you
+                    
+                    遠くから呼び続けて
+                    苦しくても叫んでいて
+                    あなたの声を頼りに
+                    迷わずに そこへ行くから
+                    
+                    あきらめずに教えに来て
+                    私たちを信じていて
+                    争うことのすべてが
+                </textarea>
+                <textarea id="free-translation-text-area" rows="35" cols="50"></textarea>
+            </div>
+            <div id="controls-div">
+
+                <button id="countFrequencyButton">Return Words and Frequency</button>
+                <button id="saveTranslationLocalButton">Save Translation to Local Storage</button>
+                <button id="downloadCurrentTranslationButton">Download Translation</button>
+                <button id="downloadFullTranslationFrequencyDictionaryButton">Download Full Translation Frequency</button>
+                <button id="downloadFullTranslationCategoryDictionaryButton">Download Full Translation Category</button>
+                <button id="downloadFullTranslationFrequencyDictionaryCSVButton">Download Full Translation Frequency CSV</button>
+            </div>     
+        </main>
+
+        <section class="left-sidebar">
+            <div id="left-sidebar-content">
+                <div id="left-sidebar-tabs">
                     <button id="frequency-tab">Frequency Dictionary</button>
                     <button id="category-tab">Category Dictionary</button>
                     <button id="grammar-guide-tab">Grammar Guide</button>
@@ -24,13 +76,7 @@
                 <div id="frequency-tab-content">
                     <div id="frequency-table">
                         <table>
-                            <thead>
-                                <tr>
-                                    <th>Word</th>
-                                    <th>Count</th>
-                                    <th>Translation</th>
-                                    <th>Category</th>
-                                </tr>
+                            <thead id="frequency-table-head">
                             </thead>
                             <tbody id="frequency-table-body">
                             </tbody>
@@ -38,49 +84,12 @@
                     </div>
                 </div>
             </div> 
-        </div>   
-        <div id="input">
-            <textarea id="inputText" rows="35" cols="50">
-                青い空が雲に隠れ
-                蕾たちが枯れ落ちても
-                ちいさな泉があるなら
-                何度でも 始められるわ
-                
-                怖がらずに呼び続けて
-                私たちを信じていて
-                冷たいビルの谷間に
-                聞こえてる あなたの声が
-                
-                悲しむだけの涙には
-                未来を変える力さえないの
-                けれど あなたの傷ついた心を
-                軽くしてあげられるなら
-                For you
-                
-                遠くから呼び続けて
-                苦しくても叫んでいて
-                あなたの声を頼りに
-                迷わずに そこへ行くから
-                
-                あきらめずに教えに来て
-                私たちを信じていて
-                争うことのすべてが
-            </textarea>
-            <textarea id="free-translation-text-area" rows="35" cols="50"></textarea>
-        </div>
-        <div id="controls-div">
-            <input type="text" id="title" placeholder="Enter a Title">
-            <div>
-                <input type="checkbox" id="hidePreviousTranslationsCheckbox">
-                <label for="hidePreviousTranslationsCheckbox" id="hidePreviousTranslationsLabel">Clear/Show Previous Translations</label>
+        </section> 
+        
+        <aside class="right-sidebar">
+            <div id="output">
             </div>
-            <button id="countFrequencyButton">Return Words and Frequency</button>
-            <button id="saveTranslationLocalButton">Save Translation to Local Storage</button>
-            <button id="downloadCurrentTranslationButton">Download Translation</button>
-            <button id="downloadFullTranslationFrequencyDictionaryButton">Download Full Translation Frequency</button>
-        </div>
-    </div>      
-    <div id="output">
-    </div>
+        </aside>
+
 </body>
 </html>
