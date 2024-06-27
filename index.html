@@ -55,9 +55,8 @@
                 <textarea id="free-translation-text-area" rows="35" cols="50"></textarea>
             </div>
             <div id="controls-div">
-
                 <button id="countFrequencyButton">Return Words and Frequency</button>
-                <button id="saveTranslationLocalButton">Save Translation to Local Storage</button>
+                <button id="saveTranslationLocalButton">Save Translation to Local Storage(temporary)</button>
                 <button id="downloadCurrentTranslationButton">Download Translation</button>
                 <button id="downloadFullTranslationFrequencyDictionaryButton">Download Full Translation Frequency</button>
                 <button id="downloadFullTranslationCategoryDictionaryButton">Download Full Translation Category</button>
@@ -68,7 +67,8 @@
         <section class="left-sidebar">
             <div id="left-sidebar-content">
                 <div id="left-sidebar-tabs">
-                    <button id="frequency-tab">Frequency Dictionary</button>
+                    <button id="frequency-upload">Frequency Dictionary <input type="file"  id="file-input" accept=".json, csv"> </button>
+
                     <button id="category-tab">Category Dictionary</button>
                     <button id="grammar-guide-tab">Grammar Guide</button>
                     <button id="translate-button">Push to translate using deepL </button>

@@ -18,15 +18,12 @@ document.getElementById('hidePreviousTranslationsCheckbox').addEventListener('ch
     if (document.getElementById('hidePreviousTranslationsCheckbox').checked) {
         document.querySelectorAll('input').forEach(container => {
             container.value = '';
-            console.log(wordsFrequency)
         })
-        console.log(wordsFrequency)
     } else {
         Object.entries(wordsFrequency).forEach(([word]) => {
             const input = document.getElementById(word);
             input.value = frequency_translation_dictionary[word]?.translation || '';
         });
-        console.log(wordsFrequency)
     }
 });
 
@@ -258,6 +255,47 @@ function loadFullDictionary(){
 
         frequencyTableBody.appendChild(row);
     });
+}
+
+document.getElementById('frequency-upload').addEventListener('click', () => {
+    const file = document.getElementById('dictionaryFile').files[0];
+    if (!file) {
+        alert('No file selected');
+        return;
+    }
+
+    if (file.name.endsWith('.csv')) {
+        loadDictionaryFromCSV(file);
+    } else if (file.name.endsWith('.json')) {
+        loadDictionaryFromJSON(file);
+    } else {
+        alert('Invalid file type');
+    }
+});
+
+function loadDictionaryFromCSV(file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const text = e.target.result;
+        const rows = text.split('\n');
+        rows.forEach(row => {
+            const [word, count, translation, category] = row.split(',');
+            frequency_translation_dictionary[word] = { count: count, translation: translation, category: category};
+        });
+        loadFullDictionary();
+    };
+    reader.readAsText(file);
+}
+
+function loadDictionaryFromJSON(file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const text = e.target.result;
+        const data = JSON.parse(text);
+        frequency_translation_dictionary = data;
+        loadFullDictionary();
+    };
+    reader.readAsText(file);
 }
 
 loadFullDictionary();
