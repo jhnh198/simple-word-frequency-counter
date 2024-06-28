@@ -14,6 +14,18 @@ function loadLocalStorage() {
     }
 }
 
+function errorMessage(message, componentId){
+    let component = document.getElementById(componentId);
+    component.classList.add('error');
+    component.textContent = message;
+}
+
+function clearErrorMessage(message, componentId){
+    let component = document.getElementById(componentId);
+    component.classList.remove('error');
+    component.textContent = message;
+}
+
 document.getElementById('hidePreviousTranslationsCheckbox').addEventListener('change', () => {
     if (document.getElementById('hidePreviousTranslationsCheckbox').checked) {
         document.querySelectorAll('input').forEach(container => {
@@ -28,11 +40,22 @@ document.getElementById('hidePreviousTranslationsCheckbox').addEventListener('ch
 });
 
 document.getElementById('countFrequencyButton').addEventListener('click', async () => {
-    wordsFrequency = await analyzeText();
+    try {
+        if(document.getElementById('countFrequencyButton').classList.contains('error'))clearErrorMessage('', this.id);
+        wordsFrequency = await analyzeText();
+        
+        for (const word in wordsFrequency) {
+            const count = wordsFrequency[word];
+            outputPre.append(createInputFieldContainer(word, count, frequency_translation_dictionary[word]?.translation));
+        }
+    } catch (error) {
+        errorMessage('No Text to Analyze', 'countFrequencyButton');
+    }
+});
 
-    for (const word in wordsFrequency) {
-        const count = wordsFrequency[word];
-        outputPre.append(createInputFieldContainer(word, count, frequency_translation_dictionary[word]?.translation));
+document.getElementById('inputText').addEventListener('input', () => {
+    if(document.getElementById('countFrequencyButton').classList.contains('error')) {
+        clearErrorMessage('Return Words and Frequency', 'countFrequencyButton');
     }
 });
 
@@ -83,6 +106,10 @@ function removeHighlight(word) {
 }
 
 document.getElementById(`downloadCurrentTranslationButton`).addEventListener('click', () => {
+    if(Object.keys(wordsFrequency).length === 0) {
+        alert('No words to download');
+        return;
+    }
     let title = document.getElementById('title').value || 'translation.txt';
     let originalText = document.getElementById('inputText').value;
     let originalTextArray = originalText.split('\n');

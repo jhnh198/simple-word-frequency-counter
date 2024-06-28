@@ -91,6 +91,12 @@ button{
   background-color: #da904b;
 }
 
+.error{
+  border: 1px solid red;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
 /*
   insert blurred border / opaque border behind the text
 */
