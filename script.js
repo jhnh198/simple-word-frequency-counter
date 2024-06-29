@@ -107,7 +107,7 @@ function removeHighlight(word) {
 
 document.getElementById(`downloadCurrentTranslationButton`).addEventListener('click', () => {
     if(Object.keys(wordsFrequency).length === 0) {
-        alert('No words to download');
+        errorMessage('No Words to Download', 'downloadCurrentTranslationButton');
         return;
     }
     let title = document.getElementById('title').value || 'translation.txt';
@@ -202,6 +202,18 @@ function categoryDictionary() {
 }
 
 async function analyzeText() {
+    if (document.getElementById('inputText').value === '') {
+        throw new Error('No text to analyze');
+    }
+
+    if(document.getElementById('countFrequencyButton').classList.contains('error')){
+        clearErrorMessage('Return Words and Frequency', 'countFrequencyButton');
+    };
+
+    if(document.getElementById('downloadCurrentTranslationButton').classList.contains('error')){
+        clearErrorMessage('Download Current Translation', 'downloadCurrentTranslationButton');
+    }
+
     const text = document.getElementById('inputText').value;
     const segmenter = new TinySegmenter();
     const words = segmenter.segment(text);
