@@ -6,7 +6,7 @@ let outputPre = document.getElementById('output');
 
 let frequency_translation_dictionary = {};
 loadLocalStorage();
-loadFullDictionary();
+//buildDictionaryTable(frequency_translation_dictionary);
 
 //set up event listeners on load
 document.addEventListener('DOMContentLoaded', () => {
@@ -15,12 +15,10 @@ document.addEventListener('DOMContentLoaded', () => {
       translateText(text, "EN");
     });
 
-    document.getElementById('frequency-upload').addEventListener('click', () => {
-    const file = document.getElementById('dictionaryFile').files[0];
-    if (!file) {
-        alert('No file selected');
-        return;
-    }
+    //todo: upload is not reading file correctly
+    document.getElementById('frequency-dictionary-upload').addEventListener('click', (e) => {
+
+    const file = e.target.value.files;
 
     if (file.name.endsWith('.csv')) {
         loadDictionaryFromCSV(file);
@@ -84,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         localStorage.setItem('dictionary_data', JSON.stringify(frequency_translation_dictionary)); // Save to local storage
         console.log('Data saved to local storage');
-        loadFullDictionary();
+        buildDictionaryTable(frequency_translation_dictionary);
     });
 
     document.getElementById('downloadFullTranslationFrequencyDictionaryButton').addEventListener('click', () => {
@@ -122,6 +120,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if(document.getElementById('countFrequencyButton').classList.contains('error')) {
             clearErrorMessage('Return Words and Frequency', 'countFrequencyButton');
         }
+    });
+
+    document.getElementById('frequency-dictionary-button').addEventListener('click', () => {
+        buildCategoryTable();
     });
 });
 
@@ -197,23 +199,73 @@ function saveToCSV() {
     a.click();
 }
 
-function categoryDictionary() {
-    let categoryDictionary = {};
+function buildCategoryTable() {
+    let dictionaryTabContent = document.getElementById('dictionary-tab-content');
+    //clears previous table
+    dictionaryTabContent.innerHTML = '';
+
+    let categoryTable = document.createElement('table');
+    categoryTable.id = 'category-table';
+    categoryTable.classList.add('category-table');
+    let header = categoryTable.createTHead();
+    let headerRow = header.insertRow();
+    let categoryHeader = headerRow.insertCell(0);
+    let wordHeader = headerRow.insertCell(1);
+    let countHeader = headerRow.insertCell(2);
+    let translationHeader = headerRow.insertCell(3);
+    categoryHeader.innerText = 'Category';
+    wordHeader.innerText = 'Word';
+    countHeader.innerText = 'Count';
+    translationHeader.innerText = 'Translation';
+
+    const categoryDictionary = {};
     Object.entries(frequency_translation_dictionary).forEach(([word, data]) => {
-        if (!categoryDictionary[data.category]) {
-            categoryDictionary[data.category] = {};
+        if (categoryDictionary[data.category]) {
+            categoryDictionary[data.category].push({ word: word, count: data.count, translation: data.translation });
+        } else {
+            categoryDictionary[data.category] = [{ word: word, count: data.count, translation: data.translation }];
         }
-        categoryDictionary[data.category][word] = data;
     });
-    return categoryDictionary;
+
+    Object.entries(categoryDictionary).forEach(([category, words]) => {
+        let row = categoryTable.insertRow();
+        let categoryCell = row.insertCell(0);
+        let wordCell = row.insertCell(1);
+        let countCell = row.insertCell(2);
+        let translationCell = row.insertCell(3);
+        categoryCell.innerText = category;
+        words.forEach(word => {
+            wordCell.innerText = word.word;
+            countCell.innerText = word.count;
+            translationCell.innerText = word.translation;
+        });
+        categoryTable.appendChild(row);
+    });
+
+    dictionaryTabContent.append(categoryTable);
 }
 
-function loadFullDictionary(){
-    let frequencyTableBody = document.getElementById('frequency-table-body');
-    frequencyTableBody.innerHTML = '';
-    Object.entries(frequency_translation_dictionary).forEach(([word, data]) => {
-        console.log(word, data);
-        let row = frequencyTableBody.insertRow();
+function buildDictionaryTable(dictionary) {
+    let dictionaryTabContent = document.getElementById('dictionary-tab-content');
+    //clears previous table
+    dictionaryTabContent.innerHTML = '';
+
+    let dictionaryTable = document.createElement('table');
+    dictionaryTable.id = 'dictionary-table';
+    dictionaryTable.classList.add('dictionary-table');
+    let header = dictionaryTable.createTHead();
+    let headerRow = header.insertRow();
+    let wordHeader = headerRow.insertCell(0);
+    let countHeader = headerRow.insertCell(1);
+    let translationHeader = headerRow.insertCell(2);
+    let categoryHeader = headerRow.insertCell(3);
+    wordHeader.innerText = 'Word';
+    countHeader.innerText = 'Count';
+    translationHeader.innerText = 'Translation';
+    categoryHeader.innerText = 'Category';
+        
+    Object.entries(dictionary).forEach(([word, data]) => {
+        let row = dictionaryTable.insertRow();
         let wordCell = row.insertCell(0);
         let countCell = row.insertCell(1);
         let translationCell = row.insertCell(2);
@@ -223,10 +275,13 @@ function loadFullDictionary(){
         translationCell.innerText = data.translation;
         categoryCell.innerText = data.category;
 
-        frequencyTableBody.appendChild(row);
+        dictionaryTable.appendChild(row);
     });
+
+    dictionaryTabContent.append(dictionaryTable);
 }
 
+//todo: fix file loading issue. add build dictionary table from the file content
 function loadDictionaryFromCSV(file) {
     const reader = new FileReader();
     reader.onload = function(e) {
@@ -236,22 +291,22 @@ function loadDictionaryFromCSV(file) {
             const [word, count, translation, category] = row.split(',');
             frequency_translation_dictionary[word] = { count: count, translation: translation, category: category};
         });
-        loadFullDictionary();
     };
     reader.readAsText(file);
 }
 
+//todo: fix file loading issue.add build dictionary table from the file content
 function loadDictionaryFromJSON(file) {
     const reader = new FileReader();
     reader.onload = function(e) {
         const text = e.target.result;
         const data = JSON.parse(text);
         frequency_translation_dictionary = data;
-        loadFullDictionary();
     };
     reader.readAsText(file);
 }
 
+//add deepL api key to translate text
 async function translateText(text, targetLang) {
   const url = 'https://api-free.deepl.com/v2/translate';
   const apiKey = 'ENTER YOUR DEEPL API KEY'; // Replace with your actual API key
@@ -287,6 +342,8 @@ function loadLocalStorage() {
     if (jsonData) {
         frequency_translation_dictionary = JSON.parse(jsonData);
     }
+
+    buildDictionaryTable(frequency_translation_dictionary);
 }
 
 function errorMessage(message, componentId){
