@@ -1,12 +1,13 @@
 //todo: add onhover to display the translation of the word
 //todo: add onhover to highlight the word in the text
 
+import grammarGuide from './grammar_guide.js';
+
 let wordsFrequency = {};
 let outputPre = document.getElementById('output');
 
 let frequency_translation_dictionary = {};
 loadLocalStorage();
-//buildDictionaryTable(frequency_translation_dictionary);
 
 //set up event listeners on load
 document.addEventListener('DOMContentLoaded', () => {
@@ -82,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         localStorage.setItem('dictionary_data', JSON.stringify(frequency_translation_dictionary)); // Save to local storage
         console.log('Data saved to local storage');
-        buildDictionaryTable(frequency_translation_dictionary);
+        buildCategoryTable(frequency_translation_dictionary);
     });
 
     document.getElementById('downloadFullTranslationFrequencyDictionaryButton').addEventListener('click', () => {
@@ -123,7 +124,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('frequency-dictionary-button').addEventListener('click', () => {
-        buildCategoryTable();
+        buildCategoryTable(frequency_translation_dictionary);
+    });
+
+    document.getElementById('grammar-guide-button').addEventListener('click', () => {
+        showGrammarGuide();
     });
 });
 
@@ -207,16 +212,6 @@ function buildCategoryTable() {
     let categoryTable = document.createElement('table');
     categoryTable.id = 'category-table';
     categoryTable.classList.add('category-table');
-    let header = categoryTable.createTHead();
-    let headerRow = header.insertRow();
-    let categoryHeader = headerRow.insertCell(0);
-    let wordHeader = headerRow.insertCell(1);
-    let countHeader = headerRow.insertCell(2);
-    let translationHeader = headerRow.insertCell(3);
-    categoryHeader.innerText = 'Category';
-    wordHeader.innerText = 'Word';
-    countHeader.innerText = 'Count';
-    translationHeader.innerText = 'Translation';
 
     const categoryDictionary = {};
     Object.entries(frequency_translation_dictionary).forEach(([word, data]) => {
@@ -228,57 +223,34 @@ function buildCategoryTable() {
     });
 
     Object.entries(categoryDictionary).forEach(([category, words]) => {
-        let row = categoryTable.insertRow();
-        let categoryCell = row.insertCell(0);
-        let wordCell = row.insertCell(1);
-        let countCell = row.insertCell(2);
-        let translationCell = row.insertCell(3);
-        categoryCell.innerText = category;
+        let header = categoryTable.createTHead();
+        let headerRow = header.insertRow();
+        let categoryHeader = headerRow.insertCell(0);
+        categoryHeader.innerText = category;
+
         words.forEach(word => {
+            let row = categoryTable.insertRow();
+            let wordCell = row.insertCell(0);
+            let countCell = row.insertCell(1);
+            let translationCell = row.insertCell(2);
             wordCell.innerText = word.word;
             countCell.innerText = word.count;
             translationCell.innerText = word.translation;
-        });
-        categoryTable.appendChild(row);
+            categoryTable.appendChild(row);
+        });        
     });
 
     dictionaryTabContent.append(categoryTable);
 }
 
-function buildDictionaryTable(dictionary) {
-    let dictionaryTabContent = document.getElementById('dictionary-tab-content');
-    //clears previous table
-    dictionaryTabContent.innerHTML = '';
-
-    let dictionaryTable = document.createElement('table');
-    dictionaryTable.id = 'dictionary-table';
-    dictionaryTable.classList.add('dictionary-table');
-    let header = dictionaryTable.createTHead();
-    let headerRow = header.insertRow();
-    let wordHeader = headerRow.insertCell(0);
-    let countHeader = headerRow.insertCell(1);
-    let translationHeader = headerRow.insertCell(2);
-    let categoryHeader = headerRow.insertCell(3);
-    wordHeader.innerText = 'Word';
-    countHeader.innerText = 'Count';
-    translationHeader.innerText = 'Translation';
-    categoryHeader.innerText = 'Category';
-        
-    Object.entries(dictionary).forEach(([word, data]) => {
-        let row = dictionaryTable.insertRow();
-        let wordCell = row.insertCell(0);
-        let countCell = row.insertCell(1);
-        let translationCell = row.insertCell(2);
-        let categoryCell = row.insertCell(3);
-        wordCell.innerText = word;
-        countCell.innerText = data.count;
-        translationCell.innerText = data.translation;
-        categoryCell.innerText = data.category;
-
-        dictionaryTable.appendChild(row);
-    });
-
-    dictionaryTabContent.append(dictionaryTable);
+function showGrammarGuide() {
+    let grammarGuide = document.getElementById('dictionary-tab-content');
+    grammarGuide.innerHTML = '';
+    let grammarGuideHeader = document.createElement('h2');
+    grammarGuideHeader.innerText = 'Grammar Guide';
+    grammarGuide.appendChild(grammarGuideHeader);
+    grammarGuide.style.display = 'block';
+    grammarGuide.innerText = grammarGuide.text;
 }
 
 //todo: fix file loading issue. add build dictionary table from the file content
@@ -343,7 +315,7 @@ function loadLocalStorage() {
         frequency_translation_dictionary = JSON.parse(jsonData);
     }
 
-    buildDictionaryTable(frequency_translation_dictionary);
+    buildCategoryTable(frequency_translation_dictionary);
 }
 
 function errorMessage(message, componentId){
@@ -403,4 +375,4 @@ async function analyzeText() {
     });
 
     return frequency;
-}
+};
