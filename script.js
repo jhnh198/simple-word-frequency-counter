@@ -1,7 +1,7 @@
 //todo: add onhover to display the translation of the word
 //todo: add onhover to highlight the word in the text
 
-import grammarGuide from './grammar_guide.js';
+import {grammar_guide} from './grammar_guide.js';
 
 let wordsFrequency = {};
 let outputPre = document.getElementById('output');
@@ -17,9 +17,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     //todo: upload is not reading file correctly
-    document.getElementById('frequency-dictionary-upload').addEventListener('click', (e) => {
+    document.getElementById('frequency-dictionary-upload').addEventListener('change', (e) => {
 
-    const file = e.target.value.files;
+    let file = document.getElementById('frequency-dictionary-upload').files[0];
 
     if (file.name.endsWith('.csv')) {
         loadDictionaryFromCSV(file);
@@ -28,6 +28,10 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         alert('Invalid file type');
     }
+
+    console.log(frequency_translation_dictionary);
+    console.log(file.name);
+    buildCategoryTable(frequency_translation_dictionary);
     });
 
     document.getElementById('downloadFullTranslationFrequencyDictionaryCSVButton').addEventListener('click', () => {
@@ -244,13 +248,16 @@ function buildCategoryTable() {
 }
 
 function showGrammarGuide() {
-    let grammarGuide = document.getElementById('dictionary-tab-content');
+    let grammarGuide = document.createElement('div');
     grammarGuide.innerHTML = '';
     let grammarGuideHeader = document.createElement('h2');
     grammarGuideHeader.innerText = 'Grammar Guide';
     grammarGuide.appendChild(grammarGuideHeader);
     grammarGuide.style.display = 'block';
-    grammarGuide.innerText = grammarGuide.text;
+    grammarGuide.innerText = grammar_guide.text;
+
+    let dictionaryTabContent = document.getElementById('dictionary-tab-content');
+    dictionaryTabContent.appendChild(grammarGuide);
 }
 
 //todo: fix file loading issue. add build dictionary table from the file content

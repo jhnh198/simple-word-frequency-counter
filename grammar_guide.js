@@ -1,21 +1,23 @@
-const grammar_guide = {
+export const grammar_guide = {
   text: `
   # Grammar Guide
 
   verbs 
-  -ru verbs
-  -u verbs
+  -る verbs
+  -う verbs
   -irregular verbs
-    -suru
-    -kuru
-    -iru
+    -する
+    -くる
+    -いる
 
-  -masu form
-  -te form
-  -ta form
-  -nai form：negative form
-  -tai form
-  -conditional form
+  - dictionary form: basic form/ neutral or informal form
+  -ます form: polite form
+  -て form: connects/groups actions together
+  -た form: past form
+  -ない form:negative form
+  -たい form: desire, want to do something
+  -ば: conditional form
+  - たがる: showing someone else's desire
   -volitional form
   -potential form
   -passive form
