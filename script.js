@@ -260,7 +260,6 @@ function showGrammarGuide() {
     dictionaryTabContent.appendChild(grammarGuide);
 }
 
-//todo: fix file loading issue. add build dictionary table from the file content
 function loadDictionaryFromCSV(file) {
     const reader = new FileReader();
     reader.onload = function(e) {
@@ -337,6 +336,8 @@ function clearErrorMessage(message, componentId){
     component.textContent = message;
 }
 
+
+//todo: clear output when reanalyzing text
 async function analyzeText() {
     if (document.getElementById('inputText').value === '') {
         throw new Error('No text to analyze');

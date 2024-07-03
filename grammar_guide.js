@@ -3,9 +3,9 @@ export const grammar_guide = {
   # Grammar Guide
 
   verbs 
-  -る verbs
-  -う verbs
-  -irregular verbs
+  -る verbs - ends in ru
+  -う verbs - ends with any other hiragana character
+  -irregular verbs - special verbs 
     -する
     -くる
     -いる
@@ -56,8 +56,7 @@ export const grammar_guide = {
   -にも: even particle
 
   adjectives
-  -i adjectives
-  -na adjectives
-  -adverbs
+  -i adjectives - adjective ends in i
+  -na adjectives - use na after the adjective and before the noun
   `
 }
