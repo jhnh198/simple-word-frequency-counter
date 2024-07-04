@@ -97,6 +97,31 @@ button{
   margin-top: 20px;
 }
 
+#textarea-div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#left-sidebar-tabs{
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-items: stretch;
+  align-items: stretch;
+}
+
+#output, #dictionary-tab-content{
+  background-color: #f1f1f1;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 1rem;
+}
+
+#output > input{
+  width: 5rem;
+}
+
 /*
   insert blurred border / opaque border behind the text
 */

@@ -1,6 +1,8 @@
 //todo: add onhover to display the translation of the word
 //todo: add onhover to highlight the word in the text
 
+//todo: clean up code
+
 import {grammar_guide} from './grammar_guide.js';
 
 let wordsFrequency = {};
@@ -8,6 +10,36 @@ let outputPre = document.getElementById('output');
 
 let frequency_translation_dictionary = {};
 loadLocalStorage();
+
+let text = `
+青い空が雲に隠れ
+蕾たちが枯れ落ちても
+ちいさな泉があるなら
+何度でも 始められるわ
+
+怖がらずに呼び続けて
+私たちを信じていて
+冷たいビルの谷間に
+聞こえてる あなたの声が
+
+悲しむだけの涙には
+未来を変える力さえないの
+けれど あなたの傷ついた心を
+軽くしてあげられるなら
+For you
+
+遠くから呼び続けて
+苦しくても叫んでいて
+あなたの声を頼りに
+迷わずに そこへ行くから
+
+あきらめずに教えに来て
+私たちを信じていて
+争うことのすべてが
+`;
+
+let inputText = document.getElementById('inputText');
+inputText.value = text;
 
 //set up event listeners on load
 document.addEventListener('DOMContentLoaded', () => {
@@ -148,6 +180,7 @@ function createInputFieldContainer(word, count, translation) {
     input.class = 'translation';
     input.id = word;
     input.value = translation || '';
+    input.style.width = '165px';
     div.appendChild(input);
     div.appendChild(createDropdown(word));
     return div;

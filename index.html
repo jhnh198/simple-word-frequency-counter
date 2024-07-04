@@ -25,35 +25,12 @@
                         <label for="hidePreviousTranslationsCheckbox" id="hidePreviousTranslationsLabel">Clear/Show Previous Translations</label>
                     </div>
                 </div>
+                 <div id="textarea-div">
+                    <textarea id="inputText" rows="35" cols="50">
+                    </textarea>
+                    <textarea id="free-translation-text-area" rows="35" cols="50"></textarea>
+                 </div>
 
-                <!-- todo: center text area positioning -->
-                <textarea id="inputText" rows="35" cols="50">
-                    青い空が雲に隠れ
-                    蕾たちが枯れ落ちても
-                    ちいさな泉があるなら
-                    何度でも 始められるわ
-                    
-                    怖がらずに呼び続けて
-                    私たちを信じていて
-                    冷たいビルの谷間に
-                    聞こえてる あなたの声が
-                    
-                    悲しむだけの涙には
-                    未来を変える力さえないの
-                    けれど あなたの傷ついた心を
-                    軽くしてあげられるなら
-                    For you
-                    
-                    遠くから呼び続けて
-                    苦しくても叫んでいて
-                    あなたの声を頼りに
-                    迷わずに そこへ行くから
-                    
-                    あきらめずに教えに来て
-                    私たちを信じていて
-                    争うことのすべてが
-                </textarea>
-                <textarea id="free-translation-text-area" rows="35" cols="50"></textarea>
             </div>
             <div id="controls-div">
                 <button id="countFrequencyButton">Return Words and Frequency</button>
@@ -65,15 +42,12 @@
             </div>     
         </main>
 
-        <!-- todo: set to grid and clean up positioning -->
         <section class="left-sidebar">
             <div id="left-sidebar-content">
                 <div id="left-sidebar-tabs">
-                    <!-- todo: align frequency dictionary control -->
                     <button id="frequency-dictionary-button">Frequency Dictionary </button>
                     <input type="file" value="dictionaryFile"  id="frequency-dictionary-upload" accept=".json, .csv">
 
-                    <!-- todo: display grammar guide -->
                     <button id="grammar-guide-button">Grammar Guide</button>
                     <button id="translate-button">Push to translate using deepL </button>
                 </div>
