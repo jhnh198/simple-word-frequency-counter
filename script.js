@@ -61,8 +61,6 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Invalid file type');
     }
 
-    console.log(frequency_translation_dictionary);
-    console.log(file.name);
     buildCategoryTable(frequency_translation_dictionary);
     });
 
@@ -306,7 +304,6 @@ function loadDictionaryFromCSV(file) {
     reader.readAsText(file);
 }
 
-//todo: fix file loading issue.add build dictionary table from the file content
 function loadDictionaryFromJSON(file) {
     const reader = new FileReader();
     reader.onload = function(e) {

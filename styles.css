@@ -118,10 +118,6 @@ button{
   margin: 1rem;
 }
 
-#output > input{
-  width: 5rem;
-}
-
 /*
   insert blurred border / opaque border behind the text
 */
