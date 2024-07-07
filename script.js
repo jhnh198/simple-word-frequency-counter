@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('downloadFullTranslationFrequencyDictionaryCSVButton').addEventListener('click', () => {
-    saveToCSV();
+        saveToCSV();
     });
 
     document.getElementById(`downloadCurrentTranslationButton`).addEventListener('click', () => {
@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //this saves current entries to local storage for the frequency translation dictionary
     document.getElementById('saveTranslationLocalButton').addEventListener('click', () => { 
-        Object.entries(wordsFrequency).forEach(([word, count]) => {
+        Object.entries(wordsFrequency).forEach(([word]) => {
             const input = document.getElementById(word);
             const category = document.getElementById(`${word}-category`);
             wordsFrequency[word] = { count: count, translation: input.value, category: category.value};
@@ -138,6 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     document.getElementById('countFrequencyButton').addEventListener('click', async () => {
+        outputPre.innerHTML = '';
         try {
             if(document.getElementById('countFrequencyButton').classList.contains('error'))clearErrorMessage('', this.id);
             wordsFrequency = await analyzeText();
@@ -251,9 +252,9 @@ function buildCategoryTable() {
     const categoryDictionary = {};
     Object.entries(frequency_translation_dictionary).forEach(([word, data]) => {
         if (categoryDictionary[data.category]) {
-            categoryDictionary[data.category].push({ word: word, count: data.count, translation: data.translation });
+            categoryDictionary[data.category].push({ word: word, count: data.count, translation: data.translation, category: data.category});
         } else {
-            categoryDictionary[data.category] = [{ word: word, count: data.count, translation: data.translation }];
+            categoryDictionary[data.category] = [{ word: word, count: data.count, translation: data.translation, category: data.category}];
         }
     });
 
@@ -262,16 +263,21 @@ function buildCategoryTable() {
         let headerRow = header.insertRow();
         let categoryHeader = headerRow.insertCell(0);
         categoryHeader.innerText = category;
+        console.log(category);
+        console.log(words);
 
         words.forEach(word => {
-            let row = categoryTable.insertRow();
-            let wordCell = row.insertCell(0);
-            let countCell = row.insertCell(1);
-            let translationCell = row.insertCell(2);
-            wordCell.innerText = word.word;
-            countCell.innerText = word.count;
-            translationCell.innerText = word.translation;
-            categoryTable.appendChild(row);
+            console.log(word);
+            if (word.category === category){
+                let row = categoryTable.insertRow();
+                let wordCell = row.insertCell(0);
+                let countCell = row.insertCell(1);
+                let translationCell = row.insertCell(2);
+                wordCell.innerText = word.word;
+                countCell.innerText = word.count;
+                translationCell.innerText = word.translation;
+                categoryTable.appendChild(row);
+            }
         });        
     });
 
@@ -288,6 +294,7 @@ function showGrammarGuide() {
     grammarGuide.innerText = grammar_guide.text;
 
     let dictionaryTabContent = document.getElementById('dictionary-tab-content');
+    dictionaryTabContent.innerHTML = '';
     dictionaryTabContent.appendChild(grammarGuide);
 }
 
@@ -366,8 +373,6 @@ function clearErrorMessage(message, componentId){
     component.textContent = message;
 }
 
-
-//todo: clear output when reanalyzing text
 async function analyzeText() {
     if (document.getElementById('inputText').value === '') {
         throw new Error('No text to analyze');
