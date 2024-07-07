@@ -8,6 +8,7 @@ import {grammar_guide} from './grammar_guide.js';
 let wordsFrequency = {};
 let outputPre = document.getElementById('output');
 
+//this is the main dictionary
 let frequency_translation_dictionary = {};
 loadLocalStorage();
 
@@ -99,10 +100,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     //this saves current entries to local storage for the frequency translation dictionary
+    //todo: this is where category is saved incorrectly
     document.getElementById('saveTranslationLocalButton').addEventListener('click', () => { 
         Object.entries(wordsFrequency).forEach(([word]) => {
-            const input = document.getElementById(word);
-            const category = document.getElementById(`${word}-category`);
+            const input = document.getElementById(word); 
+            const category = document.getElementById(`${word}-category`); //todo: category is not being saved correctly 
             wordsFrequency[word] = { count: count, translation: input.value, category: category.value};
         });
 
