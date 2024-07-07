@@ -4,6 +4,7 @@
 //todo: clean up code
 
 import {grammar_guide} from './grammar_guide.js';
+import { CATEGORY_LIST } from './category_list.js';
 
 let wordsFrequency = {};
 let outputPre = document.getElementById('output');
@@ -191,8 +192,7 @@ function createDropdown(word) {
     const select = document.createElement('select');
     select.id = `${word}-category`;
 
-    //todo: edit categories based on japanese language
-    const categories = ['Noun', 'Verb', 'Adjective', 'Adverb', 'Particle', 'Conjunction', 'Interjection', 'Pronoun', 'Preposition', 'Counter', 'Prefix', 'Suffix', 'Auxiliary Verb', 'Auxiliary Adjective', 'Other'];
+    const categories = CATEGORY_LIST;
     categories.forEach(category => {
         const option = document.createElement('option');
         option.value = category;
@@ -200,21 +200,6 @@ function createDropdown(word) {
         select.appendChild(option);
     });
     return select;
-}
-
-//may add in later
-function addHighlight(word) {
-    const text = document.getElementById('inputText').value;
-    const regex = new RegExp(`\\b${word}\\b`, 'g');
-    const newText = text.replace(regex, `<span class="highlight">${word}</span>`);
-    document.getElementById('inputText').value = newText;
-}
-
-function removeHighlight(word) {
-    const text = document.getElementById('inputText').value;
-    const regex = new RegExp(`\\b${word}\\b`, 'g');
-    const newText = text.replace(regex, word);
-    document.getElementById('inputText').value = newText;
 }
 
 function downloadFullDictionary() {
