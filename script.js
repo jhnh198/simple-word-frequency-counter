@@ -102,8 +102,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //this saves current entries to local storage for the frequency translation dictionary
     //todo: this is where category is saved incorrectly
+    //todo: this may need to be set up a different way
     document.getElementById('saveTranslationLocalButton').addEventListener('click', () => { 
-        Object.entries(wordsFrequency).forEach(([word]) => {
+        Object.entries(wordsFrequency).forEach(([word, count]) => {
             const input = document.getElementById(word); 
             const category = document.getElementById(`${word}-category`); //todo: category is not being saved correctly 
             wordsFrequency[word] = { count: count, translation: input.value, category: category.value};
@@ -246,15 +247,11 @@ function buildCategoryTable() {
     });
 
     Object.entries(categoryDictionary).forEach(([category, words]) => {
-        let header = categoryTable.createTHead();
-        let headerRow = header.insertRow();
-        let categoryHeader = headerRow.insertCell(0);
+        let categoryRow = categoryTable.insertRow();
+        let categoryHeader = categoryRow.insertCell(0);
         categoryHeader.innerText = category;
-        console.log(category);
-        console.log(words);
-
+        
         words.forEach(word => {
-            console.log(word);
             if (word.category === category){
                 let row = categoryTable.insertRow();
                 let wordCell = row.insertCell(0);
