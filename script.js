@@ -1,7 +1,5 @@
-//todo: add onhover to display the translation of the word
-//todo: add onhover to highlight the word in the text
-
-//todo: clean up code
+//todo: clean up any unnecessary nested functions
+//todo: issue where different files / dictionary source is not consistent with category dictionary
 
 import {grammar_guide} from './grammar_guide.js';
 import { CATEGORY_LIST } from './category_list.js';
@@ -50,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
       translateText(text, "EN");
     });
 
-    //todo: upload is not reading file correctly
     document.getElementById('frequency-dictionary-upload').addEventListener('change', (e) => {
 
     let file = document.getElementById('frequency-dictionary-upload').files[0];
@@ -101,12 +98,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     //this saves current entries to local storage for the frequency translation dictionary
-    //todo: this is where category is saved incorrectly
-    //todo: this may need to be set up a different way
+    //todo: sometimes this returns NaN for the count but not always
     document.getElementById('saveTranslationLocalButton').addEventListener('click', () => { 
         Object.entries(wordsFrequency).forEach(([word, count]) => {
             const input = document.getElementById(word); 
-            const category = document.getElementById(`${word}-category`); //todo: category is not being saved correctly 
+            const category = document.getElementById(`${word}-category`);
             wordsFrequency[word] = { count: count, translation: input.value, category: category.value};
         });
 
@@ -250,6 +246,11 @@ function buildCategoryTable() {
         let categoryRow = categoryTable.insertRow();
         let categoryHeader = categoryRow.insertCell(0);
         categoryHeader.innerText = category;
+
+        let bufferRow = categoryTable.insertRow();
+        let bufferCell = bufferRow.insertCell(0);
+        bufferCell.innerText = '\n';
+        categoryTable.appendChild(bufferRow);
         
         words.forEach(word => {
             if (word.category === category){
@@ -262,7 +263,9 @@ function buildCategoryTable() {
                 translationCell.innerText = word.translation;
                 categoryTable.appendChild(row);
             }
-        });        
+        });
+
+        categoryTable.appendChild(bufferRow);
     });
 
     dictionaryTabContent.append(categoryTable);
