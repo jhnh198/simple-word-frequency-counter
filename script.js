@@ -104,12 +104,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const input = document.getElementById(word); 
             const category = document.getElementById(`${word}-category`);
             wordsFrequency[word] = { count: count, translation: input.value, category: category.value};
+            console.log('word frequency' + wordsFrequency[word].count);
         });
 
         Object.entries(wordsFrequency).forEach(([word]) => {
             if (!frequency_translation_dictionary[word]) {
                 frequency_translation_dictionary[word] = { count: wordsFrequency[word].count, translation: wordsFrequency[word]?.translation, category: wordsFrequency[word].category};
             } else {
+                console.log('frequency translation count' + frequency_translation_dictionary[word].count);
+                console.log(frequency_translation_dictionary[word].word);
                 frequency_translation_dictionary[word].count = parseInt(wordsFrequency[word].count || 0) + parseInt(frequency_translation_dictionary[word].count || 0) ;
                 frequency_translation_dictionary[word].translation = wordsFrequency[word]?.translation;
                 frequency_translation_dictionary[word].category = wordsFrequency[word].category;
@@ -137,8 +140,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
     
+    //todo: save to prevent losing work when re-analyzing text
     document.getElementById('countFrequencyButton').addEventListener('click', async () => {
         outputPre.innerHTML = '';
+        if(wordsFrequency){
+
+        }
+            
         try {
             if(document.getElementById('countFrequencyButton').classList.contains('error'))clearErrorMessage('', this.id);
             wordsFrequency = await analyzeText();
@@ -197,6 +205,25 @@ function createDropdown(word) {
         select.appendChild(option);
     });
     return select;
+}
+
+function saveToLocalStorage() {
+    Object.entries(wordsFrequency).forEach(([word, count]) => {
+        const input = document.getElementById(word); 
+        const category = document.getElementById(`${word}-category`);
+        wordsFrequency[word] = { count: count, translation: input.value, category: category.value};
+    });
+
+    Object.entries(wordsFrequency).forEach(([word]) => {
+        if (!frequency_translation_dictionary[word]) {
+            frequency_translation_dictionary[word] = { count: wordsFrequency[word].count, translation: wordsFrequency[word]?.translation, category: wordsFrequency[word].category};
+        } else {
+            frequency_translation_dictionary[word].count = parseInt(wordsFrequency[word].count || 0) + parseInt(frequency_translation_dictionary[word].count || 0) ;
+            frequency_translation_dictionary[word].translation = wordsFrequency[word]?.translation;
+            frequency_translation_dictionary[word].category = wordsFrequency[word].category;
+        }
+    });
+    localStorage.setItem('dictionary_data', JSON.stringify(frequency_translation_dictionary)); // Save to local storage
 }
 
 function downloadFullDictionary() {
