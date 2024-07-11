@@ -98,28 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     //this saves current entries to local storage for the frequency translation dictionary
-    //todo: sometimes this returns NaN for the count but not always
     document.getElementById('saveTranslationLocalButton').addEventListener('click', () => { 
-        Object.entries(wordsFrequency).forEach(([word, count]) => {
-            const input = document.getElementById(word); 
-            const category = document.getElementById(`${word}-category`);
-            wordsFrequency[word] = { count: count, translation: input.value, category: category.value};
-            console.log('word frequency' + wordsFrequency[word].count);
-        });
-
-        Object.entries(wordsFrequency).forEach(([word]) => {
-            if (!frequency_translation_dictionary[word]) {
-                frequency_translation_dictionary[word] = { count: wordsFrequency[word].count, translation: wordsFrequency[word]?.translation, category: wordsFrequency[word].category};
-            } else {
-                console.log('frequency translation count' + frequency_translation_dictionary[word].count);
-                console.log(frequency_translation_dictionary[word].word);
-                frequency_translation_dictionary[word].count = parseInt(wordsFrequency[word].count || 0) + parseInt(frequency_translation_dictionary[word].count || 0) ;
-                frequency_translation_dictionary[word].translation = wordsFrequency[word]?.translation;
-                frequency_translation_dictionary[word].category = wordsFrequency[word].category;
-            }
-        });
-        localStorage.setItem('dictionary_data', JSON.stringify(frequency_translation_dictionary)); // Save to local storage
-        console.log('Data saved to local storage');
+        saveToLocalStorage();
         buildCategoryTable(frequency_translation_dictionary);
     });
 
@@ -143,10 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //todo: save to prevent losing work when re-analyzing text
     document.getElementById('countFrequencyButton').addEventListener('click', async () => {
         outputPre.innerHTML = '';
-        if(wordsFrequency){
-
-        }
-            
+        
         try {
             if(document.getElementById('countFrequencyButton').classList.contains('error'))clearErrorMessage('', this.id);
             wordsFrequency = await analyzeText();
@@ -157,6 +134,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         } catch (error) {
             errorMessage('No Text to Analyze', 'countFrequencyButton');
+        }
+        if(wordsFrequency){
+            saveToLocalStorage();   
         }
     });
     
@@ -224,6 +204,9 @@ function saveToLocalStorage() {
         }
     });
     localStorage.setItem('dictionary_data', JSON.stringify(frequency_translation_dictionary)); // Save to local storage
+    wordsFrequency = {};
+    console.log('Saved to Local Storage');
+    console.log(frequency_translation_dictionary);
 }
 
 function downloadFullDictionary() {
