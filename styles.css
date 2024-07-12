@@ -27,13 +27,6 @@ body{
 #container > .right-sidebar {background:#D8C3A5}
 #container> .footer {background:#72c2f1}
 
-/* tablet breakpoint */
-@media (min-width:768px) {
-  #container > .left-sidebar,
-  #container > .right-sidebar {
-      width:50%;
-  }
-}
 
 /* desktop breakpoint */
 @media (min-width:1024px) {
@@ -47,9 +40,8 @@ body{
   #container > .main-content {
       width:50%;
   }
-  #container > .left-sidebar,
   #container > .right-sidebar {
-      width:25%;
+      width:50%;
   }
 }
 
@@ -119,5 +111,5 @@ button{
 }
 
 /*
-  insert blurred border / opaque border behind the text
+  todo: insert blurred border / opaque border behind the text
 */
