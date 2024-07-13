@@ -5,7 +5,7 @@ import {grammar_guide} from './grammar_guide.js';
 import { CATEGORY_LIST } from './category_list.js';
 
 let wordsFrequency = {};
-let outputPre = document.getElementById('output');
+let dictionaryTabContent = document.getElementById('dictionary-tab-content');
 
 //this is the main dictionary
 let frequency_translation_dictionary = {};
@@ -49,18 +49,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('frequency-dictionary-upload').addEventListener('change', (e) => {
+        let file = document.getElementById('frequency-dictionary-upload').files[0];
 
-    let file = document.getElementById('frequency-dictionary-upload').files[0];
+        if (file.name.endsWith('.csv')) {
+            loadDictionaryFromCSV(file);
+        } else if (file.name.endsWith('.json')) {
+            loadDictionaryFromJSON(file);
+        } else {
+            alert('Invalid file type');
+        }
 
-    if (file.name.endsWith('.csv')) {
-        loadDictionaryFromCSV(file);
-    } else if (file.name.endsWith('.json')) {
-        loadDictionaryFromJSON(file);
-    } else {
-        alert('Invalid file type');
-    }
-
-    buildCategoryTable(frequency_translation_dictionary);
+        buildCategoryTable(frequency_translation_dictionary);
     });
 
     document.getElementById('downloadFullTranslationFrequencyDictionaryCSVButton').addEventListener('click', () => {
@@ -119,25 +118,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
-    
-    //todo: save to prevent losing work when re-analyzing text
+
     document.getElementById('countFrequencyButton').addEventListener('click', async () => {
-        outputPre.innerHTML = '';
-        
-        try {
-            if(document.getElementById('countFrequencyButton').classList.contains('error'))clearErrorMessage('', this.id);
-            wordsFrequency = await analyzeText();
-            
-            for (const word in wordsFrequency) {
-                const count = wordsFrequency[word];
-                outputPre.append(createInputFieldContainer(word, count, frequency_translation_dictionary[word]?.translation));
-            }
-        } catch (error) {
-            errorMessage('No Text to Analyze', 'countFrequencyButton');
-        }
-        if(wordsFrequency){
-            saveToLocalStorage();   
-        }
+        countFrequency();
+    });
+
+    document.getElementById('word-frequency-output-button').addEventListener('click', async () => {
+        countFrequency();
     });
     
     document.getElementById('inputText').addEventListener('input', () => {
@@ -235,7 +222,6 @@ function saveToCSV() {
 }
 
 function buildCategoryTable() {
-    let dictionaryTabContent = document.getElementById('dictionary-tab-content');
     //clears previous table
     dictionaryTabContent.innerHTML = '';
 
@@ -416,3 +402,22 @@ async function analyzeText() {
 
     return frequency;
 };
+
+async function countFrequency(){
+    dictionaryTabContent.innerHTML = '';
+
+    try {
+        if(document.getElementById('countFrequencyButton').classList.contains('error'))clearErrorMessage('', this.id);
+        wordsFrequency = await analyzeText();
+        
+        for (const word in wordsFrequency) {
+            const count = wordsFrequency[word];
+            dictionaryTabContent.append(createInputFieldContainer(word, count, frequency_translation_dictionary[word]?.translation));
+        }
+    } catch (error) {
+        errorMessage('No Text to Analyze', 'countFrequencyButton');
+    }
+    if(wordsFrequency){
+        saveToLocalStorage();   
+    }
+}
