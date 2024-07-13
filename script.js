@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //this saves current entries to local storage for the frequency translation dictionary
     document.getElementById('saveTranslationLocalButton').addEventListener('click', () => { 
         saveToLocalStorage();
-        buildCategoryTable(frequency_translation_dictionary);
+        buildCategoryTable();
     });
 
     document.getElementById('downloadFullTranslationFrequencyDictionaryButton').addEventListener('click', () => {
@@ -120,11 +120,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('countFrequencyButton').addEventListener('click', async () => {
-        countFrequency();
+        buildWordFrequencyTable()
     });
 
     document.getElementById('word-frequency-output-button').addEventListener('click', async () => {
-        countFrequency();
+        buildWordFrequencyTable()
     });
     
     document.getElementById('inputText').addEventListener('input', () => {
@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('frequency-dictionary-button').addEventListener('click', () => {
-        buildCategoryTable(frequency_translation_dictionary);
+        buildCategoryTable();
     });
 
     document.getElementById('grammar-guide-button').addEventListener('click', () => {
@@ -143,21 +143,62 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 //functions
-function createInputFieldContainer(word, count, translation) {
-    const div = document.createElement('div');
-    div.classList.add('inputFieldContainer');
-    const label = document.createElement('label');
-    label.textContent = `${word} : ${count} `;
-    div.appendChild(label);
+function createInputFieldContainer(word, translation) {
     const input = document.createElement('input');
     input.type = 'text';
     input.class = 'translation';
     input.id = word;
     input.value = translation || '';
-    input.style.width = '165px';
-    div.appendChild(input);
-    div.appendChild(createDropdown(word));
-    return div;
+    return input;
+}
+
+
+//todo: make general function to build table for both word frequency and category table
+async function buildWordFrequencyTable(dictionary) {
+    dictionaryTabContent.innerHTML = '';
+    const table = document.createElement('table');
+    table.id = 'word-frequency-table';
+    table.classList.add('word-frequency-table');
+    const header = table.createTHead();
+    const headerRow = header.insertRow();
+    const wordHeader = document.createElement('th');
+    wordHeader.textContent = 'Word';
+    headerRow.appendChild(wordHeader);
+    const countHeader = document.createElement('th');
+    countHeader.textContent = 'Count';
+    headerRow.appendChild(countHeader);
+    const translationHeader = document.createElement('th');
+    translationHeader.textContent = 'Translation';
+    headerRow.appendChild(translationHeader);
+    const categoryHeader = document.createElement('th');
+    categoryHeader.textContent = 'Category';
+    headerRow.appendChild(categoryHeader);
+
+    try {
+        if(document.getElementById('countFrequencyButton').classList.contains('error'))clearErrorMessage('', this.id);
+        wordsFrequency = await analyzeText();
+    } catch (error) {
+        errorMessage('No Text to Analyze', 'countFrequencyButton');
+    }
+    if(wordsFrequency){
+        //saveToLocalStorage();   
+    }
+
+    const body = table.createTBody();
+    Object.entries(wordsFrequency).forEach(([word]) => {
+        const row = body.insertRow();
+        const wordCell = row.insertCell();
+        wordCell.textContent = word;
+        const countCell = row.insertCell();
+
+        //todo: this is wonky. It isn't clear that wordFrequency of word is a number
+        countCell.textContent = wordsFrequency[word];
+        const translationCell = row.insertCell();
+        translationCell.appendChild(createInputFieldContainer(word, frequency_translation_dictionary[word]?.translation));
+        const categoryCell = row.insertCell();
+        categoryCell.appendChild(createDropdown(word));
+    });
+    dictionaryTabContent.appendChild(table);
 }
 
 function createDropdown(word) {
@@ -403,8 +444,9 @@ async function analyzeText() {
     return frequency;
 };
 
+//todo: remove this
 async function countFrequency(){
-    dictionaryTabContent.innerHTML = '';
+    //dictionaryTabContent.innerHTML = '';
 
     try {
         if(document.getElementById('countFrequencyButton').classList.contains('error'))clearErrorMessage('', this.id);
