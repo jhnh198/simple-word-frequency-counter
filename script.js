@@ -443,23 +443,3 @@ async function analyzeText() {
 
     return frequency;
 };
-
-//todo: remove this
-async function countFrequency(){
-    //dictionaryTabContent.innerHTML = '';
-
-    try {
-        if(document.getElementById('countFrequencyButton').classList.contains('error'))clearErrorMessage('', this.id);
-        wordsFrequency = await analyzeText();
-        
-        for (const word in wordsFrequency) {
-            const count = wordsFrequency[word];
-            dictionaryTabContent.append(createInputFieldContainer(word, count, frequency_translation_dictionary[word]?.translation));
-        }
-    } catch (error) {
-        errorMessage('No Text to Analyze', 'countFrequencyButton');
-    }
-    if(wordsFrequency){
-        saveToLocalStorage();   
-    }
-}
