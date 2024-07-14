@@ -1,6 +1,8 @@
-const apiKey = ''; // Replace with your actual API key
+//add DeepL API key and import axios
+import axios from 'axios';
 
 async function translateText(text, targetLang) {
+  const apiKey = ''; // Replace with your actual API key
   const url = 'https://api-free.deepl.com/v2/translate';
 
   try {
@@ -27,3 +29,5 @@ document.addEventListener('DOMContentLoaded', () => {
       translateText(text, targetLang);
   });
 });
+
+export { translateText };
