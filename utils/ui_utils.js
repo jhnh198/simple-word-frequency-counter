@@ -1,3 +1,6 @@
+import { CATEGORY_LIST } from './category_list.js';
+import { grammar_guide } from './grammar_guide.js';
+
 function showGrammarGuide() {
   let grammarGuide = document.createElement('div');
   grammarGuide.innerHTML = '';
