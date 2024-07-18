@@ -8,25 +8,24 @@ sample entry
 */
 
 //this is the main dictionary
-let frequency_translation_dictionary = {
+export let frequency_translation_dictionary = {
     currentTextTokensCount: {},
     allSavedWords: {}
 };
 
-export async function analyzeText() {
-    if (document.getElementById('inputText').value === '') {
+export async function analyzeText(text, countFrequencyButton, downloadCurrentTranslationButton) {
+    if (text === '') {
         throw new Error('No text to analyze');
     }
 
-    if(document.getElementById('countFrequencyButton').classList.contains('error')){
+    if(document.getElementById(countFrequencyButton).classList.contains('error')){
         clearErrorMessage('Return Words and Frequency', 'countFrequencyButton');
     };
 
-    if(document.getElementById('downloadCurrentTranslationButton').classList.contains('error')){
+    if(document.getElementById(downloadCurrentTranslationButton).classList.contains('error')){
         clearErrorMessage('Download Current Translation', 'downloadCurrentTranslationButton');
     }
 
-    const text = document.getElementById('inputText').value;
     const segmenter = new TinySegmenter();
     const words = segmenter.segment(text);
 
@@ -61,7 +60,7 @@ export async function analyzeText() {
 };
 
 //todo: break this up
-export function saveToLocalStorage() {
+export function saveToLocalStorage(wordTokenFrequencyCount) {
     const tempFrequencyDictionary = {};
     Object.entries(wordTokenFrequencyCount).forEach(([word]) => {
         const input = document.getElementById(word); 
@@ -70,13 +69,13 @@ export function saveToLocalStorage() {
         tempFrequencyDictionary.push({ count: count, translation: input?.value, category: category.value});
     });
 
-    Object.entries(wordTokenFrequencyCount).forEach(([word]) => {
+    Object.entries(tempFrequencyDictionary).forEach(([word]) => {
         if (!frequency_translation_dictionary[word]) {
-            frequency_translation_dictionary[word] = { count: wordTokenFrequencyCount[word].count, translation: wordTokenFrequencyCount[word]?.translation, category: wordTokenFrequencyCount[word].category};
+            frequency_translation_dictionary[word] = { count: tempFrequencyDictionary[word].count, translation: tempFrequencyDictionary[word]?.translation, category: tempFrequencyDictionary[word].category};
         } else {
-            frequency_translation_dictionary[word].count = parseInt(wordTokenFrequencyCount[word].count || 0) + parseInt(frequency_translation_dictionary[word].count || 0) ;
-            frequency_translation_dictionary[word].translation = wordTokenFrequencyCount[word]?.translation;
-            frequency_translation_dictionary[word].category = wordTokenFrequencyCount[word].category;
+            frequency_translation_dictionary[word].count = parseInt(tempFrequencyDictionary[word].count || 0) + parseInt(tempFrequencyDictionary[word].count || 0) ;
+            frequency_translation_dictionary[word].translation = tempFrequencyDictionary[word]?.translation;
+            frequency_translation_dictionary[word].category = tempFrequencyDictionary[word].category;
         }
     });
     localStorage.setItem('dictionary_data', JSON.stringify(frequency_translation_dictionary)); // Save to local storage
@@ -99,7 +98,7 @@ export function loadDictionaryFromCSV(file) {
         const rows = text.split('\n');
         rows.forEach(row => {
             const [word, count, translation, category] = row.split(',');
-            frequency_translation_dictionary[word] = { count: count, translation: translation, category: category};
+            frequency_translation_dictionary[allSavedWords][word] = { count: count, translation: translation, category: category};
         });
     };
     reader.readAsText(file);
@@ -115,19 +114,19 @@ export function loadDictionaryFromJSON(file) {
     reader.readAsText(file);
 }
 
-function downloadFullDictionary() {
-    const blob = new Blob([JSON.stringify(frequency_translation_dictionary, null, "\t")], { type: 'text/plain' });
+export function downloadFullDictionary() {
+    const blob = new Blob([JSON.stringify(frequency_translation_dictionary[allSavedWords], null, "\t")], { type: 'text/plain' });
   
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
     a.download = `frequency_translation_dictionary.txt`;
     a.click();
-  }
+}
   
-  function saveToCSV() {
+export function saveToCSV() {
     const header = 'Word,Count,Translation,Category\n';
-    const csv = Object.entries(frequency_translation_dictionary).map(([word, data]) => {
+    const csv = Object.entries(frequency_translation_dictionary[allSavedWords]).map(([word, data]) => {
         return `${word},${data.count},${data.translation},${data.category}`;
     }).join('\n');
   
@@ -138,4 +137,4 @@ function downloadFullDictionary() {
     a.href = url;
     a.download = `frequency_translation_dictionary.csv`;
     a.click();
-  }
+}
