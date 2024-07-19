@@ -18,12 +18,12 @@ export async function analyzeText(text, countFrequencyButton, downloadCurrentTra
         throw new Error('No text to analyze');
     }
 
-    if(document.getElementById(countFrequencyButton).classList.contains('error')){
-        clearErrorMessage('Return Words and Frequency', 'countFrequencyButton');
+    if(countFrequencyButton.classList.contains('error')){
+        clearErrorMessage('Return Words and Frequency', countFrequencyButton);
     };
 
-    if(document.getElementById(downloadCurrentTranslationButton).classList.contains('error')){
-        clearErrorMessage('Download Current Translation', 'downloadCurrentTranslationButton');
+    if(downloadCurrentTranslationButton.classList.contains('error')){
+        clearErrorMessage('Download Current Translation', downloadCurrentTranslationButton);
     }
 
     const segmenter = new TinySegmenter();

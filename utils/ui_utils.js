@@ -1,5 +1,5 @@
-import { CATEGORY_LIST } from './category_list.js';
-import { grammar_guide } from './grammar_guide.js';
+import { CATEGORY_LIST } from './text_content/category_list.js';
+import { grammar_guide } from './text_content/grammar_guide.js';
 
 function showGrammarGuide() {
   let grammarGuide = document.createElement('div');
