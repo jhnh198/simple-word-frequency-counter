@@ -70,13 +70,13 @@ export function saveCurrentTokensToDictionary(currentTextTokensCount, allSavedWo
         tempFrequencyDictionary[word] = { count: count, translation: input?.value, category: category.value};
     });
 
-    Object.entries(tempFrequencyDictionary).forEach((word) => {
-        if (!allSavedWords.word) {
-            allSavedWords.word = { count: tempFrequencyDictionary.word.count, translation: tempFrequencyDictionary[word]?.translation, category: tempFrequencyDictionary[word].category};
+    Object.entries(tempFrequencyDictionary).forEach(([word]) => {
+        if (!allSavedWords[word]) {
+            allSavedWords[word] = { count: tempFrequencyDictionary[word].count, translation: tempFrequencyDictionary[word]?.translation, category: tempFrequencyDictionary[word].category};
         } else {
-            allSavedWords.word.count = parseInt(tempFrequencyDictionary[word].count || 0) + parseInt(tempFrequencyDictionary[word].count || 0) ;
-            allSavedWords.word.translation = tempFrequencyDictionary[word]?.translation;
-            allSavedWords.word.category = tempFrequencyDictionary[word].category;
+            allSavedWords[word].count = parseInt(tempFrequencyDictionary[word].count || 0); //  + parseInt(allSavedWords[word].count || 0) ;
+            allSavedWords[word].translation = tempFrequencyDictionary[word]?.translation;
+            allSavedWords[word].category = tempFrequencyDictionary[word].category;
         }
     });
     //localStorage.setItem('dictionary_data', JSON.stringify(frequency_translation_dictionary)); // Save to local storage

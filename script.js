@@ -80,9 +80,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('countFrequencyButton').addEventListener('click', async () => {
         frequency_translation_dictionary.currentTextTokensCount = await analyzeText(inputText.value, countFrequencyButton, downloadCurrentTranslationButton );
 
-        console.log(frequency_translation_dictionary.currentTextTokensCount);
         buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount);
-        saveCurrentTokensToDictionary(frequency_translation_dictionary.currentTextTokensCount, frequency_translation_dictionary.allSavedWords);
+        frequency_translation_dictionary.allSavedWords = saveCurrentTokensToDictionary(frequency_translation_dictionary.currentTextTokensCount, frequency_translation_dictionary.allSavedWords);
     });
 
     document.getElementById('frequency-dictionary-upload').addEventListener('change', (e) => {
@@ -101,8 +100,15 @@ document.addEventListener('DOMContentLoaded', () => {
     
     //this saves current entries to local storage for the frequency translation dictionary
     document.getElementById('saveTranslationLocalButton').addEventListener('click', () => { 
+        console.log(frequency_translation_dictionary.allSavedWords);
+        frequency_translation_dictionary.allSavedWords = 
+        saveCurrentTokensToDictionary(
+            frequency_translation_dictionary.currentTextTokensCount,
+            frequency_translation_dictionary.allSavedWords
+        );
+
+        console.log(frequency_translation_dictionary.allSavedWords);
         buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords);
-        saveCurrentTokensToDictionary(frequency_translation_dictionary.currentTextTokensCount, frequency_translation_dictionary.allSavedWords);
     });
     
     document.getElementById('downloadFullTranslationFrequencyDictionaryButton').addEventListener('click', () => {
