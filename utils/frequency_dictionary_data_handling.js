@@ -1,16 +1,16 @@
-//this will handle the output in word Frequency Table. It gets what is in the current text, and updates the frequency dictionary
-/*
-sample entry
-    word: string,
-    count: integer,
-    translation: string,
-    category: string
-*/
+import { clearErrorMessage, errorMessage } from "./errorHandling.js";
 
 //this is the main dictionary. when script.js loaded it comes from loadLocalStorage
 /* let frequency_translation_dictionary = {
     currentTextTokensCount: {},
     allSavedWords: {}
+
+    sample entry
+    word: string,
+    count: integer,
+    translation: string,
+    category: string
+
 }; */
 
 export async function analyzeText(text, countFrequencyButton, downloadCurrentTranslationButton) {
@@ -44,6 +44,7 @@ export async function analyzeText(text, countFrequencyButton, downloadCurrentTra
     //regex to remove full width parentheses
     const parenthesesRegex = /[\uFF08\uFF09]/;
 
+    //todo: this can be optimized by combining all regex into one
     const filteredWords = words.filter(word => !regex.test(word) && !hiraganaRegex.test(word) && !katakanaRegex.test(word) && !symbolRegex.test(word) && !parenthesesRegex.test(word));
 
     const frequency = {};
@@ -60,26 +61,31 @@ export async function analyzeText(text, countFrequencyButton, downloadCurrentTra
 };
 
 //todo: break this up
-export function saveToLocalStorage(wordTokenFrequencyCount) {
+export function saveCurrentTokensToDictionary(currentTextTokensCount, allSavedWords) {
     const tempFrequencyDictionary = {};
-    Object.entries(wordTokenFrequencyCount).forEach(([word]) => {
+    Object.entries(currentTextTokensCount).forEach(([word, count]) => {
         const input = document.getElementById(word); 
         const category = document.getElementById(`${word}-category`);  
 
-        tempFrequencyDictionary.push({ count: count, translation: input?.value, category: category.value});
+        tempFrequencyDictionary[word] = { count: count, translation: input?.value, category: category.value};
     });
 
-    Object.entries(tempFrequencyDictionary).forEach(([word]) => {
-        if (!frequency_translation_dictionary[allSavedWords][word]) {
-            frequency_translation_dictionary[allSavedWords][word] = { count: tempFrequencyDictionary[word].count, translation: tempFrequencyDictionary[word]?.translation, category: tempFrequencyDictionary[word].category};
+    Object.entries(tempFrequencyDictionary).forEach((word) => {
+        if (!allSavedWords.word) {
+            allSavedWords.word = { count: tempFrequencyDictionary.word.count, translation: tempFrequencyDictionary[word]?.translation, category: tempFrequencyDictionary[word].category};
         } else {
-            frequency_translation_dictionary[word].count = parseInt(tempFrequencyDictionary[word].count || 0) + parseInt(tempFrequencyDictionary[word].count || 0) ;
-            frequency_translation_dictionary[word].translation = tempFrequencyDictionary[word]?.translation;
-            frequency_translation_dictionary[word].category = tempFrequencyDictionary[word].category;
+            allSavedWords.word.count = parseInt(tempFrequencyDictionary[word].count || 0) + parseInt(tempFrequencyDictionary[word].count || 0) ;
+            allSavedWords.word.translation = tempFrequencyDictionary[word]?.translation;
+            allSavedWords.word.category = tempFrequencyDictionary[word].category;
         }
     });
-    localStorage.setItem('dictionary_data', JSON.stringify(frequency_translation_dictionary)); // Save to local storage
+    //localStorage.setItem('dictionary_data', JSON.stringify(frequency_translation_dictionary)); // Save to local storage
     console.log('Saved to Local Storage');
+    return allSavedWords;
+}
+
+export function saveToLocalStorage(){
+
 }
 
 export function loadLocalStorage() {
@@ -89,7 +95,7 @@ export function loadLocalStorage() {
         allSavedWords: {}
     };
     if (jsonData) {
-        frequency_translation_dictionary[allSavedWords] = JSON.parse(jsonData);
+        frequency_translation_dictionary.allSavedWords = JSON.parse(jsonData);
     }
     return frequency_translation_dictionary;
 }

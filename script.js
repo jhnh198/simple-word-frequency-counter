@@ -1,11 +1,12 @@
 //import { translateText } from './utils/translation.js';
 import { 
+    analyzeText,
     handleDownloadCurrentTranslation,
-    loadLocalStorage
+    loadLocalStorage,
+    saveCurrentTokensToDictionary
 } from './utils/frequency_dictionary_data_handling.js';
 
 import {
-    buildCategoryTable,
     buildWordFrequencyTable,
 } from './utils/ui_utils.js';
 
@@ -47,20 +48,24 @@ For you
 let inputText = document.getElementById('inputText');
 inputText.value = text;
 
+//get main document elements
+const countFrequencyButton = document.getElementById('countFrequencyButton');
+const downloadCurrentTranslationButton = document.getElementById('downloadCurrentTranslationButton');
+
 //set up event listeners on load
 document.addEventListener('DOMContentLoaded', () => {
     //error handling event listeners
     document.getElementById('inputText').addEventListener('input', () => {
-        document.getElementById('countFrequencyButton').classList.remove('error');
+        countFrequencyButton.classList.remove('error');
     });
 
     //ui-utils event listeners
     document.getElementById('word-frequency-output-button').addEventListener('click', async () => {
-        buildWordFrequencyTable();
+        buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount);
     });
 
     document.getElementById('frequency-dictionary-button').addEventListener('click', () => {
-        buildWordFrequencyTable(frequency_translation_dictionary[allSavedWords]);
+        buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords);
     });
 
     document.getElementById('grammar-guide-button').addEventListener('click', () => {
@@ -71,17 +76,19 @@ document.addEventListener('DOMContentLoaded', () => {
         handleHidePreviousTranslations(hidePreviousTranslationsCheckbox, wordTokenFrequencyCount)
     });
 
-
     //frequency dictionary data handler event listeners
     document.getElementById('countFrequencyButton').addEventListener('click', async () => {
-        buildWordFrequencyTable();
+        frequency_translation_dictionary.currentTextTokensCount = await analyzeText(inputText.value, countFrequencyButton, downloadCurrentTranslationButton );
+
+        console.log(frequency_translation_dictionary.currentTextTokensCount);
+        buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount);
+        saveCurrentTokensToDictionary(frequency_translation_dictionary.currentTextTokensCount, frequency_translation_dictionary.allSavedWords);
     });
 
-    //todo: break this up
     document.getElementById('frequency-dictionary-upload').addEventListener('change', (e) => {
         handleFrequencyDictionaryUpload(e.target.files[0]);
 
-        buildWordFrequencyTable(frequency_translation_dictionary[allSavedWords]);
+        buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords);
     });
 
     document.getElementById('downloadFullTranslationFrequencyDictionaryCSVButton').addEventListener('click', () => {
@@ -94,12 +101,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     //this saves current entries to local storage for the frequency translation dictionary
     document.getElementById('saveTranslationLocalButton').addEventListener('click', () => { 
-            buildCategoryTable();
-            saveToLocalStorage();
+        buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords);
+        saveCurrentTokensToDictionary(frequency_translation_dictionary.currentTextTokensCount, frequency_translation_dictionary.allSavedWords);
     });
     
     document.getElementById('downloadFullTranslationFrequencyDictionaryButton').addEventListener('click', () => {
-            downloadFullDictionary();
+        downloadFullDictionary();
     });
 
     //translation event listeners
