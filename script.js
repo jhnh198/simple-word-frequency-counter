@@ -6,6 +6,7 @@ import {
 
 import {
     buildCategoryTable,
+    buildWordFrequencyTable,
 } from './utils/ui_utils.js';
 
 import { 
@@ -14,8 +15,8 @@ import {
     handleFrequencyDictionaryUpload
 } from './utils/frequency_dictionary_data_handling.js';
 
+//todo: check if there is local storage then load or use default
 let frequency_translation_dictionary = loadLocalStorage();
-buildCategoryTable(frequency_translation_dictionary);
 
 let text = `
 青い空が雲に隠れ
@@ -59,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('frequency-dictionary-button').addEventListener('click', () => {
-        buildCategoryTable();
+        buildWordFrequencyTable(frequency_translation_dictionary[allSavedWords]);
     });
 
     document.getElementById('grammar-guide-button').addEventListener('click', () => {
@@ -80,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('frequency-dictionary-upload').addEventListener('change', (e) => {
         handleFrequencyDictionaryUpload(e.target.files[0]);
 
-        buildCategoryTable();
+        buildWordFrequencyTable(frequency_translation_dictionary[allSavedWords]);
     });
 
     document.getElementById('downloadFullTranslationFrequencyDictionaryCSVButton').addEventListener('click', () => {

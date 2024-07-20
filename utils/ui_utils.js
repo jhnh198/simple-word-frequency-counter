@@ -17,6 +17,7 @@ function showGrammarGuide() {
 
 //todo: break the function into smaller functions
 export function buildCategoryTable() {
+    let dictionaryTabContent = document.getElementById('dictionary-tab-content');
   //clears previous table
   dictionaryTabContent.innerHTML = '';
 
@@ -76,56 +77,57 @@ export function createInputFieldContainer(word, translation) {
 //build category table sorts by category then inserts words into the table
 //build word frequency uses a different table that is editable. We want to be able to edit both
 export async function buildWordFrequencyTable(dictionary) {
-  dictionaryTabContent.innerHTML = '';
+    let dictionaryTabContent = document.getElementById('dictionary-tab-content');
+    dictionaryTabContent.innerHTML = '';
 
-  const table = document.createElement('table');
-  table.id = 'dictionary-table';
-  table.classList.add('dictionary-table');
-  const header = table.createTHead();
-  const headerRow = header.insertRow();
-  const wordHeader = document.createElement('th');
-  wordHeader.textContent = 'Word';
-  headerRow.appendChild(wordHeader);
-  const countHeader = document.createElement('th');
-  countHeader.textContent = 'Count';
-  headerRow.appendChild(countHeader);
-  const translationHeader = document.createElement('th');
-  translationHeader.textContent = 'Translation';
-  headerRow.appendChild(translationHeader);
-  const categoryHeader = document.createElement('th');
-  categoryHeader.textContent = 'Category';
-  headerRow.appendChild(categoryHeader);
+    const table = document.createElement('table');
+    table.id = 'dictionary-table';
+    table.classList.add('dictionary-table');
+    const header = table.createTHead();
+    const headerRow = header.insertRow();
+    const wordHeader = document.createElement('th');
+    wordHeader.textContent = 'Word';
+    headerRow.appendChild(wordHeader);
+    const countHeader = document.createElement('th');
+    countHeader.textContent = 'Count';
+    headerRow.appendChild(countHeader);
+    const translationHeader = document.createElement('th');
+    translationHeader.textContent = 'Translation';
+    headerRow.appendChild(translationHeader);
+    const categoryHeader = document.createElement('th');
+    categoryHeader.textContent = 'Category';
+    headerRow.appendChild(categoryHeader);
 
-  try {
-      //todo: save to local storage relies on table elements. it's understandable it would, however, it's not good for readability
-      // a better way is to save only changed elements then update word frequency with those values
-      if(wordTokenFrequencyCount !== null && Object.keys(wordTokenFrequencyCount).length > 0) {
-          saveToLocalStorage();   
-  }
-      if(document.getElementById('countFrequencyButton').classList.contains('error')) {
-          clearErrorMessage('', this.id);
-      }
+    try {
+        //todo: save to local storage relies on table elements. it's understandable it would, however, it's not good for readability
+        // a better way is to save only changed elements then update word frequency with those values
+        if(wordTokenFrequencyCount !== null && Object.keys(wordTokenFrequencyCount).length > 0) {
+            saveToLocalStorage();   
+    }
+        if(document.getElementById('countFrequencyButton').classList.contains('error')) {
+            clearErrorMessage('', this.id);
+        }
 
-      wordTokenFrequencyCount = await analyzeText();
-  } catch (error) {
-      errorMessage('No Text to Analyze', 'countFrequencyButton');
-  }
+        wordTokenFrequencyCount = await analyzeText();
+    } catch (error) {
+        errorMessage('No Text to Analyze', 'countFrequencyButton');
+    }
 
-  const body = table.createTBody();
-  Object.entries(wordTokenFrequencyCount).forEach(([word]) => {
-      const row = body.insertRow();
-      const wordCell = row.insertCell();
-      wordCell.textContent = word;
-      const countCell = row.insertCell();
+    const body = table.createTBody();
+    Object.entries(wordTokenFrequencyCount).forEach(([word]) => {
+        const row = body.insertRow();
+        const wordCell = row.insertCell();
+        wordCell.textContent = word;
+        const countCell = row.insertCell();
 
-      //todo: this is wonky. It isn't clear that wordFrequency of word is a number
-      countCell.textContent = wordTokenFrequencyCount[word];
-      const translationCell = row.insertCell();
-      translationCell.appendChild(createInputFieldContainer(word, frequency_translation_dictionary[word]?.translation));
-      const categoryCell = row.insertCell();
-      categoryCell.appendChild(createDropdown(word));
-  });
-  dictionaryTabContent.appendChild(table);
+        //todo: this is wonky. It isn't clear that wordFrequency of word is a number
+        countCell.textContent = wordTokenFrequencyCount[word];
+        const translationCell = row.insertCell();
+        translationCell.appendChild(createInputFieldContainer(word, frequency_translation_dictionary[word]?.translation));
+        const categoryCell = row.insertCell();
+        categoryCell.appendChild(createDropdown(word));
+    });
+    dictionaryTabContent.appendChild(table);
 
 }
 

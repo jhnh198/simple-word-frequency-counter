@@ -7,11 +7,11 @@ sample entry
     category: string
 */
 
-//this is the main dictionary
-let frequency_translation_dictionary = {
+//this is the main dictionary. when script.js loaded it comes from loadLocalStorage
+/* let frequency_translation_dictionary = {
     currentTextTokensCount: {},
     allSavedWords: {}
-};
+}; */
 
 export async function analyzeText(text, countFrequencyButton, downloadCurrentTranslationButton) {
     if (text === '') {
@@ -84,6 +84,10 @@ export function saveToLocalStorage(wordTokenFrequencyCount) {
 
 export function loadLocalStorage() {
     const jsonData = localStorage.getItem('dictionary_data');
+    let frequency_translation_dictionary = {
+        currentTextTokensCount: {},
+        allSavedWords: {}
+    };
     if (jsonData) {
         frequency_translation_dictionary[allSavedWords] = JSON.parse(jsonData);
     }
