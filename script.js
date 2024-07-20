@@ -1,13 +1,28 @@
-import { translateText } from './utils/translation.js';
-import { errorMessage, clearErrorMessage } from './utils/error_message.js';
-import { frequency_translation_dictionary, loadLocalStorage } from './utils/frequency_dictionary_data_handling.js';
-import { buildCategoryTable, saveToLocalStorage, loadDictionaryFromCSV, loadDictionaryFromJSON, downloadFullDictionary } from './utils/frequency_dictionary_data_handling.js';
+//import { translateText } from './utils/translation.js';
+import { errorMessage, clearErrorMessage } from './utils/errorHandling.js';
+import { 
+    handleDownloadCurrentTranslation,
+    loadLocalStorage
+} from './utils/frequency_dictionary_data_handling.js';
 
-loadLocalStorage();
+import {
+    buildCategoryTable,
+} from './utils/ui_utils.js';
+
+import { 
+    saveToLocalStorage,
+    loadDictionaryFromCSV,
+    loadDictionaryFromJSON,
+    downloadFullDictionary,
+    handleFrequencyDictionaryUpload
+} from './utils/frequency_dictionary_data_handling.js';
+
+let frequency_translation_dictionary = loadLocalStorage();
+buildCategoryTable(frequency_translation_dictionary);
+
 //get token count
 //then pass token count and build the dictionary from that
 //document output uses token reference, frequency dictionary uses everything that has been added to it 
-let wordTokenFrequencyCount = {}; //this should really just get count and pass that to the category dictionary
 
 let dictionaryTabContent = document.getElementById('dictionary-tab-content');
 
@@ -60,10 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
         showGrammarGuide();
     });
 
-    //todo: break the function into smaller functions
     document.getElementById('hidePreviousTranslationsCheckbox').addEventListener('change', () => {
         handleHidePreviousTranslations(hidePreviousTranslationsCheckbox, wordTokenFrequencyCount)
     });
+
 
     //frequency dictionary data handler event listeners
     document.getElementById('countFrequencyButton').addEventListener('click', async () => {
@@ -72,16 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //todo: break this up
     document.getElementById('frequency-dictionary-upload').addEventListener('change', (e) => {
-        let file = document.getElementById('frequency-dictionary-upload').files[0];
-
-        //this file decision can be put in the loader
-        if (file.name.endsWith('.csv')) {
-            loadDictionaryFromCSV(file);
-        } else if (file.name.endsWith('.json')) {
-            loadDictionaryFromJSON(file);
-        } else {
-            alert('Invalid file type');
-        }
+        handleFrequencyDictionaryUpload(e.target.files[0]);
 
         buildCategoryTable();
     });
@@ -90,35 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
         saveToCSV();
     });
 
-    //todo: break this up
     document.getElementById(`downloadCurrentTranslationButton`).addEventListener('click', () => {
-        if(Object.keys(wordTokenFrequencyCount).length === 0) {
-            errorMessage('No Words to Download', 'downloadCurrentTranslationButton');
-            return;
-        }
-        let title = document.getElementById('title').value || 'translation.txt';
-        let originalText = document.getElementById('inputText').value;
-        let originalTextArray = originalText.split('\n');
-        originalTextArray = originalTextArray.map(line => line.trim());
-        
-        let translatedText = document.getElementById('free-translation-text-area').value || '';
-        let translatedTextArray = translatedText.split('\n');
-        translatedTextArray = translatedTextArray.map(line => line.trim());
-    
-        let output = {
-            title: title,
-            originalText: originalTextArray,
-            translatedText: translatedText,
-            words: wordTokenFrequencyCount
-        };
-        
-        const blob = new Blob([JSON.stringify(output, null, "\t")], { type: 'text/plain' });
-    
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = title;
-        a.click();
+        handleDownloadCurrentTranslation();
     });
     
     //this saves current entries to local storage for the frequency translation dictionary
@@ -136,5 +115,4 @@ document.addEventListener('DOMContentLoaded', () => {
         const text = document.getElementById('inputText').value;
         translateText(text, "EN");
     });
-
 });

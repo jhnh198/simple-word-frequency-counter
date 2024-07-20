@@ -16,7 +16,7 @@ function showGrammarGuide() {
 }
 
 //todo: break the function into smaller functions
-function buildCategoryTable() {
+export function buildCategoryTable() {
   //clears previous table
   dictionaryTabContent.innerHTML = '';
 
@@ -63,7 +63,7 @@ function buildCategoryTable() {
 }
 
 //functions
-function createInputFieldContainer(word, translation) {
+export function createInputFieldContainer(word, translation) {
   const input = document.createElement('input');
   input.type = 'text';
   input.class = 'translation';
@@ -75,7 +75,7 @@ function createInputFieldContainer(word, translation) {
 //todo: make general function to build table for both word frequency and category table
 //build category table sorts by category then inserts words into the table
 //build word frequency uses a different table that is editable. We want to be able to edit both
-async function buildWordFrequencyTable(dictionary) {
+export async function buildWordFrequencyTable(dictionary) {
   dictionaryTabContent.innerHTML = '';
 
   const table = document.createElement('table');
@@ -129,7 +129,7 @@ async function buildWordFrequencyTable(dictionary) {
 
 }
 
-function createDropdown(word) {
+export function createDropdown(word) {
   const select = document.createElement('select');
   select.id = `${word}-category`;
 
@@ -141,4 +141,17 @@ function createDropdown(word) {
       select.appendChild(option);
   });
   return select;
+}
+
+export function handleHidePreviousTranslations(hidePreviousTranslationsCheckbox, wordTokenFrequencyCount) {
+    if (hidePreviousTranslationsCheckbox.checked) {
+        document.querySelectorAll('input').forEach(container => {
+            container.value = '';
+        })
+    } else {
+        Object.entries(wordTokenFrequencyCount).forEach(([word]) => {
+            const input = document.getElementById(word);
+            input.value = frequency_translation_dictionary[word]?.translation || '';
+        });
+    }
 }

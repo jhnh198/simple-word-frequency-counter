@@ -8,7 +8,7 @@ sample entry
 */
 
 //this is the main dictionary
-export let frequency_translation_dictionary = {
+let frequency_translation_dictionary = {
     currentTextTokensCount: {},
     allSavedWords: {}
 };
@@ -70,8 +70,8 @@ export function saveToLocalStorage(wordTokenFrequencyCount) {
     });
 
     Object.entries(tempFrequencyDictionary).forEach(([word]) => {
-        if (!frequency_translation_dictionary[word]) {
-            frequency_translation_dictionary[word] = { count: tempFrequencyDictionary[word].count, translation: tempFrequencyDictionary[word]?.translation, category: tempFrequencyDictionary[word].category};
+        if (!frequency_translation_dictionary[allSavedWords][word]) {
+            frequency_translation_dictionary[allSavedWords][word] = { count: tempFrequencyDictionary[word].count, translation: tempFrequencyDictionary[word]?.translation, category: tempFrequencyDictionary[word].category};
         } else {
             frequency_translation_dictionary[word].count = parseInt(tempFrequencyDictionary[word].count || 0) + parseInt(tempFrequencyDictionary[word].count || 0) ;
             frequency_translation_dictionary[word].translation = tempFrequencyDictionary[word]?.translation;
@@ -87,8 +87,7 @@ export function loadLocalStorage() {
     if (jsonData) {
         frequency_translation_dictionary[allSavedWords] = JSON.parse(jsonData);
     }
-
-    buildCategoryTable(frequency_translation_dictionary[allSavedWords]);
+    return frequency_translation_dictionary;
 }
 
 export function loadDictionaryFromCSV(file) {
@@ -137,4 +136,48 @@ export function saveToCSV() {
     a.href = url;
     a.download = `frequency_translation_dictionary.csv`;
     a.click();
+}
+
+export function handleDownloadCurrentTranslation(wordTokenFrequencyCount){
+    if(Object.keys(wordTokenFrequencyCount).length === 0) {
+        errorMessage('No Words to Download', 'downloadCurrentTranslationButton');
+        return;
+    }
+    let title = document.getElementById('title').value || 'translation.txt';
+    let originalText = document.getElementById('inputText').value;
+    let originalTextArray = originalText.split('\n');
+    originalTextArray = originalTextArray.map(line => line.trim());
+    
+    let translatedText = document.getElementById('free-translation-text-area').value || '';
+    let translatedTextArray = translatedText.split('\n');
+    translatedTextArray = translatedTextArray.map(line => line.trim());
+
+    let output = {
+        title: title,
+        originalText: originalTextArray,
+        translatedText: translatedText,
+        words: wordTokenFrequencyCount
+    };
+    
+    const blob = new Blob([JSON.stringify(output, null, "\t")], { type: 'text/plain' });
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = title;
+    a.click();
+}
+
+export function handleFrequencyDictionaryUpload(e){
+    let file = document.getElementById('frequency-dictionary-upload').files[0];
+
+    //this file decision can be put in the loader
+    if (file.name.endsWith('.csv')) {
+        loadDictionaryFromCSV(file);
+    } else if (file.name.endsWith('.json')) {
+        loadDictionaryFromJSON(file);
+    } else {
+        console.log('Invalid file type');
+        return;
+    }
 }
