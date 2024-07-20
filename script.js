@@ -1,5 +1,4 @@
 //import { translateText } from './utils/translation.js';
-import { errorMessage, clearErrorMessage } from './utils/errorHandling.js';
 import { 
     handleDownloadCurrentTranslation,
     loadLocalStorage
@@ -11,20 +10,12 @@ import {
 
 import { 
     saveToLocalStorage,
-    loadDictionaryFromCSV,
-    loadDictionaryFromJSON,
     downloadFullDictionary,
     handleFrequencyDictionaryUpload
 } from './utils/frequency_dictionary_data_handling.js';
 
 let frequency_translation_dictionary = loadLocalStorage();
 buildCategoryTable(frequency_translation_dictionary);
-
-//get token count
-//then pass token count and build the dictionary from that
-//document output uses token reference, frequency dictionary uses everything that has been added to it 
-
-let dictionaryTabContent = document.getElementById('dictionary-tab-content');
 
 let text = `
 青い空が雲に隠れ
