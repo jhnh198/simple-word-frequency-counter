@@ -17,54 +17,6 @@ function showGrammarGuide() {
   dictionaryTabContent.appendChild(grammarGuide);
 }
 
-//todo: deprecated
-/* export function buildCategoryTable() {
-    let dictionaryTabContent = document.getElementById('dictionary-tab-content');
-  //clears previous table
-  dictionaryTabContent.innerHTML = '';
-
-  let categoryTable = document.createElement('table');
-  categoryTable.id = 'category-table';
-  categoryTable.classList.add('category-table');
-
-  const categoryDictionary = {};
-  Object.entries(frequency_translation_dictionary).forEach(([word, data]) => {
-      if (categoryDictionary[data.category]) {
-          categoryDictionary[data.category].push({ word: word, count: data.count, translation: data.translation, category: data.category});
-      } else {
-          categoryDictionary[data.category] = [{ word: word, count: data.count, translation: data.translation, category: data.category}];
-      }
-  });
-
-  Object.entries(categoryDictionary).forEach(([category, words]) => {
-      let categoryRow = categoryTable.insertRow();
-      let categoryHeader = categoryRow.insertCell(0);
-      categoryHeader.innerText = category;
-
-      let bufferRow = categoryTable.insertRow();
-      let bufferCell = bufferRow.insertCell(0);
-      bufferCell.innerText = '\n';
-      categoryTable.appendChild(bufferRow);
-      
-      words.forEach(word => {
-          if (word.category === category){
-              let row = categoryTable.insertRow();
-              let wordCell = row.insertCell(0);
-              let countCell = row.insertCell(1);
-              let translationCell = row.insertCell(2);
-              wordCell.innerText = word.word;
-              countCell.innerText = word.count;
-              translationCell.innerText = word.translation;
-              categoryTable.appendChild(row);
-          }
-      });
-
-      categoryTable.appendChild(bufferRow);
-  });
-
-  dictionaryTabContent.append(categoryTable);
-} */
-
 //functions
 export function createInputFieldContainer(word, translation) {
   const input = document.createElement('input');
