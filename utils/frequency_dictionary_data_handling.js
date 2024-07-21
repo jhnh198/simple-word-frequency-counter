@@ -60,23 +60,16 @@ export async function analyzeText(text, countFrequencyButton, downloadCurrentTra
     return frequency;
 };
 
-//todo: break this up
 export function saveCurrentTokensToDictionary(currentTextTokensCount, allSavedWords) {
-    const tempFrequencyDictionary = {};
-    Object.entries(currentTextTokensCount).forEach(([word, count]) => {
+    Object.entries(currentTextTokensCount).forEach(([word]) => {
         const input = document.getElementById(word); 
         const category = document.getElementById(`${word}-category`);  
-
-        tempFrequencyDictionary[word] = { count: count, translation: input?.value, category: category.value};
-    });
-
-    Object.entries(tempFrequencyDictionary).forEach(([word]) => {
         if (!allSavedWords[word]) {
-            allSavedWords[word] = { count: tempFrequencyDictionary[word].count, translation: tempFrequencyDictionary[word]?.translation, category: tempFrequencyDictionary[word].category};
+            allSavedWords[word] = { count: currentTextTokensCount[word].count, translation: input.value, category: category.value};
         } else {
-            allSavedWords[word].count = parseInt(tempFrequencyDictionary[word].count || 0); //  + parseInt(allSavedWords[word].count || 0) ;
-            allSavedWords[word].translation = tempFrequencyDictionary[word]?.translation;
-            allSavedWords[word].category = tempFrequencyDictionary[word].category;
+            allSavedWords[word].count = parseInt(currentTextTokensCount[word].count || 0) + parseInt(allSavedWords[word].count || 0);
+            allSavedWords[word].translation = input.value ? input.value : allSavedWords[word].translation;
+            allSavedWords[word].category = category.value;
         }
     });
     //localStorage.setItem('dictionary_data', JSON.stringify(frequency_translation_dictionary)); // Save to local storage
@@ -84,8 +77,16 @@ export function saveCurrentTokensToDictionary(currentTextTokensCount, allSavedWo
     return allSavedWords;
 }
 
-export function saveToLocalStorage(){
-
+export function handleCurrentTokenDictionary(wordTokenFrequencyCount, allSavedWords) {
+    const tempFrequencyDictionary = {};
+    Object.entries(wordTokenFrequencyCount).forEach(([word, count]) => {
+        if (!allSavedWords[word]) {
+            tempFrequencyDictionary[word] = { count: count, translation: '', category: '名詞'};
+        } else {
+            tempFrequencyDictionary[word] = { count: count, translation: allSavedWords[word]?.translation, category: allSavedWords[word]?.category};
+        }
+    });
+    return tempFrequencyDictionary;
 }
 
 export function loadLocalStorage() {

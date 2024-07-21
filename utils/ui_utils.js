@@ -1,7 +1,5 @@
 import { CATEGORY_LIST } from './text_content/category_list.js';
 import { grammar_guide } from './text_content/grammar_guide.js';
-import { analyzeText } from './frequency_dictionary_data_handling.js';
-import { clearErrorMessage, errorMessage } from './errorHandling.js';
 
 function showGrammarGuide() {
   let grammarGuideElement = document.createElement('div');
@@ -65,14 +63,13 @@ export async function buildWordFrequencyTable(dictionary) {
     } */
 
     const body = table.createTBody();
-    console.log(dictionary);
+
     Object.entries(dictionary).forEach(([word]) => {
         const row = body.insertRow();
         const wordCell = row.insertCell();
         wordCell.textContent = word;
         const countCell = row.insertCell();
 
-        console.log(word.count)
         countCell.textContent = dictionary[word].count;
         const translationCell = row.insertCell();
         translationCell.appendChild(createInputFieldContainer(word, dictionary[word]?.translation));

@@ -3,18 +3,15 @@ import {
     analyzeText,
     handleDownloadCurrentTranslation,
     loadLocalStorage,
-    saveCurrentTokensToDictionary
+    saveCurrentTokensToDictionary,
+    downloadFullDictionary,
+    handleFrequencyDictionaryUpload,
+    handleCurrentTokenDictionary
 } from './utils/frequency_dictionary_data_handling.js';
 
 import {
     buildWordFrequencyTable,
 } from './utils/ui_utils.js';
-
-import { 
-    saveToLocalStorage,
-    downloadFullDictionary,
-    handleFrequencyDictionaryUpload
-} from './utils/frequency_dictionary_data_handling.js';
 
 //todo: check if there is local storage then load or use default
 let frequency_translation_dictionary = loadLocalStorage();
@@ -78,10 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //frequency dictionary data handler event listeners
     document.getElementById('countFrequencyButton').addEventListener('click', async () => {
-        frequency_translation_dictionary.currentTextTokensCount = await analyzeText(inputText.value, countFrequencyButton, downloadCurrentTranslationButton );
+        let wordTokenFrequencyCount = await analyzeText(inputText.value, countFrequencyButton, downloadCurrentTranslationButton );
+        frequency_translation_dictionary.currentTextTokensCount = handleCurrentTokenDictionary(wordTokenFrequencyCount, frequency_translation_dictionary.allSavedWords);
 
         buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount);
-        frequency_translation_dictionary.allSavedWords = saveCurrentTokensToDictionary(frequency_translation_dictionary.currentTextTokensCount, frequency_translation_dictionary.allSavedWords);
     });
 
     document.getElementById('frequency-dictionary-upload').addEventListener('change', (e) => {
@@ -100,14 +97,13 @@ document.addEventListener('DOMContentLoaded', () => {
     
     //this saves current entries to local storage for the frequency translation dictionary
     document.getElementById('saveTranslationLocalButton').addEventListener('click', () => { 
-        console.log(frequency_translation_dictionary.allSavedWords);
+        console.log(frequency_translation_dictionary.currentTextTokensCount);
         frequency_translation_dictionary.allSavedWords = 
         saveCurrentTokensToDictionary(
             frequency_translation_dictionary.currentTextTokensCount,
             frequency_translation_dictionary.allSavedWords
         );
 
-        console.log(frequency_translation_dictionary.allSavedWords);
         buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords);
     });
     
