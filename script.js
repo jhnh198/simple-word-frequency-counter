@@ -13,7 +13,7 @@ import {
     buildWordFrequencyTable,
 } from './utils/ui_utils.js';
 
-//todo: check if there is local storage then load or use default
+//todo: save to local storage for later use
 let frequency_translation_dictionary = loadLocalStorage();
 
 let text = `
@@ -48,6 +48,7 @@ inputText.value = text;
 //get main document elements
 const countFrequencyButton = document.getElementById('countFrequencyButton');
 const downloadCurrentTranslationButton = document.getElementById('downloadCurrentTranslationButton');
+const dictionaryTabContent = document.getElementById('dictionary-tab-content');
 
 //set up event listeners on load
 document.addEventListener('DOMContentLoaded', () => {
@@ -58,11 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //ui-utils event listeners
     document.getElementById('word-frequency-output-button').addEventListener('click', async () => {
-        buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount);
+        buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount, dictionaryTabContent);
     });
 
     document.getElementById('frequency-dictionary-button').addEventListener('click', () => {
-        buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords);
+        buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
     });
 
     document.getElementById('grammar-guide-button').addEventListener('click', () => {
@@ -78,13 +79,13 @@ document.addEventListener('DOMContentLoaded', () => {
         let wordTokenFrequencyCount = await analyzeText(inputText.value, countFrequencyButton, downloadCurrentTranslationButton );
         frequency_translation_dictionary.currentTextTokensCount = handleCurrentTokenDictionary(wordTokenFrequencyCount, frequency_translation_dictionary.allSavedWords);
 
-        buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount);
+        buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount, dictionaryTabContent);
     });
 
     document.getElementById('frequency-dictionary-upload').addEventListener('change', (e) => {
         handleFrequencyDictionaryUpload(e.target.files[0]);
 
-        buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords);
+        buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
     });
 
     document.getElementById('downloadFullTranslationFrequencyDictionaryCSVButton').addEventListener('click', () => {
@@ -92,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById(`downloadCurrentTranslationButton`).addEventListener('click', () => {
-        handleDownloadCurrentTranslation();
+        handleDownloadCurrentTranslation(frequency_translation_dictionary.currentTextTokensCount);
     });
     
     //this saves current entries to local storage for the frequency translation dictionary
@@ -104,7 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
             frequency_translation_dictionary.allSavedWords
         );
 
-        buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords);
+        buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
+        localStorage.setItem('dictionary_data', JSON.stringify(frequency_translation_dictionary)); // Save to local storage
+        console.log('Saved to Local Storage');
     });
     
     document.getElementById('downloadFullTranslationFrequencyDictionaryButton').addEventListener('click', () => {

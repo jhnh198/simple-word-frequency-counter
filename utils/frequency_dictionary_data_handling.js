@@ -72,8 +72,7 @@ export function saveCurrentTokensToDictionary(currentTextTokensCount, allSavedWo
             allSavedWords[word].category = category.value;
         }
     });
-    //localStorage.setItem('dictionary_data', JSON.stringify(frequency_translation_dictionary)); // Save to local storage
-    console.log('Saved to Local Storage');
+
     return allSavedWords;
 }
 
