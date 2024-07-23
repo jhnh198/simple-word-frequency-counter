@@ -24,9 +24,9 @@ export function createInputFieldContainer(word, translation) {
   return input;
 }
 
-//todo: this should be ordered by category
 export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) {
   dictionaryTabContent.innerHTML = '';
+  dictionaryTabContent.classList.remove('hidden');
 
   const table = document.createElement('table');
   table.id = 'dictionary-table';

@@ -104,6 +104,6 @@ button{
   margin: 1rem;
 }
 
-/*
-  todo: insert blurred border / opaque border behind the text
-*/
+.hidden{
+  display: none;
+}
