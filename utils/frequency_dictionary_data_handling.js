@@ -5,7 +5,7 @@ import { clearErrorMessage, errorMessage } from "./errorHandling.js";
     currentTextTokensCount: {},
     allSavedWords: {}
 
-    sample entry
+    sample entry:
     word: string,
     count: integer,
     translation: string,
@@ -190,4 +190,8 @@ export function handleFrequencyDictionaryUpload(e){
         console.log('Invalid file type');
         return;
     }
+}
+
+export function saveToLocalStorage() {
+    localStorage.setItem('dictionary_data', JSON.stringify(frequency_translation_dictionary));
 }

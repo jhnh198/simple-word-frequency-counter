@@ -11,13 +11,13 @@ import {
 
 import {
     buildWordFrequencyTable,
+    showGrammarGuide,
 } from './utils/ui_utils.js';
 
 //todo: save to local storage for later use
 let frequency_translation_dictionary = loadLocalStorage();
 
-let text = `
-青い空が雲に隠れ
+let text = `青い空が雲に隠れ
 蕾たちが枯れ落ちても
 ちいさな泉があるなら
 何度でも 始められるわ
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('grammar-guide-button').addEventListener('click', () => {
-        showGrammarGuide();
+        showGrammarGuide(dictionaryTabContent);
     });
 
     document.getElementById('hidePreviousTranslationsCheckbox').addEventListener('change', () => {
