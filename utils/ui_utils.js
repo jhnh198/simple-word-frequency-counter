@@ -31,64 +31,45 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
     const table = document.createElement('table');
     table.id = 'dictionary-table';
     table.classList.add('dictionary-table');
-/*     const header = table.createTHead();
-    const headerRow = header.insertRow();
-    const wordHeader = document.createElement('th');
-    wordHeader.textContent = 'Word';
-    headerRow.appendChild(wordHeader);
-    const countHeader = document.createElement('th');
-    countHeader.textContent = 'Count';
-    headerRow.appendChild(countHeader);
-    const translationHeader = document.createElement('th');
-    translationHeader.textContent = 'Translation';
-    headerRow.appendChild(translationHeader);
-    const categoryHeader = document.createElement('th');
-    categoryHeader.textContent = 'Category';
-    headerRow.appendChild(categoryHeader); */
 
     const body = table.createTBody();
 
+    //check if any words exist that match the category
     CATEGORY_LIST.forEach(category => {
-        const countHeader = document.createElement('th');
-        countHeader.textContent = 'Count';
-        headerRow.appendChild(countHeader);
-        const translationHeader = document.createElement('th');
-        translationHeader.textContent = 'Translation';
-        headerRow.appendChild(translationHeader);
-        const categoryHeader = document.createElement('th');
-        categoryHeader.textContent = 'Category';
-        headerRow.appendChild(categoryHeader);
+        if (Object.values(dictionary).some(entry => entry.category === category)) {
+            const headerRow = body.insertRow();
+            const wordHeaderCell = headerRow.insertCell();
+            wordHeaderCell.textContent = 'Word';
+            const countHeaderCell = headerRow.insertCell();
+            countHeaderCell.textContent = 'Count';
+            const translationHeaderCell = headerRow.insertCell();
+            translationHeaderCell.textContent = 'Translation';
+            const categoryHeaderCell = headerRow.insertCell();
+            categoryHeaderCell.textContent = 'Category';
+            
+            const categoryRow = body.insertRow();
+            const categoryCell = categoryRow.insertCell();
+            categoryCell.colSpan = 4;
+            categoryCell.textContent = category;
+            categoryCell.style.fontWeight = 'bold';
 
-        const headerRow = body.insertRow();
-        const wordHeaderCell = headerRow.insertCell();
-        wordHeaderCell.textContent = 'Word';
-        const countHeaderCell = headerRow.insertCell();
-        countHeaderCell.textContent = 'Count';
-        const translationHeaderCell = headerRow.insertCell();
-        translationHeaderCell.textContent = 'Translation';
-        const categoryHeaderCell = headerRow.insertCell();
-        categoryHeaderCell.textContent = 'Category';
-        
-        const categoryCell = row.insertCell();
-        categoryCell.colSpan = 4;
-        categoryCell.textContent = category;
-        categoryCell.style.fontWeight = 'bold';
-
-        Object.entries(dictionary).forEach(([word]) => {
-            if(dictionary[word].category === category) {
-                const row = body.insertRow();
-                const wordCell = row.insertCell();
-                wordCell.textContent = word;
-                const countCell = row.insertCell();
-        
-                countCell.textContent = dictionary[word].count;
-                const translationCell = row.insertCell();
-                translationCell.appendChild(createInputFieldContainer(word, dictionary[word]?.translation));
-                const categoryCell = row.insertCell();
-                categoryCell.appendChild(createDropdown(word));
-            }
-        });
-    });
+            Object.entries(dictionary).forEach(([word]) => {
+                if(dictionary[word].category === category) {
+                    const row = body.insertRow();
+                    const wordCell = row.insertCell();
+                    wordCell.textContent = word;
+                    const countCell = row.insertCell();
+            
+                    countCell.textContent = dictionary[word].count;
+                    const translationCell = row.insertCell();
+                    translationCell.appendChild(createInputFieldContainer(word, dictionary[word]?.translation));
+                    const categoryCell = row.insertCell();
+                    categoryCell.appendChild(createDropdown(word));
+                }
+            });
+        }
+        }
+    );
 
     dictionaryTabContent.appendChild(table);
 }
