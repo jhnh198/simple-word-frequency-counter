@@ -26,52 +26,52 @@ export function createInputFieldContainer(word, translation) {
 
 //todo: this should be ordered by category
 export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) {
-    dictionaryTabContent.innerHTML = '';
+  dictionaryTabContent.innerHTML = '';
 
-    const table = document.createElement('table');
-    table.id = 'dictionary-table';
-    table.classList.add('dictionary-table');
+  const table = document.createElement('table');
+  table.id = 'dictionary-table';
+  table.classList.add('dictionary-table');
 
-    const body = table.createTBody();
+  const body = table.createTBody();
 
-    //check if any words exist that match the category
-    CATEGORY_LIST.forEach(category => {
-        if (Object.values(dictionary).some(entry => entry.category === category)) {
-            const headerRow = body.insertRow();
-            const wordHeaderCell = headerRow.insertCell();
-            wordHeaderCell.textContent = 'Word';
-            const countHeaderCell = headerRow.insertCell();
-            countHeaderCell.textContent = 'Count';
-            const translationHeaderCell = headerRow.insertCell();
-            translationHeaderCell.textContent = 'Translation';
-            const categoryHeaderCell = headerRow.insertCell();
-            categoryHeaderCell.textContent = 'Category';
-            
-            const categoryRow = body.insertRow();
-            const categoryCell = categoryRow.insertCell();
-            categoryCell.colSpan = 4;
-            categoryCell.textContent = category;
-            categoryCell.style.fontWeight = 'bold';
+  //check if any words exist that match the category
+  CATEGORY_LIST.forEach(category => {
+    if (Object.values(dictionary).some(entry => entry.category === category)) {
+      const headerRow = body.insertRow();
+      const wordHeaderCell = headerRow.insertCell();
+      wordHeaderCell.textContent = 'Word';
+      const countHeaderCell = headerRow.insertCell();
+      countHeaderCell.textContent = 'Count';
+      const translationHeaderCell = headerRow.insertCell();
+      translationHeaderCell.textContent = 'Translation';
+      const categoryHeaderCell = headerRow.insertCell();
+      categoryHeaderCell.textContent = 'Category';
+      
+      const categoryRow = body.insertRow();
+      const categoryCell = categoryRow.insertCell();
+      categoryCell.colSpan = 4;
+      categoryCell.textContent = category;
+      categoryCell.style.fontWeight = 'bold';
 
-            Object.entries(dictionary).forEach(([word]) => {
-                if(dictionary[word].category === category) {
-                    const row = body.insertRow();
-                    const wordCell = row.insertCell();
-                    wordCell.textContent = word;
-                    const countCell = row.insertCell();
-            
-                    countCell.textContent = dictionary[word].count;
-                    const translationCell = row.insertCell();
-                    translationCell.appendChild(createInputFieldContainer(word, dictionary[word]?.translation));
-                    const categoryCell = row.insertCell();
-                    categoryCell.appendChild(createDropdown(word));
-                }
-            });
+      Object.entries(dictionary).forEach(([word]) => {
+        if(dictionary[word].category === category) {
+          const row = body.insertRow();
+          const wordCell = row.insertCell();
+          wordCell.textContent = word;
+          const countCell = row.insertCell();
+      
+          countCell.textContent = dictionary[word].count;
+          const translationCell = row.insertCell();
+          translationCell.appendChild(createInputFieldContainer(word, dictionary[word]?.translation));
+          const categoryCell = row.insertCell();
+          categoryCell.appendChild(createDropdown(word));
         }
-        }
-    );
+      });
+    }
+  }
+);
 
-    dictionaryTabContent.appendChild(table);
+  dictionaryTabContent.appendChild(table);
 }
 
 export function createDropdown(word) {
@@ -80,23 +80,23 @@ export function createDropdown(word) {
 
   const categories = CATEGORY_LIST;
   categories.forEach(category => {
-      const option = document.createElement('option');
-      option.value = category;
-      option.textContent = category;
-      select.appendChild(option);
+    const option = document.createElement('option');
+    option.value = category;
+    option.textContent = category;
+    select.appendChild(option);
   });
   return select;
 }
 
 export function handleHidePreviousTranslations(hidePreviousTranslationsCheckbox, wordTokenFrequencyCount) {
-    if (hidePreviousTranslationsCheckbox.checked) {
-        document.querySelectorAll('input').forEach(container => {
-            container.value = '';
-        })
-    } else {
-        Object.entries(wordTokenFrequencyCount).forEach(([word]) => {
-            const input = document.getElementById(word);
-            input.value = frequency_translation_dictionary[word]?.translation || '';
-        });
-    }
+  if (hidePreviousTranslationsCheckbox.checked) {
+    document.querySelectorAll('input').forEach(container => {
+        container.value = '';
+    })
+  } else {
+    Object.entries(wordTokenFrequencyCount).forEach(([word]) => {
+        const input = document.getElementById(word);
+        input.value = frequency_translation_dictionary[word]?.translation || '';
+    });
+  }
 }

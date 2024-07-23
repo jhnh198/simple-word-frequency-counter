@@ -4,7 +4,7 @@
 
 body{
   font-family: 'Poppins', sans-serif;
-  background-color: #f1f1f1;
+  background-color: #EAE7DC;
   font-size: 20px;
   color: #333;
 }
@@ -52,17 +52,11 @@ body{
   justify-content: space-between;
 }
 
-#output{
-  display: grid;
-  grid-template-columns: 200px 200px;
-  column-gap: 10px;
-  row-gap: 20px;
-  margin-top: 20px;
-}
-
-.left-sidebar, .right-sidebar{
+.right-sidebar{
   max-height: 760px;
   overflow-y: scroll;
+  border-color: rgba(#000, .2);
+  border-radius: 5px;
 }
 
 #controls-div{
@@ -103,7 +97,7 @@ button{
   align-items: stretch;
 }
 
-#output, #dictionary-tab-content{
+#dictionary-tab-content{
   background-color: #f1f1f1;
   padding: 10px;
   border-radius: 5px;
