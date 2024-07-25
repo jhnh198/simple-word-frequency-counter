@@ -49,7 +49,7 @@ body{
   display: grid;
   grid-template-columns: auto auto;
   margin-bottom: 20px;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .right-sidebar{
@@ -73,8 +73,19 @@ button{
   cursor: pointer;
 }
 
+button:hover{
+  background-color: #7c7167;
+  color: white;
+}
+
 .highlight{
   background-color: #da904b;
+}
+
+#left-sidebar-tabs{
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
 }
 
 .error{
@@ -97,11 +108,59 @@ button{
   align-items: stretch;
 }
 
+#left-sidebar-tabs button{
+  padding: 10px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 #dictionary-tab-content{
   background-color: #f1f1f1;
   padding: 10px;
   border-radius: 5px;
   margin: 1rem;
+}
+
+#dictionary-tab-content h2{
+  margin-bottom: 10px;
+}
+
+#dictionary-tab-content td{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+textarea{
+  height: 500px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+}
+
+#controls-div{
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-around;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+}
+
+#controls-div button{
+  margin: 10px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+#frequency-dictionary-upload{
+  align-items: center;
+  padding-left: 30px;
 }
 
 .hidden{

@@ -14,7 +14,6 @@ export function showGrammarGuide(dictionaryTabContent) {
   dictionaryTabContent.appendChild(grammarGuideElement);
 }
 
-//functions
 export function createInputFieldContainer(word, translation) {
   const input = document.createElement('input');
   input.type = 'text';
@@ -37,6 +36,14 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
   //check if any words exist that match the category
   CATEGORY_LIST.forEach(category => {
     if (Object.values(dictionary).some(entry => entry.category === category)) {
+      const categoryRow = body.insertRow();
+      const categoryCell = categoryRow.insertCell();
+      categoryCell.colSpan = 4;
+      categoryCell.textContent = category;
+      categoryCell.style.fontWeight = 'bold';
+      categoryCell.style.textAlign = 'center';
+      categoryCell.style.paddingBottom = '15px';
+
       const headerRow = body.insertRow();
       const wordHeaderCell = headerRow.insertCell();
       wordHeaderCell.textContent = 'Word';
@@ -45,13 +52,8 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
       const translationHeaderCell = headerRow.insertCell();
       translationHeaderCell.textContent = 'Translation';
       const categoryHeaderCell = headerRow.insertCell();
-      categoryHeaderCell.textContent = 'Category';
-      
-      const categoryRow = body.insertRow();
-      const categoryCell = categoryRow.insertCell();
-      categoryCell.colSpan = 4;
-      categoryCell.textContent = category;
-      categoryCell.style.fontWeight = 'bold';
+      categoryHeaderCell.textContent = 'Category'; 
+
 
       Object.entries(dictionary).forEach(([word]) => {
         if(dictionary[word].category === category) {

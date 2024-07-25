@@ -14,8 +14,10 @@ import {
     showGrammarGuide,
 } from './utils/ui_utils.js';
 
-//todo: save to local storage for later use
-let frequency_translation_dictionary = loadLocalStorage();
+//get main document elements
+const countFrequencyButton = document.getElementById('countFrequencyButton');
+const downloadCurrentTranslationButton = document.getElementById('downloadCurrentTranslationButton');
+const dictionaryTabContent = document.getElementById('dictionary-tab-content');
 
 let text = `青い空が雲に隠れ
 蕾たちが枯れ落ちても
@@ -45,10 +47,10 @@ For you
 let inputText = document.getElementById('inputText');
 inputText.value = text;
 
-//get main document elements
-const countFrequencyButton = document.getElementById('countFrequencyButton');
-const downloadCurrentTranslationButton = document.getElementById('downloadCurrentTranslationButton');
-const dictionaryTabContent = document.getElementById('dictionary-tab-content');
+let frequency_translation_dictionary = loadLocalStorage();
+if(frequency_translation_dictionary.allSavedWords.entries !== 0) {
+  buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
+}
 
 //set up event listeners on load
 document.addEventListener('DOMContentLoaded', () => {
