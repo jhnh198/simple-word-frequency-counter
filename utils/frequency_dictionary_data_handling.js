@@ -123,8 +123,8 @@ export function loadDictionaryFromJSON(file) {
     reader.readAsText(file);
 }
 
-export function downloadFullDictionary() {
-    const blob = new Blob([JSON.stringify(frequency_translation_dictionary[allSavedWords], null, "\t")], { type: 'text/plain' });
+export function downloadFullDictionary(allSavedWords) {
+    const blob = new Blob([JSON.stringify(allSavedWords, null, "\t")], { type: 'text/plain' });
   
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -133,9 +133,9 @@ export function downloadFullDictionary() {
     a.click();
 }
   
-export function saveToCSV() {
+export function saveToCSV(allSavedWords) {
     const header = 'Word,Count,Translation,Category\n';
-    const csv = Object.entries(frequency_translation_dictionary[allSavedWords]).map(([word, data]) => {
+    const csv = Object.entries(allSavedWords).map(([word, data]) => {
         return `${word},${data.count},${data.translation},${data.category}`;
     }).join('\n');
   

@@ -6,7 +6,8 @@ import {
     saveCurrentTokensToDictionary,
     downloadFullDictionary,
     handleFrequencyDictionaryUpload,
-    handleCurrentTokenDictionary
+    handleCurrentTokenDictionary,
+    saveToCSV
 } from './utils/frequency_dictionary_data_handling.js';
 
 import {
@@ -91,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('downloadFullTranslationFrequencyDictionaryCSVButton').addEventListener('click', () => {
-        saveToCSV();
+        saveToCSV(frequency_translation_dictionary.allSavedWords);
     });
 
     document.getElementById(`downloadCurrentTranslationButton`).addEventListener('click', () => {
@@ -113,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     document.getElementById('downloadFullTranslationFrequencyDictionaryButton').addEventListener('click', () => {
-        downloadFullDictionary();
+        downloadFullDictionary(frequency_translation_dictionary.allSavedWords);
     });
 
     //translation event listeners
