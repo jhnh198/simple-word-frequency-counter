@@ -65,10 +65,19 @@ document.addEventListener('DOMContentLoaded', () => {
         buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount, dictionaryTabContent);
     });
 
-    //todo: this does not get the saved words correctly
-    document.getElementById('frequency-dictionary-button').addEventListener('click', () => {
+    document.getElementById('frequency-dictionary-button').addEventListener('click', async() => {
+      if(inputText.value === '') {
+        countFrequencyButton.classList.add('error');
+        return;
+      }
 
-        buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
+      if(frequency_translation_dictionary.allSavedWords === undefined || frequency_translation_dictionary.currentTextTokensCount === undefined) {
+        let wordTokenFrequencyCount = await analyzeText(inputText.value, countFrequencyButton, downloadCurrentTranslationButton );
+        frequency_translation_dictionary.allSavedWords = handleCurrentTokenDictionary(wordTokenFrequencyCount, frequency_translation_dictionary.allSavedWords);
+      }
+
+      console.log(frequency_translation_dictionary.allSavedWords);
+      buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
     });
 
     document.getElementById('grammar-guide-button').addEventListener('click', () => {
@@ -121,7 +130,6 @@ document.addEventListener('DOMContentLoaded', () => {
       buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
       localStorage.setItem('dictionary_data', JSON.stringify(frequency_translation_dictionary)); // Save to local storage
       console.log('Saved to Local Storage');
-
     });
 
     

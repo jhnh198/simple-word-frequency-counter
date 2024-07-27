@@ -54,7 +54,6 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
       const categoryHeaderCell = headerRow.insertCell();
       categoryHeaderCell.textContent = 'Category'; 
 
-
       Object.entries(dictionary).forEach(([word]) => {
         if(dictionary[word].category === category) {
           const row = body.insertRow();
