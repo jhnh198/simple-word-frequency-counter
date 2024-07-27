@@ -65,7 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
         buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount, dictionaryTabContent);
     });
 
+    //todo: this does not get the saved words correctly
     document.getElementById('frequency-dictionary-button').addEventListener('click', () => {
+
         buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
     });
 
@@ -99,19 +101,29 @@ document.addEventListener('DOMContentLoaded', () => {
         handleDownloadCurrentTranslation(frequency_translation_dictionary.currentTextTokensCount);
     });
     
+    //todo: save translation local runs but does not produce correct output
     //this saves current entries to local storage for the frequency translation dictionary
     document.getElementById('saveTranslationLocalButton').addEventListener('click', () => { 
-        console.log(frequency_translation_dictionary.currentTextTokensCount);
-        frequency_translation_dictionary.allSavedWords = 
-        saveCurrentTokensToDictionary(
-            frequency_translation_dictionary.currentTextTokensCount,
-            frequency_translation_dictionary.allSavedWords
-        );
+      if(inputText.value === '') {
+        countFrequencyButton.classList.add('error');
+        return;
+      }
+      if (frequency_translation_dictionary.allSavedWords === undefined) {
+        frequency_translation_dictionary.currentTextTokensCount = analyzeText(inputText.value, countFrequencyButton, downloadCurrentTranslationButton)
+      }
 
-        buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
-        localStorage.setItem('dictionary_data', JSON.stringify(frequency_translation_dictionary)); // Save to local storage
-        console.log('Saved to Local Storage');
+      frequency_translation_dictionary.allSavedWords = 
+      saveCurrentTokensToDictionary(
+          frequency_translation_dictionary.currentTextTokensCount,
+          frequency_translation_dictionary.allSavedWords
+      );
+
+      buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
+      localStorage.setItem('dictionary_data', JSON.stringify(frequency_translation_dictionary)); // Save to local storage
+      console.log('Saved to Local Storage');
+
     });
+
     
     document.getElementById('downloadFullTranslationFrequencyDictionaryButton').addEventListener('click', () => {
         downloadFullDictionary(frequency_translation_dictionary.allSavedWords);
