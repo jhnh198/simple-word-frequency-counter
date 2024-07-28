@@ -121,6 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
         frequency_translation_dictionary.currentTextTokensCount = analyzeText(inputText.value, countFrequencyButton, downloadCurrentTranslationButton)
       }
 
+      //todo: better way to handle this without saveCurrentTokensToDictionary
       frequency_translation_dictionary.allSavedWords = 
       saveCurrentTokensToDictionary(
           frequency_translation_dictionary.currentTextTokensCount,

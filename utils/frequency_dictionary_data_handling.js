@@ -44,8 +44,9 @@ export async function analyzeText(text, countFrequencyButton, downloadCurrentTra
     //regex to remove full width parentheses
     const parenthesesRegex = /[\uFF08\uFF09]/;
 
-    //todo: this can be optimized by combining all regex into one
-    const filteredWords = words.filter(word => !regex.test(word) && !hiraganaRegex.test(word) && !katakanaRegex.test(word) && !symbolRegex.test(word) && !parenthesesRegex.test(word));
+    const allRegex = new RegExp(`^${regex.source}|${hiraganaRegex.source}|${katakanaRegex.source}|${symbolRegex.source}|${parenthesesRegex.source}`);
+
+    const filteredWords = words.filter(word => !allRegex.test(word));
 
     const frequency = {};
 
