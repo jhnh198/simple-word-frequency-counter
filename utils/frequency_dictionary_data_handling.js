@@ -35,18 +35,21 @@ export async function analyzeText(text, countFrequencyButton, downloadCurrentTra
     //hiragana regex removes only single hiragana, which are generally particles
     //this allows multi-hiragana words to be included and depending on the tokenizer, will separate hiragana modifiers from kanji
     //which is ideal since generally hiragana modifiers do the same thing for all root kanji
-    const hiraganaRegex = /^[\u3040-\u309F]$/;
+    const hiraganaRegex = /^[^\u3040-\u309F]$/;
 
     //regex to remove single katakana
-    const katakanaRegex = /^[\u30A0-\u30FF]$/;
+    const katakanaRegex = /[^\u30A0-\u30FF]$/;
     //regex to remove symbols and non japanese characters
-    const symbolRegex = /^[^\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF\uFF00-\uFFEF\u3000-\u303F]+$/;
-    //regex to remove full width parentheses
-    const parenthesesRegex = /[\uFF08\uFF09]/;
+    const symbolRegex = /^[^\u3040-\u309F\u30A0-\u30FF\uFF00-\uFFEF\u3000-\u303F]+$/;
 
-    const allRegex = new RegExp(`^${regex.source}|${hiraganaRegex.source}|${katakanaRegex.source}|${symbolRegex.source}|${parenthesesRegex.source}`);
+    //regex to remove space and newline
+    const removeSpaceNewlineRegex = /^[^\n\r\s]+$/;
 
-    const filteredWords = words.filter(word => !allRegex.test(word));
+    const parenthesesRegex = /[^\uFF08\uFF09]/;
+
+    const allRegex = new RegExp(`!${regex.source}|${hiraganaRegex.source}|${katakanaRegex.source}|${symbolRegex.source}|${parenthesesRegex.source}|${removeSpaceNewlineRegex.source}`);
+
+    const filteredWords = words.filter(word => allRegex.test(word));
 
     const frequency = {};
 
