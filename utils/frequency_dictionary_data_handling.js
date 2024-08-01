@@ -34,9 +34,12 @@ export async function analyzeText(text, countFrequencyButton, downloadCurrentTra
     const regex = /^[a-zA-Z0-9\t\n\r\s]+$/g;
 
     //regex to remove special characters
-    const symbolRegex = /[\u3000-\u303F\uFF08\uFF01-\uFF3F]/;
+    const symbolRegex = /[\u0021-\u002F\u003A-\u0040\u3000-\u303F\uFF08\uFF01-\uFF3F]+/;
+
+    const removeSingleHiragana = /^[\u3040-\u309F]{1}$/;
+    const katakanaRegex = /[\u30A0-\u30FF]/;
 ; 
-    const filteredWords = words.filter(word => !word.match(regex) && !word.match(symbolRegex) && word.length > 1);
+    const filteredWords = words.filter(word => !word.match(regex) && !word.match(symbolRegex) && !word.match(katakanaRegex) && !word.match(removeSingleHiragana));    
     console.log(filteredWords);
     const frequency = {};
 
