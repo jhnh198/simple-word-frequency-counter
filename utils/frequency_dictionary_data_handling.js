@@ -31,27 +31,12 @@ export async function analyzeText(text, countFrequencyButton, downloadCurrentTra
     console.log(words);
 
     //regex to remove english letters, numbers, newlines, spaces, and parentheses
-    const regex = /[a-zA-Z0-9\t\n\r\s]+/g;
-
-    //hiragana regex removes only single hiragana, which are generally particles
-    //this allows multi-hiragana words to be included and depending on the tokenizer, will separate hiragana modifiers from kanji
-    //which is ideal since generally hiragana modifiers do the same thing for all root kanji
-    const hiraganaRegex = /[\u3040-\u309F]{1}/;
+    const regex = /^[a-zA-Z0-9\t\n\r\s]+$/g;
 
     //regex to remove special characters
-    const symbolRegex = /[^\t\w\s\u3040-\u309F\u30A0-\u30FF\u4E00-\u9FAF\uFF00-\uFFEF\u3000-\u303F]$/;
-
-    //regex to remove single katakana
-    const katakanaRegex = /[^\u30A0-\u30FF]/;
-    //regex to remove symbols and non japanese characters
-   
-    //regex to remove full width parentheses
-    const parenthesesRegex = /[\uFF08\uFF09]/;
-
-    //const allRegex = new RegExp(`(${regex.source})|(${hiraganaRegex.source})|(${katakanaRegex.source})|(${parenthesesRegex.source})|(${symbolRegex.source})|(${removeSpaceNewlineRegex.source})`, 'g'); 
-    //const filteredWords = words.filter(word => !allRegex.test(word));
-    const filteredWords = words.filter(word => !(regex.test(word) || hiraganaRegex.test(word) || katakanaRegex.test(word) || parenthesesRegex.test(word) || symbolRegex.test(word)));
-    
+    const symbolRegex = /[\u3000-\u303F\uFF08\uFF01-\uFF3F]/;
+; 
+    const filteredWords = words.filter(word => !word.match(regex) && !word.match(symbolRegex) && word.length > 1);
     console.log(filteredWords);
     const frequency = {};
 
