@@ -13,6 +13,12 @@ import { clearErrorMessage, errorMessage } from "./errorHandling.js";
 
 }; */
 
+//todo: make separate function that gets input data from words, if no input data, do not change the translation
+
+//todo: break up input from translations and categories
+
+//todo: check load and save functions
+
 export async function analyzeText(text, countFrequencyButton, downloadCurrentTranslationButton) {
     if (text === '') {
         throw new Error('No text to analyze');
@@ -28,7 +34,6 @@ export async function analyzeText(text, countFrequencyButton, downloadCurrentTra
 
     const segmenter = new TinySegmenter();
     const words = segmenter.segment(text);
-    console.log(words);
 
     //regex to remove english letters, numbers, newlines, spaces, and parentheses
     const regex = /^[a-zA-Z0-9\t\n\r\s]+$/g;
@@ -40,7 +45,6 @@ export async function analyzeText(text, countFrequencyButton, downloadCurrentTra
     const katakanaRegex = /[\u30A0-\u30FF]/;
 ; 
     const filteredWords = words.filter(word => !word.match(regex) && !word.match(symbolRegex) && !word.match(katakanaRegex) && !word.match(removeSingleHiragana));    
-    console.log(filteredWords);
     const frequency = {};
 
     filteredWords.forEach(word => {
@@ -54,46 +58,63 @@ export async function analyzeText(text, countFrequencyButton, downloadCurrentTra
     return frequency;
 };
 
-//todo: go through this function and make sure it is working as expected
-export function saveCurrentTokensToDictionary(currentTextTokensCount, allSavedWords) {
+export function saveCurrentTokenCountToDictionary(currentTextTokensCount, allSavedWords) {
+  let tempAllSavedWords = allSavedWords;
     Object.entries(currentTextTokensCount).forEach(([word]) => {
-        const input = document.getElementById(word); 
-        const category = document.getElementById(`${word}-category`);  
         if (!allSavedWords[word]) {
-            allSavedWords[word] = { count: currentTextTokensCount[word].count, translation: input.value, category: category.value};
+            allSavedWords[word] = currentTextTokensCount[word];
         } else {
             allSavedWords[word].count = parseInt(currentTextTokensCount[word].count || 0) + parseInt(allSavedWords[word].count || 0);
-            allSavedWords[word].translation = input.value ? input.value : allSavedWords[word].translation;
-            allSavedWords[word].category = category.value;
         }
     });
 
-    return allSavedWords;
+    return tempAllSavedWords;
 }
 
-//todo: go through this function and make sure it is working as expected
+//get any input and category and put in all saved words
+export function saveTranslationInputToDictionary(currentTextTokensCount, allSavedWords) {
+  //this is a problem when trying to bring up all dictionary entries since there is no input element created.
+  Object.entries(currentTextTokensCount).forEach(([word]) => {
+      const input = document.getElementById(word); 
+      const category = document.getElementById(`${word}-category`);  
+      if (!allSavedWords[word]) {
+          allSavedWords[word] = { count: currentTextTokensCount[word].count, translation: input.value, category: category.value};
+      } else {
+          allSavedWords[word].count = parseInt(currentTextTokensCount[word].count || 0) + parseInt(allSavedWords[word].count || 0);
+          allSavedWords[word].translation = input.value ? input.value : allSavedWords[word].translation;
+          allSavedWords[word].category = category.value;
+      }
+  });
+
+  return allSavedWords;
+}
+
+//this will get tokens from the current text, check if in the dictionary and return current text tokens
 export function handleCurrentTokenDictionary(wordTokenFrequencyCount, allSavedWords) {
-    const tempFrequencyDictionary = {};
+    const tempCurrentTextTokens = {};
     Object.entries(wordTokenFrequencyCount).forEach(([word, count]) => {
         if (!allSavedWords[word]) {
-            tempFrequencyDictionary[word] = { count: count, translation: '', category: '名詞'};
+          tempCurrentTextTokens[word] = { count: count, translation: '', category: '名詞'};
         } else {
-            tempFrequencyDictionary[word] = { count: count, translation: allSavedWords[word]?.translation, category: allSavedWords[word]?.category};
+          tempCurrentTextTokens[word] = { count: count, translation: allSavedWords[word]?.translation, category: allSavedWords[word]?.category};
         }
     });
-    return tempFrequencyDictionary;
+    return tempCurrentTextTokens;
 }
 
 export function loadLocalStorage() {
-    const jsonData = localStorage.getItem('dictionary_data');
-    let frequency_translation_dictionary = {
-        currentTextTokensCount: {},
-        allSavedWords: {}
-    };
-    if (jsonData) {
-        frequency_translation_dictionary.allSavedWords = JSON.parse(jsonData);
-    }
-    return frequency_translation_dictionary;
+  //todo: check if the local storage is being loaded
+  let loadedDictionary = {
+    currentTextTokensCount: {},
+    allSavedWords: {}
+  };
+
+  if (localStorage.getItem('dictionary_data')) {
+    const allSavedWords = localStorage.getItem('dictionary_data');
+    loadedDictionary.allSavedWords = allSavedWords;
+  }
+
+  return loadedDictionary;
 }
 
 export function loadDictionaryFromCSV(file) {
@@ -188,6 +209,7 @@ export function handleFrequencyDictionaryUpload(e){
     }
 }
 
-export function saveToLocalStorage() {
-    localStorage.setItem('dictionary_data', JSON.stringify(frequency_translation_dictionary));
+//todo: make sure saving works
+export function saveToLocalStorage(allSavedWords) {
+  localStorage.setItem('dictionary_data', allSavedWords); // Save to local storage
 }

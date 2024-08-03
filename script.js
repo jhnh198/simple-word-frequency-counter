@@ -3,11 +3,13 @@ import {
     analyzeText,
     handleDownloadCurrentTranslation,
     loadLocalStorage,
-    saveCurrentTokensToDictionary,
+    saveCurrentTokenCountToDictionary,
+    saveTranslationInputToDictionary,
     downloadFullDictionary,
     handleFrequencyDictionaryUpload,
     handleCurrentTokenDictionary,
-    saveToCSV
+    saveToCSV,
+    saveToLocalStorage
 } from './utils/frequency_dictionary_data_handling.js';
 
 import {
@@ -39,6 +41,7 @@ inputText.value = text;
 
 let frequency_translation_dictionary = loadLocalStorage();
 if(frequency_translation_dictionary.allSavedWords.entries !== 0) {
+  console.log(frequency_translation_dictionary);
   buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
 }
 
@@ -54,22 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
         buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount, dictionaryTabContent);
     });
 
-    document.getElementById('frequency-dictionary-button').addEventListener('click', async() => {
-      if(inputText.value === '') {
-        countFrequencyButton.classList.add('error');
-        return;
-      }
-
-      if(frequency_translation_dictionary.allSavedWords.length <= 0) {
-        let wordTokenFrequencyCount = await analyzeText(inputText.value, countFrequencyButton, downloadCurrentTranslationButton );
-        frequency_translation_dictionary.currentTextTokensCount = handleCurrentTokenDictionary(wordTokenFrequencyCount, frequency_translation_dictionary.allSavedWords);
-        frequency_translation_dictionary.allSavedWords(saveCurrentTokensToDictionary(frequency_translation_dictionary.currentTextTokensCount, frequency_translation_dictionary.allSavedWords));
-      }
-      console.log(frequency_translation_dictionary.allSavedWords);
-      buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
-      
-    });
-
     document.getElementById('grammar-guide-button').addEventListener('click', () => {
         showGrammarGuide(dictionaryTabContent);
     });
@@ -82,8 +69,20 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('countFrequencyButton').addEventListener('click', async () => {
         let wordTokenFrequencyCount = await analyzeText(inputText.value, countFrequencyButton, downloadCurrentTranslationButton );
         frequency_translation_dictionary.currentTextTokensCount = handleCurrentTokenDictionary(wordTokenFrequencyCount, frequency_translation_dictionary.allSavedWords);
-
+        saveCurrentTokenCountToDictionary(frequency_translation_dictionary.currentTextTokensCount, frequency_translation_dictionary.allSavedWords);
         buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount, dictionaryTabContent);
+    });
+
+    //todo: save translation local runs but does not produce correct output. the word count isn't being handled and all saved words is not being updated to build the table
+    //this saves current entries to local storage for the frequency translation dictionary
+    document.getElementById('saveTranslationLocalButton').addEventListener('click', async () => { 
+      //check for input and current translation
+      //if current translation, merge with all saved words
+      //if no current translation, save all words
+    });
+
+    document.getElementById('frequency-dictionary-button').addEventListener('click', async() => {
+        buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
     });
 
     document.getElementById('frequency-dictionary-upload').addEventListener('change', (e) => {
@@ -99,31 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById(`downloadCurrentTranslationButton`).addEventListener('click', () => {
         handleDownloadCurrentTranslation(frequency_translation_dictionary.currentTextTokensCount);
     });
-    
-    //todo: save translation local runs but does not produce correct output. the word count isn't being handled and all saved words is not being updated to build the table
-    //this saves current entries to local storage for the frequency translation dictionary
-    document.getElementById('saveTranslationLocalButton').addEventListener('click', async () => { 
-      if(inputText.value === '') {
-        countFrequencyButton.classList.add('error');
-        return;
-      }
-      if (frequency_translation_dictionary.allSavedWords === undefined) {
-        let wordTokenFrequencyCount = await analyzeText(inputText.value, countFrequencyButton, downloadCurrentTranslationButton);
-        frequency_translation_dictionary.currentTextTokensCount = handleCurrentTokenDictionary(wordTokenFrequencyCount, frequency_translation_dictionary.allSavedWords);
-        frequency_translation_dictionary.allSavedWords = saveCurrentTokensToDictionary(frequency_translation_dictionary.currentTextTokensCount, frequency_translation_dictionary.allSavedWords);
-      }
-
-      frequency_translation_dictionary.allSavedWords = 
-      handleCurrentTokenDictionary(
-          frequency_translation_dictionary.currentTextTokensCount,
-          frequency_translation_dictionary.allSavedWords
-      );
-
-      buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
-      //localStorage.setItem('dictionary_data', JSON.stringify(frequency_translation_dictionary)); // Save to local storage
-      console.log('Saved to Local Storage');
-    });
-
     
     document.getElementById('downloadFullTranslationFrequencyDictionaryButton').addEventListener('click', () => {
         downloadFullDictionary(frequency_translation_dictionary.allSavedWords);
