@@ -54,6 +54,7 @@ export async function analyzeText(text, countFrequencyButton, downloadCurrentTra
     return frequency;
 };
 
+//todo: go through this function and make sure it is working as expected
 export function saveCurrentTokensToDictionary(currentTextTokensCount, allSavedWords) {
     Object.entries(currentTextTokensCount).forEach(([word]) => {
         const input = document.getElementById(word); 
@@ -70,6 +71,7 @@ export function saveCurrentTokensToDictionary(currentTextTokensCount, allSavedWo
     return allSavedWords;
 }
 
+//todo: go through this function and make sure it is working as expected
 export function handleCurrentTokenDictionary(wordTokenFrequencyCount, allSavedWords) {
     const tempFrequencyDictionary = {};
     Object.entries(wordTokenFrequencyCount).forEach(([word, count]) => {
