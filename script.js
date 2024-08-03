@@ -12,6 +12,8 @@ import {
     saveToLocalStorage
 } from './utils/frequency_dictionary_data_handling.js';
 
+//todo: save translation inputs to all saved words
+
 import {
     buildWordFrequencyTable,
     showGrammarGuide,
@@ -39,7 +41,7 @@ let text = `ラジ： 安藤さん、ちょっといいですか
 let inputText = document.getElementById('inputText');
 inputText.value = text;
 
-let frequency_translation_dictionary = loadLocalStorage();
+let frequency_translation_dictionary = {currentTextTokensCount: {}, allSavedWords: loadLocalStorage()};
 if(frequency_translation_dictionary.allSavedWords.entries !== 0) {
   console.log(frequency_translation_dictionary);
   buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
@@ -79,9 +81,11 @@ document.addEventListener('DOMContentLoaded', () => {
       //check for input and current translation
       //if current translation, merge with all saved words
       //if no current translation, save all words
+      saveToLocalStorage(frequency_translation_dictionary.allSavedWords);
     });
 
     document.getElementById('frequency-dictionary-button').addEventListener('click', async() => {
+        
         buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
     });
 

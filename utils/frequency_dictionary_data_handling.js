@@ -15,10 +15,6 @@ import { clearErrorMessage, errorMessage } from "./errorHandling.js";
 
 //todo: make separate function that gets input data from words, if no input data, do not change the translation
 
-//todo: break up input from translations and categories
-
-//todo: check load and save functions
-
 export async function analyzeText(text, countFrequencyButton, downloadCurrentTranslationButton) {
     if (text === '') {
         throw new Error('No text to analyze');
@@ -103,18 +99,12 @@ export function handleCurrentTokenDictionary(wordTokenFrequencyCount, allSavedWo
 }
 
 export function loadLocalStorage() {
-  //todo: check if the local storage is being loaded
-  let loadedDictionary = {
-    currentTextTokensCount: {},
-    allSavedWords: {}
-  };
-
+  let loadedAllSavedWords = {};
   if (localStorage.getItem('dictionary_data')) {
-    const allSavedWords = localStorage.getItem('dictionary_data');
-    loadedDictionary.allSavedWords = allSavedWords;
+    loadedAllSavedWords = localStorage.getItem('dictionary_data', allSavedWords);
   }
 
-  return loadedDictionary;
+  return loadedAllSavedWords;
 }
 
 export function loadDictionaryFromCSV(file) {
@@ -209,7 +199,6 @@ export function handleFrequencyDictionaryUpload(e){
     }
 }
 
-//todo: make sure saving works
 export function saveToLocalStorage(allSavedWords) {
   localStorage.setItem('dictionary_data', allSavedWords); // Save to local storage
 }
