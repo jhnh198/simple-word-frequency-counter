@@ -1,3 +1,4 @@
+import { saveTranslationInputToDictionary } from './frequency_dictionary_data_handling.js';
 import { CATEGORY_LIST } from './text_content/category_list.js';
 import { grammar_guide } from './text_content/grammar_guide.js';
 
@@ -63,7 +64,10 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
       
           countCell.textContent = dictionary[word].count;
           const translationCell = row.insertCell();
-          translationCell.appendChild(createInputFieldContainer(word, dictionary[word]?.translation));
+          const translationCellInput = createInputFieldContainer(word, dictionary[word]?.translation);
+          translationCell.appendChild(translationCellInput);
+          setInputTimerEvent(translationCellInput);
+
           const categoryCell = row.insertCell();
           categoryCell.appendChild(createDropdown(word));
         }
@@ -100,4 +104,61 @@ export function handleHidePreviousTranslations(hidePreviousTranslationsCheckbox,
         input.value = frequency_translation_dictionary[word]?.translation || '';
     });
   }
+}
+
+//todo: change typing timer to work with a function that will save the translation to the dictionary
+export function setInputTimerEvent(input) {
+  //setup before functions
+  let typingTimer;                //timer identifier
+  let doneTypingInterval = 5000;  //time in ms (5 seconds)
+  let translationInputElement = document.getElementById(input.id);
+
+  //on keyup, start the countdown
+  translationInputElement.addEventListener('keyup', () => {
+      clearTimeout(typingTimer);
+      if (translationInputElement.value) {
+          typingTimer = setTimeout(updateWordTranslation, doneTypingInterval);
+      }
+  });
+}
+
+//todo: tweak to find only the word from the element that was changed. Instead of running a loop to find all words
+function doneTypingTranslation(allSavedWords){
+  saveTranslationInputToDictionary(frequency_translation_dictionary.currentTextTokensCount, frequency_translation_dictionary.allSavedWords);
+}
+
+//todo: find where these need to be implemented
+function updateWordTranslation(word, translation, allSavedWords) {
+  allSavedWords[word].translation = translation;
+}
+
+function updateWordCategory(word, category, allSavedWords) {
+  allSavedWords[word].category = category;
+}
+
+//todo: create word row function to add to the table
+export function createEmptyWordRow() {
+  const div = document.createElement('div');
+  div.classList.add('word-row');
+  const addNewWordButton = document.createElement('button');
+  const clearWordButton = document.createElement('button');
+  addNewWordButton.textContent = 'Add New Word';
+  clearWordButton.textContent = 'Clear Word';
+  div.appendChild(addNewWordButton);
+  div.appendChild(clearWordButton);
+  
+  const row = body.insertRow();
+  //create input field for word
+  const wordCell = row.insertCell();
+  let wordInput = createInputFieldContainer('', '');
+   
+  const countCell = row.insertCell();
+  let countInput = createInputFieldContainer('', '');
+  
+
+  const translationCell = row.insertCell();
+  translationCell.appendChild(createInputFieldContainer('', ''));
+  const categoryCell = row.insertCell();
+  categoryCell.appendChild(createDropdown(''));
+  return row;
 }

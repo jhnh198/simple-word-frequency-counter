@@ -12,7 +12,9 @@ import {
     saveToLocalStorage
 } from './utils/frequency_dictionary_data_handling.js';
 
-//todo: save translation inputs to all saved words
+/* 
+  todo: add event and functions to save translation and category by looking up the word then saving the data 
+*/
 
 import {
     buildWordFrequencyTable,
