@@ -67,7 +67,7 @@ export function saveCurrentTokenCountToDictionary(currentTextTokensCount, allSav
     return tempAllSavedWords;
 }
 
-//get any input and category and put in all saved words
+//todo: only use this if we need to update all
 export function saveTranslationInputToDictionary(currentTextTokensCount, allSavedWords) {
   //this is a problem when trying to bring up all dictionary entries since there is no input element created.
   Object.entries(currentTextTokensCount).forEach(([word]) => {

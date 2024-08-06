@@ -71,12 +71,12 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
           const categoryCell = row.insertCell();
           categoryCell.appendChild(createDropdown(word));
         }
-      });
+        });
+      }
     }
-  }
-);
-
-  dictionaryTabContent.appendChild(table);
+  );
+table.appendChild(createEmptyWordRow());
+dictionaryTabContent.appendChild(table);
 }
 
 export function createDropdown(word) {
@@ -140,25 +140,30 @@ function updateWordCategory(word, category, allSavedWords) {
 export function createEmptyWordRow() {
   const div = document.createElement('div');
   div.classList.add('word-row');
-  const addNewWordButton = document.createElement('button');
-  const clearWordButton = document.createElement('button');
-  addNewWordButton.textContent = 'Add New Word';
-  clearWordButton.textContent = 'Clear Word';
-  div.appendChild(addNewWordButton);
-  div.appendChild(clearWordButton);
+
+  const table = document.getElementById('dictionary-table');
   
-  const row = body.insertRow();
+  const row = table.insertRow();
   //create input field for word
   const wordCell = row.insertCell();
   let wordInput = createInputFieldContainer('', '');
+  wordCell.appendChild(wordInput);
    
   const countCell = row.insertCell();
   let countInput = createInputFieldContainer('', '');
+  countCell.appendChild(countInput);
   
-
   const translationCell = row.insertCell();
   translationCell.appendChild(createInputFieldContainer('', ''));
   const categoryCell = row.insertCell();
   categoryCell.appendChild(createDropdown(''));
-  return row;
+
+  const addNewWordButton = document.createElement('button');
+  const clearWordButton = document.createElement('button');
+  addNewWordButton.textContent = 'Add New Word';
+  clearWordButton.textContent = 'Clear Word';
+  div.appendChild(row);
+  div.appendChild(addNewWordButton);
+  div.appendChild(clearWordButton);
+  return div;
 }
