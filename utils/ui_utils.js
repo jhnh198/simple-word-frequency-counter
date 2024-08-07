@@ -111,10 +111,9 @@ export function setInputTimerEvent(input) {
   //setup before functions
   let typingTimer;                //timer identifier
   let doneTypingInterval = 5000;  //time in ms (5 seconds)
-  let translationInputElement = document.getElementById(input.id);
 
   //on keyup, start the countdown
-  translationInputElement.addEventListener('keyup', () => {
+  input.addEventListener('keyup', () => {
       clearTimeout(typingTimer);
       if (translationInputElement.value) {
           typingTimer = setTimeout(updateWordTranslation, doneTypingInterval);
