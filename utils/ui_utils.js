@@ -21,6 +21,13 @@ export function createInputFieldContainer(word, translation) {
   input.class = 'translation';
   input.id = word;
   input.value = translation || '';
+
+  input.addEventListener('keyup', () => {
+    clearTimeout(typingTimer);
+    if (input.value) {
+        typingTimer = setTimeout(updateWordTranslation, doneTypingInterval);
+    }
+  });
   return input;
 }
 
@@ -122,7 +129,8 @@ export function setInputTimerEvent(input) {
 }
 
 //todo: tweak to find only the word from the element that was changed. Instead of running a loop to find all words
-function doneTypingTranslation(allSavedWords){
+function doneTypingTranslationInputSave(allSavedWords){
+
   saveTranslationInputToDictionary(frequency_translation_dictionary.currentTextTokensCount, frequency_translation_dictionary.allSavedWords);
 }
 
