@@ -12,10 +12,6 @@ import {
     saveToLocalStorage
 } from './utils/frequency_dictionary_data_handling.js';
 
-/* 
-  todo: add event and functions to save translation and category by looking up the word then saving the data 
-*/
-
 import {
     buildWordFrequencyTable,
     showGrammarGuide,
@@ -47,6 +43,14 @@ let frequency_translation_dictionary = {currentTextTokensCount: {}, allSavedWord
 if(frequency_translation_dictionary.allSavedWords.entries !== 0) {
   console.log(frequency_translation_dictionary);
   buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
+}
+
+export function updateInputChangeValue(word, translation){
+    frequency_translation_dictionary.allSavedWords[word].translation = translation;
+}
+
+export function updateCategoryChangeValue(word, category){
+    frequency_translation_dictionary.allSavedWords[word].category = category;
 }
 
 //set up event listeners on load

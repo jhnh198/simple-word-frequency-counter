@@ -1,6 +1,8 @@
 import { saveTranslationInputToDictionary } from './frequency_dictionary_data_handling.js';
 import { CATEGORY_LIST } from './text_content/category_list.js';
 import { grammar_guide } from './text_content/grammar_guide.js';
+import { updateCategoryChangeValue } from '../script.js';
+
 
 export function showGrammarGuide(dictionaryTabContent) {
   let grammarGuideElement = document.createElement('div');
@@ -101,6 +103,10 @@ export function createDropdown(word) {
     option.textContent = category;
     select.appendChild(option);
   });
+
+  select.addEventListener('change', () => {
+    updateCategoryChangeValue(word, category);
+  });
   return select;
 }
 
@@ -127,7 +133,7 @@ export function setInputTimerEvent(input) {
   input.addEventListener('keyup', () => {
       clearTimeout(typingTimer);
       if (translationInputElement.value) {
-          typingTimer = setTimeout(updateWordTranslation, doneTypingInterval);
+          typingTimer = setTimeout(doneTypingTranslationInputSave, doneTypingInterval);
       }
   });
 }
