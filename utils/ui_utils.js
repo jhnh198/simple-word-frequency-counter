@@ -23,10 +23,14 @@ export function createInputFieldContainer(word, translation) {
   input.value = translation || '';
 
   input.addEventListener('keyup', () => {
+    let typingTimer;                //timer identifier
+    let doneTypingInterval = 5000;  //time in ms (5 seconds)
+
     clearTimeout(typingTimer);
-    if (input.value) {
+    if (translationInputElement.value) {
         typingTimer = setTimeout(updateWordTranslation, doneTypingInterval);
     }
+
   });
   return input;
 }
