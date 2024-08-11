@@ -4,7 +4,6 @@ import {
     handleDownloadCurrentTranslation,
     loadLocalStorage,
     saveCurrentTokenCountToDictionary,
-    saveTranslationInputToDictionary,
     downloadFullDictionary,
     handleFrequencyDictionaryUpload,
     handleCurrentTokenDictionary,
@@ -46,11 +45,15 @@ if(frequency_translation_dictionary.allSavedWords.entries !== 0) {
 }
 
 export function updateInputChangeValue(word, translation){
-    frequency_translation_dictionary.allSavedWords[word].translation = translation;
+  console.log(`Before Update: ${word} ${frequency_translation_dictionary.allSavedWords[word].translation}`);
+  frequency_translation_dictionary.allSavedWords[word].translation = translation;
+  console.log(`After Update: ${word} ${frequency_translation_dictionary.allSavedWords[word].translation}`);  
 }
 
 export function updateCategoryChangeValue(word, category){
+  console.log(`Before Update: ${word} ${frequency_translation_dictionary.allSavedWords[word].category}`);
     frequency_translation_dictionary.allSavedWords[word].category = category;
+  console.log(`After Update: ${word} ${frequency_translation_dictionary.allSavedWords[word].category}`);
 }
 
 //set up event listeners on load

@@ -1,7 +1,6 @@
-import { saveTranslationInputToDictionary } from './frequency_dictionary_data_handling.js';
 import { CATEGORY_LIST } from './text_content/category_list.js';
 import { grammar_guide } from './text_content/grammar_guide.js';
-import { updateCategoryChangeValue } from '../script.js';
+import { updateCategoryChangeValue, updateInputChangeValue } from '../script.js';
 
 
 export function showGrammarGuide(dictionaryTabContent) {
@@ -28,12 +27,14 @@ export function createInputFieldContainer(word, translation) {
     let typingTimer;                //timer identifier
     let doneTypingInterval = 5000;  //time in ms (5 seconds)
 
+    //todo: this runs for each keyup event, need to refactor to only run after user stops typing
     clearTimeout(typingTimer);
-    if (translationInputElement.value) {
-        typingTimer = setTimeout(updateWordTranslation, doneTypingInterval);
+    if (input.value) {
+  
+        typingTimer = setTimeout(() => updateInputChangeValue(word, input.value), doneTypingInterval);
     }
 
-  });
+  }, 5000);
   return input;
 }
 
@@ -79,7 +80,6 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
           const translationCell = row.insertCell();
           const translationCellInput = createInputFieldContainer(word, dictionary[word]?.translation);
           translationCell.appendChild(translationCellInput);
-          setInputTimerEvent(translationCellInput);
 
           const categoryCell = row.insertCell();
           categoryCell.appendChild(createDropdown(word));
@@ -88,7 +88,7 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
       }
     }
   );
-table.appendChild(createEmptyWordRow());
+//table.appendChild(createEmptyWordRow());
 dictionaryTabContent.appendChild(table);
 }
 
@@ -105,7 +105,7 @@ export function createDropdown(word) {
   });
 
   select.addEventListener('change', () => {
-    updateCategoryChangeValue(word, category);
+    updateCategoryChangeValue(word, select.value);
   });
   return select;
 }
@@ -121,36 +121,6 @@ export function handleHidePreviousTranslations(hidePreviousTranslationsCheckbox,
         input.value = frequency_translation_dictionary[word]?.translation || '';
     });
   }
-}
-
-//todo: change typing timer to work with a function that will save the translation to the dictionary
-export function setInputTimerEvent(input) {
-  //setup before functions
-  let typingTimer;                //timer identifier
-  let doneTypingInterval = 5000;  //time in ms (5 seconds)
-
-  //on keyup, start the countdown
-  input.addEventListener('keyup', () => {
-      clearTimeout(typingTimer);
-      if (translationInputElement.value) {
-          typingTimer = setTimeout(doneTypingTranslationInputSave, doneTypingInterval);
-      }
-  });
-}
-
-//todo: tweak to find only the word from the element that was changed. Instead of running a loop to find all words
-function doneTypingTranslationInputSave(allSavedWords){
-
-  saveTranslationInputToDictionary(frequency_translation_dictionary.currentTextTokensCount, frequency_translation_dictionary.allSavedWords);
-}
-
-//todo: find where these need to be implemented
-function updateWordTranslation(word, translation, allSavedWords) {
-  allSavedWords[word].translation = translation;
-}
-
-function updateWordCategory(word, category, allSavedWords) {
-  allSavedWords[word].category = category;
 }
 
 //todo: create word row function to add to the table
