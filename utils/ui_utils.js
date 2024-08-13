@@ -16,6 +16,7 @@ export function showGrammarGuide(dictionaryTabContent) {
   dictionaryTabContent.appendChild(grammarGuideElement);
 }
 
+//todo: trim down clear timeout
 export function createInputFieldContainer(word, translation) {
   const input = document.createElement('input');
   input.type = 'text';
@@ -30,8 +31,7 @@ export function createInputFieldContainer(word, translation) {
     //todo: this runs for each keyup event, need to refactor to only run after user stops typing
     clearTimeout(typingTimer);
     if (input.value) {
-  
-        typingTimer = setTimeout(() => updateInputChangeValue(word, input.value), doneTypingInterval);
+      typingTimer = setTimeout(() => updateInputChangeValue(word, input.value), doneTypingInterval);
     }
 
   }, 5000);
@@ -88,8 +88,8 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
       }
     }
   );
-//table.appendChild(createEmptyWordRow());
-dictionaryTabContent.appendChild(table);
+  table.appendChild(createEmptyWordRow(table));
+  dictionaryTabContent.appendChild(table);
 }
 
 export function createDropdown(word) {
@@ -124,11 +124,9 @@ export function handleHidePreviousTranslations(hidePreviousTranslationsCheckbox,
 }
 
 //todo: create word row function to add to the table
-export function createEmptyWordRow() {
+export function createEmptyWordRow(table) {
   const div = document.createElement('div');
   div.classList.add('word-row');
-
-  const table = document.getElementById('dictionary-table');
   
   const row = table.insertRow();
   //create input field for word

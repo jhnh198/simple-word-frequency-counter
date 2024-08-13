@@ -40,20 +40,15 @@ inputText.value = text;
 
 let frequency_translation_dictionary = {currentTextTokensCount: {}, allSavedWords: loadLocalStorage()};
 if(frequency_translation_dictionary.allSavedWords.entries !== 0) {
-  console.log(frequency_translation_dictionary);
   buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
 }
 
 export function updateInputChangeValue(word, translation){
-  console.log(`Before Update: ${word} ${frequency_translation_dictionary.allSavedWords[word].translation}`);
   frequency_translation_dictionary.allSavedWords[word].translation = translation;
-  console.log(`After Update: ${word} ${frequency_translation_dictionary.allSavedWords[word].translation}`);  
 }
 
 export function updateCategoryChangeValue(word, category){
-  console.log(`Before Update: ${word} ${frequency_translation_dictionary.allSavedWords[word].category}`);
-    frequency_translation_dictionary.allSavedWords[word].category = category;
-  console.log(`After Update: ${word} ${frequency_translation_dictionary.allSavedWords[word].category}`);
+  frequency_translation_dictionary.allSavedWords[word].category = category;  
 }
 
 //set up event listeners on load
@@ -87,9 +82,6 @@ document.addEventListener('DOMContentLoaded', () => {
     //todo: save translation local runs but does not produce correct output. the word count isn't being handled and all saved words is not being updated to build the table
     //this saves current entries to local storage for the frequency translation dictionary
     document.getElementById('saveTranslationLocalButton').addEventListener('click', async () => { 
-      //check for input and current translation
-      //if current translation, merge with all saved words
-      //if no current translation, save all words
       saveToLocalStorage(frequency_translation_dictionary.allSavedWords);
     });
 
