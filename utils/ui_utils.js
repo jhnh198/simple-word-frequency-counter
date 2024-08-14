@@ -147,8 +147,37 @@ export function createEmptyWordRow(table) {
   const clearWordButton = document.createElement('button');
   addNewWordButton.textContent = 'Add New Word';
   clearWordButton.textContent = 'Clear Word';
+
+  addNewWordButton.addEventListener('click', () => {
+    if(translationCell.value && wordInput.value && countInput.value && categoryCell.value) {
+      const newRow = createEmptyWordRow(table);
+      table.appendChild(newRow);
+
+      let newWord = {
+        word: wordInput.value,
+        translation: translationCell.value,
+        count: countInput.value,
+        category: categoryCell.value
+      }
+      addWordToDictionaryFromNewRow(newWord);
+      
+    }
+  });
+
+  clearWordButton.addEventListener('click', () => {
+    wordInput.value = '';
+    countInput.value = '';
+    translationCell.value = '';
+    categoryCell.value = '';
+  });
+
   div.appendChild(row);
   div.appendChild(addNewWordButton);
   div.appendChild(clearWordButton);
   return div;
+}
+
+function clearInputFields(input) {
+  input.value = '';
+  
 }

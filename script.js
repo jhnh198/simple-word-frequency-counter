@@ -51,6 +51,10 @@ export function updateCategoryChangeValue(word, category){
   frequency_translation_dictionary.allSavedWords[word].category = category;  
 }
 
+export function addWordToDictionaryFromNewRow(word){
+  frequency_translation_dictionary.allSavedWords[word] = {translation: word.translation, category: word.category};  
+}
+
 //set up event listeners on load
 document.addEventListener('DOMContentLoaded', () => {
     //error handling event listeners
