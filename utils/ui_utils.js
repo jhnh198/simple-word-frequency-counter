@@ -176,8 +176,3 @@ export function createEmptyWordRow(table) {
   div.appendChild(clearWordButton);
   return div;
 }
-
-function clearInputFields(input) {
-  input.value = '';
-  
-}

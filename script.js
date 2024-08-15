@@ -52,7 +52,7 @@ export function updateCategoryChangeValue(word, category){
 }
 
 export function addWordToDictionaryFromNewRow(word){
-  frequency_translation_dictionary.allSavedWords[word] = {translation: word.translation, category: word.category};  
+  frequency_translation_dictionary.allSavedWords[word] = {translation: word.translation, category: word.category};
 }
 
 //set up event listeners on load
