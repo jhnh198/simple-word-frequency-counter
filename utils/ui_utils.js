@@ -124,7 +124,7 @@ export function handleHidePreviousTranslations(hidePreviousTranslationsCheckbox,
   }
 }
 
-//todo: create word row function to add to the table
+//todo: this needs an input that does not update on change/ timer. and it can handle multiple values
 export function createEmptyWordRow(table) {
   const div = document.createElement('div');
   div.classList.add('word-row');
