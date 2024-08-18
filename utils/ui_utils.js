@@ -132,15 +132,17 @@ export function createEmptyWordRow(table) {
   const row = table.insertRow();
   //create input field for word
   const wordCell = row.insertCell();
-  let wordInput = createInputFieldContainer('', '');
+  const wordInput = document.createElement('input');
   wordCell.appendChild(wordInput);
    
   const countCell = row.insertCell();
-  let countInput = createInputFieldContainer('', '');
+  const countInput = document.createElement('input');
   countCell.appendChild(countInput);
   
   const translationCell = row.insertCell();
-  translationCell.appendChild(createInputFieldContainer('', ''));
+  const translationInput = document.createElement('input');
+  translationCell.appendChild(translationInput);
+
   const categoryCell = row.insertCell();
   categoryCell.appendChild(createDropdown(''));
 
@@ -150,7 +152,7 @@ export function createEmptyWordRow(table) {
   clearWordButton.textContent = 'Clear Word';
 
   addNewWordButton.addEventListener('click', () => {
-    if(translationCell.value && wordInput.value && countInput.value && categoryCell.value) {
+    if(translationInput.value && wordInput.value && countInput.value && categoryCell.value) {
       const newRow = createEmptyWordRow(table);
       table.appendChild(newRow);
 
@@ -161,7 +163,8 @@ export function createEmptyWordRow(table) {
         category: categoryCell.value
       }
       addWordToDictionaryFromNewRow(newWord);
-      
+      console.log(frequency_translation_dictionary);
+      console.log(`new word added ${newWord.word}`);      
     }
   });
 
