@@ -28,7 +28,6 @@ export function createInputFieldContainer(word, translation) {
     let typingTimer;                //timer identifier
     let doneTypingInterval = 5000;  //time in ms (5 seconds)
 
-    //todo: this is not able to handle multiple inputs at once
     //todo: this runs for each keyup event, need to refactor to only run after user stops typing
     clearTimeout(typingTimer);
     if (input.value) {
