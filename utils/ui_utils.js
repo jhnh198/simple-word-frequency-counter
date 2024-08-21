@@ -1,6 +1,10 @@
 import { CATEGORY_LIST } from './text_content/category_list.js';
 import { grammar_guide } from './text_content/grammar_guide.js';
-import { updateCategoryChangeValue, updateInputChangeValue, addWordToDictionaryFromNewRow } from '../script.js';
+import { 
+  updateCategoryChangeValue,
+  updateInputChangeValue,
+  addWordToDictionaryFromNewRow,
+ } from '../script.js';
 
 
 export function showGrammarGuide(dictionaryTabContent) {
@@ -143,7 +147,8 @@ export function createEmptyWordRow(table) {
   translationCell.appendChild(translationInput);
 
   const categoryCell = row.insertCell();
-  categoryCell.appendChild(createDropdown(''));
+  const categoryDropdown = createDropdown('');
+  categoryCell.appendChild(categoryDropdown);
 
   const addNewWordButton = document.createElement('button');
   const clearWordButton = document.createElement('button');
@@ -151,7 +156,7 @@ export function createEmptyWordRow(table) {
   clearWordButton.textContent = 'Clear Word';
 
   addNewWordButton.addEventListener('click', () => {
-    if(translationInput.value && wordInput.value && countInput.value && categoryCell.value) {
+    if(translationInput.value && wordInput.value && countInput.value && categoryDropdown.value) {
       const newRow = createEmptyWordRow(table);
       table.appendChild(newRow);
 
@@ -162,6 +167,7 @@ export function createEmptyWordRow(table) {
         category: categoryCell.value
       }
       addWordToDictionaryFromNewRow(newWord);
+
       console.log(frequency_translation_dictionary);
       console.log(`new word added ${newWord.word}`);      
     }
