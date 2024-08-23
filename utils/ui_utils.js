@@ -127,7 +127,6 @@ export function handleHidePreviousTranslations(hidePreviousTranslationsCheckbox,
   }
 }
 
-//todo: this needs an input that does not update on change/ timer. and it can handle multiple values
 export function createEmptyWordRow(table) {
   const div = document.createElement('div');
   div.classList.add('word-row');
@@ -167,8 +166,6 @@ export function createEmptyWordRow(table) {
         category: categoryCell.value
       }
       addWordToDictionaryFromNewRow(newWord);
-
-      console.log(frequency_translation_dictionary);
       console.log(`new word added ${newWord.word}`);      
     }
   });

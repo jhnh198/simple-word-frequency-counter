@@ -51,10 +51,9 @@ export function updateCategoryChangeValue(word, category){
   frequency_translation_dictionary.allSavedWords[word].category = category;  
 }
 
-export function addWordToDictionaryFromNewRow(word){
-  frequency_translation_dictionary.allSavedWords[word] = {translation: word.translation, category: word.category};
+export function addWordToDictionaryFromNewRow(newWord){
+  frequency_translation_dictionary.allSavedWords[newWord.word] = newWord;
   buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
-
 }
 
 //set up event listeners on load
