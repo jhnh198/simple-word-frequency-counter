@@ -156,17 +156,14 @@ export function createEmptyWordRow(table) {
 
   addNewWordButton.addEventListener('click', () => {
     if(translationInput.value && wordInput.value && countInput.value && categoryDropdown.value) {
-      const newRow = createEmptyWordRow(table);
-      table.appendChild(newRow);
-
       let newWord = {
         word: wordInput.value,
-        translation: translationCell.value,
+        translation: translationInput.value,
         count: countInput.value,
-        category: categoryCell.value
+        category: categoryDropdown.value
       }
-      addWordToDictionaryFromNewRow(newWord);
-      console.log(`new word added ${newWord.word}`);      
+
+      addWordToDictionaryFromNewRow(newWord);     
     }
   });
 
