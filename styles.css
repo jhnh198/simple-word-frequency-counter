@@ -164,6 +164,20 @@ textarea{
   padding-left: 30px;
 }
 
+#word-row{
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+#dictionary-table{
+  display: grid;
+  border-collapse: collapse;
+}
+
 .hidden{
   display: none;
 }
