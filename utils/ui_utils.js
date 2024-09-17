@@ -21,11 +21,11 @@ export function showGrammarGuide(dictionaryTabContent) {
 }
 
 //todo: trim down clear timeout
-export function createInputFieldContainer(word, translation) {
+export function createInputFieldContainer(word, translation, component) {
   const input = document.createElement('input');
   input.type = 'text';
-  input.class = 'translation';
-  input.id = word;
+  input.class = component;
+  input.id = `${component}-${word}`;
   input.value = translation || '';
 
   input.addEventListener('keyup', () => {
@@ -35,7 +35,7 @@ export function createInputFieldContainer(word, translation) {
     //todo: this runs for each keyup event, need to refactor to only run after user stops typing
     clearTimeout(typingTimer);
     if (input.value) {
-      typingTimer = setTimeout(() => updateInputChangeValue(word, input.value), doneTypingInterval);
+      typingTimer = setTimeout(() => updateInputChangeValue(word, input.value, component), doneTypingInterval);
     }
 
   }, 5000);
@@ -70,6 +70,8 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
       countHeaderCell.textContent = 'Count';
       const translationHeaderCell = headerRow.insertCell();
       translationHeaderCell.textContent = 'Translation';
+      const hiragana_readingHeaderCell = headerRow.insertCell();
+      hiragana_readingHeaderCell.textContent = 'Hiragana Reading';
       const categoryHeaderCell = headerRow.insertCell();
       categoryHeaderCell.textContent = 'Category'; 
 
@@ -82,9 +84,13 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
       
           countCell.textContent = dictionary[word].count;
           const translationCell = row.insertCell();
-          const translationCellInput = createInputFieldContainer(word, dictionary[word]?.translation);
+          const translationCellInput = createInputFieldContainer(word, dictionary[word]?.translation, 'translation');
           translationCell.appendChild(translationCellInput);
 
+          const hiraganaReadingCell = row.insertCell();
+          const hiraganaReadingInput = createInputFieldContainer(word, dictionary[word]?.hiragana_reading, 'hiragana_reading');
+          hiraganaReadingCell.appendChild(hiraganaReadingInput);
+          
           const categoryCell = row.insertCell();
           categoryCell.appendChild(createDropdown(word));
         }

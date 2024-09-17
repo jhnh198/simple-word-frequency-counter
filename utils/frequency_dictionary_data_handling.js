@@ -1,6 +1,6 @@
 import { clearErrorMessage, errorMessage } from "./errorHandling.js";
 
-//this is the main dictionary. when script.js loaded it comes from loadLocalStorage
+//todo: make sure functions use correct frequency_translation_dictionary object
 /* let frequency_translation_dictionary = {
     currentTextTokensCount: {},
     allSavedWords: {}
@@ -9,11 +9,10 @@ import { clearErrorMessage, errorMessage } from "./errorHandling.js";
     word: string,
     count: integer,
     translation: string,
+    hiragana_reading: string,
     category: string
 
 }; */
-
-//todo: make separate function that gets input data from words, if no input data, do not change the translation
 
 export async function analyzeText(text, countFrequencyButton, downloadCurrentTranslationButton) {
     if (text === '') {
@@ -67,8 +66,8 @@ export function saveCurrentTokenCountToDictionary(currentTextTokensCount, allSav
     return tempAllSavedWords;
 }
 
-//todo: only use this if we need to update all
-export function saveTranslationInputToDictionary(currentTextTokensCount, allSavedWords) {
+//todo: remove if unnecessary
+/* export function saveTranslationInputToDictionary(currentTextTokensCount, allSavedWords) {
   //this is a problem when trying to bring up all dictionary entries since there is no input element created.
   Object.entries(currentTextTokensCount).forEach(([word]) => {
       const input = document.getElementById(word); 
@@ -83,7 +82,7 @@ export function saveTranslationInputToDictionary(currentTextTokensCount, allSave
   });
 
   return allSavedWords;
-}
+} */
 
 export function saveSingleTranslationInputToDictionary(word, translation, allSavedWords) { 
     if (!allSavedWords[word]) {
@@ -116,20 +115,31 @@ export function handleSingleCountInputToDictionary(word, count, allSavedWords) {
     return allSavedWords;
 }
 
+export function handleSingleHiraganaReadingInputToDictionary(word, hiragana_reading, allSavedWords) {
+    if (!allSavedWords[word]) {
+        allSavedWords[word] = { count: 1, translation: '', hiragana_reading: hiragana_reading, category: '名詞'};
+    } else {
+        allSavedWords[word].hiragana_reading = hiragana_reading;
+    }
+
+    return allSavedWords;
+}
+
 //this will get tokens from the current text, check if in the dictionary and return current text tokens
 export function handleCurrentTokenDictionary(wordTokenFrequencyCount, allSavedWords) {
     const tempCurrentTextTokens = {};
     Object.entries(wordTokenFrequencyCount).forEach(([word, count]) => {
         if (!allSavedWords[word]) {
-          tempCurrentTextTokens[word] = { count: count, translation: '', category: '名詞'};
+          tempCurrentTextTokens[word] = { count: count, translation: '', hiragana_reading: '', category: '名詞'};
         } else {
-          tempCurrentTextTokens[word] = { count: count, translation: allSavedWords[word]?.translation, category: allSavedWords[word]?.category};
+          tempCurrentTextTokens[word] = { count: count, translation: allSavedWords[word]?.translation, hiragana_reading: allSavedWords[word]?.hiragana_reading, category: allSavedWords[word]?.category};
         }
     });
     return tempCurrentTextTokens;
 }
 
-export function loadLocalStorage() {
+//todo: local storage shows an object. name has changed
+export function loadLocalStorage(allSavedWords) {
   let loadedAllSavedWords = {};
   if (localStorage.getItem('dictionary_data')) {
     loadedAllSavedWords = localStorage.getItem('dictionary_data', allSavedWords);
@@ -138,6 +148,7 @@ export function loadLocalStorage() {
   return loadedAllSavedWords;
 }
 
+//
 export function loadDictionaryFromCSV(file) {
     const reader = new FileReader();
     reader.onload = function(e) {
@@ -172,7 +183,7 @@ export function downloadFullDictionary(allSavedWords) {
 }
   
 export function saveToCSV(allSavedWords) {
-    const header = 'Word,Count,Translation,Category\n';
+    const header = 'Word,Count,Translation,Hiragana Reading,Category\n';
     const csv = Object.entries(allSavedWords).map(([word, data]) => {
         return `${word},${data.count},${data.translation},${data.category}`;
     }).join('\n');
@@ -187,6 +198,7 @@ export function saveToCSV(allSavedWords) {
 }
 
 export function handleDownloadCurrentTranslation(wordTokenFrequencyCount){
+  console.log(wordTokenFrequencyCount);
     if(Object.keys(wordTokenFrequencyCount).length === 0) {
         errorMessage('No Words to Download', 'downloadCurrentTranslationButton');
         return;

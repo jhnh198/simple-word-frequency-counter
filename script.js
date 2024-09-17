@@ -50,6 +50,7 @@ let text = `今見た笑顔が 最後の笑顔かもしれない
 ダイスキでダイキライ
 ダイスキでダイキライ
 `;
+
 let inputText = document.getElementById('inputText');
 inputText.value = text;
 
@@ -58,8 +59,9 @@ if(frequency_translation_dictionary.allSavedWords.entries !== 0) {
   buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
 }
 
-export function updateInputChangeValue(word, translation){
-  frequency_translation_dictionary.allSavedWords[word].translation = translation;
+//todo: this will get an id
+export function updateInputChangeValue(word, value, component){
+  frequency_translation_dictionary.allSavedWords[word][component] = value;
 }
 
 export function updateCategoryChangeValue(word, category){
@@ -103,11 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
     //this saves current entries to local storage for the frequency translation dictionary
     document.getElementById('saveTranslationLocalButton').addEventListener('click', async () => { 
       saveToLocalStorage(frequency_translation_dictionary.allSavedWords);
-      
     });
 
     document.getElementById('frequency-dictionary-button').addEventListener('click', async() => {
-        
         buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
     });
 
