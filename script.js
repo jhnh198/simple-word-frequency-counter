@@ -59,9 +59,15 @@ if(frequency_translation_dictionary.allSavedWords.entries !== 0) {
   buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
 }
 
-//todo: this will get an id
+//todo: change to current dictionary and update all from current
+//todo: this does not update hiragana reading
 export function updateInputChangeValue(word, value, component){
-  frequency_translation_dictionary.allSavedWords[word][component] = value;
+  if(component === 'translation'){
+    frequency_translation_dictionary.currentTextTokensCount[word].translation = value;
+  } else if(component === 'hiragana_reading'){
+    frequency_translation_dictionary.currentTextTokensCount[word].hiragana_reading = value;
+  }
+  frequency_translation_dictionary.allSavedWords[word] = frequency_translation_dictionary.currentTextTokensCount[word];
 }
 
 export function updateCategoryChangeValue(word, category){
@@ -113,7 +119,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('frequency-dictionary-upload').addEventListener('change', (e) => {
         handleFrequencyDictionaryUpload(e.target.files[0]);
-
         buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
     });
 
@@ -121,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
         saveToCSV(frequency_translation_dictionary.allSavedWords);
     });
 
+    //todo: this is not getting the correct input as input updates all saved words and not current translation words
     document.getElementById(`downloadCurrentTranslationButton`).addEventListener('click', () => {
         handleDownloadCurrentTranslation(frequency_translation_dictionary.currentTextTokensCount);
     });

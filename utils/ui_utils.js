@@ -29,16 +29,19 @@ export function createInputFieldContainer(word, translation, component) {
   input.value = translation || '';
 
   input.addEventListener('keyup', () => {
-    let typingTimer;                //timer identifier
-    let doneTypingInterval = 5000;  //time in ms (5 seconds)
+    //let typingTimer;                //timer identifier
+    //let doneTypingInterval = 5000;  //time in ms (5 seconds)
+    updateInputChangeValue(word, input.value, component);
+  });
 
     //todo: this runs for each keyup event, need to refactor to only run after user stops typing
+    /*
     clearTimeout(typingTimer);
     if (input.value) {
-      typingTimer = setTimeout(() => updateInputChangeValue(word, input.value, component), doneTypingInterval);
+      typingTimer = setTimeout(() => , doneTypingInterval);
     }
 
-  }, 5000);
+  }, 5000); */
   return input;
 }
 
