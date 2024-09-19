@@ -26,22 +26,22 @@ export function createInputFieldContainer(word, translation, component) {
   input.class = component;
   input.id = `${component}-${word}`;
   input.value = translation || '';
+
   let typingTimer;                //timer identifier
   let doneTypingInterval = 5000;  //time in ms (5 seconds)
 
-  input.addEventListener('keyup', () => {
-    //updateInputChangeValue(word, input.value, component);
-
-    //set a timer to save input after 5 seconds of not typing
-    typingTimer = setTimeout(() => {
-      console.log('done typing');
-      updateInputChangeValue(word, input.value, component);
-    }, doneTypingInterval);
-  });
-
-  input.addEventListener('keydown', () => {
+  function handleTyping() {
+    console.log('typing');
     clearTimeout(typingTimer);
-  });
+    typingTimer = setTimeout(doneTyping, doneTypingInterval);
+  }
+
+  function doneTyping() {
+    console.log('done typing');
+    updateInputChangeValue(word, input.value, component);
+  }
+
+  input.addEventListener('keyup', handleTyping);
 
   return input;
 }
