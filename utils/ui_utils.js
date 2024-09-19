@@ -20,28 +20,29 @@ export function showGrammarGuide(dictionaryTabContent) {
   dictionaryTabContent.appendChild(grammarGuideElement);
 }
 
-//todo: trim down clear timeout
 export function createInputFieldContainer(word, translation, component) {
   const input = document.createElement('input');
   input.type = 'text';
   input.class = component;
   input.id = `${component}-${word}`;
   input.value = translation || '';
+  let typingTimer;                //timer identifier
+  let doneTypingInterval = 5000;  //time in ms (5 seconds)
 
   input.addEventListener('keyup', () => {
-    //let typingTimer;                //timer identifier
-    //let doneTypingInterval = 5000;  //time in ms (5 seconds)
-    updateInputChangeValue(word, input.value, component);
+    //updateInputChangeValue(word, input.value, component);
+
+    //set a timer to save input after 5 seconds of not typing
+    typingTimer = setTimeout(() => {
+      console.log('done typing');
+      updateInputChangeValue(word, input.value, component);
+    }, doneTypingInterval);
   });
 
-    //todo: this runs for each keyup event, need to refactor to only run after user stops typing
-    /*
+  input.addEventListener('keydown', () => {
     clearTimeout(typingTimer);
-    if (input.value) {
-      typingTimer = setTimeout(() => , doneTypingInterval);
-    }
+  });
 
-  }, 5000); */
   return input;
 }
 

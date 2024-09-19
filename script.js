@@ -59,9 +59,9 @@ if(frequency_translation_dictionary.allSavedWords.entries !== 0) {
   buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
 }
 
-//todo: change to current dictionary and update all from current
-//todo: this does not update hiragana reading
+//todo: change to ignore count and only update the new word
 export function updateInputChangeValue(word, value, component){
+  console.log('update input change value');
   if(component === 'translation'){
     frequency_translation_dictionary.currentTextTokensCount[word].translation = value;
   } else if(component === 'hiragana_reading'){
