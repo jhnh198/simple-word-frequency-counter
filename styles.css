@@ -178,6 +178,10 @@ textarea{
   border-collapse: collapse;
 }
 
+#hiragana-reading{
+  -ms-ime-mode: active;
+}
+
 .hidden{
   display: none;
 }

@@ -20,15 +20,23 @@ export function showGrammarGuide(dictionaryTabContent) {
   dictionaryTabContent.appendChild(grammarGuideElement);
 }
 
-export function createInputFieldContainer(word, translation, component) {
+//todo: set hiragana input to kana by default
+export function createInputFieldContainer(word, translation, component, language) {
   const input = document.createElement('input');
   input.type = 'text';
   input.class = component;
   input.id = `${component}-${word}`;
   input.value = translation || '';
 
-  let typingTimer;                //timer identifier
-  let doneTypingInterval = 5000;  //time in ms (5 seconds)
+  input.setAttribute('lang', language);
+  
+
+  if (language === 'ja') {
+    wanakana.bind(input, /* options */);
+  }  
+
+  let typingTimer;
+  let doneTypingInterval = 5000;
 
   function handleTyping() {
     console.log('typing');
@@ -88,11 +96,11 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
       
           countCell.textContent = dictionary[word].count;
           const translationCell = row.insertCell();
-          const translationCellInput = createInputFieldContainer(word, dictionary[word]?.translation, 'translation');
+          const translationCellInput = createInputFieldContainer(word, dictionary[word]?.translation, 'translation', 'en');
           translationCell.appendChild(translationCellInput);
 
           const hiraganaReadingCell = row.insertCell();
-          const hiraganaReadingInput = createInputFieldContainer(word, dictionary[word]?.hiragana_reading, 'hiragana_reading');
+          const hiraganaReadingInput = createInputFieldContainer(word, dictionary[word]?.hiragana_reading, 'hiragana_reading', 'ja');
           hiraganaReadingCell.appendChild(hiraganaReadingInput);
           
           const categoryCell = row.insertCell();
