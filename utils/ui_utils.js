@@ -20,7 +20,6 @@ export function showGrammarGuide(dictionaryTabContent) {
   dictionaryTabContent.appendChild(grammarGuideElement);
 }
 
-//todo: set hiragana input to kana by default
 export function createInputFieldContainer(word, translation, component, language) {
   const input = document.createElement('input');
   input.type = 'text';
@@ -28,8 +27,7 @@ export function createInputFieldContainer(word, translation, component, language
   input.id = `${component}-${word}`;
   input.value = translation || '';
 
-  input.setAttribute('lang', language);
-  
+  input.setAttribute('lang', language);  
 
   if (language === 'ja') {
     wanakana.bind(input, /* options */);
