@@ -126,7 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
         saveToCSV(frequency_translation_dictionary.allSavedWords);
     });
 
-    //todo: this is not getting the correct input as input updates all saved words and not current translation words
     document.getElementById(`downloadCurrentTranslationButton`).addEventListener('click', () => {
         handleDownloadCurrentTranslation(frequency_translation_dictionary.currentTextTokensCount);
     });
