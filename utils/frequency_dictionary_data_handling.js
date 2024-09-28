@@ -66,24 +66,6 @@ export function saveCurrentTokenCountToDictionary(currentTextTokensCount, allSav
     return tempAllSavedWords;
 }
 
-//todo: remove if unnecessary
-/* export function saveTranslationInputToDictionary(currentTextTokensCount, allSavedWords) {
-  //this is a problem when trying to bring up all dictionary entries since there is no input element created.
-  Object.entries(currentTextTokensCount).forEach(([word]) => {
-      const input = document.getElementById(word); 
-      const category = document.getElementById(`${word}-category`);  
-      if (!allSavedWords[word]) {
-          allSavedWords[word] = { count: currentTextTokensCount[word].count, translation: input.value, category: category.value};
-      } else {
-          allSavedWords[word].count = parseInt(currentTextTokensCount[word].count || 0) + parseInt(allSavedWords[word].count || 0);
-          allSavedWords[word].translation = input.value ? input.value : allSavedWords[word].translation;
-          allSavedWords[word].category = category.value;
-      }
-  });
-
-  return allSavedWords;
-} */
-
 export function saveSingleTranslationInputToDictionary(word, translation, allSavedWords) { 
     if (!allSavedWords[word]) {
         allSavedWords[word] = { count: 1, translation: translation, category: '名詞'};
