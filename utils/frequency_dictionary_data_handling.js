@@ -141,6 +141,8 @@ export function loadDictionaryFromCSV(file) {
             frequency_translation_dictionary[allSavedWords][word] = { count: count, translation: translation, category: category};
         });
     };
+
+    console.log(file);
     reader.readAsText(file);
 }
 
@@ -151,6 +153,7 @@ export function loadDictionaryFromJSON(file) {
         const data = JSON.parse(text);
         frequency_translation_dictionary = data;
     };
+    console.log(file);
     reader.readAsText(file);
 }
 
@@ -210,9 +213,7 @@ export function handleDownloadCurrentTranslation(wordTokenFrequencyCount){
     a.click();
 }
 
-export function handleFrequencyDictionaryUpload(e){
-    let file = document.getElementById('frequency-dictionary-upload').files[0];
-
+export function handleFrequencyDictionaryUpload(file){
     //this file decision can be put in the loader
     if (file.name.endsWith('.csv')) {
         loadDictionaryFromCSV(file);
