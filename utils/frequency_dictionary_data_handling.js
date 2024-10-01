@@ -121,12 +121,11 @@ export function handleCurrentTokenDictionary(wordTokenFrequencyCount, allSavedWo
 }
 
 //todo: local storage shows an object. name has changed
-export function loadLocalStorage(allSavedWords) {
+export function loadLocalStorage() {
   let loadedAllSavedWords = {};
   if (localStorage.getItem('dictionary_data')) {
-    loadedAllSavedWords = localStorage.getItem('dictionary_data', allSavedWords);
+    loadedAllSavedWords = JSON.parse(localStorage.getItem('dictionary_data'));
   }
-
   return loadedAllSavedWords;
 }
 
@@ -226,5 +225,6 @@ export function handleFrequencyDictionaryUpload(file){
 }
 
 export function saveToLocalStorage(allSavedWords) {
-  localStorage.setItem('dictionary_data', allSavedWords); // Save to local storage
+  const allSavedWordsString = JSON.stringify(allSavedWords);
+  localStorage.setItem('dictionary_data', allSavedWordsString); // Save to local storage
 }
