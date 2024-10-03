@@ -8,7 +8,7 @@ import {
     handleFrequencyDictionaryUpload,
     handleCurrentTokenDictionary,
     saveToCSV,
-    saveToLocalStorage
+    saveToLocalStorage,
 } from './utils/frequency_dictionary_data_handling.js';
 
 import {
@@ -107,7 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
         buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount, dictionaryTabContent);
     });
 
-    //todo: save translation local runs but does not produce correct output. the word count isn't being handled and all saved words is not being updated to build the table
     //this saves current entries to local storage for the frequency translation dictionary
     document.getElementById('saveTranslationLocalButton').addEventListener('click', async () => { 
       console.log(frequency_translation_dictionary);
@@ -119,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('frequency-dictionary-upload').addEventListener('change', (e) => {
-        handleFrequencyDictionaryUpload(e.target.files[0]);
+        frequency_translation_dictionary.allSavedWords = handleFrequencyDictionaryUpload(e.target.files[0]);
         buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
     });
 
