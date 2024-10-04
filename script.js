@@ -1,10 +1,8 @@
 //import { translateText } from './utils/translation.js';
 import { 
     analyzeText,
-    handleDownloadCurrentTranslation,
     loadLocalStorage,
     saveCurrentTokenCountToDictionary,
-    downloadFullDictionary,
     handleFrequencyDictionaryUpload,
     handleCurrentTokenDictionary,
     saveToCSV,
@@ -124,16 +122,12 @@ document.addEventListener('DOMContentLoaded', () => {
         buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
     });
 
-    document.getElementById('downloadFullTranslationFrequencyDictionaryCSVButton').addEventListener('click', () => {
-        saveToCSV(frequency_translation_dictionary.allSavedWords);
-    });
-
     document.getElementById(`downloadCurrentTranslationButton`).addEventListener('click', () => {
-        downloadCSVFromDictionary(frequency_translation_dictionary.currentTextTokensCount, titleTextContent?.value);
+      downloadCSVFromDictionary(frequency_translation_dictionary.currentTextTokensCount, titleTextContent?.value);
     });
     
     document.getElementById('downloadFullTranslationFrequencyDictionaryButton').addEventListener('click', () => {
-        downloadFullDictionary(frequency_translation_dictionary.allSavedWords);
+      downloadCSVFromDictionary(frequency_translation_dictionary.allSavedWords);
     });
 
     //translation event listeners

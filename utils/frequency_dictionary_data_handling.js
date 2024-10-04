@@ -151,32 +151,7 @@ export function loadDictionaryFromJSON() {
   };
 }
 
-export function downloadFullDictionary(allSavedWords) {
-    const blob = new Blob([JSON.stringify(allSavedWords, null, "\t")], { type: 'text/plain' });
-  
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `frequency_translation_dictionary.txt`;
-    a.click();
-}
-  
-export function saveToCSV(allSavedWords) {
-    const header = 'Word,Count,Translation,Hiragana Reading,Category\n';
-    const csv = Object.entries(allSavedWords).map(([word, data]) => {
-        return `${word},${data.count},${data.translation},${data.hiragana_reading},${data.category}`;
-    }).join('\n');
-  
-    const blob = new Blob([header, csv], { type: 'text/csv' });
-  
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `frequency_translation_dictionary.csv`;
-    a.click();
-}
-
-//function to download the current translation to a csv
+//todo: get remaining output with csv
 export function downloadCSVFromDictionary(dictionary, filename = 'translation.csv') {
   const header = 'Word,Count,Translation,Hiragana Reading,Category\n';
   const csv = Object.entries(dictionary).map(([word, data]) => {
@@ -190,44 +165,6 @@ export function downloadCSVFromDictionary(dictionary, filename = 'translation.cs
   a.download = filename;
   a.click();
   URL.revokeObjectURL(url);
-}
-
-//todo: get remaining output with csv
-export function handleDownloadCurrentTranslation(wordTokenFrequencyCount){
-  console.log(wordTokenFrequencyCount);
-    if(Object.keys(wordTokenFrequencyCount).length === 0) {
-        errorMessage('No Words to Download', 'downloadCurrentTranslationButton');
-        return;
-    }
-    let title = document.getElementById('title').value || 'translation';
-    let originalText = document.getElementById('inputText').value;
-    let originalTextArray = originalText.split('\n');
-    originalTextArray = originalTextArray.map(line => line.trim());
-    
-    let translatedText = document.getElementById('free-translation-text-area').value || '';
-    let translatedTextArray = translatedText.split('\n');
-    translatedTextArray = translatedTextArray.map(line => line.trim());
-
-    let output = {
-        title: title,
-        originalText: originalTextArray,
-        translatedText: translatedText,
-        words: wordTokenFrequencyCount
-    };
-
-    //make csv for download
-    const header = 'Word,Count,Translation,Hiragana Reading,Category\n';
-    const csv = Object.entries(wordTokenFrequencyCount).map(([word, data]) => {
-        return `${word},${data.count},${data.translation},${data.hiragana_reading},${data.category}`;
-    }).join('\n');
-
-    const blob = new Blob([header, csv], { type: 'text/csv' });
-    
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = title;
-    a.click();
 }
 
 export function handleFrequencyDictionaryUpload(file){
