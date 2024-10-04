@@ -176,13 +176,30 @@ export function saveToCSV(allSavedWords) {
     a.click();
 }
 
+//function to download the current translation to a csv
+export function downloadCSVFromDictionary(dictionary, filename = 'translation.csv') {
+  const header = 'Word,Count,Translation,Hiragana Reading,Category\n';
+  const csv = Object.entries(dictionary).map(([word, data]) => {
+    return `${word},${data.count},${data.translation},${data.hiragana_reading},${data.category}`;
+  }).join('\n');
+
+  const blob = new Blob([header + csv], { type: 'text/csv' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+//todo: get remaining output with csv
 export function handleDownloadCurrentTranslation(wordTokenFrequencyCount){
   console.log(wordTokenFrequencyCount);
     if(Object.keys(wordTokenFrequencyCount).length === 0) {
         errorMessage('No Words to Download', 'downloadCurrentTranslationButton');
         return;
     }
-    let title = document.getElementById('title').value || 'translation.txt';
+    let title = document.getElementById('title').value || 'translation';
     let originalText = document.getElementById('inputText').value;
     let originalTextArray = originalText.split('\n');
     originalTextArray = originalTextArray.map(line => line.trim());
@@ -197,9 +214,15 @@ export function handleDownloadCurrentTranslation(wordTokenFrequencyCount){
         translatedText: translatedText,
         words: wordTokenFrequencyCount
     };
-    
-    const blob = new Blob([JSON.stringify(output, null, "\t")], { type: 'text/plain' });
 
+    //make csv for download
+    const header = 'Word,Count,Translation,Hiragana Reading,Category\n';
+    const csv = Object.entries(wordTokenFrequencyCount).map(([word, data]) => {
+        return `${word},${data.count},${data.translation},${data.hiragana_reading},${data.category}`;
+    }).join('\n');
+
+    const blob = new Blob([header, csv], { type: 'text/csv' });
+    
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;

@@ -9,6 +9,7 @@ import {
     handleCurrentTokenDictionary,
     saveToCSV,
     saveToLocalStorage,
+    downloadCSVFromDictionary,
 } from './utils/frequency_dictionary_data_handling.js';
 
 import {
@@ -20,6 +21,7 @@ import {
 const countFrequencyButton = document.getElementById('countFrequencyButton');
 const downloadCurrentTranslationButton = document.getElementById('downloadCurrentTranslationButton');
 const dictionaryTabContent = document.getElementById('dictionary-tab-content');
+const titleTextContent = document.getElementById('title');
 
 let text = `今見た笑顔が 最後の笑顔かもしれない
 例えば別の人と 会話をする横顔も尊い一秒
@@ -127,7 +129,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById(`downloadCurrentTranslationButton`).addEventListener('click', () => {
-        handleDownloadCurrentTranslation(frequency_translation_dictionary.currentTextTokensCount);
+        downloadCSVFromDictionary(frequency_translation_dictionary.currentTextTokensCount, titleTextContent?.value);
     });
     
     document.getElementById('downloadFullTranslationFrequencyDictionaryButton').addEventListener('click', () => {
