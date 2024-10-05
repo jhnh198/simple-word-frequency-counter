@@ -20,34 +20,38 @@ const downloadCurrentTranslationButton = document.getElementById('downloadCurren
 const dictionaryTabContent = document.getElementById('dictionary-tab-content');
 const titleTextContent = document.getElementById('title');
 
-let text = `今見た笑顔が 最後の笑顔かもしれない
-例えば別の人と 会話をする横顔も尊い一秒
-羽よりも命が 軽くなる世界で
-君は私の生きる意味 だから 出逢えた
-切なさは この胸のAXIA
-片道だけの 微熱で翔ける空
-すぐ消える 無慈悲な虹になる
-悠遠の君が
-ダイスキでダイキライ
-一人で産まれて 誰もが一人で死にゆく
-それでも私達は 独りきりじゃ生きられない
-慕い合う周波数
-疼く傷口へと 愛しさがしみる
-言えないままの一言が 瞳溢れた
-涙さえ 明日照らすAXIA
-儚い粒子で 繋げてゆく鼓動
-陽炎に 浮かぶ夢のように
-永遠のフリをした薄情な情熱
-時の舟に乗って 眠る日が来ても
-たった一人思う光 ずっと絶やさない
-もう君を思い出したりしない
-だって一度も忘れることないから
-切なさは この胸のAXIA
-片道だけの 微熱で駆ける空
-私から愛を盗む君が 絶望するくらい
-報われなくても（遙か遠くても）
-ダイスキでダイキライ
-ダイスキでダイキライ
+let text = `追いつけない君はいつでも
+この場所から何を見てた
+手に入れれば失うものたち数えて
+涙も隠していたね
+真っ直ぐすぎるその瞳は
+この世界を斜めに見ていた
+
+夢は君が一人描くんじゃなく
+見えない風が届けてくれる
+高く遠く飛べる気がしたら
+繋ぐこの手離さずにいて
+
+言葉だけじゃ伝わらないよ
+この胸にある真実たち
+手に入れても消せはしない虚しさを
+笑顔で隠しているの
+いつの間にか近づきすぎた
+あの頃のように歌は聞こえない
+
+愛しき君よ今どこにいるの
+色も意味もなくした世界
+高く遠く飛べるはずなのに
+見えない空に翼ちぎれる
+
+夢は君が一人描くんじゃなく
+見えない風が届けてくれる
+高く遠く飛べる気がしたら
+繋ぐこの手離さずにいて
+
+(夢は君が見えない風が)
+
+I know your blues.
 `;
 
 let inputText = document.getElementById('inputText');
@@ -116,19 +120,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('frequency-dictionary-upload').addEventListener('change', (e) => {
-      const reader = new FileReader(e.target.files[0]);
+      const reader = new FileReader();
+      reader.readAsText(e.target.files[0]);
+      const dictionary = {};
 
       reader.onload = function(e) {
-        const text = e.target.result;
+        const text = reader.result;
         const rows = text.split('\n');
-        const dictionary = {};
+
         rows.forEach(row => {
           const [word, count, translation, hiragana_reading, category] = row.split(',');
           dictionary[word] = { count:count, translation: translation, hiragana_reading: hiragana_reading, category: category };
         });
-        frequency_translation_dictionary.allSavedWords = dictionary;
+        buildWordFrequencyTable(dictionary, dictionaryTabContent);
       };
-      buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
+      frequency_translation_dictionary.allSavedWords = dictionary;
     });
 
     document.getElementById(`downloadCurrentTranslationButton`).addEventListener('click', () => {
