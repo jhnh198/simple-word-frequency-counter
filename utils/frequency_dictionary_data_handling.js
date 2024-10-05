@@ -130,15 +130,19 @@ export function loadLocalStorage() {
 
 //
 export function loadDictionaryFromCSV(file) {
-  const reader = new FileReader(file);
-  let frequency_translation_dictionary = {};
-  console.log(reader.readAsText(file));
-
-  const rows = text.split('\n');
-  rows.forEach(row => {
+  const reader = new FileReader();
+  let frequency_translation_dictionary = {}; 
+  reader.onload = function(e) {
+    const text = e.target.result;
+    const rows = text.split('\n');
+    const dictionary = {};
+    rows.forEach(row => {
       const [word, count, translation, hiragana_reading, category] = row.split(',');
-      frequency_translation_dictionary[word] = ({ count: count, translation: translation, hiragana_reading: hiragana_reading, category: category});
-  });
+      dictionary[word] = { count, translation, hiragana_reading, category };
+    });
+    frequency_translation_dictionary = dictionary;
+  };
+  reader.readAsText(file);
   return frequency_translation_dictionary;
 }
 

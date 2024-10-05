@@ -5,7 +5,6 @@ import {
     saveCurrentTokenCountToDictionary,
     handleFrequencyDictionaryUpload,
     handleCurrentTokenDictionary,
-    saveToCSV,
     saveToLocalStorage,
     downloadCSVFromDictionary,
 } from './utils/frequency_dictionary_data_handling.js';
@@ -109,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //this saves current entries to local storage for the frequency translation dictionary
     document.getElementById('saveTranslationLocalButton').addEventListener('click', async () => { 
-      console.log(frequency_translation_dictionary);
       saveToLocalStorage(frequency_translation_dictionary.allSavedWords);
     });
 
@@ -118,8 +116,19 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('frequency-dictionary-upload').addEventListener('change', (e) => {
-        frequency_translation_dictionary.allSavedWords = handleFrequencyDictionaryUpload(e.target.files[0]);
-        buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
+      const reader = new FileReader(e.target.files[0]);
+
+      reader.onload = function(e) {
+        const text = e.target.result;
+        const rows = text.split('\n');
+        const dictionary = {};
+        rows.forEach(row => {
+          const [word, count, translation, hiragana_reading, category] = row.split(',');
+          dictionary[word] = { count:count, translation: translation, hiragana_reading: hiragana_reading, category: category };
+        });
+        frequency_translation_dictionary.allSavedWords = dictionary;
+      };
+      buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
     });
 
     document.getElementById(`downloadCurrentTranslationButton`).addEventListener('click', () => {
