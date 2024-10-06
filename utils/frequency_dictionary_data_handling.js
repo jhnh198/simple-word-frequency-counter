@@ -1,6 +1,5 @@
 import { clearErrorMessage, errorMessage } from "./errorHandling.js";
 
-//todo: make sure functions use correct frequency_translation_dictionary object
 /* let frequency_translation_dictionary = {
     currentTextTokensCount: {},
     allSavedWords: {}
@@ -143,16 +142,8 @@ export function loadDictionaryFromCSV(file) {
     frequency_translation_dictionary = dictionary;
   };
   reader.readAsText(file);
-  return frequency_translation_dictionary;
-}
 
-export function loadDictionaryFromJSON() {
-  const reader = new FileReader();
-  reader.onload = function(e) {
-      const text = e.target.result;
-      const data = JSON.parse(text);
-      frequency_translation_dictionary = data;
-  };
+  return frequency_translation_dictionary;
 }
 
 //todo: get remaining output with csv
@@ -169,18 +160,6 @@ export function downloadCSVFromDictionary(dictionary, filename = 'translation.cs
   a.download = filename;
   a.click();
   URL.revokeObjectURL(url);
-}
-
-export function handleFrequencyDictionaryUpload(file){
-    //this file decision can be put in the loader
-    if (file.name.endsWith('.csv')) {
-        loadDictionaryFromCSV(file);
-    } else if (file.name.endsWith('.json')) {
-        loadDictionaryFromJSON(file);
-    } else {
-        console.log('Invalid file type');
-        return;
-    }
 }
 
 export function saveToLocalStorage(allSavedWords) {
