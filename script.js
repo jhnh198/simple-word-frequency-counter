@@ -1,9 +1,7 @@
-//import { translateText } from './utils/translation.js';
 import { 
     analyzeText,
     loadLocalStorage,
     saveCurrentTokenCountToDictionary,
-    handleFrequencyDictionaryUpload,
     handleCurrentTokenDictionary,
     saveToLocalStorage,
     downloadCSVFromDictionary,
