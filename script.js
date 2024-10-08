@@ -133,6 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
         buildWordFrequencyTable(dictionary, dictionaryTabContent);
       };
       frequency_translation_dictionary.allSavedWords = dictionary;
+      frequency_translation_dictionary.currentTextTokensCount = dictionary;
     });
 
     document.getElementById(`downloadCurrentTranslationButton`).addEventListener('click', () => {

@@ -139,6 +139,7 @@ export function loadDictionaryFromCSV(file) {
       const [word, count, translation, hiragana_reading, category] = row.split(',');
       dictionary[word] = { count, translation, hiragana_reading, category };
     });
+    delete dictionary['word'];
     frequency_translation_dictionary = dictionary;
   };
   reader.readAsText(file);
