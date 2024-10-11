@@ -127,7 +127,6 @@ export function loadLocalStorage() {
   return loadedAllSavedWords;
 }
 
-//
 export function loadDictionaryFromCSV(file) {
   const reader = new FileReader();
   let frequency_translation_dictionary = {}; 
