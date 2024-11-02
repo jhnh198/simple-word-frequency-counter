@@ -103,6 +103,15 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
           
           const categoryCell = row.insertCell();
           categoryCell.appendChild(createDropdown(word));
+
+          const deleteButton = document.createElement('button');
+          deleteButton.textContent = 'Delete';
+          deleteButton.addEventListener('click', () => {
+            delete dictionary[word];
+            buildWordFrequencyTable(dictionary, dictionaryTabContent);
+          });
+          categoryCell.appendChild(deleteButton);
+          
         }
         });
       }
