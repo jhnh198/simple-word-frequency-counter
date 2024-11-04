@@ -4,8 +4,7 @@ import {
   updateCategoryChangeValue,
   updateInputChangeValue,
   addWordToDictionaryFromNewRow,
- } from '../script.js';
-
+} from '../script.js';
 
 export function showGrammarGuide(dictionaryTabContent) {
   let grammarGuideElement = document.createElement('div');
@@ -157,6 +156,7 @@ export function createEmptyWordRow(table) {
   div.classList.add('word-row');
   
   const row = table.insertRow();
+  
   //create input field for word
   const wordCell = row.insertCell();
   const wordInput = document.createElement('input');
