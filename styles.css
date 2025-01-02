@@ -22,37 +22,19 @@ body{
 
 /* background colors */
 #container > .header {
-  opacity: 0;
+  opacity: 1;
 }
-#container > .main-content {
-  background:#f387a4;
-  opacity: 0.7;
-}
-#container > .left-sidebar {
-  background:#72c2f1;
-  opacity: 0.7;
-}
-#container > .right-sidebar  {
-  background:#f387a4;
-  opacity: 0.7;
-}
-#container> .footer {background:#72c2f1}
-
 
 /* desktop breakpoint */
 @media (min-width:1024px) {
   #container > .header {
       order:-2; /* header first */
   }
-  #container > .left-sidebar {
-      /* left sidebar second (first in second row) */
-      order:-1; 
-  }
   #container > .main-content {
-      width:50%;
+      width:55%;
   }
   #container > .right-sidebar {
-      width:50%;
+      width:45%;
   }
 }
 
@@ -93,12 +75,6 @@ button:hover{
   background-color: #da904b;
 }
 
-#left-sidebar-tabs{
-  background-color: #f1f1f1;
-  border-radius: 5px;
-  box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
-}
-
 .error{
   border: 1px solid red;
   font-size: 20px;
@@ -112,14 +88,18 @@ button:hover{
   align-items: center;
 }
 
-#left-sidebar-tabs{
+#right-sidebar-tabs{
   display: grid;
   grid-template-columns: auto auto;
   justify-items: stretch;
   align-items: stretch;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+  padding: 10px;
 }
 
-#left-sidebar-tabs button{
+#right-sidebar-tabs button{
   padding: 10px;
   font-size: 20px;
   border: none;
@@ -203,6 +183,7 @@ input[type="file"] {
 #dictionary-table{
   display: grid;
   border-collapse: collapse;
+  padding: 10px;
 }
 
 #hiragana-reading{
@@ -211,4 +192,10 @@ input[type="file"] {
 
 .hidden{
   display: none;
+}
+
+.file-upload-label{
+  font-size: 20px;
+  justify-self: center;
+  padding: 10px;
 }

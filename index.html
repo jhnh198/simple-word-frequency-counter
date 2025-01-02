@@ -1,58 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Japanese Text Analyzer</title>
-    <script defer src="./tiny-segmenter/dist/tiny-segmenter-0.2.0.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <link rel="stylesheet" href="styles.css">
-    <script defer type="module" src="script.js"></script>
-    <script defer src="https://unpkg.com/wanakana"></script>
-    <!-- <script defer src="./utils/wanakana.min.js.map"></script> -->
-    
+  <meta charset="UTF-8">
+  <title>Japanese Text Analyzer</title>
+  <script defer src="./tiny-segmenter/dist/tiny-segmenter-0.2.0.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <script defer type="module" src="script.js"></script>
+  <script defer src="https://unpkg.com/wanakana"></script>
+  <!-- <script defer src="./utils/wanakana.min.js.map"></script> -->
+  
 </head>
 <body>
-   
-    <div id="container"> 
-        <header class="header">
-            <h1>Japanese Text Analyzer</h1>
-        </header>
-        <main class="main-content">
-            <div id="input">
-                <div class="content-header-controls">
-                    <input type="text" id="title" placeholder="Enter a Title">
-                    <div>
-                        <input type="checkbox" id="hidePreviousTranslationsCheckbox">
-                        <label for="hidePreviousTranslationsCheckbox" id="hidePreviousTranslationsLabel">Clear/Show Previous Translations</label>
-                    </div>
+<div id="container"> 
+  <header class="header">
+    <h1>Japanese Text Analyzer</h1>
+    </header>
+      <main class="main-content">
+          <div id="input">
+              <div class="content-header-controls">
+                  <input type="text" id="title" placeholder="Enter a Title">
+                  <div>
+                      <input type="checkbox" id="hidePreviousTranslationsCheckbox">
+                      <label for="hidePreviousTranslationsCheckbox" id="hidePreviousTranslationsLabel">Clear/Show Previous Translations</label>
+                  </div>
+              </div>
+                <div id="textarea-div">
+                  <textarea id="inputText" rows="35" cols="50">
+                  </textarea>
+                  <textarea id="free-translation-text-area" rows="35" cols="50"></textarea>
                 </div>
-                 <div id="textarea-div">
-                    <textarea id="inputText" rows="35" cols="50">
-                    </textarea>
-                    <textarea id="free-translation-text-area" rows="35" cols="50"></textarea>
-                 </div>
 
-            </div>
-            <div id="controls-div">
-                <button id="countFrequencyButton">Return Words and Frequency</button>
-                <button id="saveTranslationLocalButton">Save Translation to Local Storage(temporary)</button>
-                <button id="downloadCurrentTranslationButton">Download Current Translation</button>
-                <button id="downloadFullTranslationFrequencyDictionaryButton">Download Full Translation</button>
-            </div>     
-        </main>
+          </div>
+          <div id="controls-div">
+              <button id="countFrequencyButton">Return Words and Frequency</button>
+              <button id="saveTranslationLocalButton">Save Translation to Local Storage(temporary)</button>
+              <button id="downloadCurrentTranslationButton">Download Current Translation</button>
+              <button id="downloadFullTranslationFrequencyDictionaryButton">Download Full Translation</button>
+          </div>     
+      </main>
 
-        <aside class="right-sidebar">
-            <div id="left-sidebar-tabs">
-                <button id="frequency-dictionary-button">Frequency Dictionary </button>
-                <!-- todo: change styling and center -->
-                <label for="frequency-dictionary-upload" class="file-upload-label">Upload Frequency Dictionary </label>
-                <input type="file" value="dictionaryFile"  id="frequency-dictionary-upload" accept=".json, .csv">
-                <button id="word-frequency-output-button"> Word Frequency Output </button>
-                <button id="grammar-guide-button">Grammar Guide</button>
-                <button id="translate-button">Push to translate using deepL </button>
-            </div>
-            <div id="dictionary-tab-content" class="hidden">
-            </div>
-        </aside>
+      <aside class="right-sidebar">
+          <div id="right-sidebar-tabs">
+              <button id="frequency-dictionary-button">Frequency Dictionary </button>
+              <button id="word-frequency-output-button"> Word Frequency Output </button>
+
+              <label for="frequency-dictionary-upload" class="file-upload-label">Upload Frequency Dictionary </label>
+              <input type="file" value="dictionaryFile"  id="frequency-dictionary-upload" class="frequency-dictionary-upload" accept=".json, .csv">
+              
+              <button id="grammar-guide-button">Grammar Guide</button>
+              <button id="translate-button">Push to translate using deepL </button>
+          </div>
+          <div id="dictionary-tab-content" class="hidden">
+          </div>
+      </aside>
 </body>
-</html>
+</html>                   
