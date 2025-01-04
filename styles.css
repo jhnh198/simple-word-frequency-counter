@@ -81,6 +81,11 @@ button:hover{
   margin-top: 20px;
 }
 
+.title-header{
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
 #textarea-div{
   display: flex;
   flex-direction: row;
@@ -162,7 +167,6 @@ input[type="file"] {
   padding-top: 10px;
   background-color: #f1f1f1;
 }
-
 
 .custom-file-upload {
   border: 1px solid #ccc;
