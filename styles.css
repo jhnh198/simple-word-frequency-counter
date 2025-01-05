@@ -4,7 +4,7 @@
 
 body{
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(to right, #631D76, #9E4770);
+  background: #a972bd7c;
   font-size: 20px;
   color: #2E2532;
 }
@@ -31,7 +31,7 @@ body{
       order:-2; /* header first */
   }
   #container > .main-content {
-      width:55%;
+      width:50%;
   }
   #container > .right-sidebar {
       width:45%;
@@ -98,7 +98,7 @@ button:hover{
   grid-template-columns: auto auto;
   justify-items: stretch;
   align-items: stretch;
-  background-color: #f1f1f1;
+  background-color: #fcfcfc;
   border-radius: 5px;
   box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
   padding: 10px;
@@ -113,10 +113,10 @@ button:hover{
 }
 
 #dictionary-tab-content{
-  background-color: #f1f1f1;
+  background-color: #fcfcfc;
   padding: 10px;
   border-radius: 5px;
-  margin: 1rem;
+  margin-top: 1rem;
 }
 
 #dictionary-tab-content h2{
@@ -139,10 +139,12 @@ textarea{
 
 #controls-div{
   margin-top: 20px;
+  margin-right: 1.2rem;
+  margin-left: 1.2rem;
   display: grid;
   grid-template-columns: auto auto;
   justify-content: space-around;
-  background-color: #f1f1f1;
+  background-color: #fcfcfc;
   border-radius: 5px;
   box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
 }
