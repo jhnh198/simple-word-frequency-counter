@@ -204,3 +204,34 @@ export function createEmptyWordRow(table) {
   div.appendChild(clearWordButton);
   return div;
 }
+
+export function makeElementFromToken(frequency_translation_dictionary){
+  let elementsToReturn = [];
+
+  Object.entries(frequency_translation_dictionary).forEach(([word]) => {
+    elementsToReturn.push(createWordElement(frequency_translation_dictionary[word]));
+  });
+
+  element.classList.add('word');
+  element.innerText = frequency_translation_dictionary.word;
+  element.addEventListener('hover', () => {
+    let inputText = document.getElementById(`translation-${word}`);
+    
+    let translation = frequency_translation_dictionary[word]?.translation;
+    let hoverText = translation ? `${translation}` : 'No translation found';
+
+  });
+  return element;
+}
+
+export function createWordElement(word){
+  let element = document.createElement('span');
+  element.classList.add('word');
+  element.innerText = word;
+  element.addEventListener('hover', () => {
+    let inputText = document.getElementById('inputText');
+    inputText.value = inputText.value + ' ' + word;
+  });
+  return element;
+}
+

@@ -167,7 +167,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //ui-utils event listeners
     document.getElementById('word-frequency-output-button').addEventListener('click', async () => {
-        buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount, dictionaryTabContent);
+      buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount, dictionaryTabContent);
+      makeElementFromToken(frequency_translation_dictionary.currentTextTokensCount);
+
+      //take the input text field, replace all tokens with hoverable spans
+      // const text = inputText.value;
+      // const tokens = text.split(' ');
+      // const newTokens = tokens.map(token => {
+      //   const span = document.createElement('span');
+      //   span.classList.add('token');
+      //   span.innerText = token;
+      //   return span;
+      // });
     });
 
     document.getElementById('grammar-guide-button').addEventListener('click', () => {
