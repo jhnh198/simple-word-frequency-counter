@@ -212,16 +212,7 @@ export function makeElementFromToken(frequency_translation_dictionary){
     elementsToReturn.push(createWordElement(frequency_translation_dictionary[word]));
   });
 
-  element.classList.add('word');
-  element.innerText = frequency_translation_dictionary.word;
-  element.addEventListener('hover', () => {
-    let inputText = document.getElementById(`translation-${word}`);
-    
-    let translation = frequency_translation_dictionary[word]?.translation;
-    let hoverText = translation ? `${translation}` : 'No translation found';
-
-  });
-  return element;
+  return elementsToReturn;
 }
 
 export function createWordElement(word){
@@ -229,8 +220,16 @@ export function createWordElement(word){
   element.classList.add('word');
   element.innerText = word;
   element.addEventListener('hover', () => {
-    let inputText = document.getElementById('inputText');
-    inputText.value = inputText.value + ' ' + word;
+    let translation = document.getElementById(`translation-${word}`).value;
+    let hiragana_reading = document.getElementById(`hiragana_reading-${word}`).value;
+    let category = document.getElementById(`${word}-category`).value;
+
+    let hoverDiv = document.createElement('div');
+
+    //todo: create hover div styling
+    hoverDiv.classList.add('hover-div');
+    hoverDiv.innerText = `Translation: ${translation}\nHiragana Reading: ${hiragana_reading}\nCategory: ${category}`;
+    
   });
   return element;
 }
