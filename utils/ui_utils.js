@@ -231,6 +231,13 @@ export function createWordElement(word){
     hoverDiv.innerText = `Translation: ${translation}\nHiragana Reading: ${hiragana_reading}\nCategory: ${category}`;
     
   });
+
+  element.addEventListener('mouseleave', () => {
+    let hoverDiv = document.querySelector('.hover-div');
+    if(hoverDiv) {
+      hoverDiv.remove();
+    }
+  });
   return element;
 }
 
