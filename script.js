@@ -18,9 +18,49 @@ const downloadCurrentTranslationButton = document.getElementById('downloadCurren
 const dictionaryTabContent = document.getElementById('dictionary-tab-content');
 const titleTextContent = document.getElementById('title');
 
-let text = ``;
+let text = `神様に恋をしてた頃は
+こんな別れが来るとは思ってなかったよ
+もう二度と触れられないなら
+せめて最後に　もう一度抱きしめて欲しかったよ
 
+It's long long good-bye...
 
+さよなら　さよなら　何度だって
+自分に　無上に　言い聞かせて
+手を振るのは優しさだよね？
+今　強さが欲しい
+
+貴方に出会い　STAR輝いて　アタシが生まれて
+愛すればこそ　iあればこそ
+希望のない　奇跡を待って　どうなるの？
+涙に滲む　惑星の瞬きは　gone...
+
+忘れない　貴方の温もりも
+その優しさも　全て包んでくれた両手も
+It's long long good-bye...
+
+さよなら　さよなら　愛しい人
+貴方が　いたから　歩いてこれた
+ひとりなんかじゃなかったよね？
+今　答えが欲しい
+
+燃える様な流星　捕まえて　火を灯して
+愛していたい　愛されてたい
+冷えたカラダひとつで　世界は　どうなるの？
+張り続けてた　虚勢が溶けてく　long for...
+
+どうしてなの？　涙溢れて　止められない
+
+貴方に出逢い　STAR輝いて　アタシが生まれて
+愛すればこそ　iあればこそ
+希望のない　奇跡を待って　どうなるの？
+涙に滲む　惑星の瞬きは　gone...
+
+もし生まれ変わって　また巡り会えるなら
+その時もきっと　アタシを見つけ出して
+もう二度と離さないで　捕まえてて
+ひとりじゃないと　囁いてほしい　planet...
+`;
 
 let inputText = document.getElementById('inputText');
 inputText.value = text;
