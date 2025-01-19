@@ -36,14 +36,18 @@ export async function analyzeText(text, countFrequencyButton, downloadCurrentTra
 
     const removeSingleHiragana = /^[\u3040-\u309F]{1}$/;
     const katakanaRegex = /[\u30A0-\u30FF]/;
-
-    //todo: remove only the sokuon rather than the token
-    const removeHangingSokuon = /[\u3063]{1}$/;
-; 
-    const filteredWords = words.filter(word => !word.match(regex) && !word.match(symbolRegex) && !word.match(katakanaRegex) && !word.match(removeSingleHiragana) && !word.match(removeHangingSokuon));    
+ 
+    const filteredWords = words.filter(word => !word.match(regex) && !word.match(symbolRegex) && !word.match(katakanaRegex) && !word.match(removeSingleHiragana));    
     const frequency = {};
+    const removeHangingSokuonFilteredWords = filteredWords.map(word => {
+        if (word.match(/[\u3063]{1}$/)) {
+            return word.slice(0, -1);
+        } else {
+            return word;
+        }
+    });
 
-    filteredWords.forEach(word => {
+    removeHangingSokuonFilteredWords.forEach(word => {
         if (frequency[word]) {
             frequency[word]++;
         } else {
