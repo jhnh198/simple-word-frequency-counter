@@ -24,7 +24,7 @@ export async function analyzeText(text, countFrequencyButton, downloadCurrentTra
     if(downloadCurrentTranslationButton.classList.contains('error')){
         clearErrorMessage('Download Current Translation', downloadCurrentTranslationButton);
     }
-
+    
     const segmenter = new TinySegmenter();
     const words = segmenter.segment(text);
 
