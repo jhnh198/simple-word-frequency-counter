@@ -95,7 +95,7 @@ button:hover{
 
 #right-sidebar-tabs{
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr 1fr;
   justify-items: stretch;
   align-items: stretch;
   background-color: #fcfcfc;
