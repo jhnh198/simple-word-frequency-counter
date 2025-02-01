@@ -152,6 +152,20 @@ export function loadDictionaryFromCSV(file) {
   return frequency_translation_dictionary;
 }
 
+//todo: test file import with function
+export function loadDictionaryFromJSON(file) {
+  const reader = new FileReader();
+  let frequency_translation_dictionary = {};
+  reader.onload = function(e) {
+    const text = e.target.result;
+    const dictionaryData = JSON.parse(text);
+    frequency_translation_dictionary = dictionaryData.allSavedWords;
+  };
+  reader.readAsText(file);
+
+  return frequency_translation_dictionary;
+}
+
 export function downloadCSVFromDictionary(dictionary, filename = 'translation.csv') {
   const header = 'Word,Count,Translation,Hiragana Reading,Category\n';
   const csv = Object.entries(dictionary).map(([word, data]) => {
@@ -167,15 +181,15 @@ export function downloadCSVFromDictionary(dictionary, filename = 'translation.cs
   URL.revokeObjectURL(url);
 }
 
-//todo: test function 
 export function downloadJSONFromDictionary(dictionary, filename = 'translation.json') {
-  const inputTextvalue = document.getElementById('inputText').value;
+  const inputTextValue = document.getElementById('inputText').value;
   const freeTranslationTextValue = document.getElementById('free-translation-text-area').value;
 
   const dictionaryData = {
-    allSavedWords: dictionary,
-    inputText: inputTextvalue,
+    title: filename,
+    inputText: inputTextValue,
     freeTranslation: freeTranslationTextValue,
+    allSavedWords: dictionary,
   }
 
   const json = JSON.stringify(dictionaryData, null, 2);
@@ -187,7 +201,6 @@ export function downloadJSONFromDictionary(dictionary, filename = 'translation.j
   a.click();
   URL.revokeObjectURL(url);
 }
-
 
 export function saveToLocalStorage(allSavedWords) {
   const allSavedWordsString = JSON.stringify(allSavedWords);
