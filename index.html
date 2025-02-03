@@ -29,30 +29,33 @@
                   </textarea>
                   <textarea id="free-translation-text-area" rows="35" cols="40"></textarea>
                 </div>
-
           </div>
-          <div id="controls-div">
-              <button id="countFrequencyButton">Return Words and Frequency</button>
-              <button id="saveTranslationLocalButton">Save Translation to Local Storage(temporary)</button>
-              <button id="downloadCurrentTranslationButton">Download Current Translation</button>
-              <button id="downloadFullTranslationFrequencyDictionaryButton">Download Full Translation</button>
-              <button id="downloadJSONButton">Download JSON</button>
-          </div>     
       </main>
 
       <aside class="right-sidebar">
           <div id="right-sidebar-tabs">
+            <button id="countFrequencyButton">Return Words and Frequency</button>
+            <button id="saveTranslationLocalButton">Save Translation to Local Storage(temporary)</button>
+            <button id="downloadCurrentTranslationButton">Download Current Translation</button>
+            <button id="downloadFullTranslationFrequencyDictionaryButton">Download Full Translation</button>
+            <button id="downloadJSONButton">Download JSON</button>
+
+            <label for="frequency-dictionary-upload" class="file-upload-label">Upload Frequency Dictionary </label>
+            <input type="file" value="dictionaryFile"  id="frequency-dictionary-upload" class="frequency-dictionary-upload" accept=".json, .csv">
+            
+            <button id="translate-button">Push to translate using deepL </button>
+          </div>
+          
+          <div class="dictionary-tab-container">
+            <div class="dictionary-container-tabs">
               <button id="frequency-dictionary-button">Frequency Dictionary </button>
               <button id="word-frequency-output-button"> Word Frequency Output </button>
-
-              <label for="frequency-dictionary-upload" class="file-upload-label">Upload Frequency Dictionary </label>
-              <input type="file" value="dictionaryFile"  id="frequency-dictionary-upload" class="frequency-dictionary-upload" accept=".json, .csv">
-              
               <button id="grammar-guide-button">Grammar Guide</button>
-              <button id="translate-button">Push to translate using deepL </button>
+            </div>
+            <div id="dictionary-tab-content" class="hidden">
+            </div>
           </div>
-          <div id="dictionary-tab-content" class="hidden">
-          </div>
+
       </aside>
 </body>
 </html>                   
