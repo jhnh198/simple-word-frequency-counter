@@ -112,8 +112,19 @@ button:hover{
   cursor: pointer;
 }
 
-#dictionary-tab-content{
+.dictionary-tab-container{
   background-color: #fcfcfc;
+  margin-top: 2rem;
+}
+
+.dictionary-container-tab{
+}
+
+.small-control-button{
+  margin-top: 5px;
+}
+
+#dictionary-tab-content{
   padding: 10px;
   border-radius: 5px;
   margin-top: 1rem;

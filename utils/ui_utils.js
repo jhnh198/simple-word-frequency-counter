@@ -179,6 +179,10 @@ export function createEmptyWordRow(table) {
   addNewWordButton.textContent = 'Add New Word';
   clearWordButton.textContent = 'Clear Word';
 
+  addNewWordButton.style.marginTop = '10px';
+  clearWordButton.style.marginTop = '10px';
+  clearWordButton.style.marginLeft = '10px';
+
   addNewWordButton.addEventListener('click', () => {
     if(translationInput.value && wordInput.value && countInput.value && categoryDropdown.value) {
       let newWord = {
