@@ -121,7 +121,13 @@ button:hover{
 }
 
 .small-control-button{
-  margin-top: 5px;
+  margin-left: 20px;
+  background-color: #2E2532;
+}
+
+.small-control-icon{
+  width: 32px;
+  height: 64px;
 }
 
 #dictionary-tab-content{
