@@ -130,6 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('frequency-dictionary-button').addEventListener('click', async() => {
+      console.log('dictionary clicked')
         buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
     });
 

@@ -115,6 +115,7 @@ button:hover{
 .dictionary-tab-container{
   background-color: #fcfcfc;
   margin-top: 2rem;
+  
 }
 
 .dictionary-container-tab{
@@ -126,8 +127,10 @@ button:hover{
 }
 
 .small-control-icon{
-  width: 32px;
+  width: 64px;
   height: 64px;
+  margin-left: 20px;
+  margin-top: 20px;
 }
 
 #dictionary-tab-content{
