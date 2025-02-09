@@ -87,42 +87,6 @@ Nouns and な adjectives conjugate with the copula だ as such.
 | --- | --- | --- | --- |
 | Buying | Reading | Going | Teaching |
 
-## **Irregular Verbs - する 来る**
-
-| **Dictionary** | **Past** | **Negative** | **Volitional** | **Potential** | **ている** |
-| --- | --- | --- | --- | --- | --- |
-| する | した | しない | しよう | できる | してる |
-| To do | did | Won't do | Will do | Can do | doing |
-| 来る | きた | こない | こよう | こられる | きてる |
-| come | went | Won't come | Will come | Can come | coming |
-
-## **Particles:**
-
-が - The subject marking particle (emphasis on what comes before)
-
-は - The topic marking particle (emphasis on what comes after. pronounced わ as a particle)
-
-を - Object marking particle
-
-で - Where does an action happen?
-
-に - When does it happen?
-
-も - Also or Too
-
-と - Listing nouns in a complete list
-
-や - Listing nouns in an incomplete list
-
-か - Mark the unknown (make a statement a question)
-
-の - The possession marking particle
-
-## **Existence in two verbs - いる and ある**
-
-いる = Existence of living things
-
-ある = Existence of non living things.
-  `
+`
 }
 
