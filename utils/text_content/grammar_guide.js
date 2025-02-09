@@ -3,9 +3,10 @@ export const grammar_guide = {
   ## **い-adjectives**
 
 | **Dictionary** | **Past (た)** | **Negative (ない)** | **Potential (ば)** |
-| --- | --- | --- | --- |
-| 美味しい | 美味しかっ**た** | 美味しく**ない** | 美味しけれ**ば** |
+
+| 美味しい        | 美味しかっ**た| 美味しく**ない**     | 美味しけれ**ば** |
 | Delicious | Was delicious | Not delicious | If it’s delicious |
+
 | 寒い | 寒かっ**た** | 寒く**ない** | 寒けれ**ば** |
 | Cold | Was cold | Not cold | If it’s cold |
 
