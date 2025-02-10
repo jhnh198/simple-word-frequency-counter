@@ -22,16 +22,12 @@ export const grammar_guide_data = {
       subheader: "Function like nouns, and modify other nouns with な between the two nouns.",
       content: [
         {
-          text: "綺麗な場所だ = It is a pretty place (Pretty place is)"
-        },
-        {
-          text: "な adjectives can also function as nouns"
-        },
-        {
-          text: "場所は綺麗だ = The place is pretty. (Place pretty is)"
-        },
-        {
-          text: "な adjectives conjugate like nouns paired with the copula, so see **な adjective** conjugations for reference."
+          list: [
+            "綺麗な場所だ = It is a pretty place (Pretty place is)",
+            "な adjectives can also function as nouns",
+            "場所は綺麗だ = The place is pretty. (Place pretty is)",
+            "な adjectives conjugate like nouns paired with the copula, so see **な adjective** conjugations for reference."
+          ]
         }
       ]
     },
@@ -40,14 +36,13 @@ export const grammar_guide_data = {
       subheader: "Nouns and な adjectives conjugate with the copula だ as such.",
       content: [
         {
-          text: "だ (is) ー だった (was) ー じゃない (is not) ー"
+          list: [
+            "だ (is) ー だった (was) ー じゃない (is not) ー",
+            "猫だ (is a cat) ー 猫だった (was a cat) ー 猫じゃない (is not a cat)",
+            "綺麗だ (is pretty) ー 綺麗だった (was pretty) ー 綺麗じゃない (is not pretty)",
+
+          ]
         },
-        {
-          text: "本だ (is book) ー 本だった (was a book) ー 本じゃない (is not a book)"
-        },
-        {
-          text: "有名だ (is famous) ー 有名だった (was famous) ー 有名じゃない (is not famous)"
-        }
       ]
     },
     {
@@ -55,50 +50,24 @@ export const grammar_guide_data = {
       subheader: "Particles are used to indicate the relationship between words in a sentence. They are placed after the word they modify.",
       content: [
         {
-          text: "が - The subject marking particle (emphasis on what comes before)"
-        },
-        {
-          text: "は - The topic marking particle (emphasis on what comes after. pronounced わ as a particle)"
-        },
-        {
-          text: "を - The object marking particle"
-        },
-        {
-          text: "に - When does it happen?"
-        },
-        {
-          text: "で - Where does an action happen?"
-        },
-        {
-          text: "と - The particle used to indicate a list of items or people"
-        },
-        {
-          text: "から - The particle used to indicate the starting point of an action"
-        },
-        {
-          text: "まで - The particle used to indicate the end point of an action"
-        },
-        {
-          text: "より - The particle used to indicate a comparison"
-        },
-        {
-          text: "へ - The particle used to indicate direction"
-        },
-        {
-          text: "の -  The possession marking particle"
-        },
-        {
-          text: "も - Also or Too"
-        },
-        {
-          text: "か - Mark the unknown (make a statement a question)"
-        },
-        {
-          text: "ね - The particle used to indicate agreement"
-        },
-        {
-          text: "よ - The particle used to indicate emphasis"
-        },
+          list: [
+            "が - The subject marking particle (emphasis on what comes before)",
+            "は - The topic marking particle (emphasis on what comes after. pronounced わ as a particle)",
+            "を - The object marking particle",
+            "に - When does it happen?",
+            "で - Where does an action happen?",
+            "と - The particle used to indicate a list of items or people",
+            "から - The particle used to indicate the starting point of an action",
+            "まで - The particle used to indicate the end point of an action",
+            "より - The particle used to indicate a comparison",
+            "へ - The particle used to indicate direction",
+            "の -  The possession marking particle",
+            "も - Also or Too",
+            "か - Mark the unknown (make a statement a question)",
+            "ね - The particle used to indicate agreement",
+            "よ - The particle used to indicate emphasis",
+          ]
+        }
       ],
     },
     {
@@ -121,7 +90,6 @@ export const grammar_guide_data = {
       subheader: "",
       content: [
         {
-          header: "",
           table: {
             headers: ["Dictionary", "Past", "Negative", "Volitional", "Potential", "ている"],
             rows: [
@@ -131,7 +99,6 @@ export const grammar_guide_data = {
           }
         },
         {
-          header: "Past tense conjugations",
           table: {
             headers: ["買う = 買った", "読む = 読んだ", "行く= 行った", "教える=教えた"],
             rows: [
@@ -140,7 +107,6 @@ export const grammar_guide_data = {
           }
         },
         {
-          header: "Negative form conjugations",
           table: {
             headers: ["買う = 買わない", "読む = 読まない", "行く= 行かない", "教える=教えない"],
             rows: [
@@ -149,7 +115,6 @@ export const grammar_guide_data = {
           }
         },
         {
-          header: "Potential form conjugations",
           table: {
             headers: ["買う = 買える", "読む = 読める", "行く= 行ける", "教える=教えられる"],
             rows: [
