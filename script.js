@@ -13,11 +13,22 @@ import {
     showGrammarGuide,
 } from './utils/ui_utils.js';
 
+import {
+  createGrammarGuide
+} from './ui_component/grammar_guide_ui.js';
+
+import {
+  grammar_guide_data
+} from './ui_component/grammar_guide_data.js';
+
 //get main document elements
 const countFrequencyButton = document.getElementById('countFrequencyButton');
 const downloadCurrentTranslationButton = document.getElementById('downloadCurrentTranslationButton');
 const dictionaryTabContent = document.getElementById('dictionary-tab-content');
 const titleTextContent = document.getElementById('title');
+
+//todo: get grammar guide data to display
+document.getElementById('dictionary-tab-content').html = createGrammarGuide(grammar_guide_data).innerHTML;
 
 let text = `神様に恋をしてた頃は
 こんな別れが来るとは思ってなかったよ
@@ -130,8 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('frequency-dictionary-button').addEventListener('click', async() => {
-      console.log('dictionary clicked')
-        buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
+      buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
     });
 
     document.getElementById('frequency-dictionary-upload').addEventListener('change', (e) => {

@@ -1,10 +1,5 @@
-import { grammar_guide_data } from '../data/grammar_guide_data.js';
-
-const grammar_guide_container = document.querySelector('.grammar-guide-container');
-
-grammar_guide_container.addEventListener('onload', createGrammarGuide());
-
-function createGrammarGuide() {
+export function createGrammarGuide(grammar_guide_data) {
+  const grammar_guide_container = document.createElement('div');
 
   grammar_guide_data.all_data.forEach((section) => {
     const section_container = document.createElement('div');
@@ -63,4 +58,6 @@ function createGrammarGuide() {
       }
     });
   });
+  console.log(grammar_guide_container);
+  return grammar_guide_container;
 }
