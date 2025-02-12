@@ -10,7 +10,6 @@ import {
 
 import {
     buildWordFrequencyTable,
-    showGrammarGuide,
 } from './utils/ui_utils.js';
 
 import {
@@ -26,9 +25,6 @@ const countFrequencyButton = document.getElementById('countFrequencyButton');
 const downloadCurrentTranslationButton = document.getElementById('downloadCurrentTranslationButton');
 const dictionaryTabContent = document.getElementById('dictionary-tab-content');
 const titleTextContent = document.getElementById('title');
-
-//todo: get grammar guide data to display
-document.getElementById('dictionary-tab-content').html = createGrammarGuide(grammar_guide_data).innerHTML;
 
 let text = `神様に恋をしてた頃は
 こんな別れが来るとは思ってなかったよ
@@ -115,8 +111,9 @@ document.addEventListener('DOMContentLoaded', () => {
       makeElementFromToken(frequency_translation_dictionary.currentTextTokensCount);
     });
 
+    //todo: get this to clear the dictionary tab
     document.getElementById('grammar-guide-button').addEventListener('click', () => {
-        showGrammarGuide(dictionaryTabContent);
+      dictionaryTabContent.appendChild(createGrammarGuide(grammar_guide_data));
     });
 
     document.getElementById('hidePreviousTranslationsCheckbox').addEventListener('change', () => {

@@ -6,19 +6,6 @@ import {
   addWordToDictionaryFromNewRow,
 } from '../script.js';
 
-export function showGrammarGuide(dictionaryTabContent) {
-  let grammarGuideElement = document.createElement('div');
-  grammarGuideElement.innerHTML = '';
-  let grammarGuideHeader = document.createElement('h2');
-  grammarGuideHeader.innerText = 'Grammar Guide';
-  grammarGuideElement.appendChild(grammarGuideHeader);
-  grammarGuideElement.style.display = 'block';
-  grammarGuideElement.innerText = grammar_guide.text;
-
-  dictionaryTabContent.innerHTML = '';
-  dictionaryTabContent.appendChild(grammarGuideElement);
-}
-
 export function createInputFieldContainer(word, translation, component, language) {
   const input = document.createElement('input');
   input.type = 'text';
