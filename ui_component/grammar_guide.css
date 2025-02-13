@@ -1,0 +1,49 @@
+.section-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  padding: 0 1rem;
+  max-width: 800px;
+}
+
+.section-container h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.section-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.section-container p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.section-container ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.section-container li {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.section-container a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.section-container a:hover {
+  text-decoration: underline;
+}
+
+.section-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
