@@ -108,7 +108,6 @@ document.addEventListener('DOMContentLoaded', () => {
     //ui-utils event listeners
     document.getElementById('word-frequency-output-button').addEventListener('click', async () => {
       buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount, dictionaryTabContent);
-      makeElementFromToken(frequency_translation_dictionary.currentTextTokensCount);
     });
 
     //todo: get this to clear the dictionary tab
