@@ -72,7 +72,7 @@ export const grammar_guide_data = {
     },
     {
       header:"Existence in two verbs",
-      subheader: "The verb いる is used for living things, while ある is used for inanimate objects.",
+      subheader: "",
       content:[
         {
           table: {
