@@ -110,8 +110,8 @@ document.addEventListener('DOMContentLoaded', () => {
       buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount, dictionaryTabContent);
     });
 
-    //todo: get this to clear the dictionary tab
     document.getElementById('grammar-guide-button').addEventListener('click', () => {
+      dictionaryTabContent.innerHTML = '';
       dictionaryTabContent.appendChild(createGrammarGuide(grammar_guide_data));
     });
 
