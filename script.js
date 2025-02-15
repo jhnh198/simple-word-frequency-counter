@@ -131,16 +131,10 @@ document.addEventListener('DOMContentLoaded', () => {
       downloadJSONFromDictionary(frequency_translation_dictionary.allSavedWords, titleTextContent?.value);
     });
 
-    //this saves current entries to local storage for the frequency translation dictionary
-    document.getElementById('saveTranslationLocalButton').addEventListener('click', async () => { 
-      saveToLocalStorage(frequency_translation_dictionary.allSavedWords);
-    });
-
     document.getElementById('frequency-dictionary-button').addEventListener('click', async() => {
       buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
     });
 
-    //todo: use json or csv
     document.getElementById('frequency-dictionary-upload').addEventListener('change', (e) => {
       const reader = new FileReader();
       const fileType = e.target.files[0].type;

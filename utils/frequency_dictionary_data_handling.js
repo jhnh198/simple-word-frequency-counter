@@ -133,39 +133,6 @@ export function loadLocalStorage() {
   return loadedAllSavedWords;
 }
 
-export function loadDictionaryFromCSV(file) {
-  const reader = new FileReader();
-  let frequency_translation_dictionary = {}; 
-  reader.onload = function(e) {
-    const text = e.target.result;
-    const rows = text.split('\n');
-    const dictionary = {};
-    rows.forEach(row => {
-      const [word, count, translation, hiragana_reading, category] = row.split(',');
-      dictionary[word] = { count, translation, hiragana_reading, category };
-    });
-    delete dictionary['word'];
-    frequency_translation_dictionary = dictionary;
-  };
-  reader.readAsText(file);
-
-  return frequency_translation_dictionary;
-}
-
-//todo: test file import with function
-export function loadDictionaryFromJSON(file) {
-  const reader = new FileReader();
-  let frequency_translation_dictionary = {};
-  reader.onload = function(e) {
-    const text = e.target.result;
-    const dictionaryData = JSON.parse(text);
-    frequency_translation_dictionary = dictionaryData.allSavedWords;
-  };
-  reader.readAsText(file);
-
-  return frequency_translation_dictionary;
-}
-
 export function downloadCSVFromDictionary(dictionary, filename = 'translation.csv') {
   const header = 'Word,Count,Translation,Hiragana Reading,Category\n';
   const csv = Object.entries(dictionary).map(([word, data]) => {
@@ -200,9 +167,4 @@ export function downloadJSONFromDictionary(dictionary, filename = 'translation.j
   a.download = filename;
   a.click();
   URL.revokeObjectURL(url);
-}
-
-export function saveToLocalStorage(allSavedWords) {
-  const allSavedWordsString = JSON.stringify(allSavedWords);
-  localStorage.setItem('dictionary_data', allSavedWordsString);
 }
