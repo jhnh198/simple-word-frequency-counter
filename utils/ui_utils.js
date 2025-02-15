@@ -1,5 +1,4 @@
 import { CATEGORY_LIST } from './text_content/category_list.js';
-import { grammar_guide } from './text_content/grammar_guide.js';
 import { 
   updateCategoryChangeValue,
   updateInputChangeValue,
