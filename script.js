@@ -25,6 +25,7 @@ const countFrequencyButton = document.getElementById('countFrequencyButton');
 const downloadCurrentTranslationButton = document.getElementById('downloadCurrentTranslationButton');
 const dictionaryTabContent = document.getElementById('dictionary-tab-content');
 const titleTextContent = document.getElementById('title');
+const translationInputField = document.getElementById('free-translation-text-area');
 
 let text = `神様に恋をしてた頃は
 こんな別れが来るとは思ってなかったよ
@@ -80,7 +81,6 @@ if(frequency_translation_dictionary.allSavedWords.entries !== 0) {
 
 //todo: change to ignore count and only update the new word
 export function updateInputChangeValue(word, value, component){
-  console.log('update input change value');
   if(component === 'translation'){
     frequency_translation_dictionary.currentTextTokensCount[word].translation = value;
   } else if(component === 'hiragana_reading'){
@@ -140,9 +140,24 @@ document.addEventListener('DOMContentLoaded', () => {
       buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
     });
 
+    //todo: use json or csv
     document.getElementById('frequency-dictionary-upload').addEventListener('change', (e) => {
       const reader = new FileReader();
+      const fileType = e.target.files[0].type;
       reader.readAsText(e.target.files[0]);
+
+      //determine function to use based on file type
+      if(fileType == 'application/json' || fileType === 'text/json') {
+        reader.onload = function(e) {
+          const text = reader.result;
+          const dictionaryData = JSON.parse(text);
+          frequency_translation_dictionary.allSavedWords = dictionaryData.allSavedWords;
+          buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
+          titleTextContent.value = dictionaryData.title;
+          translationInputField.value = dictionaryData.freeTranslation;
+          inputText.value = dictionaryData.inputText;
+        };
+      } else {
       const dictionary = {};
 
       reader.onload = function(e) {
@@ -157,6 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
       };
       frequency_translation_dictionary.allSavedWords = dictionary;
       frequency_translation_dictionary.currentTextTokensCount = dictionary;
+      }
     });
 
     document.getElementById(`downloadCurrentTranslationButton`).addEventListener('click', () => {
