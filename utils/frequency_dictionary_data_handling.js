@@ -50,6 +50,7 @@ export async function analyzeText(text) {
     return frequency;
 };
 
+//todo: the next following functions update the entire dictionary, need to change to only update the new word
 export function saveCurrentTokenCountToDictionary(currentTextTokensCount, allSavedWords) {
   let tempAllSavedWords = allSavedWords;
     Object.entries(currentTextTokensCount).forEach(([word]) => {
@@ -141,7 +142,7 @@ export function downloadCSVFromDictionary(dictionary, filename = 'translation.cs
 }
 
 export function downloadJSONFromDictionary(dictionary, filename = 'translation.json') {
-  const inputTextValue = document.getElementById('inputText').value;
+  const inputTextValue = document.getElementById('input-text').value;
   const freeTranslationTextValue = document.getElementById('free-translation-text-area').value;
 
   const dictionaryData = {

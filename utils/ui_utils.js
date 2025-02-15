@@ -124,19 +124,6 @@ export function createDropdown(word) {
   return select;
 }
 
-export function handleHidePreviousTranslations(hidePreviousTranslationsCheckbox, wordTokenFrequencyCount) {
-  if (hidePreviousTranslationsCheckbox.checked) {
-    document.querySelectorAll('input').forEach(container => {
-        container.value = '';
-    })
-  } else {
-    Object.entries(wordTokenFrequencyCount).forEach(([word]) => {
-        const input = document.getElementById(word);
-        input.value = frequency_translation_dictionary[word]?.translation || '';
-    });
-  }
-}
-
 export function createEmptyWordRow(table) {
   const div = document.createElement('div');
   div.classList.add('word-row');
@@ -162,9 +149,13 @@ export function createEmptyWordRow(table) {
 
   const addNewWordButton = document.createElement('button');
   const clearWordButton = document.createElement('button');
+  addNewWordButton.classList.add('control-button');
+  clearWordButton.classList.add('control-button');
+
   addNewWordButton.textContent = 'Add New Word';
   clearWordButton.textContent = 'Clear Word';
 
+  //todo: move this to css
   addNewWordButton.style.marginTop = '10px';
   clearWordButton.style.marginTop = '10px';
   clearWordButton.style.marginLeft = '10px';
@@ -205,6 +196,7 @@ export function makeElementFromToken(frequency_translation_dictionary){
   return elementsToReturn;
 }
 
+//todo: get hover elements working
 export function createWordElement(word){
   let element = document.createElement('span');
   element.classList.add('word');
@@ -219,7 +211,6 @@ export function createWordElement(word){
     //todo: create hover div styling
     hoverDiv.classList.add('hover-div');
     hoverDiv.innerText = `Translation: ${translation}\nHiragana Reading: ${hiragana_reading}\nCategory: ${category}`;
-    
   });
 
   element.addEventListener('mouseleave', () => {
@@ -230,4 +221,3 @@ export function createWordElement(word){
   });
   return element;
 }
-

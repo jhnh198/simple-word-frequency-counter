@@ -9,36 +9,35 @@ body{
   color: #2E2532;
 }
 
-#container{
+header{
+  width: 100%;
+  padding: 1rem;
+  text-align: center;
+}
+
+#body-container{
   display:flex;
   flex-wrap:wrap;
 }
 
 /* columns mobile */
-#container > *{
-  width: 100%;
+#body-container > *{
   padding: 1rem;
 }
 
 /* background colors */
-#container > .header {
+#body-container > .header {
   opacity: 1;
 }
 
 /* desktop breakpoint */
-@media (min-width:1024px) {
-  #container > .header {
+@media (max-width:1024px) {
+  #body-container > .header {
       order:-2; /* header first */
-  }
-  #container > .main-content {
-      width:50%;
-  }
-  #container > .right-sidebar {
-      width:45%;
   }
 }
 
-.content-header-controls{
+#content-header-controls{
   display: grid;
   grid-template-columns: auto auto;
   margin-bottom: 20px;
@@ -50,25 +49,6 @@ body{
   overflow-y: scroll;
   border-color: rgba(#000, .2);
   border-radius: 5px;
-}
-
-#controls-div{
-  display: grid;
-  grid-template-columns: auto auto;
-}
-
-button{
-  margin: 0 10px;
-  padding: 10px;
-  font-size: 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover{
-  background-color: #7c7167;
-  color: white;
 }
 
 .highlight{
@@ -96,6 +76,9 @@ button:hover{
 #right-sidebar-tabs{
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+
+.control-container{
   justify-items: stretch;
   align-items: stretch;
   background-color: #fcfcfc;
@@ -104,7 +87,8 @@ button:hover{
   padding: 10px;
 }
 
-#right-sidebar-tabs button{
+.control-button{
+  margin: 0 10px;
   padding: 10px;
   font-size: 20px;
   border: none;
@@ -115,9 +99,6 @@ button:hover{
 .dictionary-tab-container{
   background-color: #fcfcfc;
   margin-top: 2rem;
-}
-
-.dictionary-container-tab{
 }
 
 .small-control-button{

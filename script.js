@@ -110,11 +110,18 @@ document.addEventListener('DOMContentLoaded', () => {
       dictionaryTabContent.appendChild(createGrammarGuide(grammar_guide_data));
     });
 
-    document.getElementById('hide-previous-translations-checkbox').addEventListener('change', () => {
-        handleHidePreviousTranslations(hidePreviousTranslationsCheckbox, wordTokenFrequencyCount)
+    document.getElementById('hide-previous-translations-checkbox').addEventListener('change', (e) => {
+      if (e.target.value === 'on') {
+        document.querySelectorAll('input').forEach(container => {
+          container.value = '';
+        })
+        Object.entries(frequency_translation_dictionary.currentTextTokensCount).forEach(([word]) => {
+          const input = document.getElementById(word);
+          input.value = frequency_translation_dictionary[word]?.translation || '';
+        });
+      }
     });
 
-    //frequency dictionary data handler event listeners
     document.getElementById('count-frequency-button').addEventListener('click', async (e) => {
         let wordTokenFrequencyCount = await analyzeText(inputText.value);
         frequency_translation_dictionary.currentTextTokensCount = handleCurrentTokenDictionary(wordTokenFrequencyCount, frequency_translation_dictionary.allSavedWords);
@@ -123,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('download-json-button').addEventListener('click', () => {
-      downloadJSONFromDictionary(frequency_translation_dictionary.allSavedWords, titleTextContent?.value);
+      downloadJSONFromDictionary(frequency_translation_dictionary.allSavedWords, titleInput?.value);
     });
 
     document.getElementById('frequency-dictionary-button').addEventListener('click', async() => {
@@ -165,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById(`download-current-translation-button`).addEventListener('click', () => {
-      downloadCSVFromDictionary(frequency_translation_dictionary.currentTextTokensCount, titleTextContent?.value);
+      downloadCSVFromDictionary(frequency_translation_dictionary.currentTextTokensCount, titleInput?.value);
     });
     
     document.getElementById('download-full-dictionary-button').addEventListener('click', () => {
