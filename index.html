@@ -12,22 +12,22 @@
 </head>
 
 <body>
-<div id="container"> 
+<div id="body-container"> 
   <header class="header">
     <h1>Japanese Text Analyzer</h1>
   </header>
   <main class="main-content">
-    <div id="input">
-      <div class="content-header-controls">
-        <input type="text" id="title" class="title-header" placeholder="Enter a Title">
+    <div id="input-container">
+      <div id="content-header-controls">
+        <input type="text" id="title-input" class="main-content-input" placeholder="Enter a Title">
         <div>
-            <input type="checkbox" id="hidePreviousTranslationsCheckbox">
-            <label for="hidePreviousTranslationsCheckbox" id="hidePreviousTranslationsLabel">Clear/Show Previous Translations</label>
+            <input type="checkbox" id="hide-previous-translations-checkbox">
+            <label for="hide-previous-translations-checkbox" id="hide-previous-translations-label">Clear/Show Previous Translations</label>
         </div>
       </div>
 
-      <div id="textarea-div">
-        <textarea id="inputText" rows="35" cols="40">
+      <div id="textarea-container">
+        <textarea id="input-text" rows="35" cols="40">
         </textarea>
         <textarea id="free-translation-text-area" rows="35" cols="40"></textarea>
       </div>
@@ -36,10 +36,10 @@
 
     <aside class="right-sidebar">
         <div id="right-sidebar-tabs">
-          <button id="countFrequencyButton">Return Words and Frequency</button>
-          <button id="downloadCurrentTranslationButton">Download Current Translation</button>
-          <button id="downloadFullTranslationFrequencyDictionaryButton">Download Full Translation</button>
-          <button id="downloadJSONButton">Download JSON</button>
+          <button class="control-button" id="count-frequency-button">Return Words and Frequency</button>
+          <button class="control-button" id="download-current-translation-button">Download Current Translation</button>
+          <button class="control-button" id="download-full-dictionary-button">Download Full Translation</button>
+          <button class="control-button" id="download-json-Button">Download JSON</button>
 
           <label for="frequency-dictionary-upload" class="file-upload-label">Upload Frequency Dictionary </label>
           <input type="file" value="dictionaryFile"  id="frequency-dictionary-upload" class="frequency-dictionary-upload" accept=".json, .csv">

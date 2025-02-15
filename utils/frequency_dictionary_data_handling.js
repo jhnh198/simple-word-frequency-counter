@@ -12,17 +12,9 @@ import { clearErrorMessage, errorMessage } from "./errorHandling.js";
     category: string
 }; */
 
-export async function analyzeText(text, countFrequencyButton, downloadCurrentTranslationButton) {
+export async function analyzeText(text) {
     if (text === '') {
         throw new Error('No text to analyze');
-    }
-
-    if(countFrequencyButton.classList.contains('error')){
-        clearErrorMessage('Return Words and Frequency', countFrequencyButton);
-    };
-
-    if(downloadCurrentTranslationButton.classList.contains('error')){
-        clearErrorMessage('Download Current Translation', downloadCurrentTranslationButton);
     }
     
     const segmenter = new TinySegmenter();
