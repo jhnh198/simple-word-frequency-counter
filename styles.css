@@ -176,7 +176,6 @@ input::file-selector-button {
   padding: 6px 12px;
   cursor: pointer;
   font-size: 20px;
-  
 }
 
 .custom-file-upload {
@@ -195,10 +194,38 @@ input::file-selector-button {
   border-bottom: 1px solid #FBFBFB;
 }
 
-#dictionary-table{
+.dictionary-table{
   display: grid;
   border-collapse: collapse;
+  gap: 10px;
+}
+
+.dictionary-table th{
   padding: 10px;
+  border-bottom: 1px solid #FBFBFB;
+}
+
+.dictionary-table td{
+  padding-bottom: 5px;
+  border-bottom: 1px solid #FBFBFB;
+}
+
+.dictionary-table tr input{
+  border-bottom: 1px solid #FBFBFB;
+  font-size: 16px;
+}
+
+.dictionary-table tr select{
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.dictionary-table tr button{
+  font-size: 20px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 #hiragana-reading{
