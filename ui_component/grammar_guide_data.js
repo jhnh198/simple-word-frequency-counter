@@ -153,5 +153,21 @@ export const grammar_guide_data = {
         }
       ]
     }
+    {
+      header: "On'yomi and Kun'yomi",
+      subheader: "",
+      content: [
+        {
+          list: [
+            "On'yomi - Two-kanji or more combinations",
+            "Kun'yomi - Japanese readings of kanji",
+            "Kanji can have multiple readings",
+            "On'yomi readings are used in compound words",
+            "Kun'yomi readings are used in standalone words"
+          ]
+        }
+      ]
+    },
+    
   ],
 }
