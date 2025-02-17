@@ -71,6 +71,35 @@ export const grammar_guide_data = {
       ],
     },
     {
+      header: 'App Categories',
+      subheader: "",
+      content: [
+        {
+          table:{
+            headers: ["Category", "Hiragana", "Description"],
+            rows: [
+              ["名詞", "めいし", "Noun"],
+              ["動詞", "どうし", "Verb"],
+              ["五段動詞", "ごだんどうし", "Godan verb (u)"],
+              ["一段動詞", "いちだんどうし", "Ichidan(ru)"],
+              ["不規則動詞", "ふきそくどうし", "Irregular"],
+              ["い形容詞", "いけいようし", "I-adjective"],
+              ["な形容詞", "なけいようし", "Na-adjective"],
+              ["副詞", "ふくし", "Adverb"],
+              ["助詞", "じょし", "Particle"],
+              ["接続詞", "せつぞくし", "Conjunction"],
+              ["感動詞", "かんどうし", "Interjection"],
+              ["代名詞", "だいなことば", "Pronoun"],
+              ["前置詞", "ぜんちし", "Preposition"],
+              ["敬称", "けいしょう", "Honorific"],
+              ["接尾詞", "せつびし", "Suffix"],
+              ["数字", "すうじ", "Numeric(any number or counter)"],
+            ]
+          }
+        }
+      ],
+    },
+    {
       header:"Existence in two verbs",
       subheader: "",
       content:[
