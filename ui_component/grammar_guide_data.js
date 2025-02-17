@@ -152,7 +152,7 @@ export const grammar_guide_data = {
           }
         }
       ]
-    }
+    },
     {
       header: "On'yomi and Kun'yomi",
       subheader: "",
@@ -168,6 +168,5 @@ export const grammar_guide_data = {
         }
       ]
     },
-    
   ],
 }
