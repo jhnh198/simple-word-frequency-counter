@@ -20,7 +20,6 @@ header{
   flex-wrap:wrap;
 }
 
-/* columns mobile */
 #body-container > *{
   padding: 1rem;
 }
@@ -30,12 +29,7 @@ header{
   opacity: 1;
 }
 
-/* desktop breakpoint */
-@media (max-width:1024px) {
-  #body-container > .header {
-      order:-2; /* header first */
-  }
-}
+
 
 #content-header-controls{
   display: grid;
@@ -240,4 +234,22 @@ input::file-selector-button {
   font-size: 20px;
   justify-self: center;
   padding: 10px;
+}
+
+/* desktop breakpoint */
+@media (max-width:1024px) {
+  #body-container > .header {
+      order:-2; /* header first */
+  }
+}
+
+@media (max-width:768px) {
+  #body-container > .header {
+      order:-2; /* header first */
+  }
+
+  /* todo: change to respond rather than set the property */
+  #right-sidebar-tabs{
+    display: grid;
+  }
 }
