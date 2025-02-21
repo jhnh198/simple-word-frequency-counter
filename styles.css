@@ -229,24 +229,21 @@ input::file-selector-button {
   padding: 10px;
 }
 
-/* desktop breakpoint */
-@media (max-width:1024px) {
-  #body-container > .header {
-      order:-2; /* header first */
-  }
+#right-sidebar-tabs{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
-
-@media (min-width:400px) {
-  #right-sidebar-tabs{
+@media only screen and (max-width: 800px){
+  tr{
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
 }
 
-@media (max-width:350px) {
-  #right-sidebar-tabs > .control-container{
-    display: flex;
+@media only screen and (max-width: 600px) {
+  #right-sidebar-tabs{
+    display: grid;
+    grid-template-columns: 1fr;
   }
-  
 }
