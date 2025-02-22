@@ -20,12 +20,8 @@ import {
 } from './ui_component/grammar_guide_data.js';
 
 //get main document elements
-//todo: remove these global variables
-const countFrequencyButton = document.getElementById('count-frequency-button');
-
 const titleInput = document.getElementById('title-input');
 const freeTranslationTextArea = document.getElementById('free-translation-text-area');
-
 const dictionaryTabContent = document.getElementById('dictionary-tab-content');
 
 let text = `神様に恋をしてた頃は
@@ -182,5 +178,11 @@ document.addEventListener('DOMContentLoaded', () => {
     //translation event listeners
     document.getElementById('translate-button').addEventListener('click', () => {
       translateText(inputText.value, "EN");
+    });
+
+    document.getElementById('clear-input-button').addEventListener('click', () => {
+      inputText.value = '';
+      freeTranslationTextArea.value = '';
+      titleInput.value = '';
     });
 });
