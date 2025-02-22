@@ -185,4 +185,18 @@ document.addEventListener('DOMContentLoaded', () => {
       freeTranslationTextArea.value = '';
       titleInput.value = '';
     });
+
+    document.getElementById('hover-content-button').addEventListener('click', () => {
+      //1 get tokens from text if not already done
+      // make the table element hoverable and highlight all instances of the word by adding a class to each span matching the word
+      //2 replace all tokens with span tags
+      //3 add event listeners to each span tag
+      //4 create a hover div
+      //5 add the hover div to the body
+      //6 add event listeners to the hover div
+      //7 remove the hover div when mouse leaves
+      //8 add the translation to the hover div
+      //9 add the hiragana reading to the hover div
+      //10 add the category to the hover div
+    });
 });
