@@ -1,6 +1,5 @@
 import { 
     analyzeText,
-    loadLocalStorage,
     saveCurrentTokenCountToDictionary,
     handleCurrentTokenDictionary,
     downloadCSVFromDictionary,
@@ -75,7 +74,7 @@ inputText.value = text;
 const dictionary_data = loadDictionaryFromCSV();
 
 
-let frequency_translation_dictionary = {currentTextTokensCount: {}, allSavedWords: dictionary_data};
+let frequency_translation_dictionary = {currentTextTokensCount: {}, allSavedWords: {}};
 if(frequency_translation_dictionary.allSavedWords.entries !== 0) {
   buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
 }

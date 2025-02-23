@@ -118,14 +118,6 @@ export function handleCurrentTokenDictionary(wordTokenFrequencyCount, allSavedWo
     return tempCurrentTextTokens;
 }
 
-export function loadLocalStorage() {
-  let loadedAllSavedWords = {};
-  if (localStorage.getItem('dictionary_data')) {
-    loadedAllSavedWords = JSON.parse(localStorage.getItem('dictionary_data'));
-  }
-  return loadedAllSavedWords;
-}
-
 export function downloadCSVFromDictionary(dictionary, filename = 'translation.csv') {
   const header = 'Word,Count,Translation,Hiragana Reading,Category\n';
   const csv = Object.entries(dictionary).map(([word, data]) => {
