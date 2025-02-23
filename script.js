@@ -71,7 +71,11 @@ It's long long good-bye...
 let inputText = document.getElementById('input-text');
 inputText.value = text;
 
-let frequency_translation_dictionary = {currentTextTokensCount: {}, allSavedWords: loadLocalStorage()};
+//todo: load csv from file
+const dictionary_data = loadDictionaryFromCSV();
+
+
+let frequency_translation_dictionary = {currentTextTokensCount: {}, allSavedWords: dictionary_data};
 if(frequency_translation_dictionary.allSavedWords.entries !== 0) {
   buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
 }
@@ -93,6 +97,17 @@ export function updateCategoryChangeValue(word, category){
 export function addWordToDictionaryFromNewRow(newWord){
   frequency_translation_dictionary.allSavedWords[newWord.word] = newWord;
   buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
+}
+
+function loadDictionaryFromCSV(csv){
+  const dictionary = {};
+  const rows = csv.split('\n');
+
+  rows.forEach(row => {
+    const [word, count, translation, hiragana_reading, category] = row.split(',');
+    dictionary[word] = { count:count, translation: translation, hiragana_reading: hiragana_reading, category: category };
+  });
+  return dictionary;
 }
 
 //set up event listeners on load
