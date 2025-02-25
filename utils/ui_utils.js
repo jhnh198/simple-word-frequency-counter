@@ -38,6 +38,7 @@ export function createInputFieldContainer(word, translation, component, language
 }
 
 export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) {
+  console.log(`dictionary in build word table ${dictionary}`);
   dictionaryTabContent.innerHTML = '';
   dictionaryTabContent.classList.remove('hidden');
 
