@@ -38,7 +38,6 @@ export function createInputFieldContainer(word, translation, component, language
 }
 
 export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) {
-  console.log(`dictionary in build word table ${dictionary}`);
   dictionaryTabContent.innerHTML = '';
   dictionaryTabContent.classList.remove('hidden');
 
@@ -49,7 +48,9 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
   const body = table.createTBody();
 
   //check if any words exist that match the category
+  //todo: debugging needed. Some .csv will not create all the elements, but only the last one
   CATEGORY_LIST.forEach(category => {
+
     if (Object.values(dictionary).some(entry => entry.category === category)) {
       const categoryRow = body.insertRow();
       const categoryCell = categoryRow.insertCell();
@@ -72,6 +73,7 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
       categoryHeaderCell.textContent = 'Category'; 
 
       Object.entries(dictionary).forEach(([word]) => {
+        console.log('word', word);
         if(dictionary[word].category === category) {
           const row = body.insertRow();
           const wordCell = row.insertCell();
@@ -97,12 +99,12 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
             buildWordFrequencyTable(dictionary, dictionaryTabContent);
           });
           categoryCell.appendChild(deleteButton);
-          
         }
         });
       }
     }
   );
+  console.log(table)
   table.appendChild(createEmptyWordRow(table));
   dictionaryTabContent.appendChild(table);
 }

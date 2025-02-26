@@ -148,7 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
           const text = reader.result;
           const dictionaryData = JSON.parse(text);
 
-          console.log(dictionaryData.allSavedWords);
           frequency_translation_dictionary.allSavedWords = dictionaryData.allSavedWords;
           buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
           titleInput.value = dictionaryData.title?.value;
@@ -161,12 +160,12 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.onload = function(e) {
         const text = reader.result;
         const rows = text.split('\n');
+        console.log(rows);
 
         rows.forEach(row => {
           const [word, count, translation, hiragana_reading, category] = row.split(',');
           dictionary[word] = { count:count, translation: translation, hiragana_reading: hiragana_reading, category: category };
         });
-        console.log(dictionary);
         buildWordFrequencyTable(dictionary, dictionaryTabContent);
       };
       frequency_translation_dictionary.allSavedWords = dictionary;
