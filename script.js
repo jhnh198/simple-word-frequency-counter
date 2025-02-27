@@ -127,8 +127,6 @@ document.addEventListener('DOMContentLoaded', () => {
         buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount, dictionaryTabContent);
     });
 
-    
-
     document.getElementById('download-json-button').addEventListener('click', () => {
       downloadJSONFromDictionary(frequency_translation_dictionary.allSavedWords, titleInput?.value);
     });
@@ -158,16 +156,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const dictionary = {};
 
         reader.onload = function(e) {
-        const text = reader.result;
-        const rows = text.split('\n');
-        console.log(rows);
+          let text = reader.result;
+          text = text.replace(/\\[nrt]/g, ''); // Remove escape characters
+          text = text.replace(/\r/g, ''); // Remove carriage return characters
+          const rows = text.split(/\n/); // Split by new line characters
 
-        rows.forEach(row => {
-          const [word, count, translation, hiragana_reading, category] = row.split(',');
-          dictionary[word] = { count:count, translation: translation, hiragana_reading: hiragana_reading, category: category };
-        });
-        buildWordFrequencyTable(dictionary, dictionaryTabContent);
-      };
+          rows.forEach(row => {
+            const [word, count, translation, hiragana_reading, category] = row.split(',');
+            dictionary[word] = { count:count, translation: translation, hiragana_reading: hiragana_reading, category: category };
+          });
+          buildWordFrequencyTable(dictionary, dictionaryTabContent);
+        };
       frequency_translation_dictionary.allSavedWords = dictionary;
       frequency_translation_dictionary.currentTextTokensCount = dictionary;
       }

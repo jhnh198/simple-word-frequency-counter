@@ -47,8 +47,6 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
 
   const body = table.createTBody();
 
-  //check if any words exist that match the category
-  //todo: debugging needed. Some .csv will not create all the elements, but only the last one
   CATEGORY_LIST.forEach(category => {
 
     if (Object.values(dictionary).some(entry => entry.category === category)) {
@@ -73,7 +71,6 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
       categoryHeaderCell.textContent = 'Category'; 
 
       Object.entries(dictionary).forEach(([word]) => {
-        console.log('word', word);
         if(dictionary[word].category === category) {
           const row = body.insertRow();
           const wordCell = row.insertCell();
@@ -104,7 +101,6 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
       }
     }
   );
-  console.log(table)
   table.appendChild(createEmptyWordRow(table));
   dictionaryTabContent.appendChild(table);
 }
