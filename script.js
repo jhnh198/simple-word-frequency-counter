@@ -70,15 +70,19 @@ It's long long good-bye...
 let inputText = document.getElementById('input-text');
 inputText.value = text;
 
-//todo: load csv from file
-
-
 let frequency_translation_dictionary = {currentTextTokensCount: {}, allSavedWords: {}};
-if(frequency_translation_dictionary.allSavedWords.entries !== 0) {
-  buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
-}
+
+fetch('./dictionary_data/frequency_dictionary_data.json')
+    .then((response) => response.json())
+    .then((json) => 
+      frequency_translation_dictionary.allSavedWords = json.allSavedWords
+    ).then(() =>{
+      buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
+});
 
 //todo: change to ignore count and only update the new word
+//todo: add words to the json file from inputs
+//todo: update json with frequency count words
 export function updateInputChangeValue(word, value, component){
   if(component === 'translation'){
     frequency_translation_dictionary.currentTextTokensCount[word].translation = value;
