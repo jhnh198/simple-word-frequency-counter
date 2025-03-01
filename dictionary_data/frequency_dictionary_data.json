@@ -1,0 +1,3970 @@
+{
+  "allSavedWords": {
+    "Word": {
+      "count": "Count",
+      "translation": "Translation",
+      "hiragana_reading": "Hiragana Reading",
+      "category": "Category"
+    },
+    "あなた": {
+      "count": "6",
+      "translation": "you",
+      "hiragana_reading": "あなた",
+      "category": "名詞"
+    },
+    "あの": {
+      "count": "1",
+      "translation": "this",
+      "hiragana_reading": "あの",
+      "category": "名詞"
+    },
+    "あり": {
+      "count": "1",
+      "translation": "existing",
+      "hiragana_reading": "あり",
+      "category": "名詞"
+    },
+    "あれ": {
+      "count": "1",
+      "translation": "that",
+      "hiragana_reading": "あれ",
+      "category": "名詞"
+    },
+    "いい": {
+      "count": "1",
+      "translation": "good",
+      "hiragana_reading": "いい",
+      "category": "名詞"
+    },
+    "いたい": {
+      "count": "1",
+      "translation": "hurt",
+      "hiragana_reading": "いたい",
+      "category": "名詞"
+    },
+    "いつか": {
+      "count": "1",
+      "translation": "5th of the month",
+      "hiragana_reading": "いつか",
+      "category": "名詞"
+    },
+    "いつも": {
+      "count": "3",
+      "translation": "always",
+      "hiragana_reading": "いつも",
+      "category": "名詞"
+    },
+    "いる": {
+      "count": "14",
+      "translation": "There is",
+      "hiragana_reading": "いる",
+      "category": "名詞"
+    },
+    "おいしい": {
+      "count": "2",
+      "translation": "delicious",
+      "hiragana_reading": "おいしい",
+      "category": "名詞"
+    },
+    "お坊さん": {
+      "count": "1",
+      "translation": "buddhist priest",
+      "hiragana_reading": "おほうさん",
+      "category": "名詞"
+    },
+    "お寺": {
+      "count": "1",
+      "translation": "temple",
+      "hiragana_reading": "おてら",
+      "category": "名詞"
+    },
+    "から": {
+      "count": "4",
+      "translation": "from",
+      "hiragana_reading": "から",
+      "category": "名詞"
+    },
+    "ぐちゃぐちゃ": {
+      "count": "2",
+      "translation": "disordered",
+      "hiragana_reading": "ぐちゃぐちゃ",
+      "category": "名詞"
+    },
+    "ぐらい": {
+      "count": "3",
+      "translation": "about",
+      "hiragana_reading": "ぐらい",
+      "category": "名詞"
+    },
+    "けっこう": {
+      "count": "2",
+      "translation": "pretty much",
+      "hiragana_reading": "けっこう",
+      "category": "名詞"
+    },
+    "ここ": {
+      "count": "1",
+      "translation": "here",
+      "hiragana_reading": "ここ",
+      "category": "名詞"
+    },
+    "こと": {
+      "count": "1",
+      "translation": "that",
+      "hiragana_reading": "こと",
+      "category": "名詞"
+    },
+    "この": {
+      "count": "6",
+      "translation": "this",
+      "hiragana_reading": "この",
+      "category": "名詞"
+    },
+    "こぼれ": {
+      "count": "1",
+      "translation": "spill",
+      "hiragana_reading": "こばれ",
+      "category": "名詞"
+    },
+    "これ": {
+      "count": "14",
+      "translation": "this",
+      "hiragana_reading": "これ",
+      "category": "名詞"
+    },
+    "こんな": {
+      "count": "1",
+      "translation": "this sort of",
+      "hiragana_reading": "こんな",
+      "category": "名詞"
+    },
+    "さつま芋": {
+      "count": "1",
+      "translation": "sweet potato",
+      "hiragana_reading": "さつまいも",
+      "category": "名詞"
+    },
+    "さん": {
+      "count": "11",
+      "translation": "Mr/Mrs",
+      "hiragana_reading": "さん",
+      "category": "敬称"
+    },
+    "じゃ": {
+      "count": "12",
+      "translation": "well",
+      "hiragana_reading": "じゃ",
+      "category": "名詞"
+    },
+    "ずっと": {
+      "count": "3",
+      "translation": "always",
+      "hiragana_reading": "ずっと",
+      "category": "名詞"
+    },
+    "せい": {
+      "count": "1",
+      "translation": "because of",
+      "hiragana_reading": "せい",
+      "category": "名詞"
+    },
+    "そう": {
+      "count": "9",
+      "translation": "like",
+      "hiragana_reading": "そう",
+      "category": "名詞"
+    },
+    "その": {
+      "count": "5",
+      "translation": "there",
+      "hiragana_reading": "その",
+      "category": "名詞"
+    },
+    "たい": {
+      "count": "3",
+      "translation": "want",
+      "hiragana_reading": "たい",
+      "category": "名詞"
+    },
+    "だけ": {
+      "count": "6",
+      "translation": "only",
+      "hiragana_reading": "なけ",
+      "category": "名詞"
+    },
+    "たち": {
+      "count": "21",
+      "translation": "pluralizing suffix",
+      "hiragana_reading": "たち",
+      "category": "接尾詞"
+    },
+    "ため": {
+      "count": "4",
+      "translation": "because",
+      "hiragana_reading": "てめ",
+      "category": "名詞"
+    },
+    "ちょっと": {
+      "count": "1",
+      "translation": "little",
+      "hiragana_reading": "ちょっと",
+      "category": "名詞"
+    },
+    "でも": {
+      "count": "1",
+      "translation": "but",
+      "hiragana_reading": "でも",
+      "category": "名詞"
+    },
+    "どこか": {
+      "count": "1",
+      "translation": "somewhere",
+      "hiragana_reading": "どこか",
+      "category": "名詞"
+    },
+    "どんな": {
+      "count": "2",
+      "translation": "what kind of",
+      "hiragana_reading": "どんな",
+      "category": "名詞"
+    },
+    "ない": {
+      "count": "89",
+      "translation": "negation",
+      "hiragana_reading": "ない",
+      "category": "名詞"
+    },
+    "ながら": {
+      "count": "1",
+      "translation": "while",
+      "hiragana_reading": "ながら",
+      "category": "名詞"
+    },
+    "なく": {
+      "count": "12",
+      "translation": "without",
+      "hiragana_reading": "なく",
+      "category": "名詞"
+    },
+    "なら": {
+      "count": "1",
+      "translation": "if",
+      "hiragana_reading": "なら",
+      "category": "名詞"
+    },
+    "なんか": {
+      "count": "12",
+      "translation": "kinda/like(slang)",
+      "hiragana_reading": "なんか",
+      "category": "名詞"
+    },
+    "にち": {
+      "count": "1",
+      "translation": "day",
+      "hiragana_reading": "にち",
+      "category": "名詞"
+    },
+    "ねえ": {
+      "count": "2",
+      "translation": "right?",
+      "hiragana_reading": "ねえ",
+      "category": "名詞"
+    },
+    "はじめて": {
+      "count": "3",
+      "translation": "start",
+      "hiragana_reading": "はじめて",
+      "category": "名詞"
+    },
+    "ふたつ": {
+      "count": "1",
+      "translation": "two",
+      "hiragana_reading": "ふたつ",
+      "category": "名詞"
+    },
+    "ふたり": {
+      "count": "1",
+      "translation": "together",
+      "hiragana_reading": "ふたり",
+      "category": "名詞"
+    },
+    "ふたりぼっち": {
+      "count": "2",
+      "translation": "together",
+      "hiragana_reading": "ふたりぼっち",
+      "category": "名詞"
+    },
+    "ほんと": {
+      "count": "1",
+      "translation": "really",
+      "hiragana_reading": "ほんと",
+      "category": "名詞"
+    },
+    "まだ輝い": {
+      "count": "1",
+      "translation": "to shine",
+      "hiragana_reading": "まだかがや",
+      "category": "名詞"
+    },
+    "まで": {
+      "count": "3",
+      "translation": "until",
+      "hiragana_reading": "まで",
+      "category": "名詞"
+    },
+    "まま": {
+      "count": "1",
+      "translation": "as it is",
+      "hiragana_reading": "まま",
+      "category": "名詞"
+    },
+    "もう": {
+      "count": "9",
+      "translation": "already",
+      "hiragana_reading": "もう",
+      "category": "名詞"
+    },
+    "もう離さ": {
+      "count": "2",
+      "translation": "already separate",
+      "hiragana_reading": "もうはなさ",
+      "category": "名詞"
+    },
+    "よう": {
+      "count": "11",
+      "translation": "like",
+      "hiragana_reading": "よう",
+      "category": "名詞"
+    },
+    "よね": {
+      "count": "35",
+      "translation": "Right?",
+      "hiragana_reading": "よね",
+      "category": "名詞"
+    },
+    "より": {
+      "count": "3",
+      "translation": "than",
+      "hiragana_reading": "より",
+      "category": "名詞"
+    },
+    "わくわく": {
+      "count": "1",
+      "translation": "to be excited",
+      "hiragana_reading": "わくわく",
+      "category": "名詞"
+    },
+    "一": {
+      "count": "15",
+      "translation": "one",
+      "hiragana_reading": "いち",
+      "category": "数字"
+    },
+    "一つ": {
+      "count": "3",
+      "translation": "one thing",
+      "hiragana_reading": "ひとつ",
+      "category": "数字"
+    },
+    "一旦": {
+      "count": "1",
+      "translation": "once",
+      "hiragana_reading": "いったん",
+      "category": "数字"
+    },
+    "一番": {
+      "count": "1",
+      "translation": "first",
+      "hiragana_reading": "いちばん",
+      "category": "数字"
+    },
+    "一緒": {
+      "count": "3",
+      "translation": "doing(together)",
+      "hiragana_reading": "いっしょ",
+      "category": "数字"
+    },
+    "一週間": {
+      "count": "1",
+      "translation": "one week",
+      "hiragana_reading": "いっしゅうかん",
+      "category": "数字"
+    },
+    "万": {
+      "count": "4",
+      "translation": "ten thousand",
+      "hiragana_reading": "まん",
+      "category": "数字"
+    },
+    "三つ": {
+      "count": "1",
+      "translation": "three things",
+      "hiragana_reading": "みっつ",
+      "category": "数字"
+    },
+    "上が": {
+      "count": "2",
+      "translation": "up",
+      "hiragana_reading": "しょう",
+      "category": "名詞"
+    },
+    "不安": {
+      "count": "1",
+      "translation": "anxiety",
+      "hiragana_reading": "ふあん",
+      "category": "名詞"
+    },
+    "不思議": {
+      "count": "1",
+      "translation": "wonderful",
+      "hiragana_reading": "ふじぎ",
+      "category": "名詞"
+    },
+    "不能": {
+      "count": "2",
+      "translation": "impossible",
+      "hiragana_reading": "ふのう",
+      "category": "名詞"
+    },
+    "世界": {
+      "count": "7",
+      "translation": "world",
+      "hiragana_reading": "せかい",
+      "category": "名詞"
+    },
+    "両手": {
+      "count": "2",
+      "translation": "both hands",
+      "hiragana_reading": "りょうて",
+      "category": "名詞"
+    },
+    "中": {
+      "count": "15",
+      "translation": "middle",
+      "hiragana_reading": "なか",
+      "category": "名詞"
+    },
+    "主義": {
+      "count": "1",
+      "translation": "doctrine",
+      "hiragana_reading": "しゅぎ",
+      "category": "名詞"
+    },
+    "乱れる": {
+      "count": "1",
+      "translation": "to be disordered",
+      "hiragana_reading": "みだれる",
+      "category": "名詞"
+    },
+    "予感": {
+      "count": "1",
+      "translation": "hunch",
+      "hiragana_reading": "よかん",
+      "category": "名詞"
+    },
+    "事実": {
+      "count": "1",
+      "translation": "fact",
+      "hiragana_reading": "じじつ",
+      "category": "名詞"
+    },
+    "二": {
+      "count": "3",
+      "translation": "two",
+      "hiragana_reading": "に",
+      "category": "名詞"
+    },
+    "人": {
+      "count": "39",
+      "translation": "person",
+      "hiragana_reading": "ひと",
+      "category": "名詞"
+    },
+    "人きり": {
+      "count": "1",
+      "translation": "alone",
+      "hiragana_reading": "ひときり",
+      "category": "名詞"
+    },
+    "人生": {
+      "count": "1",
+      "translation": "life",
+      "hiragana_reading": "じんせい",
+      "category": "名詞"
+    },
+    "人間": {
+      "count": "8",
+      "translation": "human",
+      "hiragana_reading": "にんげん",
+      "category": "名詞"
+    },
+    "今": {
+      "count": "9",
+      "translation": "now",
+      "hiragana_reading": "いま",
+      "category": "名詞"
+    },
+    "今同": {
+      "count": "1",
+      "translation": "same time",
+      "hiragana_reading": "いまどう",
+      "category": "名詞"
+    },
+    "今年": {
+      "count": "1",
+      "translation": "this year",
+      "hiragana_reading": "ことし",
+      "category": "名詞"
+    },
+    "今日": {
+      "count": "11",
+      "translation": "today",
+      "hiragana_reading": "きょう",
+      "category": "名詞"
+    },
+    "仕事": {
+      "count": "4",
+      "translation": "work",
+      "hiragana_reading": "しごと",
+      "category": "名詞"
+    },
+    "仕方": {
+      "count": "2",
+      "translation": "way",
+      "hiragana_reading": "しかた",
+      "category": "名詞"
+    },
+    "他": {
+      "count": "7",
+      "translation": "other",
+      "hiragana_reading": "ほか",
+      "category": "名詞"
+    },
+    "代償": {
+      "count": "1",
+      "translation": "compensation",
+      "hiragana_reading": "だいしょう",
+      "category": "名詞"
+    },
+    "会": {
+      "count": "5",
+      "translation": "meeting",
+      "hiragana_reading": "かい",
+      "category": "名詞"
+    },
+    "会社": {
+      "count": "2",
+      "translation": "company",
+      "hiragana_reading": "かいしゃ",
+      "category": "名詞"
+    },
+    "伝え": {
+      "count": "1",
+      "translation": "to tell",
+      "hiragana_reading": "うつえ",
+      "category": "名詞"
+    },
+    "低い": {
+      "count": "1",
+      "translation": "low",
+      "hiragana_reading": "ひくい",
+      "category": "名詞"
+    },
+    "体": {
+      "count": "2",
+      "translation": "body",
+      "hiragana_reading": "からだ",
+      "category": "名詞"
+    },
+    "体中": {
+      "count": "1",
+      "translation": "all over the body",
+      "hiragana_reading": "からだじゅう",
+      "category": "名詞"
+    },
+    "何": {
+      "count": "1",
+      "translation": "what",
+      "hiragana_reading": "なに",
+      "category": "名詞"
+    },
+    "何か": {
+      "count": "1",
+      "translation": "something",
+      "hiragana_reading": "なにか",
+      "category": "名詞"
+    },
+    "何処": {
+      "count": "1",
+      "translation": "place",
+      "hiragana_reading": "どこところ",
+      "category": "名詞"
+    },
+    "何度": {
+      "count": "4",
+      "translation": "how many times",
+      "hiragana_reading": "なんど",
+      "category": "名詞"
+    },
+    "作る": {
+      "count": "7",
+      "translation": "to make",
+      "hiragana_reading": "つくる",
+      "category": "名詞"
+    },
+    "使": {
+      "count": "1",
+      "translation": "use",
+      "hiragana_reading": "つか",
+      "category": "名詞"
+    },
+    "使わ": {
+      "count": "1",
+      "translation": "to use",
+      "hiragana_reading": "つかわ",
+      "category": "名詞"
+    },
+    "例え": {
+      "count": "5",
+      "translation": "example",
+      "hiragana_reading": "たとえ",
+      "category": "名詞"
+    },
+    "信じ": {
+      "count": "1",
+      "translation": "to believe",
+      "hiragana_reading": "しんじ",
+      "category": "名詞"
+    },
+    "信じる": {
+      "count": "1",
+      "translation": "to believe",
+      "hiragana_reading": "しんじる",
+      "category": "名詞"
+    },
+    "健康": {
+      "count": "2",
+      "translation": "health",
+      "hiragana_reading": "けんこう",
+      "category": "名詞"
+    },
+    "側": {
+      "count": "1",
+      "translation": "side",
+      "hiragana_reading": "がわ",
+      "category": "名詞"
+    },
+    "傘より": {
+      "count": "1",
+      "translation": "umbrella",
+      "hiragana_reading": "かさ",
+      "category": "名詞"
+    },
+    "傷つい": {
+      "count": "1",
+      "translation": "to be wounded",
+      "hiragana_reading": "きずつく",
+      "category": "名詞"
+    },
+    "僕": {
+      "count": "5",
+      "translation": "I",
+      "hiragana_reading": "ぼく",
+      "category": "名詞"
+    },
+    "僕ら": {
+      "count": "1",
+      "translation": "we",
+      "hiragana_reading": "ぼくら",
+      "category": "名詞"
+    },
+    "償う": {
+      "count": "1",
+      "translation": "to make up for",
+      "hiragana_reading": "つぐなう",
+      "category": "名詞"
+    },
+    "優": {
+      "count": "1",
+      "translation": "gentle",
+      "hiragana_reading": "やさ",
+      "category": "名詞"
+    },
+    "優し": {
+      "count": "2",
+      "translation": "kind",
+      "hiragana_reading": "やさし",
+      "category": "名詞"
+    },
+    "光": {
+      "count": "2",
+      "translation": "light",
+      "hiragana_reading": "ひかり",
+      "category": "名詞"
+    },
+    "入り口": {
+      "count": "1",
+      "translation": "entrance",
+      "hiragana_reading": "いりぐち",
+      "category": "名詞"
+    },
+    "入る": {
+      "count": "6",
+      "translation": "to enter",
+      "hiragana_reading": "はいる",
+      "category": "名詞"
+    },
+    "全": {
+      "count": "1",
+      "translation": "all",
+      "hiragana_reading": "ぜん",
+      "category": "名詞"
+    },
+    "全て": {
+      "count": "2",
+      "translation": "whole",
+      "hiragana_reading": "すべて",
+      "category": "名詞"
+    },
+    "全部": {
+      "count": "1",
+      "translation": "all",
+      "hiragana_reading": "ぜんぶ",
+      "category": "名詞"
+    },
+    "共通": {
+      "count": "1",
+      "translation": "common",
+      "hiragana_reading": "きょうつう",
+      "category": "名詞"
+    },
+    "内容": {
+      "count": "3",
+      "translation": "contents",
+      "hiragana_reading": "ないよう",
+      "category": "名詞"
+    },
+    "再生": {
+      "count": "1",
+      "translation": "regeneration",
+      "hiragana_reading": "さいせい",
+      "category": "名詞"
+    },
+    "冬": {
+      "count": "2",
+      "translation": "winter",
+      "hiragana_reading": "ふゆ",
+      "category": "名詞"
+    },
+    "冷": {
+      "count": "2",
+      "translation": "cool",
+      "hiragana_reading": "つめ",
+      "category": "名詞"
+    },
+    "出": {
+      "count": "5",
+      "translation": "exit",
+      "hiragana_reading": "で",
+      "category": "名詞"
+    },
+    "出会": {
+      "count": "5",
+      "translation": "meeting",
+      "hiragana_reading": "であう",
+      "category": "名詞"
+    },
+    "出来る": {
+      "count": "1",
+      "translation": "to be able to do",
+      "hiragana_reading": "できる",
+      "category": "名詞"
+    },
+    "出逢": {
+      "count": "2",
+      "translation": "to meet by chance",
+      "hiragana_reading": "であう",
+      "category": "名詞"
+    },
+    "分": {
+      "count": "1",
+      "translation": "part",
+      "hiragana_reading": "ぶん",
+      "category": "名詞"
+    },
+    "切り裂け": {
+      "count": "1",
+      "translation": "to cut off",
+      "hiragana_reading": "きりさけ",
+      "category": "名詞"
+    },
+    "初": {
+      "count": "1",
+      "translation": "first",
+      "hiragana_reading": "はつ",
+      "category": "名詞"
+    },
+    "別れ": {
+      "count": "1",
+      "translation": "parting",
+      "hiragana_reading": "わかれ",
+      "category": "名詞"
+    },
+    "制御": {
+      "count": "2",
+      "translation": "control",
+      "hiragana_reading": "せいぎょ",
+      "category": "名詞"
+    },
+    "前": {
+      "count": "9",
+      "translation": "front",
+      "hiragana_reading": "まえ",
+      "category": "名詞"
+    },
+    "剥け": {
+      "count": "1",
+      "translation": "to peel off",
+      "hiragana_reading": "むけ",
+      "category": "名詞"
+    },
+    "割": {
+      "count": "3",
+      "translation": "rate",
+      "hiragana_reading": "わり",
+      "category": "名詞"
+    },
+    "力": {
+      "count": "1",
+      "translation": "power",
+      "hiragana_reading": "りょく",
+      "category": "名詞"
+    },
+    "加速": {
+      "count": "1",
+      "translation": "acceleration",
+      "hiragana_reading": "かそく",
+      "category": "名詞"
+    },
+    "労力": {
+      "count": "1",
+      "translation": "labor",
+      "hiragana_reading": "ろうりょうく",
+      "category": "名詞"
+    },
+    "勉強": {
+      "count": "1",
+      "translation": "study",
+      "hiragana_reading": "べんじょう",
+      "category": "名詞"
+    },
+    "勝ち残る": {
+      "count": "1",
+      "translation": "to win and advance",
+      "hiragana_reading": "かちのこる",
+      "category": "名詞"
+    },
+    "勝手": {
+      "count": "2",
+      "translation": "one's own convenience",
+      "hiragana_reading": "かって",
+      "category": "名詞"
+    },
+    "匂": {
+      "count": "1",
+      "translation": "smell",
+      "hiragana_reading": "にお",
+      "category": "名詞"
+    },
+    "包ん": {
+      "count": "1",
+      "translation": "to wrap",
+      "hiragana_reading": "つつん",
+      "category": "名詞"
+    },
+    "危": {
+      "count": "1",
+      "translation": "dangerous",
+      "hiragana_reading": "あぶない",
+      "category": "名詞"
+    },
+    "友達": {
+      "count": "1",
+      "translation": "friend",
+      "hiragana_reading": "ともだち",
+      "category": "名詞"
+    },
+    "右": {
+      "count": "1",
+      "translation": "left",
+      "hiragana_reading": "みぎ",
+      "category": "名詞"
+    },
+    "叶え": {
+      "count": "1",
+      "translation": "grant",
+      "hiragana_reading": "かなえる",
+      "category": "名詞"
+    },
+    "合": {
+      "count": "2",
+      "translation": "fit",
+      "hiragana_reading": "あい",
+      "category": "名詞"
+    },
+    "合いっこし": {
+      "count": "1",
+      "translation": "suited",
+      "hiragana_reading": "あいっこし",
+      "category": "名詞"
+    },
+    "同じ": {
+      "count": "5",
+      "translation": "same",
+      "hiragana_reading": "おなじ",
+      "category": "名詞"
+    },
+    "名前": {
+      "count": "4",
+      "translation": "name",
+      "hiragana_reading": "なまえ",
+      "category": "名詞"
+    },
+    "吐い": {
+      "count": "1",
+      "translation": "to breath out",
+      "hiragana_reading": "はい",
+      "category": "名詞"
+    },
+    "君": {
+      "count": "16",
+      "translation": "you",
+      "hiragana_reading": "きみ",
+      "category": "名詞"
+    },
+    "吠えろ": {
+      "count": "2",
+      "translation": "to bark",
+      "hiragana_reading": "ほえろ",
+      "category": "名詞"
+    },
+    "含める": {
+      "count": "1",
+      "translation": "to include",
+      "hiragana_reading": "ふくめる",
+      "category": "名詞"
+    },
+    "味気": {
+      "count": "2",
+      "translation": "interesting",
+      "hiragana_reading": "あじき",
+      "category": "名詞"
+    },
+    "呼び覚ませ": {
+      "count": "2",
+      "translation": "to wake up",
+      "hiragana_reading": "よびさませ",
+      "category": "名詞"
+    },
+    "呼ぶ": {
+      "count": "1",
+      "translation": "to call out",
+      "hiragana_reading": "よぶ",
+      "category": "名詞"
+    },
+    "咲": {
+      "count": "1",
+      "translation": "blossom",
+      "hiragana_reading": "さ",
+      "category": "名詞"
+    },
+    "咲く命よ": {
+      "count": "2",
+      "translation": "to bloom",
+      "hiragana_reading": "さくいのちよ",
+      "category": "名詞"
+    },
+    "唇": {
+      "count": "1",
+      "translation": "lips",
+      "hiragana_reading": "くちびる",
+      "category": "名詞"
+    },
+    "囁い": {
+      "count": "1",
+      "translation": "to whisper",
+      "hiragana_reading": "ささや",
+      "category": "名詞"
+    },
+    "四つ": {
+      "count": "2",
+      "translation": "four things",
+      "hiragana_reading": "よつ",
+      "category": "名詞"
+    },
+    "回": {
+      "count": "6",
+      "translation": "times(how many)",
+      "hiragana_reading": "かい",
+      "category": "名詞"
+    },
+    "国": {
+      "count": "2",
+      "translation": "country",
+      "hiragana_reading": "くに",
+      "category": "名詞"
+    },
+    "地平線": {
+      "count": "1",
+      "translation": "horizon",
+      "hiragana_reading": "ちへいせん",
+      "category": "名詞"
+    },
+    "執着": {
+      "count": "1",
+      "translation": "attachment",
+      "hiragana_reading": "しゅうちゃく",
+      "category": "名詞"
+    },
+    "基": {
+      "count": "1",
+      "translation": "fundamentals",
+      "hiragana_reading": "もと",
+      "category": "名詞"
+    },
+    "場合": {
+      "count": "1",
+      "translation": "case",
+      "hiragana_reading": "ばあい",
+      "category": "名詞"
+    },
+    "塗ぬり": {
+      "count": "1",
+      "translation": "coating",
+      "hiragana_reading": "ぬり",
+      "category": "名詞"
+    },
+    "塗り替え": {
+      "count": "1",
+      "translation": "to repaint",
+      "hiragana_reading": "ぬりかえ",
+      "category": "名詞"
+    },
+    "増え": {
+      "count": "1",
+      "translation": "increase",
+      "hiragana_reading": "ふえ",
+      "category": "名詞"
+    },
+    "増える": {
+      "count": "1",
+      "translation": "to multiply",
+      "hiragana_reading": "ふえる",
+      "category": "名詞"
+    },
+    "壊し": {
+      "count": "4",
+      "translation": "to break",
+      "hiragana_reading": "こわし",
+      "category": "名詞"
+    },
+    "声": {
+      "count": "12",
+      "translation": "voice",
+      "hiragana_reading": "こえ",
+      "category": "名詞"
+    },
+    "変": {
+      "count": "1",
+      "translation": "strange",
+      "hiragana_reading": "へん",
+      "category": "名詞"
+    },
+    "変わ": {
+      "count": "1",
+      "translation": "to change",
+      "hiragana_reading": "かわ",
+      "category": "名詞"
+    },
+    "変わる": {
+      "count": "1",
+      "translation": "to change",
+      "hiragana_reading": "かわる",
+      "category": "名詞"
+    },
+    "夏": {
+      "count": "2",
+      "translation": "summer",
+      "hiragana_reading": "なつ",
+      "category": "名詞"
+    },
+    "多": {
+      "count": "5",
+      "translation": "many",
+      "hiragana_reading": "おおい",
+      "category": "名詞"
+    },
+    "夜明け前": {
+      "count": "2",
+      "translation": "before the dawn",
+      "hiragana_reading": "よあけまえ",
+      "category": "名詞"
+    },
+    "夢": {
+      "count": "1",
+      "translation": "dream",
+      "hiragana_reading": "ゆめ",
+      "category": "名詞"
+    },
+    "夢ゆめ": {
+      "count": "2",
+      "translation": "dream",
+      "hiragana_reading": "ゆめ",
+      "category": "名詞"
+    },
+    "夢中": {
+      "count": "1",
+      "translation": "absorbed in",
+      "hiragana_reading": "むちゅう",
+      "category": "名詞"
+    },
+    "大きな": {
+      "count": "1",
+      "translation": "big",
+      "hiragana_reading": "だいきな",
+      "category": "名詞"
+    },
+    "大事": {
+      "count": "1",
+      "translation": "important",
+      "hiragana_reading": "だいじ",
+      "category": "名詞"
+    },
+    "大切": {
+      "count": "10",
+      "translation": "important",
+      "hiragana_reading": "だいせつ",
+      "category": "名詞"
+    },
+    "天気": {
+      "count": "1",
+      "translation": "weather",
+      "hiragana_reading": "てんき",
+      "category": "名詞"
+    },
+    "失": {
+      "count": "1",
+      "translation": "lose",
+      "hiragana_reading": "うしな",
+      "category": "名詞"
+    },
+    "失う": {
+      "count": "1",
+      "translation": "laugh",
+      "hiragana_reading": "わらう",
+      "category": "名詞"
+    },
+    "失く": {
+      "count": "1",
+      "translation": "loss",
+      "hiragana_reading": "しつく",
+      "category": "名詞"
+    },
+    "奇跡": {
+      "count": "6",
+      "translation": "miracle",
+      "hiragana_reading": "きせき",
+      "category": "名詞"
+    },
+    "始め": {
+      "count": "1",
+      "translation": "start",
+      "hiragana_reading": "はじめ",
+      "category": "名詞"
+    },
+    "姿": {
+      "count": "1",
+      "translation": "figure",
+      "hiragana_reading": "すがた",
+      "category": "名詞"
+    },
+    "嫌": {
+      "count": "1",
+      "translation": "disliking",
+      "hiragana_reading": "いや",
+      "category": "名詞"
+    },
+    "嬉しい": {
+      "count": "1",
+      "translation": "happy",
+      "hiragana_reading": "うれしい",
+      "category": "名詞"
+    },
+    "季節": {
+      "count": "2",
+      "translation": "season",
+      "hiragana_reading": "させつ",
+      "category": "名詞"
+    },
+    "守る": {
+      "count": "1",
+      "translation": "to protect",
+      "hiragana_reading": "まもる",
+      "category": "名詞"
+    },
+    "完璧": {
+      "count": "2",
+      "translation": "perfect",
+      "hiragana_reading": "かんぺき",
+      "category": "名詞"
+    },
+    "定期": {
+      "count": "1",
+      "translation": "fixed period",
+      "hiragana_reading": "ていき",
+      "category": "名詞"
+    },
+    "宝物": {
+      "count": "1",
+      "translation": "treasure",
+      "hiragana_reading": "ほうもつ",
+      "category": "名詞"
+    },
+    "実": {
+      "count": "1",
+      "translation": "truth",
+      "hiragana_reading": "じつ",
+      "category": "名詞"
+    },
+    "家": {
+      "count": "1",
+      "translation": "house",
+      "hiragana_reading": "いえ",
+      "category": "名詞"
+    },
+    "容赦": {
+      "count": "1",
+      "translation": "forgiveness",
+      "hiragana_reading": "ようしゃ",
+      "category": "名詞"
+    },
+    "寂しい": {
+      "count": "2",
+      "translation": "lonely",
+      "hiragana_reading": "さびしい",
+      "category": "名詞"
+    },
+    "寄付": {
+      "count": "4",
+      "translation": "contribution",
+      "hiragana_reading": "きふ",
+      "category": "名詞"
+    },
+    "寒い": {
+      "count": "3",
+      "translation": "cold",
+      "hiragana_reading": "さむい",
+      "category": "名詞"
+    },
+    "寝転": {
+      "count": "1",
+      "translation": "to lie down",
+      "hiragana_reading": "ねころが",
+      "category": "名詞"
+    },
+    "対して": {
+      "count": "1",
+      "translation": "for",
+      "hiragana_reading": "たいして",
+      "category": "名詞"
+    },
+    "導く": {
+      "count": "2",
+      "translation": "to guide",
+      "hiragana_reading": "まちび",
+      "category": "名詞"
+    },
+    "少す": {
+      "count": "3",
+      "translation": "small",
+      "hiragana_reading": "しょう",
+      "category": "名詞"
+    },
+    "尽き": {
+      "count": "1",
+      "translation": "to be used up",
+      "hiragana_reading": "つき",
+      "category": "名詞"
+    },
+    "居": {
+      "count": "1",
+      "translation": "residence",
+      "hiragana_reading": "きょ",
+      "category": "名詞"
+    },
+    "居て": {
+      "count": "1",
+      "translation": "to be",
+      "hiragana_reading": "いて",
+      "category": "名詞"
+    },
+    "届": {
+      "count": "10",
+      "translation": "deliver",
+      "hiragana_reading": "とどけ",
+      "category": "名詞"
+    },
+    "嵐": {
+      "count": "1",
+      "translation": "storm",
+      "hiragana_reading": "あらし",
+      "category": "名詞"
+    },
+    "巡り": {
+      "count": "1",
+      "translation": "circumference",
+      "hiragana_reading": "めぐり",
+      "category": "名詞"
+    },
+    "希望": {
+      "count": "2",
+      "translation": "hope",
+      "hiragana_reading": "きぼう",
+      "category": "名詞"
+    },
+    "帯": {
+      "count": "1",
+      "translation": "obi",
+      "hiragana_reading": "おび",
+      "category": "名詞"
+    },
+    "帰る": {
+      "count": "1",
+      "translation": "to return",
+      "hiragana_reading": "かえる",
+      "category": "名詞"
+    },
+    "平和": {
+      "count": "1",
+      "translation": "peace",
+      "hiragana_reading": "へいわ",
+      "category": "名詞"
+    },
+    "平気": {
+      "count": "1",
+      "translation": "calm",
+      "hiragana_reading": "へいき",
+      "category": "名詞"
+    },
+    "平穏": {
+      "count": "1",
+      "translation": "tranquil",
+      "hiragana_reading": "へいおん",
+      "category": "名詞"
+    },
+    "年": {
+      "count": "5",
+      "translation": "year",
+      "hiragana_reading": "とし",
+      "category": "名詞"
+    },
+    "年末": {
+      "count": "1",
+      "translation": "end of year",
+      "hiragana_reading": "なんまつ",
+      "category": "名詞"
+    },
+    "幸せ": {
+      "count": "8",
+      "translation": "happiness",
+      "hiragana_reading": "しあわせ",
+      "category": "名詞"
+    },
+    "幻想": {
+      "count": "2",
+      "translation": "fantasy",
+      "hiragana_reading": "げんそう",
+      "category": "名詞"
+    },
+    "度": {
+      "count": "5",
+      "translation": "degree",
+      "hiragana_reading": "ど",
+      "category": "名詞"
+    },
+    "廃墟": {
+      "count": "1",
+      "translation": "ruins",
+      "hiragana_reading": "はいきょ",
+      "category": "名詞"
+    },
+    "引き裂か": {
+      "count": "1",
+      "translation": "to tear up",
+      "hiragana_reading": "ひききか",
+      "category": "名詞"
+    },
+    "弱さ認める": {
+      "count": "1",
+      "translation": "to recognize a weakness",
+      "hiragana_reading": "よわさみとめる",
+      "category": "名詞"
+    },
+    "張り続け": {
+      "count": "1",
+      "translation": "to stick",
+      "hiragana_reading": "はりつずけ",
+      "category": "名詞"
+    },
+    "強": {
+      "count": "2",
+      "translation": "strong",
+      "hiragana_reading": "つよい",
+      "category": "名詞"
+    },
+    "強がり": {
+      "count": "1",
+      "translation": "strong / bluff",
+      "hiragana_reading": "つよいがり",
+      "category": "名詞"
+    },
+    "強く強く": {
+      "count": "2",
+      "translation": "stronger and stronger",
+      "hiragana_reading": "つよいくつよいく",
+      "category": "名詞"
+    },
+    "強さ": {
+      "count": "1",
+      "translation": "strength",
+      "hiragana_reading": "つよさ",
+      "category": "名詞"
+    },
+    "影": {
+      "count": "1",
+      "translation": "shadow",
+      "hiragana_reading": "かげ",
+      "category": "名詞"
+    },
+    "影響": {
+      "count": "4",
+      "translation": "influence",
+      "hiragana_reading": "えいきょう",
+      "category": "名詞"
+    },
+    "待": {
+      "count": "2",
+      "translation": "to wait",
+      "hiragana_reading": "ま",
+      "category": "名詞"
+    },
+    "後": {
+      "count": "2",
+      "translation": "after",
+      "hiragana_reading": "ご",
+      "category": "名詞"
+    },
+    "心": {
+      "count": "20",
+      "translation": "heart",
+      "hiragana_reading": "こころ",
+      "category": "名詞"
+    },
+    "必要": {
+      "count": "7",
+      "translation": "necessity",
+      "hiragana_reading": "ひつよう",
+      "category": "名詞"
+    },
+    "忘れ": {
+      "count": "4",
+      "translation": "to forget",
+      "hiragana_reading": "わすれ",
+      "category": "名詞"
+    },
+    "忙しく": {
+      "count": "6",
+      "translation": "busy",
+      "hiragana_reading": "いそがしく",
+      "category": "名詞"
+    },
+    "思い出す": {
+      "count": "1",
+      "translation": "to remember",
+      "hiragana_reading": "おもいだす",
+      "category": "名詞"
+    },
+    "思い浮": {
+      "count": "1",
+      "translation": "to remember",
+      "hiragana_reading": "おもいう",
+      "category": "名詞"
+    },
+    "思う": {
+      "count": "55",
+      "translation": "to think",
+      "hiragana_reading": "おもう",
+      "category": "名詞"
+    },
+    "思考": {
+      "count": "14",
+      "translation": "thought",
+      "hiragana_reading": "しこう",
+      "category": "名詞"
+    },
+    "恋": {
+      "count": "9",
+      "translation": "romantic love",
+      "hiragana_reading": "こい",
+      "category": "名詞"
+    },
+    "恋人": {
+      "count": "2",
+      "translation": "lover",
+      "hiragana_reading": "こいびと",
+      "category": "名詞"
+    },
+    "恐れ": {
+      "count": "1",
+      "translation": "fear",
+      "hiragana_reading": "おそれ",
+      "category": "名詞"
+    },
+    "息": {
+      "count": "1",
+      "translation": "breath",
+      "hiragana_reading": "いき",
+      "category": "名詞"
+    },
+    "恵": {
+      "count": "4",
+      "translation": "favor",
+      "hiragana_reading": "めぐ",
+      "category": "名詞"
+    },
+    "悪い": {
+      "count": "2",
+      "translation": "bad",
+      "hiragana_reading": "わるい",
+      "category": "名詞"
+    },
+    "悪く": {
+      "count": "2",
+      "translation": "bad(to get worse)",
+      "hiragana_reading": "わるく",
+      "category": "名詞"
+    },
+    "悪魔": {
+      "count": "1",
+      "translation": "devil",
+      "hiragana_reading": "あくま",
+      "category": "名詞"
+    },
+    "悲しい": {
+      "count": "1",
+      "translation": "sadness",
+      "hiragana_reading": "かなしい",
+      "category": "名詞"
+    },
+    "悲しみ": {
+      "count": "1",
+      "translation": "sadness",
+      "hiragana_reading": "かなしみ",
+      "category": "名詞"
+    },
+    "情報": {
+      "count": "2",
+      "translation": "information",
+      "hiragana_reading": "じょうほう",
+      "category": "名詞"
+    },
+    "惑星": {
+      "count": "2",
+      "translation": "planet",
+      "hiragana_reading": "わくせい",
+      "category": "名詞"
+    },
+    "想い": {
+      "count": "1",
+      "translation": "feeling",
+      "hiragana_reading": "おもい",
+      "category": "名詞"
+    },
+    "想い届ける": {
+      "count": "1",
+      "translation": "deliver a thought",
+      "hiragana_reading": "おもいとどける",
+      "category": "名詞"
+    },
+    "意し": {
+      "count": "1",
+      "translation": "feelings",
+      "hiragana_reading": "い",
+      "category": "名詞"
+    },
+    "意味": {
+      "count": "8",
+      "translation": "meaning",
+      "hiragana_reading": "いみ",
+      "category": "名詞"
+    },
+    "意識": {
+      "count": "2",
+      "translation": "consciousness",
+      "hiragana_reading": "いしき",
+      "category": "名詞"
+    },
+    "愛": {
+      "count": "15",
+      "translation": "love",
+      "hiragana_reading": "あい",
+      "category": "名詞"
+    },
+    "愛し": {
+      "count": "4",
+      "translation": "love",
+      "hiragana_reading": "あいし",
+      "category": "名詞"
+    },
+    "愛しい": {
+      "count": "1",
+      "translation": "\"lovely",
+      "hiragana_reading": " dear\"",
+      "category": "いとしい"
+    },
+    "愛すれ": {
+      "count": "2",
+      "translation": "to love",
+      "hiragana_reading": "あいすれ",
+      "category": "名詞"
+    },
+    "感じ": {
+      "count": "2",
+      "translation": "feeling",
+      "hiragana_reading": "かんじ",
+      "category": "名詞"
+    },
+    "感じる": {
+      "count": "6",
+      "translation": "feel",
+      "hiragana_reading": "かんじる",
+      "category": "名詞"
+    },
+    "感覚": {
+      "count": "1",
+      "translation": "sense",
+      "hiragana_reading": "かんかく",
+      "category": "名詞"
+    },
+    "懐": {
+      "count": "1",
+      "translation": "inside the heart/breast",
+      "hiragana_reading": "ふところ",
+      "category": "名詞"
+    },
+    "戦場": {
+      "count": "2",
+      "translation": "battlefield",
+      "hiragana_reading": "せんじょう",
+      "category": "名詞"
+    },
+    "戦士": {
+      "count": "2",
+      "translation": "soldier",
+      "hiragana_reading": "せんし",
+      "category": "名詞"
+    },
+    "手": {
+      "count": "2",
+      "translation": "hand",
+      "hiragana_reading": "て",
+      "category": "名詞"
+    },
+    "手放し": {
+      "count": "7",
+      "translation": "set free",
+      "hiragana_reading": "てばな",
+      "category": "名詞"
+    },
+    "手離": {
+      "count": "1",
+      "translation": "",
+      "hiragana_reading": "",
+      "category": "名詞"
+    },
+    "打ち込む": {
+      "count": "1",
+      "translation": "to drive in",
+      "hiragana_reading": "うちこむ",
+      "category": "名詞"
+    },
+    "扱う": {
+      "count": "2",
+      "translation": "to deal with someone",
+      "hiragana_reading": "あつか",
+      "category": "名詞"
+    },
+    "抜ぬけ": {
+      "count": "1",
+      "translation": "slip out",
+      "hiragana_reading": "バツ",
+      "category": "名詞"
+    },
+    "抱き": {
+      "count": "1",
+      "translation": "to hold in one's arms",
+      "hiragana_reading": "いたき",
+      "category": "名詞"
+    },
+    "押し": {
+      "count": "1",
+      "translation": "push",
+      "hiragana_reading": "おし",
+      "category": "名詞"
+    },
+    "拾い上げ": {
+      "count": "1",
+      "translation": "to pick up",
+      "hiragana_reading": "ひろいあげ",
+      "category": "名詞"
+    },
+    "持": {
+      "count": "1",
+      "translation": "hold",
+      "hiragana_reading": "も",
+      "category": "名詞"
+    },
+    "持ち": {
+      "count": "1",
+      "translation": "having",
+      "hiragana_reading": "もち",
+      "category": "名詞"
+    },
+    "振り向い": {
+      "count": "1",
+      "translation": "to turn around",
+      "hiragana_reading": "ふりむくい",
+      "category": "名詞"
+    },
+    "振る": {
+      "count": "1",
+      "translation": "to wave",
+      "hiragana_reading": "ふる",
+      "category": "名詞"
+    },
+    "捕まえ": {
+      "count": "2",
+      "translation": "to catch",
+      "hiragana_reading": "つかまえ",
+      "category": "名詞"
+    },
+    "捧げる": {
+      "count": "1",
+      "translation": "to lift up",
+      "hiragana_reading": "ささげる",
+      "category": "名詞"
+    },
+    "捨": {
+      "count": "2",
+      "translation": "equnamity",
+      "hiragana_reading": "しゃ",
+      "category": "名詞"
+    },
+    "捨て": {
+      "count": "1",
+      "translation": "to throw away",
+      "hiragana_reading": "すて",
+      "category": "名詞"
+    },
+    "捨てる": {
+      "count": "12",
+      "translation": "to throw away",
+      "hiragana_reading": "すてる",
+      "category": "名詞"
+    },
+    "握": {
+      "count": "2",
+      "translation": "grip",
+      "hiragana_reading": "にぎ",
+      "category": "名詞"
+    },
+    "揺さぶる": {
+      "count": "1",
+      "translation": "to shake",
+      "hiragana_reading": "ふさぶる",
+      "category": "名詞"
+    },
+    "携帯": {
+      "count": "3",
+      "translation": "carrying",
+      "hiragana_reading": "けいたい",
+      "category": "名詞"
+    },
+    "攻め": {
+      "count": "1",
+      "translation": "attack",
+      "hiragana_reading": "せめ",
+      "category": "名詞"
+    },
+    "放す": {
+      "count": "1",
+      "translation": "to release",
+      "hiragana_reading": "はなす",
+      "category": "名詞"
+    },
+    "教え": {
+      "count": "4",
+      "translation": "teach",
+      "hiragana_reading": "おしえ",
+      "category": "名詞"
+    },
+    "散": {
+      "count": "1",
+      "translation": "scatter",
+      "hiragana_reading": "ち",
+      "category": "名詞"
+    },
+    "整理": {
+      "count": "1",
+      "translation": "sorting",
+      "hiragana_reading": "せいり",
+      "category": "名詞"
+    },
+    "文化": {
+      "count": "1",
+      "translation": "culture",
+      "hiragana_reading": "ぶんか",
+      "category": "名詞"
+    },
+    "断ち切れ": {
+      "count": "1",
+      "translation": "severance",
+      "hiragana_reading": "たちきれ",
+      "category": "名詞"
+    },
+    "断捨": {
+      "count": "34",
+      "translation": "decluttering",
+      "hiragana_reading": "だんしゃり",
+      "category": "名詞"
+    },
+    "新しい": {
+      "count": "2",
+      "translation": "new",
+      "hiragana_reading": "あたらしい",
+      "category": "名詞"
+    },
+    "新年": {
+      "count": "1",
+      "translation": "New Year",
+      "hiragana_reading": "しんねん",
+      "category": "名詞"
+    },
+    "方": {
+      "count": "3",
+      "translation": "way",
+      "hiragana_reading": "かた",
+      "category": "名詞"
+    },
+    "方法": {
+      "count": "2",
+      "translation": "method",
+      "hiragana_reading": "ほうほう",
+      "category": "名詞"
+    },
+    "日": {
+      "count": "13",
+      "translation": "sun",
+      "hiragana_reading": "にち",
+      "category": "名詞"
+    },
+    "日差し": {
+      "count": "1",
+      "translation": "sunlight",
+      "hiragana_reading": "ひぎし",
+      "category": "名詞"
+    },
+    "日常": {
+      "count": "1",
+      "translation": "everyday",
+      "hiragana_reading": "にちじょう",
+      "category": "名詞"
+    },
+    "日描": {
+      "count": "1",
+      "translation": "horizon",
+      "hiragana_reading": "にちぇ",
+      "category": "名詞"
+    },
+    "日本": {
+      "count": "3",
+      "translation": "japan",
+      "hiragana_reading": "にほん",
+      "category": "名詞"
+    },
+    "日本語": {
+      "count": "1",
+      "translation": "Japanese Language",
+      "hiragana_reading": "にほんご",
+      "category": "名詞"
+    },
+    "明日": {
+      "count": "1",
+      "translation": "tomorrow",
+      "hiragana_reading": "あした",
+      "category": "名詞"
+    },
+    "昔": {
+      "count": "3",
+      "translation": "the old days",
+      "hiragana_reading": "むかし",
+      "category": "名詞"
+    },
+    "星": {
+      "count": "7",
+      "translation": "star",
+      "hiragana_reading": "ほし",
+      "category": "名詞"
+    },
+    "星屑": {
+      "count": "2",
+      "translation": "countless stars",
+      "hiragana_reading": "ほしくず",
+      "category": "名詞"
+    },
+    "映っ": {
+      "count": "2",
+      "translation": "reflection",
+      "hiragana_reading": "うつる",
+      "category": "名詞"
+    },
+    "春": {
+      "count": "1",
+      "translation": "Spring",
+      "hiragana_reading": "はる",
+      "category": "名詞"
+    },
+    "昨日": {
+      "count": "1",
+      "translation": "yesterday",
+      "hiragana_reading": "きのう",
+      "category": "名詞"
+    },
+    "時": {
+      "count": "1",
+      "translation": "time",
+      "hiragana_reading": "とき",
+      "category": "名詞"
+    },
+    "時期": {
+      "count": "1",
+      "translation": "time",
+      "hiragana_reading": "じき",
+      "category": "名詞"
+    },
+    "時間": {
+      "count": "13",
+      "translation": "time",
+      "hiragana_reading": "じかん",
+      "category": "名詞"
+    },
+    "普段": {
+      "count": "2",
+      "translation": "usual",
+      "hiragana_reading": "ふだん",
+      "category": "名詞"
+    },
+    "暑い": {
+      "count": "1",
+      "translation": "hot",
+      "hiragana_reading": "あつい",
+      "category": "名詞"
+    },
+    "暗い": {
+      "count": "1",
+      "translation": "dark",
+      "hiragana_reading": "くらい",
+      "category": "名詞"
+    },
+    "書く": {
+      "count": "5",
+      "translation": "to write",
+      "hiragana_reading": "かく",
+      "category": "名詞"
+    },
+    "替かえ": {
+      "count": "1",
+      "translation": "substitute",
+      "hiragana_reading": "か",
+      "category": "名詞"
+    },
+    "最低": {
+      "count": "1",
+      "translation": "least",
+      "hiragana_reading": "さいてい",
+      "category": "名詞"
+    },
+    "最後": {
+      "count": "3",
+      "translation": "end",
+      "hiragana_reading": "さいご",
+      "category": "名詞"
+    },
+    "最近": {
+      "count": "3",
+      "translation": "recently",
+      "hiragana_reading": "さいきん",
+      "category": "名詞"
+    },
+    "月": {
+      "count": "3",
+      "translation": "moon",
+      "hiragana_reading": "つき",
+      "category": "名詞"
+    },
+    "有名": {
+      "count": "1",
+      "translation": "famous",
+      "hiragana_reading": "ゆうめい",
+      "category": "名詞"
+    },
+    "有益": {
+      "count": "1",
+      "translation": "beneficial",
+      "hiragana_reading": "ゆうえき",
+      "category": "名詞"
+    },
+    "服": {
+      "count": "1",
+      "translation": "clothes",
+      "hiragana_reading": "ふく",
+      "category": "名詞"
+    },
+    "望め": {
+      "count": "1",
+      "translation": "ambition",
+      "hiragana_reading": "のぞめ",
+      "category": "名詞"
+    },
+    "期間": {
+      "count": "1",
+      "translation": "period",
+      "hiragana_reading": "さんかん",
+      "category": "名詞"
+    },
+    "未来": {
+      "count": "3",
+      "translation": "future",
+      "hiragana_reading": "みらい",
+      "category": "名詞"
+    },
+    "未開": {
+      "count": "1",
+      "translation": "uncivilized",
+      "hiragana_reading": "めきい",
+      "category": "名詞"
+    },
+    "末": {
+      "count": "1",
+      "translation": "end",
+      "hiragana_reading": "まつ",
+      "category": "名詞"
+    },
+    "本": {
+      "count": "1",
+      "translation": "book",
+      "hiragana_reading": "ほん",
+      "category": "名詞"
+    },
+    "本当": {
+      "count": "23",
+      "translation": "truth",
+      "hiragana_reading": "ほんと",
+      "category": "名詞"
+    },
+    "机": {
+      "count": "1",
+      "translation": "desk",
+      "hiragana_reading": "つくえ",
+      "category": "名詞"
+    },
+    "朽ち果てる": {
+      "count": "2",
+      "translation": "to rot away",
+      "hiragana_reading": "くちはてる",
+      "category": "名詞"
+    },
+    "来る": {
+      "count": "1",
+      "translation": "to come",
+      "hiragana_reading": "くる",
+      "category": "名詞"
+    },
+    "来年": {
+      "count": "2",
+      "translation": "next year",
+      "hiragana_reading": "らいねん",
+      "category": "名詞"
+    },
+    "東": {
+      "count": "1",
+      "translation": "east",
+      "hiragana_reading": "ひがし",
+      "category": "名詞"
+    },
+    "果て": {
+      "count": "3",
+      "translation": "end",
+      "hiragana_reading": "はて",
+      "category": "名詞"
+    },
+    "果物": {
+      "count": "1",
+      "translation": "fruit",
+      "hiragana_reading": "くだもの",
+      "category": "名詞"
+    },
+    "栗か": {
+      "count": "1",
+      "translation": "Japanese Chestnut",
+      "hiragana_reading": "ぐりか",
+      "category": "名詞"
+    },
+    "梨と": {
+      "count": "1",
+      "translation": "pear tree",
+      "hiragana_reading": "なし",
+      "category": "名詞"
+    },
+    "様": {
+      "count": "1",
+      "translation": "appearing",
+      "hiragana_reading": "よう",
+      "category": "名詞"
+    },
+    "橋": {
+      "count": "2",
+      "translation": "bridge",
+      "hiragana_reading": "はし",
+      "category": "名詞"
+    },
+    "欠片": {
+      "count": "3",
+      "translation": "fragment",
+      "hiragana_reading": "かけら",
+      "category": "名詞"
+    },
+    "次": {
+      "count": "1",
+      "translation": "next",
+      "hiragana_reading": "つぎ",
+      "category": "名詞"
+    },
+    "欲": {
+      "count": "1",
+      "translation": "greed",
+      "hiragana_reading": "よく",
+      "category": "名詞"
+    },
+    "欲しい": {
+      "count": "3",
+      "translation": "wanting",
+      "hiragana_reading": "はしい",
+      "category": "名詞"
+    },
+    "歌": {
+      "count": "2",
+      "translation": "song",
+      "hiragana_reading": "うたう",
+      "category": "名詞"
+    },
+    "歌い続け": {
+      "count": "1",
+      "translation": "",
+      "hiragana_reading": "うたいつずけ",
+      "category": "名詞"
+    },
+    "歌う": {
+      "count": "1",
+      "translation": "song",
+      "hiragana_reading": "うたう",
+      "category": "名詞"
+    },
+    "止め": {
+      "count": "1",
+      "translation": "stop",
+      "hiragana_reading": "やめ",
+      "category": "名詞"
+    },
+    "正義": {
+      "count": "1",
+      "translation": "justice",
+      "hiragana_reading": "せいぎ",
+      "category": "名詞"
+    },
+    "歩": {
+      "count": "4",
+      "translation": "walking",
+      "hiragana_reading": "ある",
+      "category": "名詞"
+    },
+    "死": {
+      "count": "3",
+      "translation": "death",
+      "hiragana_reading": "し",
+      "category": "名詞"
+    },
+    "死ん": {
+      "count": "1",
+      "translation": "death",
+      "hiragana_reading": "しん",
+      "category": "名詞"
+    },
+    "残": {
+      "count": "2",
+      "translation": "remainder",
+      "hiragana_reading": "ざん",
+      "category": "名詞"
+    },
+    "殺し": {
+      "count": "2",
+      "translation": "murder",
+      "hiragana_reading": "ころし",
+      "category": "名詞"
+    },
+    "殻がら": {
+      "count": "1",
+      "translation": "shell",
+      "hiragana_reading": "から",
+      "category": "名詞"
+    },
+    "毎日": {
+      "count": "2",
+      "translation": "every day",
+      "hiragana_reading": "まいにち",
+      "category": "名詞"
+    },
+    "毎朝": {
+      "count": "1",
+      "translation": "every morning",
+      "hiragana_reading": "まいあさ",
+      "category": "名詞"
+    },
+    "毎週": {
+      "count": "1",
+      "translation": "every week",
+      "hiragana_reading": "まいしゅう",
+      "category": "名詞"
+    },
+    "気": {
+      "count": "5",
+      "translation": "energy",
+      "hiragana_reading": "き",
+      "category": "名詞"
+    },
+    "気持ち": {
+      "count": "1",
+      "translation": "feeling",
+      "hiragana_reading": "きもち",
+      "category": "名詞"
+    },
+    "気温": {
+      "count": "26",
+      "translation": "temperature",
+      "hiragana_reading": "きおん",
+      "category": "名詞"
+    },
+    "求め合": {
+      "count": "1",
+      "translation": "request",
+      "hiragana_reading": "もとめごえ",
+      "category": "名詞"
+    },
+    "泊": {
+      "count": "1",
+      "translation": "counter for nights of a stay",
+      "hiragana_reading": "はく",
+      "category": "名詞"
+    },
+    "泣い": {
+      "count": "1",
+      "translation": "cry",
+      "hiragana_reading": "な",
+      "category": "名詞"
+    },
+    "泣き": {
+      "count": "1",
+      "translation": "weeping",
+      "hiragana_reading": "なき",
+      "category": "名詞"
+    },
+    "流し牙": {
+      "count": "1",
+      "translation": "bloodstream",
+      "hiragana_reading": "りゅうしが",
+      "category": "名詞"
+    },
+    "流れ": {
+      "count": "1",
+      "translation": "flow",
+      "hiragana_reading": "ながれ",
+      "category": "名詞"
+    },
+    "流れる": {
+      "count": "2",
+      "translation": "to stream",
+      "hiragana_reading": "ながれる",
+      "category": "名詞"
+    },
+    "流星": {
+      "count": "1",
+      "translation": "meteor",
+      "hiragana_reading": "りゅうせい",
+      "category": "名詞"
+    },
+    "浮く": {
+      "count": "3",
+      "translation": "to float",
+      "hiragana_reading": "うく",
+      "category": "名詞"
+    },
+    "海": {
+      "count": "1",
+      "translation": "sea",
+      "hiragana_reading": "うみ",
+      "category": "名詞"
+    },
+    "消え": {
+      "count": "2",
+      "translation": "to disappear",
+      "hiragana_reading": "きえ",
+      "category": "名詞"
+    },
+    "消す": {
+      "count": "1",
+      "translation": "to erase",
+      "hiragana_reading": "けす",
+      "category": "名詞"
+    },
+    "涙": {
+      "count": "3",
+      "translation": "tears",
+      "hiragana_reading": "なみだ",
+      "category": "名詞"
+    },
+    "涼しい": {
+      "count": "1",
+      "translation": "cool",
+      "hiragana_reading": "すずしい",
+      "category": "名詞"
+    },
+    "涼しく": {
+      "count": "3",
+      "translation": "cool",
+      "hiragana_reading": "すずしく",
+      "category": "名詞"
+    },
+    "深": {
+      "count": "2",
+      "translation": "deep",
+      "hiragana_reading": "ふか",
+      "category": "名詞"
+    },
+    "渡る": {
+      "count": "2",
+      "translation": "to cross over",
+      "hiragana_reading": "わたる",
+      "category": "名詞"
+    },
+    "温": {
+      "count": "2",
+      "translation": "warm",
+      "hiragana_reading": "あたた",
+      "category": "名詞"
+    },
+    "温もり": {
+      "count": "1",
+      "translation": "warmth",
+      "hiragana_reading": "ぬくもり",
+      "category": "名詞"
+    },
+    "準備": {
+      "count": "1",
+      "translation": "preparation",
+      "hiragana_reading": "じゅんび",
+      "category": "名詞"
+    },
+    "溜まっ": {
+      "count": "1",
+      "translation": "",
+      "hiragana_reading": "",
+      "category": "名詞"
+    },
+    "溶け": {
+      "count": "1",
+      "translation": "to melt",
+      "hiragana_reading": "とけ",
+      "category": "名詞"
+    },
+    "溶ける": {
+      "count": "2",
+      "translation": "to melt",
+      "hiragana_reading": "とける",
+      "category": "名詞"
+    },
+    "滲む": {
+      "count": "2",
+      "translation": "to run(a liquid)",
+      "hiragana_reading": "にじむ",
+      "category": "名詞"
+    },
+    "澄み渡る": {
+      "count": "1",
+      "translation": "to be perfectly clear",
+      "hiragana_reading": "すみわたる",
+      "category": "名詞"
+    },
+    "火": {
+      "count": "1",
+      "translation": "fire",
+      "hiragana_reading": "ひ",
+      "category": "名詞"
+    },
+    "灯し": {
+      "count": "1",
+      "translation": "",
+      "hiragana_reading": "ともし",
+      "category": "名詞"
+    },
+    "灰": {
+      "count": "1",
+      "translation": "ashes",
+      "hiragana_reading": "はい",
+      "category": "名詞"
+    },
+    "炎": {
+      "count": "1",
+      "translation": "flame",
+      "hiragana_reading": "えん",
+      "category": "名詞"
+    },
+    "点": {
+      "count": "1",
+      "translation": "point",
+      "hiragana_reading": "てん",
+      "category": "名詞"
+    },
+    "無い": {
+      "count": "2",
+      "translation": "not",
+      "hiragana_reading": "ない",
+      "category": "名詞"
+    },
+    "無く": {
+      "count": "1",
+      "translation": "to lose",
+      "hiragana_reading": "なく",
+      "category": "名詞"
+    },
+    "無上": {
+      "count": "1",
+      "translation": "supreme",
+      "hiragana_reading": "むしょう",
+      "category": "名詞"
+    },
+    "無意": {
+      "count": "1",
+      "translation": "unintentional",
+      "hiragana_reading": "むい",
+      "category": "名詞"
+    },
+    "無我": {
+      "count": "1",
+      "translation": "selflessness",
+      "hiragana_reading": "むが",
+      "category": "名詞"
+    },
+    "無数": {
+      "count": "1",
+      "translation": "innumerable",
+      "hiragana_reading": "むよう",
+      "category": "名詞"
+    },
+    "無敵": {
+      "count": "1",
+      "translation": "invincible",
+      "hiragana_reading": "むてき",
+      "category": "名詞"
+    },
+    "無視": {
+      "count": "2",
+      "translation": "disregard",
+      "hiragana_reading": "むし",
+      "category": "名詞"
+    },
+    "照ら": {
+      "count": "1",
+      "translation": "to shine",
+      "hiragana_reading": "てら",
+      "category": "名詞"
+    },
+    "熱": {
+      "count": "1",
+      "translation": "heat",
+      "hiragana_reading": "ねつ",
+      "category": "名詞"
+    },
+    "燃え": {
+      "count": "1",
+      "translation": "burn",
+      "hiragana_reading": "もえ",
+      "category": "名詞"
+    },
+    "燃える": {
+      "count": "1",
+      "translation": "to burn",
+      "hiragana_reading": "もえる",
+      "category": "名詞"
+    },
+    "燃えろ": {
+      "count": "4",
+      "translation": "to burn",
+      "hiragana_reading": "もえろ",
+      "category": "名詞"
+    },
+    "片付ける": {
+      "count": "1",
+      "translation": "to put away",
+      "hiragana_reading": "かたずける",
+      "category": "名詞"
+    },
+    "物": {
+      "count": "30",
+      "translation": "thing",
+      "hiragana_reading": "もの",
+      "category": "名詞"
+    },
+    "物質的": {
+      "count": "2",
+      "translation": "material",
+      "hiragana_reading": "ぶっしつてき",
+      "category": "名詞"
+    },
+    "特に": {
+      "count": "3",
+      "translation": "particularly",
+      "hiragana_reading": "とくに",
+      "category": "名詞"
+    },
+    "現代": {
+      "count": "1",
+      "translation": "present age",
+      "hiragana_reading": "げんだい",
+      "category": "名詞"
+    },
+    "理屈": {
+      "count": "1",
+      "translation": "theory",
+      "hiragana_reading": "りくつ",
+      "category": "名詞"
+    },
+    "理由": {
+      "count": "1",
+      "translation": "reason",
+      "hiragana_reading": "りゅう",
+      "category": "名詞"
+    },
+    "甘く": {
+      "count": "1",
+      "translation": "sweet",
+      "hiragana_reading": "あまく",
+      "category": "名詞"
+    },
+    "生き": {
+      "count": "1",
+      "translation": "life",
+      "hiragana_reading": "せいき",
+      "category": "名詞"
+    },
+    "生きる": {
+      "count": "4",
+      "translation": "to live",
+      "hiragana_reading": "いきる",
+      "category": "名詞"
+    },
+    "生ま": {
+      "count": "1",
+      "translation": "to give birth",
+      "hiragana_reading": "うま",
+      "category": "名詞"
+    },
+    "生まれ": {
+      "count": "1",
+      "translation": "birth",
+      "hiragana_reading": "うまれ",
+      "category": "名詞"
+    },
+    "生まれる": {
+      "count": "1",
+      "translation": "to be born",
+      "hiragana_reading": "うまれる",
+      "category": "名詞"
+    },
+    "生命": {
+      "count": "2",
+      "translation": "life",
+      "hiragana_reading": "せいめい",
+      "category": "名詞"
+    },
+    "用": {
+      "count": "1",
+      "translation": "business",
+      "hiragana_reading": "よう",
+      "category": "名詞"
+    },
+    "疎遠": {
+      "count": "3",
+      "translation": "estrangement",
+      "hiragana_reading": "そえん",
+      "category": "名詞"
+    },
+    "疲れ": {
+      "count": "2",
+      "translation": "tiredness",
+      "hiragana_reading": "つかれ",
+      "category": "名詞"
+    },
+    "白い雪": {
+      "count": "1",
+      "translation": "white snow",
+      "hiragana_reading": "しろいゆき",
+      "category": "名詞"
+    },
+    "皆": {
+      "count": "15",
+      "translation": "everyone",
+      "hiragana_reading": "みなん",
+      "category": "名詞"
+    },
+    "目": {
+      "count": "10",
+      "translation": "eye",
+      "hiragana_reading": "め",
+      "category": "名詞"
+    },
+    "目指す": {
+      "count": "1",
+      "translation": "to aim at",
+      "hiragana_reading": "みぎす",
+      "category": "名詞"
+    },
+    "目覚め": {
+      "count": "1",
+      "translation": "to wake up",
+      "hiragana_reading": "めぎ",
+      "category": "名詞"
+    },
+    "相合い傘": {
+      "count": "1",
+      "translation": "sharing an umbrella",
+      "hiragana_reading": "あいあいがさ",
+      "category": "名詞"
+    },
+    "相手": {
+      "count": "1",
+      "translation": "companion",
+      "hiragana_reading": "あいて",
+      "category": "名詞"
+    },
+    "県": {
+      "count": "1",
+      "translation": "prefecture",
+      "hiragana_reading": "けん",
+      "category": "名詞"
+    },
+    "真冬": {
+      "count": "1",
+      "translation": "dead of winter",
+      "hiragana_reading": "まふゆ",
+      "category": "名詞"
+    },
+    "真夏": {
+      "count": "1",
+      "translation": "middle of summer",
+      "hiragana_reading": "まなつ",
+      "category": "名詞"
+    },
+    "真実": {
+      "count": "1",
+      "translation": "truth",
+      "hiragana_reading": "しんじつ",
+      "category": "名詞"
+    },
+    "眩しい": {
+      "count": "1",
+      "translation": "dazzling",
+      "hiragana_reading": "まぶしい",
+      "category": "名詞"
+    },
+    "瞑想": {
+      "count": "5",
+      "translation": "meditation",
+      "hiragana_reading": "めいそう",
+      "category": "名詞"
+    },
+    "瞬": {
+      "count": "1",
+      "translation": "moment",
+      "hiragana_reading": "しゅんかん",
+      "category": "名詞"
+    },
+    "瞬き": {
+      "count": "1",
+      "translation": "blink",
+      "hiragana_reading": "まばたさ",
+      "category": "名詞"
+    },
+    "瞳": {
+      "count": "3",
+      "translation": "pupil(of the eye)",
+      "hiragana_reading": "ひとみ",
+      "category": "名詞"
+    },
+    "知": {
+      "count": "4",
+      "translation": "know",
+      "hiragana_reading": "し",
+      "category": "名詞"
+    },
+    "知ら": {
+      "count": "1",
+      "translation": "to know",
+      "hiragana_reading": "しら",
+      "category": "名詞"
+    },
+    "知り": {
+      "count": "1",
+      "translation": "to know",
+      "hiragana_reading": "しり",
+      "category": "名詞"
+    },
+    "短く": {
+      "count": "1",
+      "translation": "short",
+      "hiragana_reading": "みじかく",
+      "category": "名詞"
+    },
+    "短期間": {
+      "count": "1",
+      "translation": "for a short time",
+      "hiragana_reading": "たきかん",
+      "category": "名詞"
+    },
+    "研究": {
+      "count": "2",
+      "translation": "research",
+      "hiragana_reading": "けんきゅう",
+      "category": "名詞"
+    },
+    "砕": {
+      "count": "1",
+      "translation": "smash",
+      "hiragana_reading": "くだ",
+      "category": "名詞"
+    },
+    "砕ける": {
+      "count": "1",
+      "translation": "to break",
+      "hiragana_reading": "くだける",
+      "category": "名詞"
+    },
+    "砲火": {
+      "count": "1",
+      "translation": "gunfire",
+      "hiragana_reading": "ほうか",
+      "category": "名詞"
+    },
+    "破壊": {
+      "count": "1",
+      "translation": "destruction",
+      "hiragana_reading": "はかい",
+      "category": "名詞"
+    },
+    "破滅": {
+      "count": "2",
+      "translation": "ruin",
+      "hiragana_reading": "はめつ",
+      "category": "名詞"
+    },
+    "確かめる": {
+      "count": "1",
+      "translation": "to make sure",
+      "hiragana_reading": "たしめる",
+      "category": "名詞"
+    },
+    "社会": {
+      "count": "1",
+      "translation": "society",
+      "hiragana_reading": "しゃかい",
+      "category": "名詞"
+    },
+    "神様": {
+      "count": "3",
+      "translation": "god",
+      "hiragana_reading": "かみさま",
+      "category": "名詞"
+    },
+    "私": {
+      "count": "1",
+      "translation": "I",
+      "hiragana_reading": "わたし",
+      "category": "名詞"
+    },
+    "私考": {
+      "count": "1",
+      "translation": "one's own thoughts",
+      "hiragana_reading": "しこう",
+      "category": "名詞"
+    },
+    "秋": {
+      "count": "21",
+      "translation": "autumn",
+      "hiragana_reading": "あき",
+      "category": "名詞"
+    },
+    "秒": {
+      "count": "2",
+      "translation": "second",
+      "hiragana_reading": "ひょう",
+      "category": "名詞"
+    },
+    "秘訣": {
+      "count": "1",
+      "translation": "secret",
+      "hiragana_reading": "ひけつ",
+      "category": "名詞"
+    },
+    "移る": {
+      "count": "1",
+      "translation": "",
+      "hiragana_reading": "",
+      "category": "名詞"
+    },
+    "程度": {
+      "count": "2",
+      "translation": "degree",
+      "hiragana_reading": "ていど",
+      "category": "名詞"
+    },
+    "種握り": {
+      "count": "1",
+      "translation": "seed",
+      "hiragana_reading": "しゅ",
+      "category": "名詞"
+    },
+    "空": {
+      "count": "3",
+      "translation": "sky",
+      "hiragana_reading": "そら",
+      "category": "名詞"
+    },
+    "立ち上がる": {
+      "count": "1",
+      "translation": "to stand up",
+      "hiragana_reading": "たちあがる",
+      "category": "名詞"
+    },
+    "立ち止まっ": {
+      "count": "1",
+      "translation": "to stop",
+      "hiragana_reading": "たちどまる",
+      "category": "名詞"
+    },
+    "立つ": {
+      "count": "1",
+      "translation": "to stand",
+      "hiragana_reading": "たつ",
+      "category": "名詞"
+    },
+    "笑い合え": {
+      "count": "1",
+      "translation": "to laugh",
+      "hiragana_reading": "わらいあえ",
+      "category": "名詞"
+    },
+    "笑い声と": {
+      "count": "1",
+      "translation": "laughing",
+      "hiragana_reading": "わるいこえと",
+      "category": "名詞"
+    },
+    "笑顔": {
+      "count": "1",
+      "translation": "smile",
+      "hiragana_reading": "えがお",
+      "category": "名詞"
+    },
+    "答え": {
+      "count": "1",
+      "translation": "answer",
+      "hiragana_reading": "ごたえ",
+      "category": "名詞"
+    },
+    "答こ": {
+      "count": "1",
+      "translation": "answer",
+      "hiragana_reading": "こたえ",
+      "category": "名詞"
+    },
+    "箱": {
+      "count": "5",
+      "translation": "box",
+      "hiragana_reading": "はこ",
+      "category": "名詞"
+    },
+    "簡単": {
+      "count": "3",
+      "translation": "easy",
+      "hiragana_reading": "かんたん",
+      "category": "名詞"
+    },
+    "約": {
+      "count": "1",
+      "translation": "approximately",
+      "hiragana_reading": "やく",
+      "category": "名詞"
+    },
+    "紙": {
+      "count": "3",
+      "translation": "paper",
+      "hiragana_reading": "かみ",
+      "category": "名詞"
+    },
+    "素っ気": {
+      "count": "1",
+      "translation": "cold or short",
+      "hiragana_reading": "そっけ",
+      "category": "名詞"
+    },
+    "終り": {
+      "count": "2",
+      "translation": "end",
+      "hiragana_reading": "おわり",
+      "category": "名詞"
+    },
+    "終わり": {
+      "count": "1",
+      "translation": "to end",
+      "hiragana_reading": "おわり",
+      "category": "名詞"
+    },
+    "続く": {
+      "count": "1",
+      "translation": "to continue",
+      "hiragana_reading": "つずく",
+      "category": "名詞"
+    },
+    "緒": {
+      "count": "1",
+      "translation": "",
+      "hiragana_reading": "",
+      "category": "名詞"
+    },
+    "練習": {
+      "count": "3",
+      "translation": "practice",
+      "hiragana_reading": "れんしゅう",
+      "category": "名詞"
+    },
+    "繋がり": {
+      "count": "2",
+      "translation": "connection",
+      "hiragana_reading": "つながり",
+      "category": "名詞"
+    },
+    "繰り": {
+      "count": "4",
+      "translation": "to reel",
+      "hiragana_reading": "かり",
+      "category": "名詞"
+    },
+    "繰り返さ": {
+      "count": "1",
+      "translation": "",
+      "hiragana_reading": "",
+      "category": "名詞"
+    },
+    "置い": {
+      "count": "2",
+      "translation": "to place",
+      "hiragana_reading": "おい",
+      "category": "名詞"
+    },
+    "翔る": {
+      "count": "2",
+      "translation": "to soar",
+      "hiragana_reading": "かける",
+      "category": "名詞"
+    },
+    "翼": {
+      "count": "2",
+      "translation": "wing",
+      "hiragana_reading": "つばさ",
+      "category": "名詞"
+    },
+    "考": {
+      "count": "7",
+      "translation": "thought",
+      "hiragana_reading": "こう",
+      "category": "名詞"
+    },
+    "者": {
+      "count": "1",
+      "translation": "",
+      "hiragana_reading": "",
+      "category": "名詞"
+    },
+    "聞い": {
+      "count": "5",
+      "translation": "hear",
+      "hiragana_reading": "きい",
+      "category": "名詞"
+    },
+    "聞かす": {
+      "count": "1",
+      "translation": "to let someone hear",
+      "hiragana_reading": "きかす",
+      "category": "名詞"
+    },
+    "聞く": {
+      "count": "4",
+      "translation": "to hear",
+      "hiragana_reading": "きく",
+      "category": "名詞"
+    },
+    "聞こえる": {
+      "count": "1",
+      "translation": "to be heard",
+      "hiragana_reading": "きこえる",
+      "category": "名詞"
+    },
+    "聴": {
+      "count": "7",
+      "translation": "listen",
+      "hiragana_reading": "き",
+      "category": "名詞"
+    },
+    "背い": {
+      "count": "1",
+      "translation": "to run counter to",
+      "hiragana_reading": "そむい",
+      "category": "名詞"
+    },
+    "胸": {
+      "count": "1",
+      "translation": "chest",
+      "hiragana_reading": "むね",
+      "category": "名詞"
+    },
+    "脳": {
+      "count": "1",
+      "translation": "brain",
+      "hiragana_reading": "のう",
+      "category": "名詞"
+    },
+    "腐っちゃう": {
+      "count": "1",
+      "translation": "to rot",
+      "hiragana_reading": "くさちゃう",
+      "category": "名詞"
+    },
+    "自信": {
+      "count": "1",
+      "translation": "self-confidence",
+      "hiragana_reading": "じしん",
+      "category": "名詞"
+    },
+    "自分": {
+      "count": "1",
+      "translation": "self",
+      "hiragana_reading": "じぶん",
+      "category": "名詞"
+    },
+    "自然": {
+      "count": "4",
+      "translation": "nature",
+      "hiragana_reading": "じぜん",
+      "category": "名詞"
+    },
+    "自由": {
+      "count": "1",
+      "translation": "freedom",
+      "hiragana_reading": "じゆう",
+      "category": "名詞"
+    },
+    "興味": {
+      "count": "1",
+      "translation": "interest",
+      "hiragana_reading": "きょうみ",
+      "category": "名詞"
+    },
+    "舞い": {
+      "count": "4",
+      "translation": "dancing",
+      "hiragana_reading": "まい",
+      "category": "名詞"
+    },
+    "舞い上がれ": {
+      "count": "1",
+      "translation": "to soar",
+      "hiragana_reading": "まいあがる",
+      "category": "名詞"
+    },
+    "舞い落ちる": {
+      "count": "1",
+      "translation": "to flutter down",
+      "hiragana_reading": "まいおちる",
+      "category": "名詞"
+    },
+    "舞い降りる": {
+      "count": "2",
+      "translation": "to swoop down",
+      "hiragana_reading": "まいおりる",
+      "category": "名詞"
+    },
+    "色んな": {
+      "count": "4",
+      "translation": "various",
+      "hiragana_reading": "いろんな",
+      "category": "名詞"
+    },
+    "花火": {
+      "count": "2",
+      "translation": "fireworks",
+      "hiragana_reading": "はなび",
+      "category": "名詞"
+    },
+    "苦しい": {
+      "count": "1",
+      "translation": "painful",
+      "hiragana_reading": "くるしい",
+      "category": "名詞"
+    },
+    "苦しめ": {
+      "count": "2",
+      "translation": "suffering",
+      "hiragana_reading": "くりしめ",
+      "category": "名詞"
+    },
+    "英語": {
+      "count": "2",
+      "translation": "English language",
+      "hiragana_reading": "えいご",
+      "category": "名詞"
+    },
+    "落ち": {
+      "count": "3",
+      "translation": "slip",
+      "hiragana_reading": "おち",
+      "category": "名詞"
+    },
+    "落ち着か": {
+      "count": "1",
+      "translation": "to calm down",
+      "hiragana_reading": "おちちゃうか",
+      "category": "名詞"
+    },
+    "蒼い": {
+      "count": "1",
+      "translation": "blue",
+      "hiragana_reading": "あおい",
+      "category": "名詞"
+    },
+    "蔑ろ": {
+      "count": "2",
+      "translation": "ridicule",
+      "hiragana_reading": "ないがし",
+      "category": "名詞"
+    },
+    "虚勢": {
+      "count": "1",
+      "translation": "to bluff",
+      "hiragana_reading": "きょせい",
+      "category": "名詞"
+    },
+    "虹": {
+      "count": "2",
+      "translation": "rainbow",
+      "hiragana_reading": "にじ",
+      "category": "名詞"
+    },
+    "行": {
+      "count": "2",
+      "translation": "going",
+      "hiragana_reading": "こう",
+      "category": "名詞"
+    },
+    "行こう": {
+      "count": "1",
+      "translation": "going",
+      "hiragana_reading": "ぎょうこう",
+      "category": "名詞"
+    },
+    "街明かり": {
+      "count": "1",
+      "translation": "street lights",
+      "hiragana_reading": "みちあじ",
+      "category": "名詞"
+    },
+    "裏": {
+      "count": "1",
+      "translation": "back",
+      "hiragana_reading": "うら",
+      "category": "名詞"
+    },
+    "見": {
+      "count": "13",
+      "translation": "see",
+      "hiragana_reading": "み",
+      "category": "名詞"
+    },
+    "見え": {
+      "count": "1",
+      "translation": "to see",
+      "hiragana_reading": "みえ",
+      "category": "名詞"
+    },
+    "見える": {
+      "count": "2",
+      "translation": "to see",
+      "hiragana_reading": "みえる",
+      "category": "名詞"
+    },
+    "見つめ": {
+      "count": "1",
+      "translation": "to stare at",
+      "hiragana_reading": "みつめ",
+      "category": "名詞"
+    },
+    "見付け出す": {
+      "count": "1",
+      "translation": "to find out",
+      "hiragana_reading": "みつけだす",
+      "category": "名詞"
+    },
+    "見直し": {
+      "count": "1",
+      "translation": "review",
+      "hiragana_reading": "みなおし",
+      "category": "名詞"
+    },
+    "見直す": {
+      "count": "2",
+      "translation": "to look at again",
+      "hiragana_reading": "みなおす",
+      "category": "名詞"
+    },
+    "見落": {
+      "count": "1",
+      "translation": "overlook",
+      "hiragana_reading": "みおとし",
+      "category": "名詞"
+    },
+    "見送る": {
+      "count": "1",
+      "translation": "to see someone off",
+      "hiragana_reading": "みおくる",
+      "category": "名詞"
+    },
+    "覚": {
+      "count": "1",
+      "translation": "memorize",
+      "hiragana_reading": "おぼえ",
+      "category": "名詞"
+    },
+    "覚え": {
+      "count": "1",
+      "translation": "memory",
+      "hiragana_reading": "おぼえ",
+      "category": "名詞"
+    },
+    "親しみ": {
+      "count": "1",
+      "translation": "affection",
+      "hiragana_reading": "したしみ",
+      "category": "名詞"
+    },
+    "触れ": {
+      "count": "1",
+      "translation": "touch or proclamation",
+      "hiragana_reading": "ふれ",
+      "category": "名詞"
+    },
+    "言う": {
+      "count": "6",
+      "translation": "to say",
+      "hiragana_reading": "いう",
+      "category": "名詞"
+    },
+    "言葉": {
+      "count": "2",
+      "translation": "word",
+      "hiragana_reading": "ことば",
+      "category": "名詞"
+    },
+    "記憶": {
+      "count": "1",
+      "translation": "memory",
+      "hiragana_reading": "きおく",
+      "category": "名詞"
+    },
+    "訳": {
+      "count": "1",
+      "translation": "reason",
+      "hiragana_reading": "やく",
+      "category": "名詞"
+    },
+    "証": {
+      "count": "1",
+      "translation": "proof",
+      "hiragana_reading": "あかし",
+      "category": "名詞"
+    },
+    "証明": {
+      "count": "1",
+      "translation": "proof",
+      "hiragana_reading": "しゅうめい",
+      "category": "名詞"
+    },
+    "話し": {
+      "count": "3",
+      "translation": "talking",
+      "hiragana_reading": "はなし",
+      "category": "名詞"
+    },
+    "話し方": {
+      "count": "2",
+      "translation": "way of speaking",
+      "hiragana_reading": "はなしかた",
+      "category": "名詞"
+    },
+    "誇り": {
+      "count": "1",
+      "translation": "pride",
+      "hiragana_reading": "ほこり",
+      "category": "名詞"
+    },
+    "誓っ": {
+      "count": "1",
+      "translation": "to pledge",
+      "hiragana_reading": "ちか",
+      "category": "名詞"
+    },
+    "語り合": {
+      "count": "1",
+      "translation": "to talk together",
+      "hiragana_reading": "かたりあい",
+      "category": "名詞"
+    },
+    "読み": {
+      "count": "1",
+      "translation": "reading",
+      "hiragana_reading": "よみ",
+      "category": "名詞"
+    },
+    "読ん": {
+      "count": "1",
+      "translation": "to read",
+      "hiragana_reading": "よん",
+      "category": "名詞"
+    },
+    "読書": {
+      "count": "3",
+      "translation": "reading",
+      "hiragana_reading": "どくしょ",
+      "category": "名詞"
+    },
+    "誰": {
+      "count": "1",
+      "translation": "who",
+      "hiragana_reading": "だれ",
+      "category": "名詞"
+    },
+    "誰か": {
+      "count": "1",
+      "translation": "somebody",
+      "hiragana_reading": "だれか",
+      "category": "名詞"
+    },
+    "誰も": {
+      "count": "1",
+      "translation": "who",
+      "hiragana_reading": "だれも",
+      "category": "名詞"
+    },
+    "謎": {
+      "count": "1",
+      "translation": "riddle",
+      "hiragana_reading": "なず",
+      "category": "名詞"
+    },
+    "識": {
+      "count": "1",
+      "translation": "acquantanceship",
+      "hiragana_reading": "しき",
+      "category": "名詞"
+    },
+    "豪華": {
+      "count": "1",
+      "translation": "extravagant",
+      "hiragana_reading": "ごうか",
+      "category": "名詞"
+    },
+    "貴方": {
+      "count": "4",
+      "translation": "you",
+      "hiragana_reading": "あなた",
+      "category": "名詞"
+    },
+    "貴重": {
+      "count": "1",
+      "translation": "precious",
+      "hiragana_reading": "きちょう",
+      "category": "名詞"
+    },
+    "買え": {
+      "count": "1",
+      "translation": "to buy",
+      "hiragana_reading": "かえ",
+      "category": "名詞"
+    },
+    "賑やか": {
+      "count": "1",
+      "translation": "busy",
+      "hiragana_reading": "にぎやか",
+      "category": "名詞"
+    },
+    "赤い血": {
+      "count": "1",
+      "translation": "red blood",
+      "hiragana_reading": "あかいち",
+      "category": "名詞"
+    },
+    "走る": {
+      "count": "1",
+      "translation": "to run",
+      "hiragana_reading": "はしる",
+      "category": "名詞"
+    },
+    "起き": {
+      "count": "1",
+      "translation": "to get up",
+      "hiragana_reading": "おき",
+      "category": "名詞"
+    },
+    "越え": {
+      "count": "2",
+      "translation": "surpass",
+      "hiragana_reading": "ごえ",
+      "category": "名詞"
+    },
+    "足跡": {
+      "count": "1",
+      "translation": "footprints",
+      "hiragana_reading": "あしあと",
+      "category": "名詞"
+    },
+    "距離": {
+      "count": "2",
+      "translation": "distance",
+      "hiragana_reading": "きょり",
+      "category": "名詞"
+    },
+    "路地": {
+      "count": "1",
+      "translation": "alley",
+      "hiragana_reading": "るじ",
+      "category": "名詞"
+    },
+    "踊おどる": {
+      "count": "1",
+      "translation": "dance",
+      "hiragana_reading": "おどり",
+      "category": "名詞"
+    },
+    "身": {
+      "count": "2",
+      "translation": "one's body",
+      "hiragana_reading": "ま",
+      "category": "名詞"
+    },
+    "身体": {
+      "count": "1",
+      "translation": "body",
+      "hiragana_reading": "しんたい",
+      "category": "名詞"
+    },
+    "車庫的な": {
+      "count": "1",
+      "translation": "sociable",
+      "hiragana_reading": "しゃこてきな",
+      "category": "な形容詞"
+    },
+    "輝い": {
+      "count": "3",
+      "translation": "to shine",
+      "hiragana_reading": "かがや",
+      "category": "名詞"
+    },
+    "輝か": {
+      "count": "2",
+      "translation": "radiance",
+      "hiragana_reading": "てるか",
+      "category": "名詞"
+    },
+    "近藤": {
+      "count": "5",
+      "translation": "kondo",
+      "hiragana_reading": "こんどう",
+      "category": "名詞"
+    },
+    "返": {
+      "count": "1",
+      "translation": "return",
+      "hiragana_reading": "かえ",
+      "category": "名詞"
+    },
+    "迷わず": {
+      "count": "1",
+      "translation": "to get lost",
+      "hiragana_reading": "もうわず",
+      "category": "名詞"
+    },
+    "迷宮めいきゅう": {
+      "count": "1",
+      "translation": "labyrinth",
+      "hiragana_reading": "めいきゅう",
+      "category": "名詞"
+    },
+    "追い": {
+      "count": "1",
+      "translation": "to chase",
+      "hiragana_reading": "おい",
+      "category": "名詞"
+    },
+    "追いかけ": {
+      "count": "1",
+      "translation": "to chase",
+      "hiragana_reading": "おいかけ",
+      "category": "名詞"
+    },
+    "送くる": {
+      "count": "1",
+      "translation": "to send",
+      "hiragana_reading": "おくる",
+      "category": "名詞"
+    },
+    "逆": {
+      "count": "2",
+      "translation": "reverse",
+      "hiragana_reading": "ぎゃく",
+      "category": "名詞"
+    },
+    "途切": {
+      "count": "1",
+      "translation": "to break",
+      "hiragana_reading": "とぎれ",
+      "category": "名詞"
+    },
+    "通り過ぎ": {
+      "count": "1",
+      "translation": "to go pass",
+      "hiragana_reading": "とおりすぎる",
+      "category": "名詞"
+    },
+    "速さ": {
+      "count": "1",
+      "translation": "speed",
+      "hiragana_reading": "はやさ",
+      "category": "名詞"
+    },
+    "運命": {
+      "count": "1",
+      "translation": "fate",
+      "hiragana_reading": "うんめい",
+      "category": "名詞"
+    },
+    "過ごし": {
+      "count": "1",
+      "translation": "to spend",
+      "hiragana_reading": "すごし",
+      "category": "名詞"
+    },
+    "過ごす": {
+      "count": "8",
+      "translation": "to spend time",
+      "hiragana_reading": "すごす",
+      "category": "名詞"
+    },
+    "過去": {
+      "count": "1",
+      "translation": "the past",
+      "hiragana_reading": "かこ",
+      "category": "名詞"
+    },
+    "道": {
+      "count": "1",
+      "translation": "road",
+      "hiragana_reading": "みち",
+      "category": "名詞"
+    },
+    "違う": {
+      "count": "1",
+      "translation": "to differ",
+      "hiragana_reading": "ちがう",
+      "category": "名詞"
+    },
+    "遠く": {
+      "count": "1",
+      "translation": "far away",
+      "hiragana_reading": "とおく",
+      "category": "名詞"
+    },
+    "適当": {
+      "count": "1",
+      "translation": "suitable",
+      "hiragana_reading": "てきとう",
+      "category": "名詞"
+    },
+    "選": {
+      "count": "1",
+      "translation": "selection",
+      "hiragana_reading": "せん",
+      "category": "名詞"
+    },
+    "選ば": {
+      "count": "1",
+      "translation": "to choose",
+      "hiragana_reading": "えらぶ",
+      "category": "名詞"
+    },
+    "選び": {
+      "count": "1",
+      "translation": "choosing",
+      "hiragana_reading": "えらび",
+      "category": "名詞"
+    },
+    "部屋": {
+      "count": "2",
+      "translation": "room",
+      "hiragana_reading": "へや",
+      "category": "名詞"
+    },
+    "重く": {
+      "count": "1",
+      "translation": "heavy",
+      "hiragana_reading": "おもく",
+      "category": "名詞"
+    },
+    "野菜": {
+      "count": "1",
+      "translation": "vegetable",
+      "hiragana_reading": "やさい",
+      "category": "名詞"
+    },
+    "金持": {
+      "count": "1",
+      "translation": "rich person",
+      "hiragana_reading": "かねもち",
+      "category": "名詞"
+    },
+    "銀河": {
+      "count": "1",
+      "translation": "Milky Way",
+      "hiragana_reading": "ぎんが",
+      "category": "名詞"
+    },
+    "録っ": {
+      "count": "1",
+      "translation": "record",
+      "hiragana_reading": "ろく",
+      "category": "名詞"
+    },
+    "鍵": {
+      "count": "1",
+      "translation": "key",
+      "hiragana_reading": "かぎ",
+      "category": "名詞"
+    },
+    "鎧": {
+      "count": "2",
+      "translation": "armor",
+      "hiragana_reading": "よろい",
+      "category": "名詞"
+    },
+    "長く": {
+      "count": "1",
+      "translation": "long",
+      "hiragana_reading": "ながく",
+      "category": "名詞"
+    },
+    "閉": {
+      "count": "2",
+      "translation": "close",
+      "hiragana_reading": "と",
+      "category": "名詞"
+    },
+    "開く": {
+      "count": "1",
+      "translation": "to open",
+      "hiragana_reading": "ひらく",
+      "category": "名詞"
+    },
+    "関わ": {
+      "count": "1",
+      "translation": "to be involved in",
+      "hiragana_reading": "かかわ",
+      "category": "名詞"
+    },
+    "関係": {
+      "count": "7",
+      "translation": "relation",
+      "hiragana_reading": "かいけい",
+      "category": "名詞"
+    },
+    "闇": {
+      "count": "1",
+      "translation": "darkness",
+      "hiragana_reading": "やみ",
+      "category": "名詞"
+    },
+    "降る": {
+      "count": "2",
+      "translation": "to fall",
+      "hiragana_reading": "ふる",
+      "category": "名詞"
+    },
+    "限界": {
+      "count": "1",
+      "translation": "threshold ",
+      "hiragana_reading": "げんかい",
+      "category": "名詞"
+    },
+    "隙": {
+      "count": "1",
+      "translation": "gap",
+      "hiragana_reading": "すき",
+      "category": "名詞"
+    },
+    "集中": {
+      "count": "1",
+      "translation": "concentration",
+      "hiragana_reading": "しゅうちゅう",
+      "category": "名詞"
+    },
+    "離": {
+      "count": "31",
+      "translation": "detach",
+      "hiragana_reading": "はな",
+      "category": "名詞"
+    },
+    "離さ": {
+      "count": "1",
+      "translation": "to separate",
+      "hiragana_reading": "はなさ",
+      "category": "名詞"
+    },
+    "離れる": {
+      "count": "1",
+      "translation": "to be separated",
+      "hiragana_reading": "はなれる",
+      "category": "名詞"
+    },
+    "難しい": {
+      "count": "1",
+      "translation": "difficult",
+      "hiragana_reading": "むずか",
+      "category": "名詞"
+    },
+    "難易度": {
+      "count": "2",
+      "translation": "degree",
+      "hiragana_reading": "なに",
+      "category": "名詞"
+    },
+    "雨": {
+      "count": "1",
+      "translation": "rain",
+      "hiragana_reading": "あめ",
+      "category": "名詞"
+    },
+    "雲": {
+      "count": "3",
+      "translation": "cloud",
+      "hiragana_reading": "くも",
+      "category": "名詞"
+    },
+    "震え": {
+      "count": "1",
+      "translation": "shivering",
+      "hiragana_reading": "ふるえ",
+      "category": "名詞"
+    },
+    "震える": {
+      "count": "1",
+      "translation": "to shiver",
+      "hiragana_reading": "ふるえる",
+      "category": "名詞"
+    },
+    "青": {
+      "count": "1",
+      "translation": "blue",
+      "hiragana_reading": "あお",
+      "category": "名詞"
+    },
+    "非常": {
+      "count": "1",
+      "translation": "emergency",
+      "hiragana_reading": "ひじょう",
+      "category": "名詞"
+    },
+    "面白": {
+      "count": "2",
+      "translation": "amusing",
+      "hiragana_reading": "おもしろ",
+      "category": "名詞"
+    },
+    "頃": {
+      "count": "3",
+      "translation": "approximate",
+      "hiragana_reading": "ころ",
+      "category": "名詞"
+    },
+    "頬": {
+      "count": "1",
+      "translation": "cheek",
+      "hiragana_reading": "ほお",
+      "category": "名詞"
+    },
+    "頭": {
+      "count": "8",
+      "translation": "head",
+      "hiragana_reading": "あたま",
+      "category": "名詞"
+    },
+    "願い": {
+      "count": "5",
+      "translation": "desire",
+      "hiragana_reading": "ねがい",
+      "category": "名詞"
+    },
+    "願う": {
+      "count": "1",
+      "translation": "wish",
+      "hiragana_reading": "ねがう",
+      "category": "名詞"
+    },
+    "風": {
+      "count": "4",
+      "translation": "wind",
+      "hiragana_reading": "かぜ",
+      "category": "名詞"
+    },
+    "飛び交う": {
+      "count": "1",
+      "translation": "to fly about",
+      "hiragana_reading": "とびかう",
+      "category": "名詞"
+    },
+    "飛び込む": {
+      "count": "1",
+      "translation": "to jump in",
+      "hiragana_reading": "とびこむ",
+      "category": "名詞"
+    },
+    "食": {
+      "count": "1",
+      "translation": "eat",
+      "hiragana_reading": "たべ",
+      "category": "名詞"
+    },
+    "食べ物": {
+      "count": "2",
+      "translation": "food",
+      "hiragana_reading": "たべもの",
+      "category": "名詞"
+    },
+    "食欲": {
+      "count": "4",
+      "translation": "appetite",
+      "hiragana_reading": "しょきょく",
+      "category": "名詞"
+    },
+    "飾": {
+      "count": "1",
+      "translation": "decorate",
+      "hiragana_reading": "かぎ",
+      "category": "名詞"
+    },
+    "香り": {
+      "count": "2",
+      "translation": "scent",
+      "hiragana_reading": "かおり",
+      "category": "名詞"
+    },
+    "駆け抜け": {
+      "count": "1",
+      "translation": "to run through",
+      "hiragana_reading": "かけぬけ",
+      "category": "名詞"
+    },
+    "高": {
+      "count": "1",
+      "translation": "tall",
+      "hiragana_reading": "たかい",
+      "category": "名詞"
+    },
+    "髪": {
+      "count": "1",
+      "translation": "hair",
+      "hiragana_reading": "かみ",
+      "category": "名詞"
+    },
+    "魂": {
+      "count": "2",
+      "translation": "soul",
+      "hiragana_reading": "たましい",
+      "category": "名詞"
+    },
+    "魚": {
+      "count": "1",
+      "translation": "fish",
+      "hiragana_reading": "さかな",
+      "category": "名詞"
+    },
+    "鳥取": {
+      "count": "1",
+      "translation": "Tottori",
+      "hiragana_reading": "とっとり",
+      "category": "名詞"
+    },
+    "鳥籠": {
+      "count": "1",
+      "translation": "birdcage",
+      "hiragana_reading": "とりかご",
+      "category": "名詞"
+    },
+    "鳴ら": {
+      "count": "2",
+      "translation": "to beat",
+      "hiragana_reading": "なら",
+      "category": "名詞"
+    },
+    "鼓動": {
+      "count": "2",
+      "translation": "beat",
+      "hiragana_reading": "こどう",
+      "category": "名詞"
+    }
+  }
+}

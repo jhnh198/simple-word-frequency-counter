@@ -5,6 +5,15 @@ import {
   addWordToDictionaryFromNewRow,
 } from '../script.js';
 
+export function updateSingleInputValue(word, value, component, frequency_translation_dictionary){
+  if(component === 'translation'){
+    frequency_translation_dictionary.currentTextTokensCount[word].translation = value;
+  } else if(component === 'hiragana_reading'){
+    frequency_translation_dictionary.currentTextTokensCount[word].hiragana_reading = value;
+  }
+  frequency_translation_dictionary.allSavedWords[word] = frequency_translation_dictionary.currentTextTokensCount[word];
+}
+
 export function createInputFieldContainer(word, translation, component, language) {
   const input = document.createElement('input');
   input.type = 'text';
@@ -22,13 +31,11 @@ export function createInputFieldContainer(word, translation, component, language
   let doneTypingInterval = 5000;
 
   function handleTyping() {
-    console.log('typing');
     clearTimeout(typingTimer);
     typingTimer = setTimeout(doneTyping, doneTypingInterval);
   }
 
   function doneTyping() {
-    console.log('done typing');
     updateInputChangeValue(word, input.value, component);
   }
 
@@ -47,8 +54,8 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
 
   const body = table.createTBody();
 
-  //check if any words exist that match the category
   CATEGORY_LIST.forEach(category => {
+
     if (Object.values(dictionary).some(entry => entry.category === category)) {
       const categoryRow = body.insertRow();
       const categoryCell = categoryRow.insertCell();
@@ -96,7 +103,6 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
             buildWordFrequencyTable(dictionary, dictionaryTabContent);
           });
           categoryCell.appendChild(deleteButton);
-          
         }
         });
       }

@@ -1,6 +1,5 @@
 import { 
     analyzeText,
-    loadLocalStorage,
     saveCurrentTokenCountToDictionary,
     handleCurrentTokenDictionary,
     downloadCSVFromDictionary,
@@ -19,13 +18,13 @@ import {
   grammar_guide_data
 } from './ui_component/grammar_guide_data.js';
 
-//get main document elements
-//todo: remove these global variables
-const countFrequencyButton = document.getElementById('count-frequency-button');
+//todo: need to add node.js and server to write to dictionary file
+//todo: add words to the json file from inputs
+//todo: update json with frequency count words
 
+//get main document elements
 const titleInput = document.getElementById('title-input');
 const freeTranslationTextArea = document.getElementById('free-translation-text-area');
-
 const dictionaryTabContent = document.getElementById('dictionary-tab-content');
 
 let text = `神様に恋をしてた頃は
@@ -75,12 +74,16 @@ It's long long good-bye...
 let inputText = document.getElementById('input-text');
 inputText.value = text;
 
-let frequency_translation_dictionary = {currentTextTokensCount: {}, allSavedWords: loadLocalStorage()};
-if(frequency_translation_dictionary.allSavedWords.entries !== 0) {
-  buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
-}
+let frequency_translation_dictionary = {currentTextTokensCount: {}, allSavedWords: {}};
 
-//todo: change to ignore count and only update the new word
+fetch('./dictionary_data/frequency_dictionary_data.json')
+    .then((response) => response.json())
+    .then((json) => 
+      frequency_translation_dictionary.allSavedWords = json.allSavedWords
+    ).then(() =>{
+      buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
+});
+
 export function updateInputChangeValue(word, value, component){
   if(component === 'translation'){
     frequency_translation_dictionary.currentTextTokensCount[word].translation = value;
@@ -88,6 +91,7 @@ export function updateInputChangeValue(word, value, component){
     frequency_translation_dictionary.currentTextTokensCount[word].hiragana_reading = value;
   }
   frequency_translation_dictionary.allSavedWords[word] = frequency_translation_dictionary.currentTextTokensCount[word];
+
 }
 
 export function updateCategoryChangeValue(word, category){
@@ -147,25 +151,28 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.onload = function(e) {
           const text = reader.result;
           const dictionaryData = JSON.parse(text);
+
           frequency_translation_dictionary.allSavedWords = dictionaryData.allSavedWords;
           buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
-          titleTextContent.value = dictionaryData.title;
-          translationInputField.value = dictionaryData.freeTranslation;
+          titleInput.value = dictionaryData.title?.value;
+          freeTranslationTextArea.value = dictionaryData.freeTranslation;
           inputText.value = dictionaryData.inputText;
         };
       } else {
-      const dictionary = {};
+        const dictionary = {};
 
-      reader.onload = function(e) {
-        const text = reader.result;
-        const rows = text.split('\n');
+        reader.onload = function(e) {
+          let text = reader.result;
+          text = text.replace(/\\[nrt]/g, ''); // Remove escape characters
+          text = text.replace(/\r/g, ''); // Remove carriage return characters
+          const rows = text.split(/\n/); // Split by new line characters
 
-        rows.forEach(row => {
-          const [word, count, translation, hiragana_reading, category] = row.split(',');
-          dictionary[word] = { count:count, translation: translation, hiragana_reading: hiragana_reading, category: category };
-        });
-        buildWordFrequencyTable(dictionary, dictionaryTabContent);
-      };
+          rows.forEach(row => {
+            const [word, count, translation, hiragana_reading, category] = row.split(',');
+            dictionary[word] = { count:count, translation: translation, hiragana_reading: hiragana_reading, category: category };
+          });
+          buildWordFrequencyTable(dictionary, dictionaryTabContent);
+        };
       frequency_translation_dictionary.allSavedWords = dictionary;
       frequency_translation_dictionary.currentTextTokensCount = dictionary;
       }
@@ -182,5 +189,25 @@ document.addEventListener('DOMContentLoaded', () => {
     //translation event listeners
     document.getElementById('translate-button').addEventListener('click', () => {
       translateText(inputText.value, "EN");
+    }); 
+
+    document.getElementById('clear-input-button').addEventListener('click', () => {
+      inputText.value = '';
+      freeTranslationTextArea.value = '';
+      titleInput.value = '';
+    });
+
+    document.getElementById('hover-content-button').addEventListener('click', () => {
+      //1 get tokens from text if not already done
+      // make the table element hoverable and highlight all instances of the word by adding a class to each span matching the word
+      //2 replace all tokens with span tags
+      //3 add event listeners to each span tag
+      //4 create a hover div
+      //5 add the hover div to the body
+      //6 add event listeners to the hover div
+      //7 remove the hover div when mouse leaves
+      //8 add the translation to the hover div
+      //9 add the hiragana reading to the hover div
+      //10 add the category to the hover div
     });
 });
