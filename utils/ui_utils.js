@@ -22,13 +22,11 @@ export function createInputFieldContainer(word, translation, component, language
   let doneTypingInterval = 5000;
 
   function handleTyping() {
-    console.log('typing');
     clearTimeout(typingTimer);
     typingTimer = setTimeout(doneTyping, doneTypingInterval);
   }
 
   function doneTyping() {
-    console.log('done typing');
     updateInputChangeValue(word, input.value, component);
   }
 
