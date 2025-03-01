@@ -84,7 +84,6 @@ fetch('./dictionary_data/frequency_dictionary_data.json')
       buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
 });
 
-//todo: change to ignore count and only update the new word
 export function updateInputChangeValue(word, value, component){
   if(component === 'translation'){
     frequency_translation_dictionary.currentTextTokensCount[word].translation = value;

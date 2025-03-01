@@ -5,6 +5,15 @@ import {
   addWordToDictionaryFromNewRow,
 } from '../script.js';
 
+export function updateSingleInputValue(word, value, component, frequency_translation_dictionary){
+  if(component === 'translation'){
+    frequency_translation_dictionary.currentTextTokensCount[word].translation = value;
+  } else if(component === 'hiragana_reading'){
+    frequency_translation_dictionary.currentTextTokensCount[word].hiragana_reading = value;
+  }
+  frequency_translation_dictionary.allSavedWords[word] = frequency_translation_dictionary.currentTextTokensCount[word];
+}
+
 export function createInputFieldContainer(word, translation, component, language) {
   const input = document.createElement('input');
   input.type = 'text';
