@@ -77,7 +77,6 @@ export const grammar_guide_data = {
             headers: ["Category", "Hiragana", "Description"],
             rows: [
               ["名詞", "めいし", "Noun"],
-              ["動詞", "どうし", "Verb"],
               ["五段動詞", "ごだんどうし", "Godan verb (u)"],
               ["一段動詞", "いちだんどうし", "Ichidan(ru)"],
               ["不規則動詞", "ふきそくどうし", "Irregular"],
