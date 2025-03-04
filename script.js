@@ -84,6 +84,8 @@ fetch('./dictionary_data/frequency_dictionary_data.json')
       buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
 });
 
+//todo: is there a way to fetch and then return data to a new file 
+
 export function updateInputChangeValue(word, value, component){
   if(component === 'translation'){
     frequency_translation_dictionary.currentTextTokensCount[word].translation = value;
@@ -141,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
       buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
     });
 
+    //todo: when this is uploaded it overwrites the whole dictionary, rather than current
     document.getElementById('frequency-dictionary-upload').addEventListener('change', (e) => {
       const reader = new FileReader();
       const fileType = e.target.files[0].type;
@@ -197,6 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
       titleInput.value = '';
     });
 
+    //todo: create hover for token words
     document.getElementById('hover-content-button').addEventListener('click', () => {
       //1 get tokens from text if not already done
       // make the table element hoverable and highlight all instances of the word by adding a class to each span matching the word
