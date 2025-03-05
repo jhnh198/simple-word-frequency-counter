@@ -84,8 +84,6 @@ fetch('./dictionary_data/frequency_dictionary_data.json')
       buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
 });
 
-//todo: is there a way to fetch and then return data to a new file 
-
 export function updateInputChangeValue(word, value, component){
   if(component === 'translation'){
     frequency_translation_dictionary.currentTextTokensCount[word].translation = value;
@@ -93,7 +91,6 @@ export function updateInputChangeValue(word, value, component){
     frequency_translation_dictionary.currentTextTokensCount[word].hiragana_reading = value;
   }
   frequency_translation_dictionary.allSavedWords[word] = frequency_translation_dictionary.currentTextTokensCount[word];
-
 }
 
 export function updateCategoryChangeValue(word, category){
