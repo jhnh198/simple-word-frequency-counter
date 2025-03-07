@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Japanese Text Analyzer</title>
+  <script defer src="../tiny-segmenter/dist/tiny-segmenter-0.2.0.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="../ui_component/grammar_guide.css">
+  <script defer src="https://unpkg.com/wanakana"></script>
+  <script defer type="module" src="./script.js"></script>
+</head>
+
+<!-- todo: set up correct file paths for public node folder structure -->
+<body>
+<div id="body-container"> 
+  <header class="header">
+    <h1>Japanese Text Analyzer</h1>
+  </header>
+  <main class="main-content">
+    <div id="input-container">
+      <div id="content-header-controls">
+        <input type="text" id="title-input" class="main-content-input" placeholder="Enter a Title">
+        <div>
+            <input type="checkbox" id="hide-previous-translations-checkbox">
+            <label for="hide-previous-translations-checkbox" id="hide-previous-translations-label">Clear/Show Previous Translations</label>
+        </div>
+        <button id="clear-input-button" class="control-button">Clear Input</button>
+        <button id="hover-content-button" class="control-button">Hover Content</button>
+      </div>
+
+      <div id="textarea-container">
+        <textarea title="input-text-area" id="input-text" rows="35" cols="40">
+        </textarea>
+        <textarea title="free-translation-text-area" id="free-translation-text-area" rows="35" cols="40"></textarea>
+      </div>
+    </div>
+  </main>
+
+    <aside class="right-sidebar">
+        <div class="control-container" id="right-sidebar-tabs">
+          <button class="control-button" id="count-frequency-button">Return Words and Frequency</button>
+          <button class="control-button" id="download-current-translation-button">Download Current Translation</button>
+          <button class="control-button" id="download-full-dictionary-button">Download Full Translation</button>
+          <button class="control-button" id="download-json-button">Download JSON</button>
+
+          <label for="frequency-dictionary-upload" class="file-upload-label">Upload Frequency Dictionary </label>
+          <input type="file" value="dictionaryFile"  id="frequency-dictionary-upload" class="frequency-dictionary-upload" accept=".json, .csv">
+
+          <button class="control-button" id="translate-button">Push to translate using deepL </button>
+        </div>
+        
+        <div class="control-container" class="dictionary-tab-container">
+          <div class="dictionary-container-tabs">
+            <img alt="a small picture of a book"  class="small-control-icon" id="frequency-dictionary-button" src="images/all-words-image.png">
+
+            <img  alt="a small picture of a bookmark"  class="small-control-icon" id="word-frequency-output-button" src="images/current-translation-image.png"> 
+
+            <img  alt="a small picture of a graduates cap"  class="small-control-icon" id="grammar-guide-button" src="images/guide-button-image.png">
+          </div>
+
+          <div id="dictionary-tab-content" class="">
+          </div>
+          </div>
+        </div>
+    </aside>
+  </body>
+</html>                   

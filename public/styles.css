@@ -1,0 +1,250 @@
+*{
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Poppins', sans-serif;
+  background: #d2b9db7c;
+  font-size: 20px;
+  color: #2E2532;
+}
+
+header{
+  width: 100%;
+  padding: 1rem;
+  text-align: center;
+}
+
+#body-container{
+  display:flex;
+  flex-wrap:wrap;
+}
+
+#body-container > *{
+  padding: 1rem;
+}
+
+/* background colors */
+#body-container > .header {
+  opacity: 1;
+}
+
+#content-header-controls{
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-gap: 10px;
+  margin-bottom: 20px;
+  justify-content: space-around;
+}
+
+.right-sidebar{
+  max-height: 820px;
+  overflow-y: scroll;
+  border-color: rgba(#000, .2);
+  border-radius: 5px;
+}
+
+.highlight{
+  background-color: #da904b;
+}
+
+.error{
+  border: 1px solid red;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+.title-header{
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+#textarea-div{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.control-container{
+  justify-items: stretch;
+  align-items: stretch;
+  background-color: #fcfcfc;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+  padding: 10px;
+}
+
+.control-button{
+  margin: 0 10px;
+  padding: 10px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.dictionary-tab-container{
+  background-color: #fcfcfc;
+  margin-top: 2rem;
+}
+
+.small-control-button{
+  margin-left: 20px;
+  background-color: #2E2532;
+}
+
+.small-control-icon{
+  width: 64px;
+  height: 64px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+#dictionary-tab-content{
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 1rem;
+}
+
+#dictionary-tab-content h2{
+  margin-bottom: 10px;
+}
+
+#dictionary-tab-content td{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+textarea{
+  height: 760px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #FBFBFB;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+  font-size: 20px;
+}
+
+#controls-div{
+  margin-top: 20px;
+  margin-right: 1.2rem;
+  margin-left: 1.2rem;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-around;
+  background-color: #fcfcfc;
+  border-radius: 5px;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+}
+
+#controls-div button{
+  margin: 10px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+#frequency-dictionary-upload{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10rem;
+  background-color: #fcfcfc;
+}
+
+input::file-selector-button {
+  background-color: #fcfcfc;
+  border: 1px solid #FBFBFB;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.custom-file-upload {
+  border: 1px solid #FBFBFB;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+#word-row{
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #FBFBFB;
+}
+
+.dictionary-table{
+  display: grid;
+  border-collapse: collapse;
+  gap: 10px;
+}
+
+.dictionary-table th{
+  padding: 10px;
+  border-bottom: 1px solid #FBFBFB;
+}
+
+.dictionary-table td{
+  padding-bottom: 5px;
+  border-bottom: 1px solid #FBFBFB;
+}
+
+.dictionary-table tr input{
+  border-bottom: 1px solid #FBFBFB;
+  font-size: 16px;
+}
+
+.dictionary-table tr select{
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.dictionary-table tr button{
+  font-size: 20px;
+  padding: 5px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#hiragana-reading{
+  -ms-ime-mode: active;
+}
+
+.hidden{
+  display: none;
+}
+
+.file-upload-label{
+  font-size: 20px;
+  justify-self: center;
+  padding: 10px;
+}
+
+#right-sidebar-tabs{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media only screen and (max-width: 800px){
+  tr{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #right-sidebar-tabs{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}

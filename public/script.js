@@ -27,7 +27,49 @@ const titleInput = document.getElementById('title-input');
 const freeTranslationTextArea = document.getElementById('free-translation-text-area');
 const dictionaryTabContent = document.getElementById('dictionary-tab-content');
 
-let text = ``;
+let text = `神様に恋をしてた頃は
+こんな別れが来るとは思ってなかったよ
+もう二度と触れられないなら
+せめて最後に　もう一度抱きしめて欲しかったよ
+
+It's long long good-bye...
+
+さよなら　さよなら　何度だって
+自分に　無上に　言い聞かせて
+手を振るのは優しさだよね？
+今　強さが欲しい
+
+貴方に出会い　STAR輝いて　アタシが生まれて
+愛すればこそ　iあればこそ
+希望のない　奇跡を待って　どうなるの？
+涙に滲む　惑星の瞬きは　gone...
+
+忘れない　貴方の温もりも
+その優しさも　全て包んでくれた両手も
+It's long long good-bye...
+
+さよなら　さよなら　愛しい人
+貴方が　いたから　歩いてこれた
+ひとりなんかじゃなかったよね？
+今　答えが欲しい
+
+燃える様な流星　捕まえて　火を灯して
+愛していたい　愛されてたい
+冷えたカラダひとつで　世界は　どうなるの？
+張り続けてた　虚勢が溶けてく　long for...
+
+どうしてなの？　涙溢れて　止められない
+
+貴方に出逢い　STAR輝いて　アタシが生まれて
+愛すればこそ　iあればこそ
+希望のない　奇跡を待って　どうなるの？
+涙に滲む　惑星の瞬きは　gone...
+
+もし生まれ変わって　また巡り会えるなら
+その時もきっと　アタシを見つけ出して
+もう二度と離さないで　捕まえてて
+ひとりじゃないと　囁いてほしい　planet...
+`;
 
 let inputText = document.getElementById('input-text');
 inputText.value = text;
@@ -42,6 +84,8 @@ fetch('./dictionary_data/frequency_dictionary_data.json')
       buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
 });
 
+//todo: is there a way to fetch and then return data to a new file 
+
 export function updateInputChangeValue(word, value, component){
   if(component === 'translation'){
     frequency_translation_dictionary.currentTextTokensCount[word].translation = value;
@@ -49,6 +93,7 @@ export function updateInputChangeValue(word, value, component){
     frequency_translation_dictionary.currentTextTokensCount[word].hiragana_reading = value;
   }
   frequency_translation_dictionary.allSavedWords[word] = frequency_translation_dictionary.currentTextTokensCount[word];
+
 }
 
 export function updateCategoryChangeValue(word, category){
@@ -157,23 +202,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //todo: create hover for token words
     document.getElementById('hover-content-button').addEventListener('click', () => {
-      const hoverDiv = document.getElementById('hover-div');
-      hoverDiv.classList.add('hover-div');
-
-      Object.frequency_translation_dictionary.currentTextTokensCount.entries.forEach(([word, data]) => {
-        const span = document.createElement('span');
-        span.classList.add('word');
-        span.innerText = word;
-        span.addEventListener('hover', () => {
-          hoverDiv.innerText = `Translation: ${data.translation}\nHiragana Reading: ${data.hiragana_reading}\nCategory: ${data.category}`;
-        });
-        span.addEventListener('mouseleave', () => {
-          hoverDiv.remove();
-        });
-      });
-      });
       //1 get tokens from text if not already done
-      // make the table words into hover elements and highlight all instances of the word by adding a class to each span matching the word
+      // make the table element hoverable and highlight all instances of the word by adding a class to each span matching the word
       //2 replace all tokens with span tags
       //3 add event listeners to each span tag
       //4 create a hover div
@@ -184,3 +214,4 @@ document.addEventListener('DOMContentLoaded', () => {
       //9 add the hiragana reading to the hover div
       //10 add the category to the hover div
     });
+});
