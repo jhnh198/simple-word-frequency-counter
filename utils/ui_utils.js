@@ -100,6 +100,7 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
           deleteButton.textContent = 'Delete';
           deleteButton.addEventListener('click', () => {
             delete dictionary[word];
+            document.getElementsByTagName([])
             buildWordFrequencyTable(dictionary, dictionaryTabContent);
           });
           categoryCell.appendChild(deleteButton);
