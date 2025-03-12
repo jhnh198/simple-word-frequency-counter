@@ -87,7 +87,7 @@ export function saveSingleCategoryInputToDictionary(word, category, allSavedWord
 
 export function handleSingleCountInputToDictionary(word, count, allSavedWords) {
     if (!allSavedWords[word]) {
-        allSavedWords[word] = { count: count, translation: '', category: '名詞'};
+        allSavedWords[word] = { count: count, translation: '', category: '名詞', reading: '音読み', rendaku: 0};
     } else {
         allSavedWords[word].count = count;
     }
@@ -97,7 +97,7 @@ export function handleSingleCountInputToDictionary(word, count, allSavedWords) {
 
 export function handleSingleHiraganaReadingInputToDictionary(word, hiragana_reading, allSavedWords) {
     if (!allSavedWords[word]) {
-        allSavedWords[word] = { count: 1, translation: '', hiragana_reading: hiragana_reading, category: '名詞'};
+        allSavedWords[word] = { count: 1, translation: '', hiragana_reading: hiragana_reading, category: '名詞', reading: '音読み', rendaku: 0};
     } else {
         allSavedWords[word].hiragana_reading = hiragana_reading;
     }
@@ -110,18 +110,25 @@ export function handleCurrentTokenDictionary(wordTokenFrequencyCount, allSavedWo
     const tempCurrentTextTokens = {};
     Object.entries(wordTokenFrequencyCount).forEach(([word, count]) => {
         if (!allSavedWords[word]) {
-          tempCurrentTextTokens[word] = { count: count, translation: '', hiragana_reading: '', category: '名詞'};
+          tempCurrentTextTokens[word] = { count: count, translation: '', hiragana_reading: '', category: '名詞', reading: '音読み', rendaku: 0};
         } else {
-          tempCurrentTextTokens[word] = { count: count, translation: allSavedWords[word]?.translation, hiragana_reading: allSavedWords[word]?.hiragana_reading, category: allSavedWords[word]?.category};
+          tempCurrentTextTokens[word] = { 
+            count: count, 
+            translation: allSavedWords[word]?.translation,
+            hiragana_reading: allSavedWords[word]?.hiragana_reading,
+            category: allSavedWords[word]?.category,
+            reading: allSavedWords[word]?.reading,
+            rendaku: allSavedWords[word]?.rendaku
+          };
         }
     });
     return tempCurrentTextTokens;
 }
 
 export function downloadCSVFromDictionary(dictionary, filename = 'translation.csv') {
-  const header = 'Word,Count,Translation,Hiragana Reading,Category\n';
+  const header = 'Word,Count,Translation,Hiragana Reading,Category,Reading,Rendaku\n';
   const csv = Object.entries(dictionary).map(([word, data]) => {
-    return `${word},${data.count},${data.translation},${data.hiragana_reading},${data.category}`;
+    return `${word},${data.count},${data.translation},${data.hiragana_reading},${data.category},${data.reading},${data.rendaku}`;
   }).join('\n');
 
   const blob = new Blob([header + csv], { type: 'text/csv' });

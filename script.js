@@ -34,13 +34,13 @@ inputText.value = text;
 
 let frequency_translation_dictionary = {currentTextTokensCount: {}, allSavedWords: {}};
 
-fetch('./dictionary_data/frequency_dictionary_data.json')
+/* fetch('./dictionary_data/frequency_dictionary_data.json')
     .then((response) => response.json())
     .then((json) => 
       frequency_translation_dictionary.allSavedWords = json.allSavedWords
     ).then(() =>{
       buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
-});
+}); */
 
 export function updateInputChangeValue(word, value, component){
   if(component === 'translation'){
@@ -52,7 +52,7 @@ export function updateInputChangeValue(word, value, component){
 }
 
 export function updateCategoryChangeValue(word, category){
-  frequency_translation_dictionary.allSavedWords[word].category = category;  
+  //frequency_translation_dictionary.allSavedWords[word].category = category;  
 }
 
 export function addWordToDictionaryFromNewRow(newWord){
@@ -121,14 +121,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         reader.onload = function(e) {
           let text = reader.result;
+          console.log(text);
           text = text.replace(/\\[nrt]/g, ''); // Remove escape characters
           text = text.replace(/\r/g, ''); // Remove carriage return characters
           const rows = text.split(/\n/); // Split by new line characters
 
           rows.forEach(row => {
-            const [word, count, translation, hiragana_reading, category] = row.split(',');
-            dictionary[word] = { count:count, translation: translation, hiragana_reading: hiragana_reading, category: category };
+            const [word, count, translation, hiragana_reading, category, reading, rendaku] = row.split(',');
+            dictionary[word] = { count:count, translation: translation, hiragana_reading: hiragana_reading, category: category, reading: reading, rendaku: rendaku };
           });
+
           buildWordFrequencyTable(dictionary, dictionaryTabContent);
         };
       frequency_translation_dictionary.allSavedWords = dictionary;

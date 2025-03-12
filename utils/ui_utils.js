@@ -1,4 +1,6 @@
 import { CATEGORY_LIST } from './text_content/category_list.js';
+import { READING_LIST } from './text_content/reading_list.js';
+
 import { 
   updateCategoryChangeValue,
   updateInputChangeValue,
@@ -94,7 +96,10 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
           hiraganaReadingCell.appendChild(hiraganaReadingInput);
           
           const categoryCell = row.insertCell();
-          categoryCell.appendChild(createDropdown(word));
+          categoryCell.appendChild(createDropdown(word, CATEGORY_LIST));
+
+/*           const readingCell = row.insertCell();
+          readingCell.appendChild(createDropdown(word, READING_LIST)); */
 
           const deleteButton = document.createElement('button');
           deleteButton.textContent = 'Delete';
@@ -113,11 +118,10 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
   dictionaryTabContent.appendChild(table);
 }
 
-export function createDropdown(word) {
+export function createDropdown(word, categories) {
   const select = document.createElement('select');
   select.id = `${word}-category`;
 
-  const categories = CATEGORY_LIST;
   categories.forEach(category => {
     const option = document.createElement('option');
     option.value = category;
@@ -125,9 +129,9 @@ export function createDropdown(word) {
     select.appendChild(option);
   });
 
-  select.addEventListener('change', () => {
+/*   select.addEventListener('change', () => {
     updateCategoryChangeValue(word, select.value);
-  });
+  }); */
   return select;
 }
 
