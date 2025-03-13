@@ -118,20 +118,21 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
   dictionaryTabContent.appendChild(table);
 }
 
-export function createDropdown(word, categories) {
+//todo: create a dropdown for reading and category
+export function createDropdown(word) {
   const select = document.createElement('select');
   select.id = `${word}-category`;
 
-  categories.forEach(category => {
+  CATEGORY_LIST.forEach(category => {
     const option = document.createElement('option');
     option.value = category;
     option.textContent = category;
     select.appendChild(option);
   });
 
-/*   select.addEventListener('change', () => {
+  select.addEventListener('change', () => {
     updateCategoryChangeValue(word, select.value);
-  }); */
+  });
   return select;
 }
 
@@ -177,7 +178,10 @@ export function createEmptyWordRow(table) {
         word: wordInput.value,
         translation: translationInput.value,
         count: countInput.value,
-        category: categoryDropdown.value
+        category: categoryDropdown.value,
+        hiragana_reading: '',
+        reading: '音読み',
+        rendaku: 0,
       }
 
       addWordToDictionaryFromNewRow(newWord);     

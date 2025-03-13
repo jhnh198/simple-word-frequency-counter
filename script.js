@@ -34,13 +34,13 @@ inputText.value = text;
 
 let frequency_translation_dictionary = {currentTextTokensCount: {}, allSavedWords: {}};
 
-/* fetch('./dictionary_data/frequency_dictionary_data.json')
+fetch('./dictionary_data/frequency_dictionary_data.json')
     .then((response) => response.json())
     .then((json) => 
       frequency_translation_dictionary.allSavedWords = json.allSavedWords
     ).then(() =>{
       buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
-}); */
+});
 
 export function updateInputChangeValue(word, value, component){
   if(component === 'translation'){
@@ -121,7 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         reader.onload = function(e) {
           let text = reader.result;
-          console.log(text);
           text = text.replace(/\\[nrt]/g, ''); // Remove escape characters
           text = text.replace(/\r/g, ''); // Remove carriage return characters
           const rows = text.split(/\n/); // Split by new line characters
