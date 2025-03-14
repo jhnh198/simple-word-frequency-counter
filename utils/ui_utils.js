@@ -98,14 +98,15 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
           const categoryCell = row.insertCell();
           categoryCell.appendChild(createDropdown(word, CATEGORY_LIST));
 
-/*           const readingCell = row.insertCell();
-          readingCell.appendChild(createDropdown(word, READING_LIST)); */
+          const readingCell = row.insertCell();
+          readingCell.appendChild(createDropdown(word, READING_LIST));
 
           const deleteButton = document.createElement('button');
           deleteButton.textContent = 'Delete';
+
+          //todo: save the entire dictionary input before deletion to avoid losing input data due to timing
           deleteButton.addEventListener('click', () => {
             delete dictionary[word];
-            document.getElementsByTagName([])
             buildWordFrequencyTable(dictionary, dictionaryTabContent);
           });
           categoryCell.appendChild(deleteButton);
@@ -118,7 +119,6 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
   dictionaryTabContent.appendChild(table);
 }
 
-//todo: create a dropdown for reading and category
 export function createDropdown(word) {
   const select = document.createElement('select');
   select.id = `${word}-category`;
@@ -134,6 +134,27 @@ export function createDropdown(word) {
     updateCategoryChangeValue(word, select.value);
   });
   return select;
+}
+
+export function createReadingDropdown(word) {
+  const select = document.createElement('select');
+  select.id = `${word}-reading`;
+
+  READING_LIST.forEach(reading => {
+    const option = document.createElement('option');
+    option.value = reading;
+    option.textContent = reading;
+    select.appendChild(option);
+  });
+
+  select.addEventListener('change', () => {
+    updateReadingChangeValue(word, select.value);
+  });
+  return select;
+}
+
+function updateReadingChangeValue(word, reading) {
+  frequency_translation_dictionary.allSavedWords[word].reading = reading;
 }
 
 export function createEmptyWordRow(table) {
