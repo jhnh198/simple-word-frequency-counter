@@ -235,6 +235,14 @@ input::file-selector-button {
   grid-template-columns: 1fr 1fr;
 }
 
+.category-row{
+  display: grid;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #FBFBFB;
+}
+
 @media only screen and (max-width: 800px){
   tr{
     display: grid;

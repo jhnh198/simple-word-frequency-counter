@@ -59,14 +59,10 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
   CATEGORY_LIST.forEach(category => {
 
     if (Object.values(dictionary).some(entry => entry.category === category)) {
-      //todo: move styling to css
       const categoryRow = body.insertRow();
+      categoryRow.classList.add('category-row');
       const categoryCell = categoryRow.insertCell();
-      categoryCell.colSpan = 4;
       categoryCell.textContent = category;
-      categoryCell.style.fontWeight = 'bold';
-      categoryCell.style.textAlign = 'center';
-      categoryCell.style.paddingBottom = '15px';
 
       const headerRow = body.insertRow();
       const wordHeaderCell = headerRow.insertCell();
@@ -79,6 +75,8 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
       hiragana_readingHeaderCell.textContent = 'Hiragana Reading';
       const categoryHeaderCell = headerRow.insertCell();
       categoryHeaderCell.textContent = 'Category'; 
+      const readingHeaderCell = headerRow.insertCell();
+      readingHeaderCell.textContent = 'Reading';
 
       Object.entries(dictionary).forEach(([word]) => {
         if(dictionary[word].category === category) {
