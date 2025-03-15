@@ -59,6 +59,7 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
   CATEGORY_LIST.forEach(category => {
 
     if (Object.values(dictionary).some(entry => entry.category === category)) {
+      //todo: move styling to css
       const categoryRow = body.insertRow();
       const categoryCell = categoryRow.insertCell();
       categoryCell.colSpan = 4;
