@@ -95,11 +95,12 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
           hiraganaReadingCell.appendChild(hiraganaReadingInput);
           
           const categoryCell = row.insertCell();
-          categoryCell.appendChild(createDropdown(word, CATEGORY_LIST));
+          categoryCell.appendChild(createCategoryDropdown(word));
 
           const readingCell = row.insertCell();
-          readingCell.appendChild(createDropdown(word, READING_LIST));
+          readingCell.appendChild(createReadingDropdown(word));
 
+          //todo: move delete button to the right
           const deleteButton = document.createElement('button');
           deleteButton.textContent = 'Delete';
 
@@ -118,7 +119,7 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
   dictionaryTabContent.appendChild(table);
 }
 
-export function createDropdown(word) {
+export function createCategoryDropdown(word) {
   const select = document.createElement('select');
   select.id = `${word}-category`;
 
@@ -161,8 +162,7 @@ export function createEmptyWordRow(table) {
   div.classList.add('word-row');
   
   const row = table.insertRow();
-  
-  //create input field for word
+
   const wordCell = row.insertCell();
   const wordInput = document.createElement('input');
   wordCell.appendChild(wordInput);
@@ -176,7 +176,7 @@ export function createEmptyWordRow(table) {
   translationCell.appendChild(translationInput);
 
   const categoryCell = row.insertCell();
-  const categoryDropdown = createDropdown('');
+  const categoryDropdown = createCategoryDropdown('');
   categoryCell.appendChild(categoryDropdown);
 
   const addNewWordButton = document.createElement('button');
