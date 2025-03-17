@@ -1,9 +1,13 @@
 //dictionary class
+//todo: current text tokens values need to get values from the dictionary. 
+//current text will get values from the dictionary
+//new values will get passed to the main dictionary and update the main dictionary. 
+//current text tokens are not a separate dictionary, they are a subset of the main dictionary.
+
  class Dictionary {
    constructor(dictionary) {
-      this.allSavedWords = dictionary.allSavedWords;
-      this.currentTextTokenWords = {};
-      
+      this.allSavedWords = dictionary.allSavedWords || {};
+      this.currentTextTokenWords = {};      
    };
 
    //setter functions

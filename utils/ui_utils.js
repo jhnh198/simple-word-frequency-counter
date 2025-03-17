@@ -56,65 +56,55 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
 
   const body = table.createTBody();
 
-  CATEGORY_LIST.forEach(category => {
+  const headerRow = body.insertRow();
+  const wordHeaderCell = headerRow.insertCell();
+  wordHeaderCell.textContent = 'Word';
+  const countHeaderCell = headerRow.insertCell();
+  countHeaderCell.textContent = 'Count';
+  const translationHeaderCell = headerRow.insertCell();
+  translationHeaderCell.textContent = 'Translation';
+  const hiragana_readingHeaderCell = headerRow.insertCell();
+  hiragana_readingHeaderCell.textContent = 'Hiragana Reading';
+  const categoryHeaderCell = headerRow.insertCell();
+  categoryHeaderCell.textContent = 'Category'; 
+  const readingHeaderCell = headerRow.insertCell();
+  readingHeaderCell.textContent = 'Reading';
 
-    if (Object.values(dictionary).some(entry => entry.category === category)) {
-      const categoryRow = body.insertRow();
-      categoryRow.classList.add('category-row');
-      const categoryCell = categoryRow.insertCell();
-      categoryCell.textContent = category;
+  Object.entries(dictionary).forEach(([word]) => {
+    if(dictionary[word].category === category) {
+      const row = body.insertRow();
+      const wordCell = row.insertCell();
+      wordCell.textContent = word;
+      const countCell = row.insertCell();
+  
+      countCell.textContent = dictionary[word].count;
+      const translationCell = row.insertCell();
+      const translationCellInput = createInputFieldContainer(word, dictionary[word]?.translation, 'translation', 'en');
+      translationCell.appendChild(translationCellInput);
 
-      const headerRow = body.insertRow();
-      const wordHeaderCell = headerRow.insertCell();
-      wordHeaderCell.textContent = 'Word';
-      const countHeaderCell = headerRow.insertCell();
-      countHeaderCell.textContent = 'Count';
-      const translationHeaderCell = headerRow.insertCell();
-      translationHeaderCell.textContent = 'Translation';
-      const hiragana_readingHeaderCell = headerRow.insertCell();
-      hiragana_readingHeaderCell.textContent = 'Hiragana Reading';
-      const categoryHeaderCell = headerRow.insertCell();
-      categoryHeaderCell.textContent = 'Category'; 
-      const readingHeaderCell = headerRow.insertCell();
-      readingHeaderCell.textContent = 'Reading';
-
-      Object.entries(dictionary).forEach(([word]) => {
-        if(dictionary[word].category === category) {
-          const row = body.insertRow();
-          const wordCell = row.insertCell();
-          wordCell.textContent = word;
-          const countCell = row.insertCell();
+      const hiraganaReadingCell = row.insertCell();
+      const hiraganaReadingInput = createInputFieldContainer(word, dictionary[word]?.hiragana_reading, 'hiragana_reading', 'ja');
+      hiraganaReadingCell.appendChild(hiraganaReadingInput);
       
-          countCell.textContent = dictionary[word].count;
-          const translationCell = row.insertCell();
-          const translationCellInput = createInputFieldContainer(word, dictionary[word]?.translation, 'translation', 'en');
-          translationCell.appendChild(translationCellInput);
+      const categoryCell = row.insertCell();
+      categoryCell.appendChild(createCategoryDropdown(word));
 
-          const hiraganaReadingCell = row.insertCell();
-          const hiraganaReadingInput = createInputFieldContainer(word, dictionary[word]?.hiragana_reading, 'hiragana_reading', 'ja');
-          hiraganaReadingCell.appendChild(hiraganaReadingInput);
-          
-          const categoryCell = row.insertCell();
-          categoryCell.appendChild(createCategoryDropdown(word));
+      const readingCell = row.insertCell();
+      readingCell.appendChild(createReadingDropdown(word));
 
-          const readingCell = row.insertCell();
-          readingCell.appendChild(createReadingDropdown(word));
+      //todo: move delete button to the right
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Delete';
 
-          //todo: move delete button to the right
-          const deleteButton = document.createElement('button');
-          deleteButton.textContent = 'Delete';
-
-          //todo: save the entire dictionary input before deletion to avoid losing input data due to timing
-          deleteButton.addEventListener('click', () => {
-            delete dictionary[word];
-            buildWordFrequencyTable(dictionary, dictionaryTabContent);
-          });
-          categoryCell.appendChild(deleteButton);
-        }
-        });
-      }
+      //todo: save the entire dictionary input before deletion to avoid losing input data due to timing
+      //todo: depending on the tab, the dictionary will be different
+      deleteButton.addEventListener('click', () => {
+        delete dictionary[word];
+        buildWordFrequencyTable(dictionary, dictionaryTabContent);
+      });
+      categoryCell.appendChild(deleteButton);
     }
-  );
+    });
   table.appendChild(createEmptyWordRow(table));
   dictionaryTabContent.appendChild(table);
 }
