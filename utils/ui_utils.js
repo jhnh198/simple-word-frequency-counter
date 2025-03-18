@@ -79,6 +79,8 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
   
       countCell.textContent = dictionary[word].count;
       const translationCell = row.insertCell();
+
+      //todo: set function based on translation or hiragana_reading
       const translationCellInput = createInputFieldContainer(word, dictionary[word]?.translation, 'translation', 'en');
       translationCell.appendChild(translationCellInput);
 
@@ -97,7 +99,6 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
       deleteButton.textContent = 'Delete';
 
       //todo: save the entire dictionary input before deletion to avoid losing input data due to timing
-      //todo: depending on the tab, the dictionary will be different
       deleteButton.addEventListener('click', () => {
         delete dictionary[word];
         buildWordFrequencyTable(dictionary, dictionaryTabContent);

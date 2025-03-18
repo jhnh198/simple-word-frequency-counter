@@ -4,6 +4,9 @@
 //new values will get passed to the main dictionary and update the main dictionary. 
 //current text tokens are not a separate dictionary, they are a subset of the main dictionary.
 
+import { CATEGORY_LIST } from './text_content/category_list.js';
+import { READING_LIST } from './text_content/reading_list.js';
+
  class Dictionary {
    constructor(dictionary) {
       this.allSavedWords = dictionary.allSavedWords || {};
@@ -33,4 +36,19 @@
 
     //getter functions
 
-  }
+}
+
+/* 
+frequency translation dictionary structure
+let frequency_translation_dictionary = {
+
+    set the current text tokens, this is a temporary value that interacts with the dictionary
+    currentTextTokensCount: {},
+    allSavedWords: {
+      word: string,
+      count: integer,
+      translation: string,
+      hiragana_reading: string,
+      category: string
+    }
+}; */

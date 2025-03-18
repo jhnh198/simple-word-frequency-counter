@@ -1,16 +1,8 @@
 import { clearErrorMessage, errorMessage } from "./errorHandling.js";
 
-/* let frequency_translation_dictionary = {
-    currentTextTokensCount: {},
-    allSavedWords: {}
 
-    sample entry:
-    word: string,
-    count: integer,
-    translation: string,
-    hiragana_reading: string,
-    category: string
-}; */
+
+//todo: move this to dictionary class
 
 export async function analyzeText(text) {
     if (text === '') {
@@ -25,7 +17,6 @@ export async function analyzeText(text) {
 
     //regex to remove special characters
     const symbolRegex = /[\u0021-\u002F\u003A-\u0040\u3000-\u303F\uFF08\uFF01-\uFF3F]+/;
-
     const removeSingleHiragana = /^[\u3040-\u309F]{1}$/;
     const katakanaRegex = /[\u30A0-\u30FF]/;
  
