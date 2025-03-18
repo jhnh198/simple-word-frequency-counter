@@ -46,6 +46,7 @@ export function createInputFieldContainer(word, translation, component, language
   return input;
 }
 
+//todo: move this into sortable table
 export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) {
   dictionaryTabContent.innerHTML = '';
   dictionaryTabContent.classList.remove('hidden');
@@ -71,7 +72,6 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
   readingHeaderCell.textContent = 'Reading';
 
   Object.entries(dictionary).forEach(([word]) => {
-    if(dictionary[word].category === category) {
       const row = body.insertRow();
       const wordCell = row.insertCell();
       wordCell.textContent = word;
@@ -103,7 +103,6 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
         buildWordFrequencyTable(dictionary, dictionaryTabContent);
       });
       categoryCell.appendChild(deleteButton);
-    }
     });
   table.appendChild(createEmptyWordRow(table));
   dictionaryTabContent.appendChild(table);
