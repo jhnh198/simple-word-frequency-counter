@@ -1,9 +1,5 @@
-import { clearErrorMessage, errorMessage } from "./errorHandling.js";
-
-
 
 //todo: move this to dictionary class
-
 export async function analyzeText(text) {
     if (text === '') {
         throw new Error('No text to analyze');
@@ -55,6 +51,7 @@ export function saveCurrentTokenCountToDictionary(currentTextTokensCount, allSav
     return tempAllSavedWords;
 }
 
+/*this is for new inputs
 export function saveSingleTranslationInputToDictionary(word, translation, allSavedWords) { 
     if (!allSavedWords[word]) {
         allSavedWords[word] = { count: 1, translation: translation, category: '名詞'};
@@ -95,8 +92,10 @@ export function handleSingleHiraganaReadingInputToDictionary(word, hiragana_read
 
     return allSavedWords;
 }
+  */
 
 //this will get tokens from the current text, check if in the dictionary and return current text tokens
+//todo: move to hover script
 export function handleCurrentTokenDictionary(wordTokenFrequencyCount, allSavedWords) {
     const tempCurrentTextTokens = {};
     Object.entries(wordTokenFrequencyCount).forEach(([word, count]) => {
@@ -116,6 +115,7 @@ export function handleCurrentTokenDictionary(wordTokenFrequencyCount, allSavedWo
     return tempCurrentTextTokens;
 }
 
+//move to dictionary class
 export function downloadCSVFromDictionary(dictionary, filename = 'translation.csv') {
   const header = 'Word,Count,Translation,Hiragana Reading,Category,Reading,Rendaku\n';
   const csv = Object.entries(dictionary).map(([word, data]) => {
@@ -131,6 +131,7 @@ export function downloadCSVFromDictionary(dictionary, filename = 'translation.cs
   URL.revokeObjectURL(url);
 }
 
+//move to dictionary class
 export function downloadJSONFromDictionary(dictionary, filename = 'translation.json') {
   const inputTextValue = document.getElementById('input-text').value;
   const freeTranslationTextValue = document.getElementById('free-translation-text-area').value;

@@ -34,6 +34,10 @@ import { READING_LIST } from './text_content/reading_list.js';
       this.allSavedWords[word].rendaku = value;
     }
 
+    updateWordValue(word){
+      this.allSavedWords[word] = word;
+    }
+
     //getter functions
 
 }

@@ -16,6 +16,7 @@ export function updateSingleInputValue(word, value, component, frequency_transla
   frequency_translation_dictionary.allSavedWords[word] = frequency_translation_dictionary.currentTextTokensCount[word];
 }
 
+//this is part of the table
 export function createInputFieldContainer(word, translation, component, language) {
   const input = document.createElement('input');
   input.type = 'text';
@@ -109,6 +110,7 @@ export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) 
   dictionaryTabContent.appendChild(table);
 }
 
+//move to table
 export function createCategoryDropdown(word) {
   const select = document.createElement('select');
   select.id = `${word}-category`;
@@ -126,6 +128,7 @@ export function createCategoryDropdown(word) {
   return select;
 }
 
+//move to table
 export function createReadingDropdown(word) {
   const select = document.createElement('select');
   select.id = `${word}-reading`;
@@ -143,10 +146,12 @@ export function createReadingDropdown(word) {
   return select;
 }
 
+//move to dictionary class
 function updateReadingChangeValue(word, reading) {
   frequency_translation_dictionary.allSavedWords[word].reading = reading;
 }
 
+//move to table
 export function createEmptyWordRow(table) {
   const div = document.createElement('div');
   div.classList.add('word-row');
@@ -211,6 +216,7 @@ export function createEmptyWordRow(table) {
   return div;
 }
 
+//move to dictionary class
 export function makeElementFromToken(frequency_translation_dictionary){
   let elementsToReturn = [];
 
