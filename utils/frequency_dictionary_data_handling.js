@@ -51,49 +51,6 @@ export function saveCurrentTokenCountToDictionary(currentTextTokensCount, allSav
     return tempAllSavedWords;
 }
 
-/*this is for new inputs
-export function saveSingleTranslationInputToDictionary(word, translation, allSavedWords) { 
-    if (!allSavedWords[word]) {
-        allSavedWords[word] = { count: 1, translation: translation, category: '名詞'};
-    } else {
-        allSavedWords[word].count = parseInt(allSavedWords[word].count || 0) + 1;
-        allSavedWords[word].translation = translation;
-    }
-
-    return allSavedWords;
-}
-
-export function saveSingleCategoryInputToDictionary(word, category, allSavedWords) {  
-    if (!allSavedWords[word]) {
-        allSavedWords[word] = { count: 1, translation: '', category: category};
-    } else {
-        allSavedWords[word].category = category;
-    }
-
-    return allSavedWords;
-}
-
-export function handleSingleCountInputToDictionary(word, count, allSavedWords) {
-    if (!allSavedWords[word]) {
-        allSavedWords[word] = { count: count, translation: '', category: '名詞', reading: '音読み', rendaku: 0};
-    } else {
-        allSavedWords[word].count = count;
-    }
-
-    return allSavedWords;
-}
-
-export function handleSingleHiraganaReadingInputToDictionary(word, hiragana_reading, allSavedWords) {
-    if (!allSavedWords[word]) {
-        allSavedWords[word] = { count: 1, translation: '', hiragana_reading: hiragana_reading, category: '名詞', reading: '音読み', rendaku: 0};
-    } else {
-        allSavedWords[word].hiragana_reading = hiragana_reading;
-    }
-
-    return allSavedWords;
-}
-  */
-
 //this will get tokens from the current text, check if in the dictionary and return current text tokens
 //todo: move to hover script
 export function handleCurrentTokenDictionary(wordTokenFrequencyCount, allSavedWords) {

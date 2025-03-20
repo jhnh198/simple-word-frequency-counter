@@ -51,19 +51,8 @@ export function updateInputChangeValue(word, value, component){
   frequency_translation_dictionary.allSavedWords[word] = frequency_translation_dictionary.currentTextTokensCount[word];
 }
 
-//todo: replace update change value with the next two functions
-export function updateInputTranslationValue(word, value){
-  frequency_translation_dictionary.currentTextTokensCount[word].translation = value;
-  frequency_translation_dictionary.allSavedWords[word] = frequency_translation_dictionary.currentTextTokensCount[word];
-}
-
-export function updateInputHiraganaReadingValue(word, value){
-  frequency_translation_dictionary.currentTextTokensCount[word].hiragana_reading = value;
-  frequency_translation_dictionary.allSavedWords[word] = frequency_translation_dictionary.currentTextTokensCount[word];
-}
-
 export function updateCategoryChangeValue(word, category){
-  //frequency_translation_dictionary.allSavedWords[word].category = category;  
+  frequency_translation_dictionary.allSavedWords[word].category = category;  
 }
 
 export function addWordToDictionaryFromNewRow(newWord){
