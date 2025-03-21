@@ -47,7 +47,7 @@ downloadJSONFromDictionary,
       this.allSavedWords[word] = word;
     }
 
-    //todo: should process all text through to get the current text tokens
+    //tokenizes, filters and counts text. returns current text token dictionary
     analyzeAndFilterCurrentText(text) {
       if (text === '') {
           throw new Error('No text to analyze');
@@ -82,11 +82,64 @@ downloadJSONFromDictionary,
           }
       });
   
-      return frequency;
+      this.currentTextTokenWordCount = frequency;
   };
+
+  addCurrentTokenCountToDictionary() {
+    Object.entries(this.currentTextTokenWordCount).forEach(([word]) => {
+      if (!this.allSavedWords[word]) {
+          this.allSavedWords[word] = this.currentTextTokenWordCount[word];
+          this.allSavedWords[word].translation = '';
+          this.allSavedWords[word].hiragana_reading = '';
+          this.allSavedWords[word].category = '名詞';
+          this.allSavedWords[word].reading = '音読み';
+          this.allSavedWords[word].rendaku = 0;
+      } else {
+          this.allSavedWords[word].count = parseInt(this.currentTextTokenWordCount[word].count || 0) + parseInt(this.allSavedWords[word].count || 0);
+      }
+    });
+  }
+
+  //todo: modify to work in dictionary class
+  downloadCSVFromDictionary(dictionary, filename = 'translation.csv') {
+    const header = 'Word,Count,Translation,Hiragana Reading,Category,Reading,Rendaku\n';
+    const csv = Object.entries(dictionary).map(([word, data]) => {
+      return `${word},${data.count},${data.translation},${data.hiragana_reading},${data.category},${data.reading},${data.rendaku}`;
+    }).join('\n');
+  
+    const blob = new Blob([header + csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  //todo: modify to work in dictionary class
+  downloadJSONFromDictionary(dictionary, filename = 'translation.json') {
+    const inputTextValue = document.getElementById('input-text').value;
+    const freeTranslationTextValue = document.getElementById('free-translation-text-area').value;
+  
+    const dictionaryData = {
+      title: filename,
+      inputText: inputTextValue,
+      freeTranslation: freeTranslationTextValue,
+      allSavedWords: dictionary,
+    }
+  
+    const json = JSON.stringify(dictionaryData, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(url);
 
     //getter functions
 
+}
 }
 
 

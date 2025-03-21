@@ -51,8 +51,6 @@ export function saveCurrentTokenCountToDictionary(currentTextTokensCount, allSav
     return tempAllSavedWords;
 }
 
-//this will get tokens from the current text, check if in the dictionary and return current text tokens
-//todo: move to hover script
 export function handleCurrentTokenDictionary(wordTokenFrequencyCount, allSavedWords) {
     const tempCurrentTextTokens = {};
     Object.entries(wordTokenFrequencyCount).forEach(([word, count]) => {
@@ -72,7 +70,6 @@ export function handleCurrentTokenDictionary(wordTokenFrequencyCount, allSavedWo
     return tempCurrentTextTokens;
 }
 
-//move to dictionary class
 export function downloadCSVFromDictionary(dictionary, filename = 'translation.csv') {
   const header = 'Word,Count,Translation,Hiragana Reading,Category,Reading,Rendaku\n';
   const csv = Object.entries(dictionary).map(([word, data]) => {
@@ -88,7 +85,6 @@ export function downloadCSVFromDictionary(dictionary, filename = 'translation.cs
   URL.revokeObjectURL(url);
 }
 
-//move to dictionary class
 export function downloadJSONFromDictionary(dictionary, filename = 'translation.json') {
   const inputTextValue = document.getElementById('input-text').value;
   const freeTranslationTextValue = document.getElementById('free-translation-text-area').value;
