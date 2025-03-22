@@ -9,16 +9,9 @@ import TinySegmenter from 'tiny-segmenter';
 //new values will get passed to the main dictionary and update the main dictionary. 
 //current text tokens are not a separate dictionary, they are a subset of the main dictionary.
 
-/*
-saveCurrentTokenCountToDictionary,
-handleCurrentTokenDictionary,
-downloadCSVFromDictionary,
-downloadJSONFromDictionary,
-*/
-
  class Dictionary {
    constructor(dictionary) {
-      this.allSavedWords = dictionary.allSavedWords || {};
+      this.allSavedWords = dictionary.allSavedWords || [];
       this.currentTextTokenWords = {};      
    };
 
@@ -86,24 +79,24 @@ downloadJSONFromDictionary,
   };
 
   addCurrentTokenCountToDictionary() {
-    Object.entries(this.currentTextTokenWordCount).forEach(([word]) => {
+    Object.entries(this.currentTextTokenWordCount).forEach(([word, count]) => {
       if (!this.allSavedWords[word]) {
           this.allSavedWords[word] = this.currentTextTokenWordCount[word];
+          this.allSavedWords[word].count = count;
           this.allSavedWords[word].translation = '';
           this.allSavedWords[word].hiragana_reading = '';
           this.allSavedWords[word].category = '名詞';
           this.allSavedWords[word].reading = '音読み';
           this.allSavedWords[word].rendaku = 0;
       } else {
-          this.allSavedWords[word].count = parseInt(this.currentTextTokenWordCount[word].count || 0) + parseInt(this.allSavedWords[word].count || 0);
+          this.allSavedWords[word].count = parseInt(count || 0) + parseInt(this.allSavedWords[word].count || 0);
       }
     });
   }
 
-  //todo: modify to work in dictionary class
-  downloadCSVFromDictionary(dictionary, filename = 'translation.csv') {
+  downloadCSVFromDictionary(filename = 'translation.csv') {
     const header = 'Word,Count,Translation,Hiragana Reading,Category,Reading,Rendaku\n';
-    const csv = Object.entries(dictionary).map(([word, data]) => {
+    const csv = Object.entries(this.allSavedWords).map(([word, data]) => {
       return `${word},${data.count},${data.translation},${data.hiragana_reading},${data.category},${data.reading},${data.rendaku}`;
     }).join('\n');
   
@@ -116,8 +109,7 @@ downloadJSONFromDictionary,
     URL.revokeObjectURL(url);
   }
 
-  //todo: modify to work in dictionary class
-  downloadJSONFromDictionary(dictionary, filename = 'translation.json') {
+  downloadJSONFromDictionary(filename = 'translation.json') {
     const inputTextValue = document.getElementById('input-text').value;
     const freeTranslationTextValue = document.getElementById('free-translation-text-area').value;
   
@@ -125,7 +117,7 @@ downloadJSONFromDictionary,
       title: filename,
       inputText: inputTextValue,
       freeTranslation: freeTranslationTextValue,
-      allSavedWords: dictionary,
+      allSavedWords: this.allSavedWords,
     }
   
     const json = JSON.stringify(dictionaryData, null, 2);
@@ -136,10 +128,8 @@ downloadJSONFromDictionary,
     a.download = filename;
     a.click();
     URL.revokeObjectURL(url);
-
-    //getter functions
-
-}
+  }
+  
 }
 
 
