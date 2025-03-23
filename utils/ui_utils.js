@@ -47,7 +47,6 @@ export function createInputFieldContainer(word, translation, component, language
   return input;
 }
 
-//todo: move this into sortable table
 export async function buildWordFrequencyTable(dictionary, dictionaryTabContent) {
   dictionaryTabContent.innerHTML = '';
   dictionaryTabContent.classList.remove('hidden');
@@ -128,7 +127,6 @@ export function createCategoryDropdown(word) {
   return select;
 }
 
-//move to table
 export function createReadingDropdown(word) {
   const select = document.createElement('select');
   select.id = `${word}-reading`;
@@ -144,11 +142,6 @@ export function createReadingDropdown(word) {
     updateReadingChangeValue(word, select.value);
   });
   return select;
-}
-
-//move to dictionary class
-function updateReadingChangeValue(word, reading) {
-  frequency_translation_dictionary.allSavedWords[word].reading = reading;
 }
 
 //move to table
