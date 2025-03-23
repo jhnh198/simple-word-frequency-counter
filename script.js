@@ -6,6 +6,8 @@ import {
     downloadJSONFromDictionary,
 } from './utils/frequency_dictionary_data_handling.js';
 
+import Dictionary from './dictionary/dictionary.js';
+
 import {
     buildWordFrequencyTable,
 } from './utils/ui_utils.js';
@@ -32,15 +34,17 @@ let text = ``;
 let inputText = document.getElementById('input-text');
 inputText.value = text;
 
-let frequency_translation_dictionary = {currentTextTokensCount: {}, allSavedWords: {}};
+let allSavedWords = {};
 
 fetch('./dictionary_data/frequency_dictionary_data.json')
     .then((response) => response.json())
     .then((json) => 
-      frequency_translation_dictionary.allSavedWords = json.allSavedWords
-    ).then(() =>{
-      buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
-});
+      allSavedWords = json.allSavedWords
+     );
+
+const allWordsDictionary = new Dictionary(allSavedWords);
+
+
 
 export function updateInputChangeValue(word, value, component){
   if(component === 'translation'){

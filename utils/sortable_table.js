@@ -1,4 +1,6 @@
 //functions for sorters and to build the table
+//table should hold dictionary data and gets input from script to pass to dict
+
 export class sortableTable {
   constructor(table, column, direction) {
     this.table = table;

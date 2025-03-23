@@ -1,17 +1,10 @@
-import TinySegmenter from 'tiny-segmenter';
-
-
-//dictionary class
-//todo: current text tokens values need to get values from the dictionary. 
-//todo: full dictionary is separate from current tokens since they only need to generate what works match the dictionary
-
 //current text will get values from the dictionary
 //new values will get passed to the main dictionary and update the main dictionary. 
 //current text tokens are not a separate dictionary, they are a subset of the main dictionary.
 
- class Dictionary {
+class Dictionary {
    constructor(dictionary) {
-      this.allSavedWords = dictionary.allSavedWords || [];
+      this.allSavedWords = dictionary.allSavedWords || {};
       this.currentTextTokenWords = {};      
    };
 
@@ -131,6 +124,8 @@ import TinySegmenter from 'tiny-segmenter';
   }
   
 }
+
+export default Dictionary;
 
 
 /* 
