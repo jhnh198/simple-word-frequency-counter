@@ -1,16 +1,25 @@
 //functions for sorters and to build the table
 //table should hold dictionary data and gets input from script to pass to dict
+
+//the sorting function would be better to sort the dictionary and then rebuild the table
+//sort by header column clicked, word, count, translation, hiragana reading
+//category separation should be removed with the sorter
+
 import { CATEGORY_LIST } from './text_content/category_list.js';
 import { READING_LIST } from './text_content/reading_list.js';
 
 export class sortableTable {
-  constructor(table, column, direction, dictionary) {
-    this.table = table;
+  constructor(column, direction, dictionary) {
+    this.table = document.createElement('table');
+    this.table.id = 'dictionary-table';
+    this.table.classList.add('dictionary-table');
+
     this.column = column;
     this.direction = direction;
     this.dictionary = dictionary;
   }
 
+  //todo: separate the wanakana binding to a separate function
   createInputFieldContainer(word, translation, component, language) {
     const input = document.createElement('input');
     input.type = 'text';
@@ -42,12 +51,8 @@ export class sortableTable {
   }
 
   async buildWordFrequencyTable(dictionary, dictionaryTabContent) {
-    dictionaryTabContent.innerHTML = '';
+    const dictionaryTabContent = document.getElementById('dictionary-tab-content');
     dictionaryTabContent.classList.remove('hidden');
-  
-    const table = document.createElement('table');
-    table.id = 'dictionary-table';
-    table.classList.add('dictionary-table');
   
     const body = table.createTBody();
   
@@ -201,7 +206,11 @@ export class sortableTable {
     return div;
   }
 
-  //the sorting function would be better to sort the dictionary and then rebuild the table
-  //sort by header column clicked, word, count, translation, hiragana reading
-  //category separation should be removed with the sorter
-}
+  createTranslationInputFieldContainer(word, translation) {
+
+  }
+
+  createHiraganaReadingInputFieldContainer(word, hiragana_reading) {
+
+  }
+  }
