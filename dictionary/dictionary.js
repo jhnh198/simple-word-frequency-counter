@@ -8,6 +8,12 @@ class Dictionary {
       this.currentTextTokenWords = {};      
    };
 
+   //handle analysis of text, filtering, add words to dictionary
+   processText(text) {
+      this.analyzeAndFilterCurrentText(text);
+      this.addCurrentTokenCountToDictionary();
+   }
+
    //setter functions
     updateWordTranslationValue(word, value){
       this.allSavedWords[word].translation = value;

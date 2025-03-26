@@ -1,4 +1,4 @@
-import { 
+/* import { 
     analyzeText,
     saveCurrentTokenCountToDictionary,
     handleCurrentTokenDictionary,
@@ -18,7 +18,7 @@ import {
 
 import {
   grammar_guide_data
-} from './ui_component/grammar_guide_data.js';
+} from './ui_component/grammar_guide_data.js'; */
 
 //todo: need to add node.js and server to write to dictionary file
 //todo: add words to the json file from inputs
@@ -29,51 +29,20 @@ const titleInput = document.getElementById('title-input');
 const freeTranslationTextArea = document.getElementById('free-translation-text-area');
 const dictionaryTabContent = document.getElementById('dictionary-tab-content');
 
-let text = ``;
-
 let inputText = document.getElementById('input-text');
+let text = ``;
 inputText.value = text;
-
-let allSavedWords = {};
-
-fetch('./dictionary_data/frequency_dictionary_data.json')
-    .then((response) => response.json())
-    .then((json) => 
-      allSavedWords = json.allSavedWords
-     );
-
-const allWordsDictionary = new Dictionary(allSavedWords);
-
-
-
-export function updateInputChangeValue(word, value, component){
-  if(component === 'translation'){
-    frequency_translation_dictionary.currentTextTokensCount[word].translation = value;
-  } else if(component === 'hiragana_reading'){
-    frequency_translation_dictionary.currentTextTokensCount[word].hiragana_reading = value;
-  }
-  frequency_translation_dictionary.allSavedWords[word] = frequency_translation_dictionary.currentTextTokensCount[word];
-}
-
-export function updateCategoryChangeValue(word, category){
-  frequency_translation_dictionary.allSavedWords[word].category = category;  
-}
-
-export function addWordToDictionaryFromNewRow(newWord){
-  frequency_translation_dictionary.allSavedWords[newWord.word] = newWord;
-  buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
-}
 
 //set up event listeners on load
 document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('word-frequency-output-button').addEventListener('click', async () => {
+/*     document.getElementById('word-frequency-output-button').addEventListener('click', async () => {
       buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount, dictionaryTabContent);
     });
 
     document.getElementById('grammar-guide-button').addEventListener('click', () => {
       dictionaryTabContent.innerHTML = '';
       dictionaryTabContent.appendChild(createGrammarGuide(grammar_guide_data));
-    });
+    }); */
 
     document.getElementById('hide-previous-translations-checkbox').addEventListener('change', (e) => {
       if (e.target.value === 'on') {
@@ -87,9 +56,13 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    //todo: complete the event listener for the input field
     document.getElementById('count-frequency-button').addEventListener('click', async (e) => {
+        //table.dictionary.processText(inputText.value);
         let wordTokenFrequencyCount = await analyzeText(inputText.value);
-        frequency_translation_dictionary.currentTextTokensCount = handleCurrentTokenDictionary(wordTokenFrequencyCount, frequency_translation_dictionary.allSavedWords);
+
+        //pass the current text tokens and the dictionary to update the current text tokens
+
         saveCurrentTokenCountToDictionary(frequency_translation_dictionary.currentTextTokensCount, frequency_translation_dictionary.allSavedWords);
         buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount, dictionaryTabContent);
     });
