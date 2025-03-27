@@ -9,14 +9,15 @@ import { CATEGORY_LIST } from './text_content/category_list.js';
 import { READING_LIST } from './text_content/reading_list.js';
 import Dictionary from '../dictionary/dictionary.js';
 
-export class sortableTable {
-  constructor(column, direction) {
+export class SortableTable {
+  //todo: add sorting by column
+  constructor() {
     this.table = document.createElement('table');
     this.table.id = 'dictionary-table';
     this.table.classList.add('dictionary-table');
 
-    this.column = column;
-    this.direction = direction;
+    //this.column = column;
+    //this.direction = direction;
 
     fetch('../dictionary_data/frequency_dictionary_data.json')
     .then((response) => response.json())
@@ -27,19 +28,14 @@ export class sortableTable {
     });
   }
 
-  //todo: separate the wanakana binding to a separate function
-  createInputFieldContainer(word, translation, component, language) {
+  //todo: remove repeated code from wk input
+  //todo: implement input value to dictionary
+  createInputFieldContainer(word, translation, component) {
     const input = document.createElement('input');
     input.type = 'text';
     input.class = component;
     input.id = `${component}-${word}`;
     input.value = translation || '';
-  
-    input.setAttribute('lang', language);  
-  
-    if (language === 'ja') {
-      wanakana.bind(input, /* options */);
-    }  
   
     let typingTimer;
     let doneTypingInterval = 5000;
@@ -51,6 +47,33 @@ export class sortableTable {
   
     function doneTyping() {
       updateInputChangeValue(word, input.value, component);
+    }
+  
+    input.addEventListener('keyup', handleTyping);
+  
+    return input;
+  }
+
+  //todo: implement input value to dictionary
+  createWanaKanaInputFieldContainer(word, hiragana_reading) {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.class = 'hiragana_reading';
+    input.id = `hiragana_reading-${word}`;
+    input.value = hiragana_reading || '';
+  
+    wanakana.bind(input, /* options */);
+  
+    let typingTimer;
+    let doneTypingInterval = 5000;
+  
+    function handleTyping() {
+      clearTimeout(typingTimer);
+      typingTimer = setTimeout(doneTyping, doneTypingInterval);
+    }
+  
+    function doneTyping() {
+      updateInputChangeValue(word, input.value, 'hiragana_reading');
     }
   
     input.addEventListener('keyup', handleTyping);
@@ -276,12 +299,4 @@ export class sortableTable {
     });
     return grammar_guide_container;
   }
-
-  createTranslationInputFieldContainer(word, translation) {
-
-  }
-
-  createHiraganaReadingInputFieldContainer(word, hiragana_reading) {
-
-  }
-  }
+}

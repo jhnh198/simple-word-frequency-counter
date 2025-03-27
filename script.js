@@ -1,24 +1,4 @@
-/* import { 
-    analyzeText,
-    saveCurrentTokenCountToDictionary,
-    handleCurrentTokenDictionary,
-    downloadCSVFromDictionary,
-    downloadJSONFromDictionary,
-} from './utils/frequency_dictionary_data_handling.js';
-
-import Dictionary from './dictionary/dictionary.js';
-
-import {
-    buildWordFrequencyTable,
-} from './utils/ui_utils.js';
-
-import {
-  createGrammarGuide
-} from './ui_component/grammar_guide_ui.js';
-
-import {
-  grammar_guide_data
-} from './ui_component/grammar_guide_data.js'; */
+import { SortableTable } from "./utils/sortable_table";
 
 //todo: need to add node.js and server to write to dictionary file
 //todo: add words to the json file from inputs
@@ -32,6 +12,8 @@ const dictionaryTabContent = document.getElementById('dictionary-tab-content');
 let inputText = document.getElementById('input-text');
 let text = ``;
 inputText.value = text;
+
+const sortable_table = new SortableTable();
 
 //set up event listeners on load
 document.addEventListener('DOMContentLoaded', () => {
@@ -58,8 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //todo: complete the event listener for the input field
     document.getElementById('count-frequency-button').addEventListener('click', async (e) => {
-        //table.dictionary.processText(inputText.value);
-        let wordTokenFrequencyCount = await analyzeText(inputText.value);
+      //
+      sortable_table.dictionary.processText(inputText.value);
 
         //pass the current text tokens and the dictionary to update the current text tokens
 
