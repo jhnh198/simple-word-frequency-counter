@@ -12,20 +12,18 @@ import Dictionary from '../dictionary/dictionary.js';
 export class SortableTable {
   //todo: add sorting by column
   constructor() {
-    this.table = document.createElement('table');
-    this.table.id = 'dictionary-table';
-    this.table.classList.add('dictionary-table');
+    try {
+      this.table = document.createElement('table');
+      this.table.id = 'dictionary-table';
+      this.table.classList.add('dictionary-table');
+    } catch (error) {
+      console.error('Error creating table:', error);
+    }
 
     //this.column = column;
     //this.direction = direction;
 
-    fetch('../dictionary_data/frequency_dictionary_data.json')
-    .then((response) => response.json())
-    .then((json) => 
-      allSavedWords = json.allSavedWords
-     ).then(() => {
-      this.dictionary = new Dictionary(allSavedWords);
-    });
+    this.dictionary = new Dictionary();
   }
 
   //todo: remove repeated code from wk input
@@ -84,6 +82,8 @@ export class SortableTable {
   async buildWordFrequencyTable() {
     const dictionaryTabContent = document.getElementById('dictionary-tab-content');
     dictionaryTabContent.classList.remove('hidden');
+
+    this.table.innerHTML = ''; // Clear previous content
   
     const body = table.createTBody();
   
@@ -135,7 +135,7 @@ export class SortableTable {
         });
         categoryCell.appendChild(deleteButton);
       });
-    table.appendChild(createEmptyWordRow(table));
+    this.table.appendChild(createEmptyWordRow(this.table));
     dictionaryTabContent.appendChild(table);
   }
 

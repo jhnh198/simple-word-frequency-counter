@@ -13,7 +13,7 @@ let inputText = document.getElementById('input-text');
 let text = ``;
 inputText.value = text;
 
-const sortable_table = new SortableTable();
+const sortable_table = new SortableTable(dictionaryTabContent);
 
 //set up event listeners on load
 document.addEventListener('DOMContentLoaded', () => {
@@ -40,13 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //todo: complete the event listener for the input field
     document.getElementById('count-frequency-button').addEventListener('click', async (e) => {
-      //
       sortable_table.dictionary.processText(inputText.value);
-
-        //pass the current text tokens and the dictionary to update the current text tokens
-
-        saveCurrentTokenCountToDictionary(frequency_translation_dictionary.currentTextTokensCount, frequency_translation_dictionary.allSavedWords);
-        buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount, dictionaryTabContent);
+      sortable_table.buildWordFrequencyTable();
     });
 
     document.getElementById('download-json-button').addEventListener('click', () => {

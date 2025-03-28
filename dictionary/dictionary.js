@@ -3,9 +3,16 @@
 //current text tokens are not a separate dictionary, they are a subset of the main dictionary.
 
 class Dictionary {
-   constructor(dictionary) {
-      this.allSavedWords = dictionary.allSavedWords || {};
-      this.currentTextTokenWords = {};      
+   constructor() {
+    fetch('../dictionary_data/frequency_dictionary_data.json')
+    .then((response) => response.json())
+    .then((json) => 
+      allSavedWords = json.allSavedWords
+     ).then(() => {
+      this.allSavedWords = allSavedWords;
+    });
+    
+    this.currentTextTokenWords = {};      
    };
 
    //handle analysis of text, filtering, add words to dictionary
@@ -38,7 +45,7 @@ class Dictionary {
     updateWordValue(word){
       this.allSavedWords[word] = word;
     }
-
+    
     //tokenizes, filters and counts text. returns current text token dictionary
     analyzeAndFilterCurrentText(text) {
       if (text === '') {
