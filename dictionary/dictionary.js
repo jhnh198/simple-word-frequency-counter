@@ -2,7 +2,6 @@
 //new values will get passed to the main dictionary and update the main dictionary. 
 //current text tokens are not a separate dictionary, they are a subset of the main dictionary.
 
-//todo: form sub dictionary from the main dictionary, and update the main dictionary with the new words
 class Dictionary {
    constructor() {
     fetch('../dictionary_data/frequency_dictionary_data.json')
@@ -95,7 +94,7 @@ class Dictionary {
           this.allSavedWords[word].reading = '音読み';
           this.allSavedWords[word].rendaku = 0;
           } else {
-            this.allSavedWords[word].count += parseInt(count || 0) + parseInt(this.allSavedWords[word].count || 0);
+            this.allSavedWords[word].count = parseInt(count || 0) + parseInt(this.allSavedWords[word].count || 0);
         }
         } catch (error) {
           console.log(`Error adding word ${word} to dictionary: ${error}`);

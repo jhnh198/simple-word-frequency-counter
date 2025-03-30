@@ -48,7 +48,7 @@ class SortableTable {
     const readingHeaderCell = headerRow.insertCell();
     readingHeaderCell.textContent = 'Reading';
   
-    Object.entries(this.dictionary.allSavedWords).forEach(([word]) => {
+    Object.entries(this.dictionary.currentTextTokenWordCount).forEach(([word]) => {
         const row = body.insertRow();
         const wordCell = row.insertCell();
         wordCell.textContent = word;
@@ -86,7 +86,7 @@ class SortableTable {
     dictionaryTabContent.appendChild(this.table);
   }
 
-    //todo: remove repeated code from wk input
+  //todo: remove repeated code from wk input
   //todo: implement input value to dictionarys
   createInputFieldContainer(word, translation, component) {
     const input = document.createElement('input');
