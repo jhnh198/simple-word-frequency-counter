@@ -99,15 +99,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('download-json-button').addEventListener('click', () => {
-      downloadJSONFromDictionary(frequency_translation_dictionary.allSavedWords, titleInput?.value);
+      sortable_table.dictionary.downloadJSONFromDictionary(titleInput?.value);
     });
 
     document.getElementById('frequency-dictionary-button').addEventListener('click', async() => {
-      buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
+      //buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
     });
 
     //todo: when this is uploaded it overwrites the whole dictionary, rather than current
     document.getElementById('frequency-dictionary-upload').addEventListener('change', (e) => {
+      sortable_table.dictionary.acceptDictionaryUpload(e.target.files[0]);
+      sortable_table.buildWordFrequencyTable();
+
       const reader = new FileReader();
       const fileType = e.target.files[0].type;
       reader.readAsText(e.target.files[0]);
@@ -146,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById(`download-current-translation-button`).addEventListener('click', () => {
-      downloadCSVFromDictionary(frequency_translation_dictionary.currentTextTokensCount, titleInput?.value);
+      sortable_table.dictionary.downloadCSVFromDictionary(titleInput?.value);
     });
     
     document.getElementById('download-full-dictionary-button').addEventListener('click', () => {

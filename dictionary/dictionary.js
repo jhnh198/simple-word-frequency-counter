@@ -94,12 +94,16 @@ class Dictionary {
           this.allSavedWords[word].reading = '音読み';
           this.allSavedWords[word].rendaku = 0;
           } else {
-            this.allSavedWords[word].count = parseInt(count || 0) + parseInt(this.allSavedWords[word].count || 0);
+            this.allSavedWords[word].count = parseInt(count) + parseInt(this.allSavedWords[word].count);
         }
         } catch (error) {
           console.log(`Error adding word ${word} to dictionary: ${error}`);
         }
     });
+  }
+
+  acceptDictionaryUpload() {
+
   }
 
   downloadCSVFromDictionary(filename = 'translation.csv') {
