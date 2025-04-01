@@ -1,7 +1,6 @@
 
 import SortableTable from "./utils/SortableTable.js";
 
-
 //todo: need to add node.js and server to write to dictionary file
 //todo: add words to the json file from inputs
 //todo: update json with frequency count words
@@ -9,7 +8,6 @@ import SortableTable from "./utils/SortableTable.js";
 //get main document elements
 const titleInput = document.getElementById('title-input');
 const freeTranslationTextArea = document.getElementById('free-translation-text-area');
-const dictionaryTabContent = document.getElementById('dictionary-tab-content');
 
 let inputText = document.getElementById('input-text');
 let text = `君の声が届かない場所では
@@ -66,14 +64,14 @@ const sortable_table = new SortableTable();
 
 //set up event listeners on load
 document.addEventListener('DOMContentLoaded', () => {
-/*     document.getElementById('word-frequency-output-button').addEventListener('click', async () => {
-      buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount, dictionaryTabContent);
-    });
+/*
+  document.getElementById('word-frequency-output-button').addEventListener('click', async () => {
+    buildWordFrequencyTable();
+  });*/
 
-    document.getElementById('grammar-guide-button').addEventListener('click', () => {
-      dictionaryTabContent.innerHTML = '';
-      dictionaryTabContent.appendChild(createGrammarGuide(grammar_guide_data));
-    }); */
+  document.getElementById('grammar-guide-button').addEventListener('click', () => {
+    sortable_table.createGrammarGuide();
+  }); 
 
     document.getElementById('hide-previous-translations-checkbox').addEventListener('change', (e) => {
       if (e.target.value === 'on') {
@@ -121,8 +119,9 @@ document.addEventListener('DOMContentLoaded', () => {
           const text = reader.result;
           const dictionaryData = JSON.parse(text);
 
-          frequency_translation_dictionary.allSavedWords = dictionaryData.allSavedWords;
-          buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
+          sortable_table.dictionary.currentTextTokenWordCount = dictionaryData.allSavedWords;
+
+          sortable_table.buildWordFrequencyTable();
           titleInput.value = dictionaryData.title?.value;
           freeTranslationTextArea.value = dictionaryData.freeTranslation;
           inputText.value = dictionaryData.inputText;
@@ -141,7 +140,8 @@ document.addEventListener('DOMContentLoaded', () => {
             dictionary[word] = { count:count, translation: translation, hiragana_reading: hiragana_reading, category: category, reading: reading, rendaku: rendaku };
           });
 
-          buildWordFrequencyTable(dictionary, dictionaryTabContent);
+          sortable_table.dictionary.currentTextTokenWordCount = dictionary;
+          sortable_table.buildWordFrequencyTable();
         };
       frequency_translation_dictionary.allSavedWords = dictionary;
       frequency_translation_dictionary.currentTextTokensCount = dictionary;

@@ -87,7 +87,7 @@ class SortableTable {
   }
 
   //todo: remove repeated code from wk input
-  //todo: implement input value to dictionarys
+  //todo: implement input value to dictionary
   createInputFieldContainer(word, translation, component) {
     const input = document.createElement('input');
     input.type = 'text';
@@ -139,6 +139,7 @@ class SortableTable {
     return input;
   }
 
+  //todo: change implement category or reading to dictionary
   createCategoryDropdown(word) {
     const select = document.createElement('select');
     select.id = `${word}-category`;
@@ -237,8 +238,11 @@ class SortableTable {
     return div;
   }
 
-  createGrammarGuide(grammar_guide_data) {
+  createGrammarGuide() {
     const grammar_guide_container = document.createElement('div');
+
+    const grammar_guide_data = fetch('./dictionary_data/grammar_guide_data.json')
+      .then((response) => response.json())     
   
     grammar_guide_data.all_data.forEach((section) => {
       const section_container = document.createElement('div');
