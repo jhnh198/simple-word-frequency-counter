@@ -62,7 +62,9 @@ class SortableTable {
         translationCell.appendChild(translationCellInput);
   
         const hiraganaReadingCell = row.insertCell();
-        const hiraganaReadingInput = this.createInputFieldContainer(word, this.dictionary.allSavedWords[word]?.hiragana_reading, 'hiragana_reading', 'ja');
+        const hiraganaReadingInput = this.createInputFieldContainer(word, this.dictionary.allSavedWords[word]?.hiragana_reading, 'hiragana_reading');
+        //add ja to the input field to set the language to ja
+        hiraganaReadingInput.setAttribute('lang', 'ja');
         hiraganaReadingCell.appendChild(hiraganaReadingInput);
         
         const categoryCell = row.insertCell();
@@ -88,7 +90,7 @@ class SortableTable {
 
   //todo: remove repeated code from wk input
   //todo: implement input value to dictionary
-  createInputFieldContainer(word, translation, component) {
+  createInputFieldContainer(word, component) {
     const input = document.createElement('input');
     input.type = 'text';
     input.class = component;
@@ -97,6 +99,11 @@ class SortableTable {
   
     let typingTimer;
     let doneTypingInterval = 5000;
+
+    if (component === 'hiragana_reading') {
+      input.setAttribute('lang', 'ja');
+      wanakana.bind(input, /* options */);
+    }  
   
     function handleTyping() {
       clearTimeout(typingTimer);
@@ -104,7 +111,10 @@ class SortableTable {
     }
   
     function doneTyping() {
-      updateInputChangeValue(word, input.value, component);
+      if (component === 'translation') {
+        this.dictionary.updateWordTranslationValue(word, input.value);
+      }
+      this.dictionary.updateInputChangeValue(word, input.value, component);
     }
   
     input.addEventListener('keyup', handleTyping);
