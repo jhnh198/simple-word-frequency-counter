@@ -55,16 +55,13 @@ class SortableTable {
         const countCell = row.insertCell();
     
         countCell.textContent = this.dictionary.allSavedWords[word].count;
+        
         const translationCell = row.insertCell();
-  
-        //todo: set function based on translation or hiragana_reading
-        const translationCellInput = this.createInputFieldContainer(word, this.dictionary.allSavedWords[word]?.translation, 'translation', 'en');
+        const translationCellInput = this.createInputFieldContainer(word, this.dictionary.allSavedWords[word]?.translation, 'translation');
         translationCell.appendChild(translationCellInput);
   
         const hiraganaReadingCell = row.insertCell();
         const hiraganaReadingInput = this.createInputFieldContainer(word, this.dictionary.allSavedWords[word]?.hiragana_reading, 'hiragana_reading');
-        //add ja to the input field to set the language to ja
-        hiraganaReadingInput.setAttribute('lang', 'ja');
         hiraganaReadingCell.appendChild(hiraganaReadingInput);
         
         const categoryCell = row.insertCell();
@@ -88,8 +85,6 @@ class SortableTable {
     dictionaryTabContent.appendChild(this.table);
   }
 
-  //todo: remove repeated code from wk input
-  //todo: implement input value to dictionary
   createInputFieldContainer(word, component) {
     const input = document.createElement('input');
     input.type = 'text';
@@ -113,35 +108,9 @@ class SortableTable {
     function doneTyping() {
       if (component === 'translation') {
         this.dictionary.updateWordTranslationValue(word, input.value);
+      } else if (component === 'hiragana_reading') {
+        this.dictionary.updateWordHiraganaReadingValue(word, input.value);
       }
-      this.dictionary.updateInputChangeValue(word, input.value, component);
-    }
-  
-    input.addEventListener('keyup', handleTyping);
-  
-    return input;
-  }
-
-  //todo: implement input value to dictionary
-  createWanaKanaInputFieldContainer(word, hiragana_reading) {
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.class = 'hiragana_reading';
-    input.id = `hiragana_reading-${word}`;
-    input.value = hiragana_reading || '';
-  
-    wanakana.bind(input, /* options */);
-  
-    let typingTimer;
-    let doneTypingInterval = 5000;
-  
-    function handleTyping() {
-      clearTimeout(typingTimer);
-      typingTimer = setTimeout(doneTyping, doneTypingInterval);
-    }
-  
-    function doneTyping() {
-      updateInputChangeValue(word, input.value, 'hiragana_reading');
     }
   
     input.addEventListener('keyup', handleTyping);
