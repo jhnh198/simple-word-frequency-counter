@@ -63,42 +63,39 @@ class SortableTable {
         const hiraganaReadingCell = row.insertCell();
         const hiraganaReadingInput = this.createInputFieldContainer(word, this.dictionary.allSavedWords[word]?.hiragana_reading, 'hiragana_reading');
         hiraganaReadingCell.appendChild(hiraganaReadingInput);
+        hiraganaReadingInput.setAttribute('lang', 'ja');
+        wanakana.bind(hiraganaReadingInput, /* options */);
         
         const categoryCell = row.insertCell();
         categoryCell.appendChild(this.createCategoryDropdown(word));
   
         const readingCell = row.insertCell();
         readingCell.appendChild(this.createReadingDropdown(word));
-  
-        //todo: move delete button to the right
+
+        const deleteCell = row.insertCell();
         const deleteButton = document.createElement('button');
         deleteButton.textContent = 'Delete';
   
-        //todo: save the entire dictionary input before deletion to avoid losing input data due to timing
         deleteButton.addEventListener('click', () => {
+          this.saveAllInput();
           delete this.dictionary.currentTextTokenWordCount[word];
-          buildWordFrequencyTable();
+          this.buildWordFrequencyTable();
         });
-        categoryCell.appendChild(deleteButton);
+        deleteCell.appendChild(deleteButton);
       });
     this.table.appendChild(this.createEmptyWordRow(this.table));
     dictionaryTabContent.appendChild(this.table);
   }
 
-  createInputFieldContainer(word, component) {
+  createInputFieldContainer(word, value, component) {
     const input = document.createElement('input');
     input.type = 'text';
     input.class = component;
     input.id = `${component}-${word}`;
-    input.value = translation || '';
+    input.value = value || '';
   
     let typingTimer;
     let doneTypingInterval = 5000;
-
-    if (component === 'hiragana_reading') {
-      input.setAttribute('lang', 'ja');
-      wanakana.bind(input, /* options */);
-    }  
   
     function handleTyping() {
       clearTimeout(typingTimer);
@@ -118,7 +115,6 @@ class SortableTable {
     return input;
   }
 
-  //todo: change implement category or reading to dictionary
   createCategoryDropdown(word) {
     const select = document.createElement('select');
     select.id = `${word}-category`;
