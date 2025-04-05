@@ -127,7 +127,7 @@ class SortableTable {
     });
   
     select.addEventListener('change', () => {
-      updateCategoryChangeValue(word, select.value);
+      this.dictionary.updateWordCategoryValue(word, select.value);
     });
     return select;
   }
@@ -144,7 +144,7 @@ class SortableTable {
     });
   
     select.addEventListener('change', () => {
-      updateReadingChangeValue(word, select.value);
+      this.dictionary.updateWordReadingValue(word, select.value);
     });
     return select;
   }
@@ -196,7 +196,7 @@ class SortableTable {
           rendaku: 0,
         }
   
-        addWordToDictionaryFromNewRow(newWord);     
+        this.dictionary.addWordToDictionaryFromNewRow(newWord);     
       }
     });
   
