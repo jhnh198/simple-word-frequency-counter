@@ -64,14 +64,9 @@ const sortable_table = new SortableTable();
 
 //set up event listeners on load
 document.addEventListener('DOMContentLoaded', () => {
-/*
-  document.getElementById('word-frequency-output-button').addEventListener('click', async () => {
-    buildWordFrequencyTable();
-  });*/
-
   document.getElementById('grammar-guide-button').addEventListener('click', () => {
     sortable_table.createGrammarGuide();
-  }); 
+  });
 
     document.getElementById('hide-previous-translations-checkbox').addEventListener('change', (e) => {
       if (e.target.value === 'on') {
@@ -101,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('frequency-dictionary-button').addEventListener('click', async() => {
-      //buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
+      sortable_table.dictionary.buildWordFrequencyTable();
     });
 
     //todo: when this is uploaded it overwrites the whole dictionary, rather than current

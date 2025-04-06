@@ -26,7 +26,7 @@ class SortableTable {
     this.dictionary = new Dictionary();
   }
 
-  buildWordFrequencyTable() {
+  buildWordFrequencyTable(allSavedWordsFlag = false) {
     const dictionaryTabContent = document.getElementById('dictionary-tab-content');
     dictionaryTabContent.classList.remove('hidden');
 
@@ -47,8 +47,10 @@ class SortableTable {
     categoryHeaderCell.textContent = 'Category'; 
     const readingHeaderCell = headerRow.insertCell();
     readingHeaderCell.textContent = 'Reading';
+
+    const usedWordCount = allSavedWordsFlag ? this.dictionary.allSavedWords : this.dictionary.currentTextTokenWordCount;
   
-    Object.entries(this.dictionary.currentTextTokenWordCount).forEach(([word]) => {
+    Object.entries(usedWordCount).forEach(([word]) => {
         const row = body.insertRow();
         const wordCell = row.insertCell();
         wordCell.textContent = word;

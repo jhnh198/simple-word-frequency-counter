@@ -1,5 +1,5 @@
-import { CATEGORY_LIST } from './text_content/category_list.js';
-import { READING_LIST } from './text_content/reading_list.js';
+import { CATEGORY_LIST } from '../utils/text_content/category_list.js';
+import { READING_LIST } from '../utils/text_content/reading_list.js';
 
 import { 
   updateCategoryChangeValue,

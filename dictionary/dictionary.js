@@ -102,10 +102,6 @@ class Dictionary {
     });
   }
 
-  acceptDictionaryUpload() {
-
-  }
-
   downloadCSVFromDictionary(filename = 'translation.csv') {
     const header = 'Word,Count,Translation,Hiragana Reading,Category,Reading,Rendaku\n';
     const csv = Object.entries(this.allSavedWords).map(([word, data]) => {
@@ -145,8 +141,6 @@ class Dictionary {
 }
 
 export default Dictionary;
-
-
 /* 
 frequency translation dictionary structure
 let frequency_translation_dictionary = {

@@ -1,5 +1,3 @@
-
-//todo: move this to dictionary class
 export async function analyzeText(text) {
     if (text === '') {
         throw new Error('No text to analyze');
@@ -37,7 +35,6 @@ export async function analyzeText(text) {
     return frequency;
 };
 
-//todo: the next following functions update the entire dictionary, need to change to only update the new word
 export function saveCurrentTokenCountToDictionary(currentTextTokensCount, allSavedWords) {
   let tempAllSavedWords = allSavedWords;
     Object.entries(currentTextTokensCount).forEach(([word]) => {
