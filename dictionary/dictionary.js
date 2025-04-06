@@ -8,9 +8,8 @@ class Dictionary {
     .then((response) => response.json())
     .then((json) => 
       this.allSavedWords = json.allSavedWords
-     )
-    
-    this.currentTextTokenWords = {};      
+     )  
+     this.currentTextTokenWords = {};
    };
 
    //handle analysis of text, filtering, add words to dictionary
@@ -78,21 +77,24 @@ class Dictionary {
               frequency[word] = 1;
           }
       });
-  
-      this.currentTextTokenWordCount = frequency;
+      
+      this.currentTextTokenWords = {
+          ...frequency,
+      }
   };
 
   addCurrentTokenCountToDictionary() {
-    Object.entries(this.currentTextTokenWordCount).forEach(([word, count]) => {
+    Object.entries(this.currentTextTokenWords).forEach(([word, count]) => {
         try {
           if (!this.allSavedWords[word]) {
-          this.allSavedWords[word] = this.currentTextTokenWordCount[word];
-          this.allSavedWords[word].count = count || 0;
-          this.allSavedWords[word].translation = '';
-          this.allSavedWords[word].hiragana_reading = '';
-          this.allSavedWords[word].category = '名詞';
-          this.allSavedWords[word].reading = '音読み';
-          this.allSavedWords[word].rendaku = 0;
+            this.allSavedWords[word] = {
+                count: count,
+                translation: '',
+                hiragana_reading: '',
+                category: '',
+                reading: '',
+                rendaku: ''
+            };
           } else {
             this.allSavedWords[word].count = parseInt(count) + parseInt(this.allSavedWords[word].count);
         }

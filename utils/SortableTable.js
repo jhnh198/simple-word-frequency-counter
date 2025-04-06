@@ -48,7 +48,7 @@ class SortableTable {
     const readingHeaderCell = headerRow.insertCell();
     readingHeaderCell.textContent = 'Reading';
 
-    const usedWordCount = allSavedWordsFlag ? this.dictionary.allSavedWords : this.dictionary.currentTextTokenWordCount;
+    const usedWordCount = allSavedWordsFlag ? this.dictionary.allSavedWords : this.dictionary.currentTextTokenWords;
   
     Object.entries(usedWordCount).forEach(([word]) => {
         const row = body.insertRow();

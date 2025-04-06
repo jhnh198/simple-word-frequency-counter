@@ -88,7 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (error) {
         console.error('Error processing text:', error); 
       }
-
     });
 
     document.getElementById('download-json-button').addEventListener('click', () => {
@@ -96,7 +95,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('frequency-dictionary-button').addEventListener('click', async() => {
-      sortable_table.dictionary.buildWordFrequencyTable();
+      sortable_table.buildWordFrequencyTable(true);
+    });
+
+    document.getElementById('word-frequency-output-button').addEventListener('click', () => {
+      try {
+        sortable_table.dictionary.processText(inputText.value);
+        sortable_table.buildWordFrequencyTable(false);
+      } catch (error) {
+        console.error('Error processing text:', error); 
+      }
     });
 
     //todo: when this is uploaded it overwrites the whole dictionary, rather than current
