@@ -215,6 +215,14 @@ class SortableTable {
     return div;
   }
 
+  saveAllInput() {
+    const translationInputs = document.querySelectorAll('.translation');
+    const hiraganaReadingInputs = document.querySelectorAll('.hiragana_reading');
+    const categorySelects = document.querySelectorAll('select[id$="-category"]');
+    const readingSelects = document.querySelectorAll('select[id$="-reading"]');
+    
+  }
+
   createGrammarGuide() {
     const grammar_guide_container = document.createElement('div');
 
