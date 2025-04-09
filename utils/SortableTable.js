@@ -181,7 +181,6 @@ class SortableTable {
     addNewWordButton.textContent = 'Add New Word';
     clearWordButton.textContent = 'Clear Word';
   
-    //todo: move this to css
     addNewWordButton.style.marginTop = '10px';
     clearWordButton.style.marginTop = '10px';
     clearWordButton.style.marginLeft = '10px';

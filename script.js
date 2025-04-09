@@ -107,48 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    //todo: when this is uploaded it overwrites the whole dictionary, rather than current
     document.getElementById('frequency-dictionary-upload').addEventListener('change', (e) => {
-      sortable_table.dictionary.acceptDictionaryUpload(e.target.files[0]);
+      sortable_table.dictionary.handleFrequencyDictionaryUpload(e);
       sortable_table.buildWordFrequencyTable();
-
-      const reader = new FileReader();
-      const fileType = e.target.files[0].type;
-      reader.readAsText(e.target.files[0]);
-
-      //determine function to use based on file type
-      if(fileType == 'application/json' || fileType === 'text/json') {
-        reader.onload = function(e) {
-          const text = reader.result;
-          const dictionaryData = JSON.parse(text);
-
-          sortable_table.dictionary.currentTextTokenWordCount = dictionaryData.allSavedWords;
-
-          sortable_table.buildWordFrequencyTable();
-          titleInput.value = dictionaryData.title?.value;
-          freeTranslationTextArea.value = dictionaryData.freeTranslation;
-          inputText.value = dictionaryData.inputText;
-        };
-      } else {
-        const dictionary = {};
-
-        reader.onload = function(e) {
-          let text = reader.result;
-          text = text.replace(/\\[nrt]/g, ''); // Remove escape characters
-          text = text.replace(/\r/g, ''); // Remove carriage return characters
-          const rows = text.split(/\n/); // Split by new line characters
-
-          rows.forEach(row => {
-            const [word, count, translation, hiragana_reading, category, reading, rendaku] = row.split(',');
-            dictionary[word] = { count:count, translation: translation, hiragana_reading: hiragana_reading, category: category, reading: reading, rendaku: rendaku };
-          });
-
-          sortable_table.dictionary.currentTextTokenWordCount = dictionary;
-          sortable_table.buildWordFrequencyTable();
-        };
-      frequency_translation_dictionary.allSavedWords = dictionary;
-      frequency_translation_dictionary.currentTextTokensCount = dictionary;
-      }
     });
 
     document.getElementById(`download-current-translation-button`).addEventListener('click', () => {
@@ -156,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     document.getElementById('download-full-dictionary-button').addEventListener('click', () => {
-      downloadCSVFromDictionary(frequency_translation_dictionary.allSavedWords);
+      sortable_table.dictionary.downloadCSVFromDictionary(titleInput?.value);
     });
 
     //translation event listeners
@@ -172,20 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //todo: create hover for token words
     document.getElementById('hover-content-button').addEventListener('click', () => {
-      const hoverDiv = document.getElementById('hover-div');
-      hoverDiv.classList.add('hover-div');
-
-      Object.frequency_translation_dictionary.currentTextTokensCount.entries.forEach(([word, data]) => {
-        const span = document.createElement('span');
-        span.classList.add('word');
-        span.innerText = word;
-        span.addEventListener('hover', () => {
-          hoverDiv.innerText = `Translation: ${data.translation}\nHiragana Reading: ${data.hiragana_reading}\nCategory: ${data.category}`;
-        });
-        span.addEventListener('mouseleave', () => {
-          hoverDiv.remove();
-        });
-      });
+      console.log('hover content button clicked');
       });
       //1 get tokens from text if not already done
       // make the table words into hover elements and highlight all instances of the word by adding a class to each span matching the word
@@ -198,4 +146,4 @@ document.addEventListener('DOMContentLoaded', () => {
       //8 add the translation to the hover div
       //9 add the hiragana reading to the hover div
       //10 add the category to the hover div
-    });
+});

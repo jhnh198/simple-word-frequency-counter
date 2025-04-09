@@ -42,6 +42,33 @@ class Dictionary {
     updateWordValue(word){
       this.allSavedWords[word] = word;
     }
+
+    handleFrequencyDictionaryUpload(event){
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      const fileType = file.type;
+  
+      if (fileType === 'application/json' || fileType === 'text/json') {
+        reader.onload = (e) => {
+          const text = reader.result;
+          const dictionaryData = JSON.parse(text);
+          this.currentTextTokenWords = dictionaryData
+        };
+      } else {
+          reader.onload = (e) => {
+            let text = reader.result;
+            text = text.replace(/\\[nrt]/g, ''); // Remove escape characters
+            text = text.replace(/\r/g, ''); // Remove carriage return characters
+            const rows = text.split(/\n/); // Split by new line characters
+  
+            rows.forEach(row => {
+              const [word, count, translation, hiragana_reading, category, reading, rendaku] = row.split(',');
+              this.currentTextTokenWords[word] = { count: count, translation: translation, hiragana_reading: hiragana_reading, category: category, reading: reading, rendaku: rendaku };
+              });
+          };
+      }
+      reader.readAsText(file);
+    }
     
     //tokenizes, filters and counts text. returns current text token dictionary
     analyzeAndFilterCurrentText(text) {
