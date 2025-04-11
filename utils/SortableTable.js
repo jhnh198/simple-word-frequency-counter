@@ -7,6 +7,7 @@
 
 import { CATEGORY_LIST } from './text_content/category_list.js';
 import { READING_LIST } from './text_content/reading_list.js';
+import {grammar_guide_data} from '../ui_component/grammar_guide_data.js';
 import Dictionary from '../dictionary/dictionary.js';
 
 class SortableTable {
@@ -223,10 +224,8 @@ class SortableTable {
   }
 
   createGrammarGuide() {
+    const dictionaryTabContent = document.getElementById('dictionary-tab-content');
     const grammar_guide_container = document.createElement('div');
-
-    const grammar_guide_data = fetch('./dictionary_data/grammar_guide_data.json')
-      .then((response) => response.json())     
   
     grammar_guide_data.all_data.forEach((section) => {
       const section_container = document.createElement('div');
@@ -285,7 +284,10 @@ class SortableTable {
         }
       });
     });
-    return grammar_guide_container;
+    this.table.innerHTML = ''; // Clear previous content
+    this.table.classList.add('grammar-guide-table');
+    this.table.appendChild(grammar_guide_container);
+    dictionaryTabContent.appendChild(this.table);
   }
 }
 
