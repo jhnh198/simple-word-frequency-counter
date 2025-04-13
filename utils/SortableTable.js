@@ -114,6 +114,10 @@ class SortableTable {
     }
   
     input.addEventListener('keyup', handleTyping);
+    input.addEventListener('focusout', () => {
+      clearTimeout(typingTimer);
+      doneTyping();
+    });
   
     return input;
   }
