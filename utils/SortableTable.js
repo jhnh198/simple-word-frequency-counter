@@ -102,10 +102,10 @@ class SortableTable {
   
     function handleTyping() {
       clearTimeout(typingTimer);
-      typingTimer = setTimeout(doneTyping, doneTypingInterval);
+      typingTimer = setTimeout(updateValue, doneTypingInterval);
     }
   
-    function doneTyping() {
+    function updateValue() {
       if (component === 'translation') {
         this.dictionary.updateWordTranslationValue(word, input.value);
       } else if (component === 'hiragana_reading') {
@@ -115,8 +115,8 @@ class SortableTable {
   
     input.addEventListener('keyup', handleTyping);
     input.addEventListener('focusout', () => {
+      updateValue.call(this);
       clearTimeout(typingTimer);
-      doneTyping();
     });
   
     return input;
