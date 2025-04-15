@@ -11,8 +11,7 @@ import {grammar_guide_data} from '../ui_component/grammar_guide_data.js';
 import Dictionary from '../dictionary/dictionary.js';
 
 class SortableTable {
-  //todo: add sorting by column
-  constructor() {
+  constructor(column, direction ='desc') {
     try {
       this.table = document.createElement('table');
       this.table.id = 'dictionary-table';
@@ -21,8 +20,8 @@ class SortableTable {
       console.error('Error creating table:', error);
     }
 
-    //this.column = column;
-    //this.direction = direction;
+    this.column = column;
+    this.direction = direction;
     
     this.dictionary = new Dictionary();
   }
@@ -38,6 +37,11 @@ class SortableTable {
     const headerRow = body.insertRow();
     const wordHeaderCell = headerRow.insertCell();
     wordHeaderCell.textContent = 'Word';
+    wordHeaderCell.addEventListener('click', () => {
+      this.dictionary.sortDictionary('word', 'asc');
+      this.buildWordFrequencyTable(allSavedWordsFlag);
+    });
+
     const countHeaderCell = headerRow.insertCell();
     countHeaderCell.textContent = 'Count';
     const translationHeaderCell = headerRow.insertCell();
@@ -104,7 +108,7 @@ class SortableTable {
       clearTimeout(typingTimer);
       typingTimer = setTimeout(updateValue, doneTypingInterval);
     }
-  
+
     function updateValue() {
       if (component === 'translation') {
         this.dictionary.updateWordTranslationValue(word, input.value);
@@ -114,7 +118,7 @@ class SortableTable {
     }
   
     input.addEventListener('keyup', handleTyping);
-    input.addEventListener('focusout', () => {
+    input.addEventListener('focusout', (e) => {
       updateValue.call(this);
       clearTimeout(typingTimer);
     });

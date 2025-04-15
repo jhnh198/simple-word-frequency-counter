@@ -80,7 +80,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    //todo: complete the event listener for the input field
     document.getElementById('count-frequency-button').addEventListener('click', async (e) => {
       try {
         sortable_table.dictionary.processText(inputText.value);

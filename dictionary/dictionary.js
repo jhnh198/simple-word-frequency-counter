@@ -167,6 +167,18 @@ class Dictionary {
     URL.revokeObjectURL(url);
   }
   
+  sortDictionary(term, direction) {
+    this.allSavedWords = Object.entries(this.allSavedWords).sort((a, b) => {
+      if (direction === 'asc') {
+        return a[1][term] - b[1][term];
+      } else if (direction === 'desc') {
+        return b[1][term] - a[1][term];
+      } else {
+        throw new Error('Invalid sort direction. Use "asc" or "desc".');
+      }
+    });
+    this.allSavedWords = Object.fromEntries(this.allSavedWords);
+  }
 }
 
 export default Dictionary;
