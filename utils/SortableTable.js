@@ -84,7 +84,7 @@ class SortableTable {
         deleteButton.textContent = 'Delete';
   
         deleteButton.addEventListener('click', () => {
-          this.saveAllInput();
+          this.saveAllInput(allSavedWordsFlag);
           delete this.dictionary.currentTextTokenWordCount[word];
           this.buildWordFrequencyTable();
         });
@@ -223,11 +223,31 @@ class SortableTable {
     return div;
   }
 
-  saveAllInput() {
-    const translationInputs = document.querySelectorAll('.translation');
-    const hiraganaReadingInputs = document.querySelectorAll('.hiragana_reading');
-    const categorySelects = document.querySelectorAll('select[id$="-category"]');
-    const readingSelects = document.querySelectorAll('select[id$="-reading"]');
+  saveAllInput(allSavedWordsFlag = false) {
+    const tempWords = allSavedWordsFlag ? this.dictionary.allSavedWords : this.dictionary.currentTextTokenWords; 
+    
+    this.dictionary.allSavedWords.forEach((word) => {
+      const translationInput = document.getElementById(`translation-${word}`);
+      const hiraganaReadingInput = document.getElementById(`hiragana_reading-${word}`);
+      const categoryInput = document.getElementById(`${word}-category`);
+      const readingInput = document.getElementById(`${word}-reading`);
+      const countInput = document.getElementById(`count-${word}`);
+
+      if (translationInput) {
+        this.dictionary.updateWordTranslationValue(word, translationInput.value);
+      }
+      if (hiraganaReadingInput) {
+        this.dictionary.updateWordHiraganaReadingValue(word, hiraganaReadingInput.value);
+      }
+      if (categoryInput) {
+        this.dictionary.updateWordCategoryValue(word, categoryInput.value);
+      }
+      if (readingInput) {
+        this.dictionary.updateWordReadingValue(word, readingInput.value);
+      }
+
+
+    });
     
   }
 
