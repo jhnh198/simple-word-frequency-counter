@@ -232,23 +232,20 @@ class SortableTable {
       const categoryInput = document.getElementById(`${word}-category`);
       const readingInput = document.getElementById(`${word}-reading`);
       const countInput = document.getElementById(`count-${word}`);
+      const rendakuInput = document.getElementById(`rendaku-${word}`);
 
-      if (translationInput) {
-        this.dictionary.updateWordTranslationValue(word, translationInput.value);
-      }
-      if (hiraganaReadingInput) {
-        this.dictionary.updateWordHiraganaReadingValue(word, hiraganaReadingInput.value);
-      }
-      if (categoryInput) {
-        this.dictionary.updateWordCategoryValue(word, categoryInput.value);
-      }
-      if (readingInput) {
-        this.dictionary.updateWordReadingValue(word, readingInput.value);
+      const tempWord = {
+        word: word,
+        translation: translationInput.value,
+        hiragana_reading: hiraganaReadingInput.value,
+        category: categoryInput.value,
+        reading: readingInput.value,
+        count: countInput.value,
+        rendaku: rendakuInput.value,
       }
 
-
-    });
-    
+      this.dictionary.updateWordValue(tempWord);
+    });    
   }
 
   createGrammarGuide() {
