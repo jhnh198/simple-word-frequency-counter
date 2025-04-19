@@ -52,6 +52,8 @@ class SortableTable {
     categoryHeaderCell.textContent = 'Category'; 
     const readingHeaderCell = headerRow.insertCell();
     readingHeaderCell.textContent = 'Reading';
+    const rendakuHeaderCell = headerRow.insertCell();
+    rendakuHeaderCell.textContent = 'Rendaku';
 
     const usedWordCount = allSavedWordsFlag ? this.dictionary.allSavedWords : this.dictionary.currentTextTokenWords;
   
@@ -78,6 +80,18 @@ class SortableTable {
   
         const readingCell = row.insertCell();
         readingCell.appendChild(this.createReadingDropdown(word));
+
+        //todo: clean up and set into function
+        const rendakuCell = row.insertCell();
+        const rendakuInput = document.createElement('select');
+        rendakuInput.classList.add('rendaku-select');
+        rendakuInput.innerHTML = `<option value="0"></option><option value="1">真実</option>`;        
+        rendakuInput.id = `rendaku-${word}`;
+        rendakuInput.value = this.dictionary.allSavedWords[word]?.rendaku || 0;
+        rendakuInput.addEventListener('change', () => {
+          this.dictionary.updateWordRendakuValue(word, rendakuInput.value);
+        });
+        rendakuCell.appendChild(rendakuInput);
 
         const deleteCell = row.insertCell();
         const deleteButton = document.createElement('button');
@@ -232,7 +246,7 @@ class SortableTable {
       const hiraganaReadingInput = document.getElementById(`hiragana_reading-${word[0]}`);
       const categoryInput = document.getElementById(`${word[0]}-category`);
       const readingInput = document.getElementById(`${word[0]}-reading`);
-      //const rendakuInput = document.getElementById(`rendaku-${word[0]}`);
+      const rendakuInput = document.getElementById(`rendaku-${word[0]}`);
 
       const tempWord = {
         word: word,
