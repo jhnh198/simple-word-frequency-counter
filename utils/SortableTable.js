@@ -85,7 +85,7 @@ class SortableTable {
   
         deleteButton.addEventListener('click', () => {
           this.saveAllInput(allSavedWordsFlag);
-          delete this.dictionary.currentTextTokenWordCount[word];
+          delete this.dictionary.currentTextTokenWords[word];
           this.buildWordFrequencyTable();
         });
         deleteCell.appendChild(deleteButton);
@@ -226,22 +226,22 @@ class SortableTable {
   saveAllInput(allSavedWordsFlag = false) {
     const tempWords = allSavedWordsFlag ? this.dictionary.allSavedWords : this.dictionary.currentTextTokenWords; 
     
-    this.dictionary.allSavedWords.forEach((word) => {
-      const translationInput = document.getElementById(`translation-${word}`);
-      const hiraganaReadingInput = document.getElementById(`hiragana_reading-${word}`);
-      const categoryInput = document.getElementById(`${word}-category`);
-      const readingInput = document.getElementById(`${word}-reading`);
-      const countInput = document.getElementById(`count-${word}`);
-      const rendakuInput = document.getElementById(`rendaku-${word}`);
+    Object.entries(tempWords).forEach((word) => {
+      console.log(word);
+      const translationInputValue = document.getElementById(`translation-${word[0]}`).value;
+      const hiraganaReadingInput = document.getElementById(`hiragana_reading-${word[0]}`);
+      const categoryInput = document.getElementById(`${word[0]}-category`);
+      const readingInput = document.getElementById(`${word[0]}-reading`);
+      //const rendakuInput = document.getElementById(`rendaku-${word[0]}`);
 
       const tempWord = {
         word: word,
-        translation: translationInput.value,
+        translation: translationInputValue,
         hiragana_reading: hiraganaReadingInput.value,
         category: categoryInput.value,
+        
         reading: readingInput.value,
-        count: countInput.value,
-        rendaku: rendakuInput.value,
+        count: word[1],
       }
 
       this.dictionary.updateWordValue(tempWord);
