@@ -10,6 +10,7 @@ class Dictionary {
       this.allSavedWords = json.allSavedWords
      )  
      this.currentTextTokenWords = {};
+     this.focusWords = [];
    };
 
    //handle analysis of text, filtering, add words to dictionary
@@ -69,6 +70,10 @@ class Dictionary {
       }
       reader.readAsText(file);
     }
+
+    getFocusWords(){
+      return this.focusWords;
+    } 
     
     //tokenizes, filters and counts text. returns current text token dictionary
     analyzeAndFilterCurrentText(text) {

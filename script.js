@@ -130,6 +130,11 @@ document.addEventListener('DOMContentLoaded', () => {
       titleInput.value = '';
     });
 
+    document.getElementById('focus-words-button').addEventListener('click', () => {
+      //todo: this only brings up words that are in the focus category and in the present text
+      
+    });
+
     //todo: create hover for token words
     document.getElementById('hover-content-button').addEventListener('click', () => {
       console.log('hover content button clicked');

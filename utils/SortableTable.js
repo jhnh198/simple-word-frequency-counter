@@ -16,6 +16,8 @@ class SortableTable {
       this.table = document.createElement('table');
       this.table.id = 'dictionary-table';
       this.table.classList.add('dictionary-table');
+      this.table.direction = direction;
+      this.table.column = column;
     } catch (error) {
       console.error('Error creating table:', error);
     }
@@ -26,7 +28,7 @@ class SortableTable {
     this.dictionary = new Dictionary();
   }
 
-  buildWordFrequencyTable(allSavedWordsFlag = false) {
+  buildWordFrequencyTable(isCurrentWords = false, isFocusedWords = false) {
     const dictionaryTabContent = document.getElementById('dictionary-tab-content');
     dictionaryTabContent.classList.remove('hidden');
 
@@ -55,9 +57,22 @@ class SortableTable {
     const rendakuHeaderCell = headerRow.insertCell();
     rendakuHeaderCell.textContent = 'Rendaku';
 
-    const usedWordCount = allSavedWordsFlag ? this.dictionary.allSavedWords : this.dictionary.currentTextTokenWords;
+    let usingWords = {}
+
+    if(isCurrentWords) {
+      usingWords = this.dictionary.currentTextTokenWords;
+    } else if(isFocusedWords){
+      usingWords = Object.entries(usedWordCount).map((word) => {
+        return word.category === '集中' && Object.keys(this.dictionary.currentTextTokenWords).find(word);
+      })
+    } else {
+      usingWords = this.dictionary.allSavedWords;
+    }
+    const focusedWords = Object.entries(usedWordCount).map((word) => {
+      return word.category === '集中' && Object.keys(this.dictionary.currentTextTokenWords).find(word);
+    })
   
-    Object.entries(usedWordCount).forEach(([word]) => {
+    Object.entries(usingWords).forEach(([word]) => {
         const row = body.insertRow();
         const wordCell = row.insertCell();
         wordCell.textContent = word;
@@ -250,12 +265,12 @@ class SortableTable {
 
       const tempWord = {
         word: word,
+        count: word[1],
         translation: translationInputValue,
         hiragana_reading: hiraganaReadingInput.value,
         category: categoryInput.value,
-        
         reading: readingInput.value,
-        count: word[1],
+        rendaku: rendakuInput.value,
       }
 
       this.dictionary.updateWordValue(tempWord);
