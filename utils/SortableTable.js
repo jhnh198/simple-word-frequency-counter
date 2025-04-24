@@ -62,23 +62,21 @@ class SortableTable {
     if(isCurrentWords) {
       usingWords = this.dictionary.currentTextTokenWords;
     } else if(isFocusedWords){
-      usingWords = Object.entries(usedWordCount).map((word) => {
-        return word.category === '集中' && Object.keys(this.dictionary.currentTextTokenWords).find(word);
+      usingWords = Object.entries(this.dictionary.currentTextTokenWords).map((word) => {
+        if(word.category === '集中' && Object.keys(this.dictionary.currentTextTokenWords).find(word)) return word;
       })
     } else {
       usingWords = this.dictionary.allSavedWords;
     }
-    const focusedWords = Object.entries(usedWordCount).map((word) => {
-      return word.category === '集中' && Object.keys(this.dictionary.currentTextTokenWords).find(word);
-    })
   
-    Object.entries(usingWords).forEach(([word]) => {
+    Object.entries(usingWords).forEach((word) => {
         const row = body.insertRow();
         const wordCell = row.insertCell();
         wordCell.textContent = word;
         const countCell = row.insertCell();
     
-        countCell.textContent = this.dictionary.allSavedWords[word].count;
+        countCell.textContent = usingWords[word].count;
+        console.log(word);
         
         const translationCell = row.insertCell();
         const translationCellInput = this.createInputFieldContainer(word, this.dictionary.allSavedWords[word]?.translation, 'translation');

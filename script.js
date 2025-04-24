@@ -131,7 +131,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('focus-words-button').addEventListener('click', () => {
-      //todo: this only brings up words that are in the focus category and in the present text
+      let isFocusedWords = true;
+      let isCurrentWords = false;
+      sortable_table.dictionary.processText(inputText.value);
+      sortable_table.buildWordFrequencyTable(isCurrentWords, isFocusedWords);
       
     });
 
