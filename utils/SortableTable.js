@@ -41,7 +41,7 @@ class SortableTable {
     wordHeaderCell.textContent = 'Word';
     wordHeaderCell.addEventListener('click', () => {
       this.dictionary.sortDictionary('word', 'asc');
-      this.buildWordFrequencyTable(allSavedWordsFlag);
+      this.buildWordFrequencyTable(isCurrentWords, isFocusedWords);
     });
 
     const countHeaderCell = headerRow.insertCell();
@@ -62,28 +62,28 @@ class SortableTable {
     if(isCurrentWords) {
       usingWords = this.dictionary.currentTextTokenWords;
     } else if(isFocusedWords){
-      usingWords = Object.entries(this.dictionary.currentTextTokenWords).map((word) => {
+/*       usingWords = Object.entries(this.dictionary.currentTextTokenWords).map((word) => {
         if(word.category === '集中' && Object.keys(this.dictionary.currentTextTokenWords).find(word)) return word;
-      })
+      }) */
     } else {
       usingWords = this.dictionary.allSavedWords;
     }
+
+    console.log(usingWords)
   
     Object.entries(usingWords).forEach((word) => {
         const row = body.insertRow();
         const wordCell = row.insertCell();
-        wordCell.textContent = word;
+        wordCell.textContent = word[0];
         const countCell = row.insertCell();
-    
-        countCell.textContent = usingWords[word].count;
-        console.log(word);
+        countCell.textContent = usingWords[word]?.count || 0;
         
         const translationCell = row.insertCell();
-        const translationCellInput = this.createInputFieldContainer(word, this.dictionary.allSavedWords[word]?.translation, 'translation');
+        const translationCellInput = this.createInputFieldContainer(word, usingWords[word]?.translation, 'translation');
         translationCell.appendChild(translationCellInput);
   
         const hiraganaReadingCell = row.insertCell();
-        const hiraganaReadingInput = this.createInputFieldContainer(word, this.dictionary.allSavedWords[word]?.hiragana_reading, 'hiragana_reading');
+        const hiraganaReadingInput = this.createInputFieldContainer(word, usingWords[word]?.hiragana_reading, 'hiragana_reading');
         hiraganaReadingCell.appendChild(hiraganaReadingInput);
         hiraganaReadingInput.setAttribute('lang', 'ja');
         wanakana.bind(hiraganaReadingInput, /* options */);

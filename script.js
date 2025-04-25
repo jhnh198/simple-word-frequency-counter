@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('count-frequency-button').addEventListener('click', async (e) => {
       try {
         sortable_table.dictionary.processText(inputText.value);
-        sortable_table.buildWordFrequencyTable();
+        sortable_table.buildWordFrequencyTable(true, false);
       } catch (error) {
         console.error('Error processing text:', error); 
       }
@@ -94,13 +94,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById('frequency-dictionary-button').addEventListener('click', async() => {
-      sortable_table.buildWordFrequencyTable(true);
+      sortable_table.buildWordFrequencyTable();
     });
 
     document.getElementById('word-frequency-output-button').addEventListener('click', () => {
       try {
         sortable_table.dictionary.processText(inputText.value);
-        sortable_table.buildWordFrequencyTable(false);
+        sortable_table.buildWordFrequencyTable(true, false);
       } catch (error) {
         console.error('Error processing text:', error); 
       }
@@ -135,7 +135,6 @@ document.addEventListener('DOMContentLoaded', () => {
       let isCurrentWords = false;
       sortable_table.dictionary.processText(inputText.value);
       sortable_table.buildWordFrequencyTable(isCurrentWords, isFocusedWords);
-      
     });
 
     //todo: create hover for token words
