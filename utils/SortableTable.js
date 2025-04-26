@@ -57,66 +57,68 @@ class SortableTable {
     const rendakuHeaderCell = headerRow.insertCell();
     rendakuHeaderCell.textContent = 'Rendaku';
 
-    let usingWords = {}
+    let usingWords;
 
-    if(isCurrentWords) {
+    if (isCurrentWords) {
       usingWords = this.dictionary.currentTextTokenWords;
-    } else if(isFocusedWords){
-/*       usingWords = Object.entries(this.dictionary.currentTextTokenWords).map((word) => {
-        if(word.category === '集中' && Object.keys(this.dictionary.currentTextTokenWords).find(word)) return word;
-      }) */
+    } else if (isFocusedWords) {
+      usingWords = this.dictionary.currentTextTokenWords.filter(word => dictionaryTabContent.allSavedWords[word].category === '集中');
     } else {
-      usingWords = this.dictionary.allSavedWords;
+      //todo: check if there is a better way to get all saved words to array
+      //this is a workaround to get all saved words into an array for the table
+      usingWords = Object.keys(this.dictionary.allSavedWords).map(word => {
+        return word;
+      });
     }
 
-    console.log(usingWords)
-  
-    Object.entries(usingWords).forEach((word) => {
-        const row = body.insertRow();
-        const wordCell = row.insertCell();
-        wordCell.textContent = word[0];
-        const countCell = row.insertCell();
-        countCell.textContent = usingWords[word]?.count || 0;
-        
-        const translationCell = row.insertCell();
-        const translationCellInput = this.createInputFieldContainer(word, usingWords[word]?.translation, 'translation');
-        translationCell.appendChild(translationCellInput);
-  
-        const hiraganaReadingCell = row.insertCell();
-        const hiraganaReadingInput = this.createInputFieldContainer(word, usingWords[word]?.hiragana_reading, 'hiragana_reading');
-        hiraganaReadingCell.appendChild(hiraganaReadingInput);
-        hiraganaReadingInput.setAttribute('lang', 'ja');
-        wanakana.bind(hiraganaReadingInput, /* options */);
-        
-        const categoryCell = row.insertCell();
-        categoryCell.appendChild(this.createCategoryDropdown(word));
-  
-        const readingCell = row.insertCell();
-        readingCell.appendChild(this.createReadingDropdown(word));
+    usingWords.forEach((word) => {
+      const row = body.insertRow();
+      const wordCell = row.insertCell();
+      wordCell.textContent = word;
+      const countCell = row.insertCell();
+      countCell.textContent = this.dictionary.allSavedWords[word].count;
+      
+      const translationCell = row.insertCell();
+      const translationCellInput = this.createInputFieldContainer(word, this.dictionary.allSavedWords[word]?.translation, 'translation');
+      translationCell.appendChild(translationCellInput);
 
-        //todo: clean up and set into function
-        const rendakuCell = row.insertCell();
-        const rendakuInput = document.createElement('select');
-        rendakuInput.classList.add('rendaku-select');
-        rendakuInput.innerHTML = `<option value="0"></option><option value="1">真実</option>`;        
-        rendakuInput.id = `rendaku-${word}`;
-        rendakuInput.value = this.dictionary.allSavedWords[word]?.rendaku || 0;
-        rendakuInput.addEventListener('change', () => {
-          this.dictionary.updateWordRendakuValue(word, rendakuInput.value);
-        });
-        rendakuCell.appendChild(rendakuInput);
+      const hiraganaReadingCell = row.insertCell();
+      const hiraganaReadingInput = this.createInputFieldContainer(word, this.dictionary.allSavedWords[word]?.hiragana_reading, 'hiragana_reading');
+      hiraganaReadingCell.appendChild(hiraganaReadingInput);
+      hiraganaReadingInput.setAttribute('lang', 'ja');
+      wanakana.bind(hiraganaReadingInput, /* options */);
+      
+      //todo: set these to pull from allSavedWords
+      const categoryCell = row.insertCell();
+      categoryCell.appendChild(this.createCategoryDropdown(word));
 
-        const deleteCell = row.insertCell();
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-  
-        deleteButton.addEventListener('click', () => {
-          this.saveAllInput(allSavedWordsFlag);
-          delete this.dictionary.currentTextTokenWords[word];
-          this.buildWordFrequencyTable();
-        });
-        deleteCell.appendChild(deleteButton);
+      const readingCell = row.insertCell();
+      readingCell.appendChild(this.createReadingDropdown(word));
+
+      //todo: clean up and set into function
+      const rendakuCell = row.insertCell();
+      const rendakuInput = document.createElement('select');
+      rendakuInput.classList.add('rendaku-select');
+      rendakuInput.innerHTML = `<option value="0"></option><option value="1">真実</option>`;        
+      rendakuInput.id = `rendaku-${word}`;
+      rendakuInput.value = this.dictionary.allSavedWords[word]?.rendaku || 0;
+      rendakuInput.addEventListener('change', () => {
+        this.dictionary.updateWordRendakuValue(word, rendakuInput.value);
       });
+      rendakuCell.appendChild(rendakuInput);
+
+      const deleteCell = row.insertCell();
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Delete';
+
+      deleteButton.addEventListener('click', () => {
+        this.saveAllInput(allSavedWordsFlag);
+        delete this.dictionary.currentTextTokenWords[word];
+        this.buildWordFrequencyTable();
+      });
+
+      deleteCell.appendChild(deleteButton);
+    });
     this.table.appendChild(this.createEmptyWordRow(this.table));
     dictionaryTabContent.appendChild(this.table);
   }
