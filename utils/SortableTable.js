@@ -88,7 +88,6 @@ class SortableTable {
       hiraganaReadingInput.setAttribute('lang', 'ja');
       wanakana.bind(hiraganaReadingInput, /* options */);
       
-      //todo: set these to pull from allSavedWords
       const categoryCell = row.insertCell();
       categoryCell.appendChild(this.createCategoryDropdown(word));
 
@@ -99,9 +98,9 @@ class SortableTable {
       const rendakuCell = row.insertCell();
       const rendakuInput = document.createElement('select');
       rendakuInput.classList.add('rendaku-select');
-      rendakuInput.innerHTML = `<option value="0"></option><option value="1">真実</option>`;        
+      rendakuInput.innerHTML = `<option value="0">仮性</option><option value="1">真実</option>`;        
       rendakuInput.id = `rendaku-${word}`;
-      rendakuInput.value = this.dictionary.allSavedWords[word]?.rendaku || 0;
+      rendakuInput.value = this.dictionary.allSavedWords[word]?.rendaku || "仮性";
       rendakuInput.addEventListener('change', () => {
         this.dictionary.updateWordRendakuValue(word, rendakuInput.value);
       });
@@ -165,6 +164,8 @@ class SortableTable {
       option.textContent = category;
       select.appendChild(option);
     });
+
+    select.value = this.dictionary.allSavedWords[word]?.category || '名詞';
   
     select.addEventListener('change', () => {
       this.dictionary.updateWordCategoryValue(word, select.value);
@@ -182,6 +183,8 @@ class SortableTable {
       option.textContent = reading;
       select.appendChild(option);
     });
+
+    select.value = this.dictionary.allSavedWords[word]?.reading || '音読み';
   
     select.addEventListener('change', () => {
       this.dictionary.updateWordReadingValue(word, select.value);
