@@ -60,17 +60,29 @@ class SortableTable {
     let usingWords;
 
     if (isCurrentWords) {
-      usingWords = this.dictionary.currentTextTokenWords;
+      usingWords = Object.entries(this.dictionary.currentTextTokenWords).map(([word]) => {
+        return word;
+      });
     } else if (isFocusedWords) {
-      usingWords = this.dictionary.currentTextTokenWords.filter(word => dictionaryTabContent.allSavedWords[word].category === '集中');
+      usingWords = Object.entries(this.dictionary.currentTextTokenWords).map(([word]) => {
+        if(this.dictionary.allSavedWords[word].category === '集中') {
+          return word;
+        }
+      });
     } else {
-      //todo: check if there is a better way to get all saved words to array
-      //this is a workaround to get all saved words into an array for the table
       usingWords = Object.keys(this.dictionary.allSavedWords).map(word => {
         return word;
       });
     }
 
+    if (usingWords.length === 0) {
+      const emptyRow = body.insertRow();
+      const emptyCell = emptyRow.insertCell();
+      emptyCell.colSpan = 7; // Adjust based on the number of columns
+      emptyCell.textContent = 'No words found.';
+      this.table.appendChild(emptyRow);
+      return;
+    }
     usingWords.forEach((word) => {
       const row = body.insertRow();
       const wordCell = row.insertCell();
