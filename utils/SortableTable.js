@@ -83,6 +83,7 @@ class SortableTable {
       this.table.appendChild(emptyRow);
       return;
     }
+    
     usingWords.forEach((word) => {
       const row = body.insertRow();
       const wordCell = row.insertCell();
