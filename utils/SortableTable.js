@@ -124,9 +124,9 @@ class SortableTable {
       deleteButton.textContent = 'Delete';
 
       deleteButton.addEventListener('click', () => {
-        this.saveAllInput(allSavedWordsFlag);
+        this.saveAllInput();
         delete this.dictionary.currentTextTokenWords[word];
-        this.buildWordFrequencyTable();
+        this.buildWordFrequencyTable(isCurrentWords, isFocusedWords);
       });
 
       deleteCell.appendChild(deleteButton);
