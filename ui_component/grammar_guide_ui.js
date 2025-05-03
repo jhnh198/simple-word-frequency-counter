@@ -58,6 +58,5 @@ export function createGrammarGuide(grammar_guide_data) {
       }
     });
   });
-  console.log(grammar_guide_container);
   return grammar_guide_container;
 }

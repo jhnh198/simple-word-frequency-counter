@@ -1,6 +1,5 @@
 export const CATEGORY_LIST = [
   '名詞',
-  '動詞',
   '五段動詞',
   '一段動詞',
   '不規則動詞',

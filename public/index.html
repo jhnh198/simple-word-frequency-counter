@@ -4,14 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Japanese Text Analyzer</title>
-  <script defer src="./tiny-segmenter/dist/tiny-segmenter-0.2.0.js"></script>
+  <script defer src="../tiny-segmenter/dist/tiny-segmenter-0.2.0.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="./ui_component/grammar_guide.css">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="../ui_component/grammar_guide.css">
   <script defer src="https://unpkg.com/wanakana"></script>
-  <script defer type="module" src="script.js"></script>
+  <script defer type="module" src="./script.js"></script>
 </head>
 
+<!-- todo: set up correct file paths for public node folder structure -->
 <body>
 <div id="body-container"> 
   <header class="header">
@@ -33,9 +34,6 @@
         <textarea title="input-text-area" id="input-text" rows="35" cols="40">
         </textarea>
         <textarea title="free-translation-text-area" id="free-translation-text-area" rows="35" cols="40"></textarea>
-      </div>
-      <div id="hover-div"> 
-
       </div>
     </div>
   </main>

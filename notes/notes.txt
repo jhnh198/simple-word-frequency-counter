@@ -1,0 +1,12 @@
+寄る to draw near, to approach
+
+Non-past	寄る	寄らない
+Non-past, polite	寄ります	寄りません
+Past	寄った	寄らなかった
+Past, polite	寄りました	寄りませんでした
+Te-form	寄って	寄らなくて
+Potential	寄れる	寄れない
+Passive	寄られる	寄られない
+Causative	寄らせる	寄らせない
+Causative Passive	寄らせられる	寄らせられない
+Imperative	寄れ	寄るな

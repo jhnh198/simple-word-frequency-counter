@@ -1,17 +1,5 @@
-import { clearErrorMessage, errorMessage } from "./errorHandling.js";
 
-/* let frequency_translation_dictionary = {
-    currentTextTokensCount: {},
-    allSavedWords: {}
-
-    sample entry:
-    word: string,
-    count: integer,
-    translation: string,
-    hiragana_reading: string,
-    category: string
-}; */
-
+//todo: move this to dictionary class
 export async function analyzeText(text) {
     if (text === '') {
         throw new Error('No text to analyze');
@@ -25,7 +13,6 @@ export async function analyzeText(text) {
 
     //regex to remove special characters
     const symbolRegex = /[\u0021-\u002F\u003A-\u0040\u3000-\u303F\uFF08\uFF01-\uFF3F]+/;
-
     const removeSingleHiragana = /^[\u3040-\u309F]{1}$/;
     const katakanaRegex = /[\u30A0-\u30FF]/;
  
@@ -64,72 +51,29 @@ export function saveCurrentTokenCountToDictionary(currentTextTokensCount, allSav
     return tempAllSavedWords;
 }
 
-export function saveSingleTranslationInputToDictionary(word, translation, allSavedWords) { 
-    if (!allSavedWords[word]) {
-        allSavedWords[word] = { count: 1, translation: translation, category: '名詞'};
-    } else {
-        allSavedWords[word].count = parseInt(allSavedWords[word].count || 0) + 1;
-        allSavedWords[word].translation = translation;
-    }
-
-    return allSavedWords;
-}
-
-export function saveSingleCategoryInputToDictionary(word, category, allSavedWords) {  
-    if (!allSavedWords[word]) {
-        allSavedWords[word] = { count: 1, translation: '', category: category};
-    } else {
-        allSavedWords[word].category = category;
-    }
-
-    return allSavedWords;
-}
-
-export function handleSingleCountInputToDictionary(word, count, allSavedWords) {
-    if (!allSavedWords[word]) {
-        allSavedWords[word] = { count: count, translation: '', category: '名詞'};
-    } else {
-        allSavedWords[word].count = count;
-    }
-
-    return allSavedWords;
-}
-
-export function handleSingleHiraganaReadingInputToDictionary(word, hiragana_reading, allSavedWords) {
-    if (!allSavedWords[word]) {
-        allSavedWords[word] = { count: 1, translation: '', hiragana_reading: hiragana_reading, category: '名詞'};
-    } else {
-        allSavedWords[word].hiragana_reading = hiragana_reading;
-    }
-
-    return allSavedWords;
-}
-
-//this will get tokens from the current text, check if in the dictionary and return current text tokens
 export function handleCurrentTokenDictionary(wordTokenFrequencyCount, allSavedWords) {
     const tempCurrentTextTokens = {};
     Object.entries(wordTokenFrequencyCount).forEach(([word, count]) => {
         if (!allSavedWords[word]) {
-          tempCurrentTextTokens[word] = { count: count, translation: '', hiragana_reading: '', category: '名詞'};
+          tempCurrentTextTokens[word] = { count: count, translation: '', hiragana_reading: '', category: '名詞', reading: '音読み', rendaku: 0};
         } else {
-          tempCurrentTextTokens[word] = { count: count, translation: allSavedWords[word]?.translation, hiragana_reading: allSavedWords[word]?.hiragana_reading, category: allSavedWords[word]?.category};
+          tempCurrentTextTokens[word] = { 
+            count: count, 
+            translation: allSavedWords[word]?.translation,
+            hiragana_reading: allSavedWords[word]?.hiragana_reading,
+            category: allSavedWords[word]?.category,
+            reading: allSavedWords[word]?.reading,
+            rendaku: allSavedWords[word]?.rendaku
+          };
         }
     });
     return tempCurrentTextTokens;
 }
 
-export function loadLocalStorage() {
-  let loadedAllSavedWords = {};
-  if (localStorage.getItem('dictionary_data')) {
-    loadedAllSavedWords = JSON.parse(localStorage.getItem('dictionary_data'));
-  }
-  return loadedAllSavedWords;
-}
-
 export function downloadCSVFromDictionary(dictionary, filename = 'translation.csv') {
-  const header = 'Word,Count,Translation,Hiragana Reading,Category\n';
+  const header = 'Word,Count,Translation,Hiragana Reading,Category,Reading,Rendaku\n';
   const csv = Object.entries(dictionary).map(([word, data]) => {
-    return `${word},${data.count},${data.translation},${data.hiragana_reading},${data.category}`;
+    return `${word},${data.count},${data.translation},${data.hiragana_reading},${data.category},${data.reading},${data.rendaku}`;
   }).join('\n');
 
   const blob = new Blob([header + csv], { type: 'text/csv' });

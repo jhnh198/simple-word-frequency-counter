@@ -1,5 +1,24 @@
+import { 
+    analyzeText,
+    saveCurrentTokenCountToDictionary,
+    handleCurrentTokenDictionary,
+    downloadCSVFromDictionary,
+    downloadJSONFromDictionary,
+} from './utils/frequency_dictionary_data_handling.js';
 
-import SortableTable from "./utils/SortableTable.js";
+import Dictionary from './dictionary/dictionary.js';
+
+import {
+    buildWordFrequencyTable,
+} from './utils/ui_utils.js';
+
+import {
+  createGrammarGuide
+} from './ui_component/grammar_guide_ui.js';
+
+import {
+  grammar_guide_data
+} from './ui_component/grammar_guide_data.js';
 
 //todo: need to add node.js and server to write to dictionary file
 //todo: add words to the json file from inputs
@@ -8,70 +27,53 @@ import SortableTable from "./utils/SortableTable.js";
 //get main document elements
 const titleInput = document.getElementById('title-input');
 const freeTranslationTextArea = document.getElementById('free-translation-text-area');
+const dictionaryTabContent = document.getElementById('dictionary-tab-content');
+
+let text = ``;
 
 let inputText = document.getElementById('input-text');
-let text = `君の声が届かない場所では
-誰も教えてくれなかった 歪んだルール
-
-幼い頃に強く願った
-夢のありかを探す旅は始まったばかり
-
-嘆いた時間はもう要らない
-限界の壁を今すぐ壊して
-
-枯れない強い想いで輝くプライド
-どんな痛みに触れたとしても変わらない記憶
-
-視界を拡げて見つけた誓いを抱いて
-曇りなき眼で 選んだ道を
-君に繋ぐから
-
-声を響かせて
-運命に抗ってゆけ
-
-このままずっと息を殺して
-変わらない未来 睨み続け 生きていたくはない
-
-ちぎれた心 拾い集め
-情熱の海へ今すぐ飛び込め
-
-Go to the outside of daydream, break your limits
-
-叶えたい弱い自分に宿したプライド
-孤独の波に飲み込まれても 変わらない願い
-
-理想を掲げて見つけた希望を抱いて
-まだ見ぬ明日で 微笑む君に辿り着けるから
-声が届くまで 運命を貫いてゆけ
-
-震える肩を抱き寄せ笑う
-君がいるから 歌い続けるよ
-
-枯れない強い想いで輝くプライド
-どんな痛みに触れたとしても変わらない記憶
-
-視界を拡げて見つけた誓いを抱いて
-曇りなき眼で 選んだ道を
-君に繋ぐから
-
-声を響かせて
-逆境を切り裂いてゆけ
-運命に抗ってゆけ
-Proud of myself, ah`;
 inputText.value = text;
 
-const sortable_table = new SortableTable();
+let allSavedWords = {};
+
+fetch('./dictionary_data/frequency_dictionary_data.json')
+    .then((response) => response.json())
+    .then((json) => 
+      allSavedWords = json.allSavedWords
+     );
+
+const allWordsDictionary = new Dictionary(allSavedWords);
+
+
+
+export function updateInputChangeValue(word, value, component){
+  if(component === 'translation'){
+    frequency_translation_dictionary.currentTextTokensCount[word].translation = value;
+  } else if(component === 'hiragana_reading'){
+    frequency_translation_dictionary.currentTextTokensCount[word].hiragana_reading = value;
+  }
+  frequency_translation_dictionary.allSavedWords[word] = frequency_translation_dictionary.currentTextTokensCount[word];
+}
+
+export function updateCategoryChangeValue(word, category){
+  frequency_translation_dictionary.allSavedWords[word].category = category;  
+}
+
+export function addWordToDictionaryFromNewRow(newWord){
+  frequency_translation_dictionary.allSavedWords[newWord.word] = newWord;
+  buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
+}
 
 //set up event listeners on load
 document.addEventListener('DOMContentLoaded', () => {
-/*
-  document.getElementById('word-frequency-output-button').addEventListener('click', async () => {
-    buildWordFrequencyTable();
-  });*/
+    document.getElementById('word-frequency-output-button').addEventListener('click', async () => {
+      buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount, dictionaryTabContent);
+    });
 
-  document.getElementById('grammar-guide-button').addEventListener('click', () => {
-    sortable_table.createGrammarGuide();
-  }); 
+    document.getElementById('grammar-guide-button').addEventListener('click', () => {
+      dictionaryTabContent.innerHTML = '';
+      dictionaryTabContent.appendChild(createGrammarGuide(grammar_guide_data));
+    });
 
     document.getElementById('hide-previous-translations-checkbox').addEventListener('change', (e) => {
       if (e.target.value === 'on') {
@@ -85,30 +87,23 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    //todo: complete the event listener for the input field
     document.getElementById('count-frequency-button').addEventListener('click', async (e) => {
-      try {
-        sortable_table.dictionary.processText(inputText.value);
-        sortable_table.buildWordFrequencyTable();
-      } catch (error) {
-        console.error('Error processing text:', error); 
-      }
-
+        let wordTokenFrequencyCount = await analyzeText(inputText.value);
+        frequency_translation_dictionary.currentTextTokensCount = handleCurrentTokenDictionary(wordTokenFrequencyCount, frequency_translation_dictionary.allSavedWords);
+        saveCurrentTokenCountToDictionary(frequency_translation_dictionary.currentTextTokensCount, frequency_translation_dictionary.allSavedWords);
+        buildWordFrequencyTable(frequency_translation_dictionary.currentTextTokensCount, dictionaryTabContent);
     });
 
     document.getElementById('download-json-button').addEventListener('click', () => {
-      sortable_table.dictionary.downloadJSONFromDictionary(titleInput?.value);
+      downloadJSONFromDictionary(frequency_translation_dictionary.allSavedWords, titleInput?.value);
     });
 
     document.getElementById('frequency-dictionary-button').addEventListener('click', async() => {
-      //buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
+      buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
     });
 
     //todo: when this is uploaded it overwrites the whole dictionary, rather than current
     document.getElementById('frequency-dictionary-upload').addEventListener('change', (e) => {
-      sortable_table.dictionary.acceptDictionaryUpload(e.target.files[0]);
-      sortable_table.buildWordFrequencyTable();
-
       const reader = new FileReader();
       const fileType = e.target.files[0].type;
       reader.readAsText(e.target.files[0]);
@@ -119,9 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
           const text = reader.result;
           const dictionaryData = JSON.parse(text);
 
-          sortable_table.dictionary.currentTextTokenWordCount = dictionaryData.allSavedWords;
-
-          sortable_table.buildWordFrequencyTable();
+          frequency_translation_dictionary.allSavedWords = dictionaryData.allSavedWords;
+          buildWordFrequencyTable(frequency_translation_dictionary.allSavedWords, dictionaryTabContent);
           titleInput.value = dictionaryData.title?.value;
           freeTranslationTextArea.value = dictionaryData.freeTranslation;
           inputText.value = dictionaryData.inputText;
@@ -140,8 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
             dictionary[word] = { count:count, translation: translation, hiragana_reading: hiragana_reading, category: category, reading: reading, rendaku: rendaku };
           });
 
-          sortable_table.dictionary.currentTextTokenWordCount = dictionary;
-          sortable_table.buildWordFrequencyTable();
+          buildWordFrequencyTable(dictionary, dictionaryTabContent);
         };
       frequency_translation_dictionary.allSavedWords = dictionary;
       frequency_translation_dictionary.currentTextTokensCount = dictionary;
@@ -149,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById(`download-current-translation-button`).addEventListener('click', () => {
-      sortable_table.dictionary.downloadCSVFromDictionary(titleInput?.value);
+      downloadCSVFromDictionary(frequency_translation_dictionary.currentTextTokensCount, titleInput?.value);
     });
     
     document.getElementById('download-full-dictionary-button').addEventListener('click', () => {

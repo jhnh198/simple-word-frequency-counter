@@ -77,7 +77,6 @@ export const grammar_guide_data = {
             headers: ["Category", "Hiragana", "Description"],
             rows: [
               ["名詞", "めいし", "Noun"],
-              ["動詞", "どうし", "Verb"],
               ["五段動詞", "ごだんどうし", "Godan verb (u)"],
               ["一段動詞", "いちだんどうし", "Ichidan(ru)"],
               ["不規則動詞", "ふきそくどうし", "Irregular"],
@@ -98,15 +97,15 @@ export const grammar_guide_data = {
       ],
     },
     {
-      //todo: check for accuracy
       header:"Verb conjugations",
       subheader: "",
       content: [
         {
           table: {
-            headers: ["Dictionary", "Past", "Negative", "Volitional", "Potential", "ている"],
+            headers: [
+              "Dictionary", "Past", "Negative", "Volitional", "Potential", "te-form"],
             rows: [
-              ["する","した", "しない", "しよう", "できる", "してる"],
+              ["する",      "した",  "しない",    "しよう",     "できる",     "してる"],
               ["来る", "きた", "こない", "こよう", "こられる", "きてる"],
               ["買う", "買った", "買わない", "買おう", "買える", "買ってる"],
               ["教える", "教えた", "教えない", "教えよう", "教えられる", "教えてる"],
