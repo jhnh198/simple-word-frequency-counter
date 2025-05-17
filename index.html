@@ -41,8 +41,17 @@
   </main>
 
     <aside class="right-sidebar">
-      <!-- todo: add a dropdown for these controls -->
+      <!-- todo: make dropdown for downloads and analysis -->
         <div class="control-container" id="right-sidebar-tabs">
+          <select title="Analyze Text">
+            <option> Return Words and Frequency </option>
+            <option> Push To Translate Using DeepL </option>
+          </select>
+          <select title="Download Translation">
+            <option>Download Current Translation</option>
+            <option>Download Full Translation </option>
+            <option>Download JSON</option>
+          </select>
           <button class="control-button" id="count-frequency-button">Return Words and Frequency</button>
           <button class="control-button" id="download-current-translation-button">Download Current Translation</button>
           <button class="control-button" id="download-full-dictionary-button">Download Full Translation</button>
@@ -69,6 +78,7 @@
 
           <div id="dictionary-tab-content" class="">
           </div>
+          
           </div>
         </div>
     </aside>
