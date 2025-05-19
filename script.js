@@ -137,6 +137,11 @@ document.addEventListener('DOMContentLoaded', () => {
       sortable_table.buildWordFrequencyTable(isCurrentWords, isFocusedWords);
     });
 
+    document.getElementById('help-section-button').addEventListener('click', () => {
+      sortable_table.createHelpGuide();
+    });
+
+
     //todo: create hover for token words
     document.getElementById('hover-content-button').addEventListener('click', () => {
       console.log('hover content button clicked');

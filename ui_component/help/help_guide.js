@@ -1,4 +1,4 @@
-export default help_guide_data = {
+export const help_guide_data = {
   all_data: [
     {
       header: "Help Guide",
