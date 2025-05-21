@@ -8,7 +8,7 @@ Word counter that uses tiny segmenter to tokenize japanese script. Includes a di
 4. Download the current translation to save work and return later
 5. Use Upload Frequency Dictionary to bring back past work
 
-Controls: 
+## Controls: 
 
 - Return Words and Frequency
   - This uses TinySegmenter to tokenize text. Filters are added to the script in Dictionary.analyzeAndFilterCurrentText. Words that are included in the dictionary will have translation and categorization 
