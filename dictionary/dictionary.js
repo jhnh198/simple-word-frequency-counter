@@ -151,12 +151,12 @@ class Dictionary {
     URL.revokeObjectURL(url);
   }
 
-  downloadJSONFromDictionary(filename = 'translation.json') {
+  downloadJSONFromDictionary() {
     const inputTextValue = document.getElementById('input-text').value;
     const freeTranslationTextValue = document.getElementById('free-translation-text-area').value;
   
     const dictionaryData = {
-      title: filename,
+      title: 'Japanese Dictionary',
       inputText: inputTextValue,
       freeTranslation: freeTranslationTextValue,
       allSavedWords: this.allSavedWords,
@@ -167,7 +167,7 @@ class Dictionary {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = filename;
+    a.download = 'full_jp_dict.json';
     a.click();
     URL.revokeObjectURL(url);
   }

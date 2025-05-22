@@ -426,7 +426,6 @@ class SortableTable {
     this.table.classList.add('help-guide-table');
     this.table.appendChild(help_guide_container);
     dictionaryTabContent.appendChild(this.table);
-
   }
 }
 
