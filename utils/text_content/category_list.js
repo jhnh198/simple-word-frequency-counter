@@ -14,4 +14,5 @@ export const CATEGORY_LIST = [
   '敬称',
   '接尾詞',
   '数字',
+  '集中',
 ];

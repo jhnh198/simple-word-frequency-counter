@@ -8,9 +8,9 @@ class Dictionary {
     .then((response) => response.json())
     .then((json) => 
       this.allSavedWords = json.allSavedWords
-     )
-    
-    this.currentTextTokenWords = {};      
+     )  
+     this.currentTextTokenWords = {};
+     this.focusWords = [];
    };
 
    //handle analysis of text, filtering, add words to dictionary
@@ -43,6 +43,37 @@ class Dictionary {
     updateWordValue(word){
       this.allSavedWords[word] = word;
     }
+
+    handleFrequencyDictionaryUpload(event){
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      const fileType = file.type;
+  
+      if (fileType === 'application/json' || fileType === 'text/json') {
+        reader.onload = (e) => {
+          const text = reader.result;
+          const dictionaryData = JSON.parse(text);
+          this.currentTextTokenWords = dictionaryData
+        };
+      } else {
+          reader.onload = (e) => {
+            let text = reader.result;
+            text = text.replace(/\\[nrt]/g, ''); // Remove escape characters
+            text = text.replace(/\r/g, ''); // Remove carriage return characters
+            const rows = text.split(/\n/); // Split by new line characters
+  
+            rows.forEach(row => {
+              const [word, count, translation, hiragana_reading, category, reading, rendaku] = row.split(',');
+              this.currentTextTokenWords[word] = { count: count, translation: translation, hiragana_reading: hiragana_reading, category: category, reading: reading, rendaku: rendaku };
+              });
+          };
+      }
+      reader.readAsText(file);
+    }
+
+    getFocusWords(){
+      return this.focusWords;
+    } 
     
     //tokenizes, filters and counts text. returns current text token dictionary
     analyzeAndFilterCurrentText(text) {
@@ -78,21 +109,24 @@ class Dictionary {
               frequency[word] = 1;
           }
       });
-  
-      this.currentTextTokenWordCount = frequency;
+      
+      this.currentTextTokenWords = {
+          ...frequency,
+      }
   };
 
   addCurrentTokenCountToDictionary() {
-    Object.entries(this.currentTextTokenWordCount).forEach(([word, count]) => {
+    Object.entries(this.currentTextTokenWords).forEach(([word, count]) => {
         try {
           if (!this.allSavedWords[word]) {
-          this.allSavedWords[word] = this.currentTextTokenWordCount[word];
-          this.allSavedWords[word].count = count || 0;
-          this.allSavedWords[word].translation = '';
-          this.allSavedWords[word].hiragana_reading = '';
-          this.allSavedWords[word].category = '名詞';
-          this.allSavedWords[word].reading = '音読み';
-          this.allSavedWords[word].rendaku = 0;
+            this.allSavedWords[word] = {
+                count: count,
+                translation: '',
+                hiragana_reading: '',
+                category: '',
+                reading: '',
+                rendaku: ''
+            };
           } else {
             this.allSavedWords[word].count = parseInt(count) + parseInt(this.allSavedWords[word].count);
         }
@@ -100,10 +134,6 @@ class Dictionary {
           console.log(`Error adding word ${word} to dictionary: ${error}`);
         }
     });
-  }
-
-  acceptDictionaryUpload() {
-
   }
 
   downloadCSVFromDictionary(filename = 'translation.csv') {
@@ -121,12 +151,12 @@ class Dictionary {
     URL.revokeObjectURL(url);
   }
 
-  downloadJSONFromDictionary(filename = 'translation.json') {
+  downloadJSONFromDictionary() {
     const inputTextValue = document.getElementById('input-text').value;
     const freeTranslationTextValue = document.getElementById('free-translation-text-area').value;
   
     const dictionaryData = {
-      title: filename,
+      title: 'Japanese Dictionary',
       inputText: inputTextValue,
       freeTranslation: freeTranslationTextValue,
       allSavedWords: this.allSavedWords,
@@ -137,16 +167,26 @@ class Dictionary {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = filename;
+    a.download = 'full_jp_dict.json';
     a.click();
     URL.revokeObjectURL(url);
   }
   
+  sortDictionary(term, direction) {
+    this.allSavedWords = Object.entries(this.allSavedWords).sort((a, b) => {
+      if (direction === 'asc') {
+        return a[1][term] - b[1][term];
+      } else if (direction === 'desc') {
+        return b[1][term] - a[1][term];
+      } else {
+        throw new Error('Invalid sort direction. Use "asc" or "desc".');
+      }
+    });
+    this.allSavedWords = Object.fromEntries(this.allSavedWords);
+  }
 }
 
 export default Dictionary;
-
-
 /* 
 frequency translation dictionary structure
 let frequency_translation_dictionary = {

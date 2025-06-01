@@ -6,7 +6,7 @@ import {
     downloadJSONFromDictionary,
 } from './utils/frequency_dictionary_data_handling.js';
 
-import Dictionary from './dictionary/dictionary.js';
+import Dictionary from '../dictionary/dictionary.js';
 
 import {
     buildWordFrequencyTable,
@@ -14,11 +14,11 @@ import {
 
 import {
   createGrammarGuide
-} from './ui_component/grammar_guide_ui.js';
+} from '../ui_component/grammar_guide_ui.js';
 
 import {
   grammar_guide_data
-} from './ui_component/grammar_guide_data.js';
+} from '../ui_component/grammar_guide_data.js';
 
 //todo: need to add node.js and server to write to dictionary file
 //todo: add words to the json file from inputs

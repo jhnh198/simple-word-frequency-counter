@@ -7,26 +7,29 @@
 
 import { CATEGORY_LIST } from './text_content/category_list.js';
 import { READING_LIST } from './text_content/reading_list.js';
+import { grammar_guide_data } from '../ui_component/grammar_guide_data.js';
+import { help_guide_data } from '../ui_component/help/help_guide.js';
 import Dictionary from '../dictionary/dictionary.js';
 
 class SortableTable {
-  //todo: add sorting by column
-  constructor() {
+  constructor(column, direction ='desc') {
     try {
       this.table = document.createElement('table');
       this.table.id = 'dictionary-table';
       this.table.classList.add('dictionary-table');
+      this.table.direction = direction;
+      this.table.column = column;
     } catch (error) {
       console.error('Error creating table:', error);
     }
 
-    //this.column = column;
-    //this.direction = direction;
+    this.column = column;
+    this.direction = direction;
     
     this.dictionary = new Dictionary();
   }
 
-  buildWordFrequencyTable() {
+  buildWordFrequencyTable(isCurrentWords = false, isFocusedWords = false) {
     const dictionaryTabContent = document.getElementById('dictionary-tab-content');
     dictionaryTabContent.classList.remove('hidden');
 
@@ -37,6 +40,11 @@ class SortableTable {
     const headerRow = body.insertRow();
     const wordHeaderCell = headerRow.insertCell();
     wordHeaderCell.textContent = 'Word';
+    wordHeaderCell.addEventListener('click', () => {
+      this.dictionary.sortDictionary('word', 'asc');
+      this.buildWordFrequencyTable(isCurrentWords, isFocusedWords);
+    });
+
     const countHeaderCell = headerRow.insertCell();
     countHeaderCell.textContent = 'Count';
     const translationHeaderCell = headerRow.insertCell();
@@ -47,109 +55,119 @@ class SortableTable {
     categoryHeaderCell.textContent = 'Category'; 
     const readingHeaderCell = headerRow.insertCell();
     readingHeaderCell.textContent = 'Reading';
-  
-    Object.entries(this.dictionary.currentTextTokenWordCount).forEach(([word]) => {
-        const row = body.insertRow();
-        const wordCell = row.insertCell();
-        wordCell.textContent = word;
-        const countCell = row.insertCell();
-    
-        countCell.textContent = this.dictionary.allSavedWords[word].count;
-        const translationCell = row.insertCell();
-  
-        //todo: set function based on translation or hiragana_reading
-        const translationCellInput = this.createInputFieldContainer(word, this.dictionary.allSavedWords[word]?.translation, 'translation', 'en');
-        translationCell.appendChild(translationCellInput);
-  
-        const hiraganaReadingCell = row.insertCell();
-        const hiraganaReadingInput = this.createInputFieldContainer(word, this.dictionary.allSavedWords[word]?.hiragana_reading, 'hiragana_reading');
-        //add ja to the input field to set the language to ja
-        hiraganaReadingInput.setAttribute('lang', 'ja');
-        hiraganaReadingCell.appendChild(hiraganaReadingInput);
-        
-        const categoryCell = row.insertCell();
-        categoryCell.appendChild(this.createCategoryDropdown(word));
-  
-        const readingCell = row.insertCell();
-        readingCell.appendChild(this.createReadingDropdown(word));
-  
-        //todo: move delete button to the right
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Delete';
-  
-        //todo: save the entire dictionary input before deletion to avoid losing input data due to timing
-        deleteButton.addEventListener('click', () => {
-          delete this.dictionary.currentTextTokenWordCount[word];
-          buildWordFrequencyTable();
-        });
-        categoryCell.appendChild(deleteButton);
+    const rendakuHeaderCell = headerRow.insertCell();
+    rendakuHeaderCell.textContent = 'Rendaku';
+
+    let usingWords;
+
+    if (isCurrentWords) {
+      usingWords = Object.entries(this.dictionary.currentTextTokenWords).map(([word]) => {
+        return word;
       });
+    } else if (isFocusedWords) {
+      usingWords = Object.entries(this.dictionary.currentTextTokenWords).map(([word]) => {
+        if(this.dictionary.allSavedWords[word].category === '集中') {
+          return word;
+        }
+      });
+    } else {
+      usingWords = Object.keys(this.dictionary.allSavedWords).map(word => {
+        return word;
+      });
+    }
+
+    if (usingWords.length === 0) {
+      const emptyRow = body.insertRow();
+      const emptyCell = emptyRow.insertCell();
+      emptyCell.colSpan = 7; // Adjust based on the number of columns
+      emptyCell.textContent = 'No words found.';
+      this.table.appendChild(emptyRow);
+      return;
+    }
+    
+    usingWords.forEach((word) => {
+      const row = body.insertRow();
+      const wordCell = row.insertCell();
+      wordCell.textContent = word;
+      const countCell = row.insertCell();
+      countCell.textContent = this.dictionary.allSavedWords[word].count;
+      
+      const translationCell = row.insertCell();
+      const translationCellInput = this.createInputFieldContainer(word, this.dictionary.allSavedWords[word]?.translation, 'translation');
+      translationCell.appendChild(translationCellInput);
+
+      const hiraganaReadingCell = row.insertCell();
+      const hiraganaReadingInput = this.createInputFieldContainer(word, this.dictionary.allSavedWords[word]?.hiragana_reading, 'hiragana_reading');
+      hiraganaReadingCell.appendChild(hiraganaReadingInput);
+      hiraganaReadingInput.setAttribute('lang', 'ja');
+      wanakana.bind(hiraganaReadingInput, /* options */);
+      
+      const categoryCell = row.insertCell();
+      categoryCell.appendChild(this.createCategoryDropdown(word));
+
+      const readingCell = row.insertCell();
+      readingCell.appendChild(this.createReadingDropdown(word));
+
+      //todo: clean up and set into function
+      const rendakuCell = row.insertCell();
+      const rendakuInput = document.createElement('select');
+      rendakuInput.classList.add('rendaku-select');
+      rendakuInput.innerHTML = `<option value="0">仮性</option><option value="1">真実</option>`;        
+      rendakuInput.id = `rendaku-${word}`;
+      rendakuInput.value = this.dictionary.allSavedWords[word]?.rendaku || "仮性";
+      rendakuInput.addEventListener('change', () => {
+        this.dictionary.updateWordRendakuValue(word, rendakuInput.value);
+      });
+      rendakuCell.appendChild(rendakuInput);
+
+      const deleteCell = row.insertCell();
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Delete';
+
+      deleteButton.addEventListener('click', () => {
+        this.saveAllInput();
+        delete this.dictionary.currentTextTokenWords[word];
+        this.buildWordFrequencyTable(isCurrentWords, isFocusedWords);
+      });
+
+      deleteCell.appendChild(deleteButton);
+    });
     this.table.appendChild(this.createEmptyWordRow(this.table));
     dictionaryTabContent.appendChild(this.table);
   }
 
-  //todo: remove repeated code from wk input
-  //todo: implement input value to dictionary
-  createInputFieldContainer(word, component) {
+  createInputFieldContainer(word, value, component) {
     const input = document.createElement('input');
     input.type = 'text';
     input.class = component;
     input.id = `${component}-${word}`;
-    input.value = translation || '';
+    input.value = value || '';
   
     let typingTimer;
     let doneTypingInterval = 5000;
-
-    if (component === 'hiragana_reading') {
-      input.setAttribute('lang', 'ja');
-      wanakana.bind(input, /* options */);
-    }  
   
     function handleTyping() {
       clearTimeout(typingTimer);
-      typingTimer = setTimeout(doneTyping, doneTypingInterval);
+      typingTimer = setTimeout(updateValue, doneTypingInterval);
     }
-  
-    function doneTyping() {
+
+    function updateValue() {
       if (component === 'translation') {
         this.dictionary.updateWordTranslationValue(word, input.value);
+      } else if (component === 'hiragana_reading') {
+        this.dictionary.updateWordHiraganaReadingValue(word, input.value);
       }
-      this.dictionary.updateInputChangeValue(word, input.value, component);
     }
   
     input.addEventListener('keyup', handleTyping);
-  
-    return input;
-  }
-
-  //todo: implement input value to dictionary
-  createWanaKanaInputFieldContainer(word, hiragana_reading) {
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.class = 'hiragana_reading';
-    input.id = `hiragana_reading-${word}`;
-    input.value = hiragana_reading || '';
-  
-    wanakana.bind(input, /* options */);
-  
-    let typingTimer;
-    let doneTypingInterval = 5000;
-  
-    function handleTyping() {
+    input.addEventListener('focusout', (e) => {
+      updateValue.call(this);
       clearTimeout(typingTimer);
-      typingTimer = setTimeout(doneTyping, doneTypingInterval);
-    }
-  
-    function doneTyping() {
-      updateInputChangeValue(word, input.value, 'hiragana_reading');
-    }
-  
-    input.addEventListener('keyup', handleTyping);
+    });
   
     return input;
   }
 
-  //todo: change implement category or reading to dictionary
   createCategoryDropdown(word) {
     const select = document.createElement('select');
     select.id = `${word}-category`;
@@ -160,9 +178,11 @@ class SortableTable {
       option.textContent = category;
       select.appendChild(option);
     });
+
+    select.value = this.dictionary.allSavedWords[word]?.category || '名詞';
   
     select.addEventListener('change', () => {
-      updateCategoryChangeValue(word, select.value);
+      this.dictionary.updateWordCategoryValue(word, select.value);
     });
     return select;
   }
@@ -177,9 +197,11 @@ class SortableTable {
       option.textContent = reading;
       select.appendChild(option);
     });
+
+    select.value = this.dictionary.allSavedWords[word]?.reading || '音読み';
   
     select.addEventListener('change', () => {
-      updateReadingChangeValue(word, select.value);
+      this.dictionary.updateWordReadingValue(word, select.value);
     });
     return select;
   }
@@ -214,7 +236,6 @@ class SortableTable {
     addNewWordButton.textContent = 'Add New Word';
     clearWordButton.textContent = 'Clear Word';
   
-    //todo: move this to css
     addNewWordButton.style.marginTop = '10px';
     clearWordButton.style.marginTop = '10px';
     clearWordButton.style.marginLeft = '10px';
@@ -231,7 +252,7 @@ class SortableTable {
           rendaku: 0,
         }
   
-        addWordToDictionaryFromNewRow(newWord);     
+        this.dictionary.addWordToDictionaryFromNewRow(newWord);     
       }
     });
   
@@ -248,11 +269,34 @@ class SortableTable {
     return div;
   }
 
-  createGrammarGuide() {
-    const grammar_guide_container = document.createElement('div');
+  saveAllInput(allSavedWordsFlag = false) {
+    const tempWords = allSavedWordsFlag ? this.dictionary.allSavedWords : this.dictionary.currentTextTokenWords; 
+    
+    Object.entries(tempWords).forEach((word) => {
+      console.log(word);
+      const translationInputValue = document.getElementById(`translation-${word[0]}`).value;
+      const hiraganaReadingInput = document.getElementById(`hiragana_reading-${word[0]}`);
+      const categoryInput = document.getElementById(`${word[0]}-category`);
+      const readingInput = document.getElementById(`${word[0]}-reading`);
+      const rendakuInput = document.getElementById(`rendaku-${word[0]}`);
 
-    const grammar_guide_data = fetch('./dictionary_data/grammar_guide_data.json')
-      .then((response) => response.json())     
+      const tempWord = {
+        word: word,
+        count: word[1],
+        translation: translationInputValue,
+        hiragana_reading: hiraganaReadingInput.value,
+        category: categoryInput.value,
+        reading: readingInput.value,
+        rendaku: rendakuInput.value,
+      }
+
+      this.dictionary.updateWordValue(tempWord);
+    });    
+  }
+
+  createGrammarGuide() {
+    const dictionaryTabContent = document.getElementById('dictionary-tab-content');
+    const grammar_guide_container = document.createElement('div');
   
     grammar_guide_data.all_data.forEach((section) => {
       const section_container = document.createElement('div');
@@ -311,7 +355,77 @@ class SortableTable {
         }
       });
     });
-    return grammar_guide_container;
+    this.table.innerHTML = ''; // Clear previous content
+    this.table.classList.add('grammar-guide-table');
+    this.table.appendChild(grammar_guide_container);
+    dictionaryTabContent.appendChild(this.table);
+  }
+
+  createHelpGuide(){
+    const dictionaryTabContent = document.getElementById('dictionary-tab-content');
+    const help_guide_container = document.createElement('div');
+
+    help_guide_data.all_data.forEach((section) => {
+      const section_container = document.createElement('div');
+      section_container.classList.add('section-container');
+      help_guide_container.appendChild(section_container);
+  
+      const header = document.createElement('h2');
+      header.textContent = section.header;
+      section_container.appendChild(header);
+  
+      const subheader = document.createElement('h3');
+      subheader.textContent = section.subheader;
+      section_container.appendChild(subheader);
+  
+      section.content.forEach((content) => {
+        if (content.table) {
+          const table = document.createElement('table');
+          section_container.appendChild(table);
+  
+          const thead = document.createElement('thead');
+          table.appendChild(thead);
+  
+          const tr = document.createElement('tr');
+          thead.appendChild(tr);
+  
+          content.table.headers.forEach((header) => {
+            const th = document.createElement('th');
+            th.textContent = header;
+            tr.appendChild(th);
+          });
+  
+          const tbody = document.createElement('tbody');
+          table.appendChild(tbody);
+  
+          content.table.rows.forEach((row) => {
+            const tr = document.createElement('tr');
+            tbody.appendChild(tr);
+  
+            row.forEach((cell) => {
+              const td = document.createElement('td');
+              td.textContent = cell;
+              tr.appendChild(td);
+            });
+          });
+        }
+  
+        if (content.list) {
+          const ul = document.createElement('ul');
+          section_container.appendChild(ul);
+  
+          content.list.forEach((item) => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            ul.appendChild(li);
+          });
+        }
+      });
+    });
+    this.table.innerHTML = ''; // Clear previous content
+    this.table.classList.add('help-guide-table');
+    this.table.appendChild(help_guide_container);
+    dictionaryTabContent.appendChild(this.table);
   }
 }
 

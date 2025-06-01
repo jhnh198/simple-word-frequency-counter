@@ -1,16 +1,10 @@
 {
   "allSavedWords": {
-    "Word": {
-      "count": "Count",
-      "translation": "Translation",
-      "hiragana_reading": "Hiragana Reading",
-      "category": "Category"
-    },
     "あなた": {
       "count": "6",
       "translation": "you",
       "hiragana_reading": "あなた",
-      "category": "名詞"
+      "category": "集中"
     },
     "あの": {
       "count": "1",
@@ -940,7 +934,7 @@
       "count": "16",
       "translation": "you",
       "hiragana_reading": "きみ",
-      "category": "名詞"
+      "category": "集中"
     },
     "吠えろ": {
       "count": "2",
