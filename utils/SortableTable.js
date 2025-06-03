@@ -112,7 +112,17 @@ class SortableTable {
       const rendakuCell = row.insertCell();
       const rendakuInput = document.createElement('select');
       rendakuInput.classList.add('rendaku-select');
-      rendakuInput.innerHTML = `<option value="0">仮性</option><option value="1">真実</option>`;        
+      const rendakuOptions = ['仮性', '有声化', '無声化'];
+      
+      rendakuOptions.forEach(option => {
+        const opt = document.createElement('option');
+        opt.value = option;
+        opt.textContent = option;
+        if (this.dictionary.allSavedWords[word]?.rendaku === option) {
+          opt.selected = true;
+        }
+        rendakuInput.appendChild(opt);
+      });    
       rendakuInput.id = `rendaku-${word}`;
       rendakuInput.value = this.dictionary.allSavedWords[word]?.rendaku || "仮性";
       rendakuInput.addEventListener('change', () => {
