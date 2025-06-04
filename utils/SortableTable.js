@@ -108,27 +108,8 @@ class SortableTable {
       const readingCell = row.insertCell();
       readingCell.appendChild(this.createReadingDropdown(word));
 
-      //todo: clean up and set into function
       const rendakuCell = row.insertCell();
-      const rendakuInput = document.createElement('select');
-      rendakuInput.classList.add('rendaku-select');
-      const rendakuOptions = ['仮性', '有声化', '無声化'];
-      
-      rendakuOptions.forEach(option => {
-        const opt = document.createElement('option');
-        opt.value = option;
-        opt.textContent = option;
-        if (this.dictionary.allSavedWords[word]?.rendaku === option) {
-          opt.selected = true;
-        }
-        rendakuInput.appendChild(opt);
-      });    
-      rendakuInput.id = `rendaku-${word}`;
-      rendakuInput.value = this.dictionary.allSavedWords[word]?.rendaku || "仮性";
-      rendakuInput.addEventListener('change', () => {
-        this.dictionary.updateWordRendakuValue(word, rendakuInput.value);
-      });
-      rendakuCell.appendChild(rendakuInput);
+      rendakuCell.appendChild(this.createRendakuDropdown(word));
 
       const deleteCell = row.insertCell();
       const deleteButton = document.createElement('button');
@@ -213,6 +194,28 @@ class SortableTable {
     select.addEventListener('change', () => {
       this.dictionary.updateWordReadingValue(word, select.value);
     });
+    return select;
+  }
+
+  createRendakuDropdown(word) {
+    const select = document.createElement('select');
+    select.id = `rendaku-${word}`;
+  
+    const rendakuOptions = ['仮性', '有声化', '無声化'];
+  
+    rendakuOptions.forEach(option => {
+      const opt = document.createElement('option');
+      opt.value = option;
+      opt.textContent = option;
+      select.appendChild(opt);
+    });
+  
+    select.value = this.dictionary.allSavedWords[word]?.rendaku || '仮性';
+  
+    select.addEventListener('change', () => {
+      this.dictionary.updateWordRendakuValue(word, select.value);
+    });
+  
     return select;
   }
 
