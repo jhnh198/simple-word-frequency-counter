@@ -47,8 +47,16 @@ class SortableTable {
 
     const countHeaderCell = headerRow.insertCell();
     countHeaderCell.textContent = 'Count';
+
     const translationHeaderCell = headerRow.insertCell();
     translationHeaderCell.textContent = 'Translation';
+    translationHeaderCell.addEventListener('click', () => {
+      if (this.direction === 'asc') this.direction = 'desc'
+      else this.direction = 'asc'
+      this.dictionary.sortDictionary('translation', this.direction);
+      this.buildWordFrequencyTable(isCurrentWords, isFocusedWords);
+    });
+
     const hiragana_readingHeaderCell = headerRow.insertCell();
     hiragana_readingHeaderCell.textContent = 'Hiragana Reading';
     const categoryHeaderCell = headerRow.insertCell();
