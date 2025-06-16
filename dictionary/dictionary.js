@@ -64,7 +64,7 @@ class Dictionary {
   
             rows.forEach(row => {
               const [word, count, translation, hiragana_reading, category, reading, rendaku] = row.split(',');
-              this.currentTextTokenWords[word] = { count: count, translation: translation, hiragana_reading: hiragana_reading, category: category, reading: reading, rendaku: rendaku };
+              this.currentTextTokenWords[word] = { count: count, translation: translation, hiragana_reading: hiragana_reading, category: category, reading: reading || '音読み', rendaku: rendaku || "仮性" };
               });
           };
       }
