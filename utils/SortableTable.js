@@ -17,8 +17,8 @@ class SortableTable {
       this.table = document.createElement('table');
       this.table.id = 'dictionary-table';
       this.table.classList.add('dictionary-table');
-      this.table.direction = direction;
-      this.table.column = column;
+      this.direction = direction;
+      this.column = column;
     } catch (error) {
       console.error('Error creating table:', error);
     }
@@ -27,6 +27,10 @@ class SortableTable {
     this.direction = direction;
     
     this.dictionary = new Dictionary();
+  }
+
+  changeDirection() {
+    this.direction = direction === 'asc' ? 'desc' : 'asc';
   }
 
   buildWordFrequencyTable(isCurrentWords = false, isFocusedWords = false) {
@@ -41,7 +45,8 @@ class SortableTable {
     const wordHeaderCell = headerRow.insertCell();
     wordHeaderCell.textContent = 'Word';
     wordHeaderCell.addEventListener('click', () => {
-      this.dictionary.sortDictionary('word', 'asc');
+      changeDirection();
+      this.dictionary.sortDictionary('word',"asc");
       this.buildWordFrequencyTable(isCurrentWords, isFocusedWords);
     });
 
@@ -49,28 +54,32 @@ class SortableTable {
     countHeaderCell.textContent = 'Count';
 
     countHeaderCell.addEventListener('click', () => {
-      this.dictionary.sortDictionary('count', 'desc');
+      changeDirection();
+      this.dictionary.sortDictionary('count', this.direction);
       this.buildWordFrequencyTable(isCurrentWords, isFocusedWords);
     });
 
     const translationHeaderCell = headerRow.insertCell();
     translationHeaderCell.textContent = 'Translation';
     translationHeaderCell.addEventListener('click', () => {
-      this.dictionary.sortDictionary('translation', 'asc');
+      changeDirection();
+      this.dictionary.sortDictionary('translation', this.direction);
       this.buildWordFrequencyTable(isCurrentWords, isFocusedWords);
     });
 
     const hiragana_readingHeaderCell = headerRow.insertCell();
     hiragana_readingHeaderCell.textContent = 'Hiragana Reading';
     hiragana_readingHeaderCell.addEventListener('click', () => {
-      this.dictionary.sortDictionary('hiragana_reading', 'asc');
+      this.changeDirection();
+      this.dictionary.sortDictionary('hiragana_reading', this.direction);
       this.buildWordFrequencyTable(isCurrentWords, isFocusedWords);
     });
 
     const categoryHeaderCell = headerRow.insertCell();
     categoryHeaderCell.textContent = 'Category'; 
     categoryHeaderCell.addEventListener('click', () => {
-      this.dictionary.sortDictionary('category', 'asc');
+      this.changeDirection();
+      this.dictionary.sortDictionary('category',  this.direction);
       this.buildWordFrequencyTable(isCurrentWords, isFocusedWords);
     });
 
