@@ -173,6 +173,7 @@ class Dictionary {
   }
   
   sortDictionary(term, direction) {
+    console.log(`Sorting dictionary by ${term} in ${direction} order.`);
     this.allSavedWords = Object.entries(this.allSavedWords).sort((a, b) => {
       if (direction === 'asc') {
         return a[1][term] - b[1][term];
@@ -183,6 +184,8 @@ class Dictionary {
       }
     });
     this.allSavedWords = Object.fromEntries(this.allSavedWords);
+    return this.allSavedWords;
+    console.log(`Return sorted dictionary ${this.allSavedWords} `);
   }
 }
 

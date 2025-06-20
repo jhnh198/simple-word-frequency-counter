@@ -30,7 +30,7 @@ class SortableTable {
   }
 
   changeDirection() {
-    this.direction = direction === 'asc' ? 'desc' : 'asc';
+    this.direction = this.direction === 'asc' ? 'desc' : 'asc';
   }
 
   buildWordFrequencyTable(isCurrentWords = false, isFocusedWords = false) {
@@ -44,9 +44,10 @@ class SortableTable {
     const headerRow = body.insertRow();
     const wordHeaderCell = headerRow.insertCell();
     wordHeaderCell.textContent = 'Word';
+    wordHeaderCell.classList.add('table-header-border')
     wordHeaderCell.addEventListener('click', () => {
-      changeDirection();
-      this.dictionary.sortDictionary('word',"asc");
+      this.changeDirection();
+      this.dictionary = this.dictionary.sortDictionary('word',"asc");
       this.buildWordFrequencyTable(isCurrentWords, isFocusedWords);
     });
 
@@ -54,7 +55,7 @@ class SortableTable {
     countHeaderCell.textContent = 'Count';
 
     countHeaderCell.addEventListener('click', () => {
-      changeDirection();
+      this.changeDirection();
       this.dictionary.sortDictionary('count', this.direction);
       this.buildWordFrequencyTable(isCurrentWords, isFocusedWords);
     });
@@ -62,7 +63,7 @@ class SortableTable {
     const translationHeaderCell = headerRow.insertCell();
     translationHeaderCell.textContent = 'Translation';
     translationHeaderCell.addEventListener('click', () => {
-      changeDirection();
+      this.changeDirection();
       this.dictionary.sortDictionary('translation', this.direction);
       this.buildWordFrequencyTable(isCurrentWords, isFocusedWords);
     });
